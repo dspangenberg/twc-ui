@@ -1,11 +1,5 @@
-'use client'
-
 import { cva, type VariantProps } from 'class-variance-authority'
-import {
-  Button as AriaButton,
-  composeRenderProps,
-  type ButtonProps as AriaButtonProps
-} from 'react-aria-components'
+import { Button as AriaButton, type ButtonProps as AriaButtonProps, composeRenderProps } from 'react-aria-components'
 import { cn } from '@/lib/utils'
 import { HugeiconsIcon, type IconSvgElement } from '@hugeicons/react'
 import { LoaderCircleIcon } from 'lucide-react'
@@ -19,20 +13,20 @@ const buttonVariants = cva(
     'focus-visible:border-ring focus-visible:ring-ring/20 focus-visible:ring-[3px]',
     'active:ring-[3px]',
     /* Resets */
-    'focus-visible:outline-none'
+    'focus-visible:outline-none ring-offset-1'
   ],
   {
     variants: {
       variant: {
         default:
-          'bg-primary text-primary-foreground data-[hovered]:bg-primary/90 pressed:ring-ring/50 active:ring-ring/50 ',
+          'bg-primary text-primary-foreground data-[hovered]:bg-primary/90 pressed:ring-primary/50 active:ring-ring/50 focus-visible:ring-primary/20',
         destructive:
-          'bg-destructive text-destructive-foreground text-white data-[hovered]:bg-destructive/90 pressed:ring-destructive/50',
+          'bg-destructive text-destructive-foreground text-white data-[hovered]:bg-destructive/90 border pressed:ring-destructive/50 focus-visible:ring-destructive/20 focus-visible:border-destructive/20 ',
         outline:
           'border border-input bg-background  data-[hovered]:bg-accent data-[hovered]:text-accent-foreground focus-visible:ring-ring/20 pressed:ring-ring/50',
-        secondary: 'bg-secondary text-secondary-foreground  data-[hovered]:bg-secondary/80',
-        ghost:
-          'data-[hovered]:bg-accent data-[hovered]:text-accent-foreground focus-visible:border focus-visible:border-primary focus-visible:ring-ring/20 pressed:ring-ring/50 text-sm',
+        secondary:
+          'bg-secondary/90 text-secondary-foreground border-transparent border focus-visible:border-input focus-visible:border data-[hovered]:bg-secondary/20 pressed:ring-ring/50',
+        ghost: 'data-[hovered]:bg-accent data-[hovered]:text-accent-foreground focus-visible:border border border-transparent focus-visible:border-input focus-visible:ring-ring/20 pressed:ring-ring/50 text-sm',
         link: 'text-primary underline-offset-4 data-[hovered]:underline',
         toolbar:
           'data-[hovered]:bg-accent data-[hovered]:text-accent-foreground pressed:ring-ring/50 active:ring-ring/50 focus-visible:border focus-visible:border-primary focus-visible:ring-ring/20  text-sm',
@@ -56,13 +50,15 @@ const buttonVariants = cva(
   }
 )
 
-export interface BaseButtonProps extends AriaButtonProps, VariantProps<typeof buttonVariants> {
-  loading?: boolean
-  disabled?: boolean
-  icon?: IconSvgElement
-  iconClassName?: string
-  slot?: string | null
-  title?: string
+export interface BaseButtonProps
+  extends AriaButtonProps,
+    VariantProps<typeof buttonVariants> {
+  loading?: boolean;
+  disabled?: boolean;
+  icon?: IconSvgElement;
+  iconClassName?: string;
+  slot?: string | null;
+  title?: string;
 }
 
 export const BaseButton = ({
@@ -108,7 +104,7 @@ export const BaseButton = ({
       slot={slot}
       isDisabled={disabled || loading}
       isPending={loading}
-      className={composeRenderProps(className, className =>
+      className={composeRenderProps(className, (className) =>
         cn(
           'gap-2',
           buttonVariants({
@@ -120,8 +116,13 @@ export const BaseButton = ({
       )}
       {...props}
     >
-      {composeRenderProps(children, children => (
-        <div className={cn('flex gap-2', size === 'icon' ? 'mx-auto' : '')}>
+      {composeRenderProps(children, (children) => (
+        <div
+          className={cn(
+            'flex gap-2',
+            size === 'icon' ? 'mx-auto' : ''
+          )}
+        >
           {!loading && icon && (
             <HugeiconsIcon
               icon={icon}
@@ -134,10 +135,15 @@ export const BaseButton = ({
             />
           )}
           {loading && (
-            <LoaderCircleIcon className={cn('animate-spin', iconSizeClass)} aria-hidden="true" />
+            <LoaderCircleIcon
+              className={cn('animate-spin', iconSizeClass)}
+              aria-hidden="true"
+            />
           )}
           {(title || children) && variant !== 'toolbar' && (
-            <div className={cn(isToolbar ? 'hidden lg:flex' : '')}>{title || children}</div>
+            <div className={cn(isToolbar ? 'hidden lg:flex' : '')}>
+              {title || children}
+            </div>
           )}
         </div>
       ))}

@@ -1,6 +1,8 @@
 import type React from 'react'
-import Demo from './demo'
+import { Demo } from './demo'
 import { DemoCodePreview } from '@/components/docs/DemoCodePreview'
+import { MarkdownRenderer } from '@/components/docs/MarkdownRenderer'
+import DocsLayout from '@/layouts/docs-layout'
 
 interface CodeProps {
   code: string
@@ -11,15 +13,16 @@ interface CodeProps {
 
 const Code: React.FC<CodeProps> = ({ code, path, title, documentation }) => {
   return (
-    <div className="mx-auto w-screen max-w-4xl gap-12">
-      <div className="documentation-page">
-        <h1>Dokumentation</h1>
-      </div>
+    <DocsLayout>
+      <div className='doc mx-auto w-screen max-w-4xl gap-12 py-4'>
+        <h1>(Base-) Button</h1>
+        <p>Displays a button or a component that looks like a button.</p>
 
-      <DemoCodePreview code={code} demo={<Demo />} title="Heading small" fileName={path}>
-        {documentation}
-      </DemoCodePreview>
-    </div>
+        <DemoCodePreview codePath="demo.tsx" demo={<Demo />} fileName="demo.tsx" />
+
+        <MarkdownRenderer path="doc.md" />
+      </div>
+    </DocsLayout>
   )
 }
 

@@ -1,9 +1,10 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
 @plugin 'tailwindcss-animate';
 
 @source '../views';
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@plugin "tailwindcss-react-aria-components";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -81,11 +82,12 @@
 :root {
     --background: oklch(1 0 0);
     --foreground: oklch(0.145 0 0);
+    --page-content: oklch(0.99 0.0011 197.13);
     --card: oklch(1 0 0);
     --card-foreground: oklch(0.145 0 0);
     --popover: oklch(1 0 0);
     --popover-foreground: oklch(0.145 0 0);
-    --primary: oklch(0.205 0 0);
+    --primary: oklch(0.609 0.182 257.292);
     --primary-foreground: oklch(0.985 0 0);
     --secondary: oklch(0.97 0 0);
     --secondary-foreground: oklch(0.205 0 0);
@@ -171,9 +173,43 @@ code .line::before {
     margin-right: 1.5rem;
     display: inline-block;
     text-align: right;
-    color: rgba(115,138,148,.4)
+    color: rgba(115, 138, 148, 0.4);
+}
+
+.docs p {
+    @apply hyphens-auto text-left leading-normal py-1 first:pt-0 last:pb-0 w-full;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    @apply p-0 m-0 pb-3;
+}
+
+.docs a {
+    @apply text-primary;
+}
+
+.docs a:hover {
+    @apply underline;
+}
+
+
+h1 {
+    @apply text-3xl font-bold;
+}
+
+h2 {
+    @apply text-2xl font-bold;
 }
 
 h3 {
     @apply text-xl font-bold;
+}
+
+h4 {
+    @apply text-lg font-bold;
 }

@@ -12,27 +12,52 @@ import {
 } from '@/components/ui/sidebar'
 import type { NavItem } from '@/types'
 import { Link } from '@inertiajs/react'
-import { BookOpen, Folder, LayoutGrid } from 'lucide-react'
+import { HugeiconsIcon } from '@hugeicons/react'
+import {
+  Home13Icon,
+  BlueskyIcon,
+  BlockGameIcon,
+  Menu02Icon,
+  GeometricShapes01Icon,
+  BookOpen01Icon,
+  WebhookIcon,
+  Github01Icon
+} from '@hugeicons/core-free-icons'
 import AppLogo from './app-logo'
 
 const mainNavItems: NavItem[] = [
   {
-    title: 'Dashboard',
+    title: 'Home',
     href: '/dashboard',
-    icon: LayoutGrid
+    icon: Home13Icon
+  },
+  {
+    title: 'Getting Started',
+    href: '/dashboard',
+    icon: BookOpen01Icon
+  },
+  {
+    title: 'Components',
+    href: '/dashboard',
+    icon: GeometricShapes01Icon
+  },
+  {
+    title: 'Blocks',
+    href: '/dashboard',
+    icon: BlockGameIcon
   }
 ]
 
 const footerNavItems: NavItem[] = [
   {
-    title: 'Repository',
-    href: 'https://github.com/laravel/react-starter-kit',
-    icon: Folder
+    title: 'Github',
+    href: 'https://github.com/twiceware-cloud/ui',
+    icon: Github01Icon
   },
   {
-    title: 'Documentation',
-    href: 'https://laravel.com/docs/starter-kits#react',
-    icon: BookOpen
+    title: 'Bluesky',
+    href: 'https://bsky.app/profile/ui.twiceware.cloud',
+    icon: BlueskyIcon
   }
 ]
 
@@ -57,7 +82,6 @@ export function AppSidebar() {
 
       <SidebarFooter>
         <NavFooter items={footerNavItems} className="mt-auto" />
-        <NavUser />
       </SidebarFooter>
     </Sidebar>
   )

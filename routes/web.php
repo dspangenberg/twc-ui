@@ -4,34 +4,21 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('/', function () {
-    return Inertia::render('welcome');
+    return Inertia::render('index');
 })->name('home');
+
+Route::get('/imprint', function () {
+    return Inertia::render('imprint');
+})->name('imprint');
+
 
 Route::get('/demo', function () {
 
     return Inertia::render('demo');
 })->name('code');
 
-Route::get('/source/:path', function (string $path) {
-
-
-    $path = resource_path('js/pages/'.$path);
-    return file_get_contents($path);
-})->name('source');
-
-
 Route::get('/code', function () {
-
-
-    $path = resource_path('js/pages/demo.tsx');
-    $code = file_get_contents($path);
-    $docFile = resource_path('js/pages/doc.md');
-    $documentation = file_get_contents($docFile);
-
-
-    $fileName = pathinfo($path)['basename'];
-
-    return Inertia::render('code', ['documentation' => $documentation, 'code'=>$code, 'path' => $fileName, 'title' => 'HeadingSmall.tsx']);
+    return Inertia::render('code');
 })->name('code');
 
 Route::middleware(['auth', 'verified'])->group(function () {
@@ -42,3 +29,5 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 require __DIR__.'/settings.php';
 require __DIR__.'/auth.php';
+require __DIR__.'/docs.php';
+require __DIR__.'/demos.php';
