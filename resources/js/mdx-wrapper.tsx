@@ -2,14 +2,30 @@ import React from 'react'
 import { MDXProvider } from '@mdx-js/react'
 import { sharedComponents } from '@/mdx-components'
 
-interface MdxWrapperProps {
-  Component: React.ComponentType
+interface Frontmatter {
+  title?: string;
+  author?: string;
+  date?: string;
+  tags?: string[];
+  description?: string;
+  published?: boolean;
 }
 
-export const MdxWrapper = ({ Component }: MdxWrapperProps) => {
+interface MdxWrapperProps {
+  Component: React.ComponentType<{ frontmatter?: Frontmatter }>
+  frontmatter?: Frontmatter
+}
+
+export const MdxWrapper = ({
+  Component,
+  frontmatter
+}: MdxWrapperProps) => {
   return (
     <MDXProvider components={sharedComponents}>
-      <Component />
+      <Component frontmatter={frontmatter} />
     </MDXProvider>
   )
 }
+
+// Export des Frontmatter-Types
+export type { Frontmatter }

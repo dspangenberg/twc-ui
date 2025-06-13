@@ -5,7 +5,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { cn } from '@/lib/utils'
 
 import { DemoCodePreview } from '@/components/docs/DemoCodePreview'
-import { InstallationCommand } from '@/components/docs/install-command' // Korrigierter Import
+import { InstallationCommand } from '@/components/docs/install-command'
 import { InstallationSection } from '@/components/docs/installation-section'
 
 const sharedComponents = {
@@ -15,7 +15,7 @@ const sharedComponents = {
   }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h2
       className={cn(
-        'mt-10 scroll-m-16 border-border border-b pb-2 font-medium text-xl sm:text-2xl',
+        'mt-10 scroll-m-16 pb-2 font-medium text-xl sm:text-2xl',
         className
       )}
       {...props}

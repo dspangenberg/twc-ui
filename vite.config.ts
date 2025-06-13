@@ -7,6 +7,8 @@ import mdx from '@mdx-js/rollup'
 import remarkGfm from 'remark-gfm'
 import remarkToc from 'remark-toc'
 import rehypeSlug from 'rehype-slug'
+import remarkFrontmatter from 'remark-frontmatter'
+import remarkMdxFrontmatter from 'remark-mdx-frontmatter'
 
 export default defineConfig({
   plugins: [
@@ -20,9 +22,12 @@ export default defineConfig({
       ...mdx({
         remarkPlugins: [
           remarkGfm,
+          remarkFrontmatter,
+          [remarkMdxFrontmatter, { name: 'frontmatter' }], // expliziter Name
           [remarkToc, {
             heading: 'contents|toc|table[ -]of[ -]contents?', // Erkennt verschiedene TOC-Überschriften
-            maxDepth: 4, // Maximale Tiefe der Headings im TOC
+            minDepth: 2,
+            maxDepth: 5, // Maximale Tiefe der Headings im TOC
             tight: true, // Kompakte Liste ohne <p> Tags
             ordered: false // Ungeordnete Liste verwenden
           }]

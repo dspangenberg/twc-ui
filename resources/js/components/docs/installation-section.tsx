@@ -26,37 +26,48 @@ export const InstallationSection: React.FC<DemoCodePreviewProps> = ({
           <Tab id="cli">CLI</Tab>
           <Tab id="copy">Copy + Paste</Tab>
         </TabList>
-        <TabPanel id="cli">
-          {children}
-        </TabPanel>
-        <TabPanel id="copy">
-          <div className="space-y-6 ">
-            {dependencies && (
-              <>
-                <h4>Install dependencies</h4>
-                <InstallationCommand command="add" params={`${dependencies?.join(' ')}`} />
-              </>
-            )}
-            {devDependencies && (
-              <>
-                <h4>Install dev-dependencies</h4>
-                <InstallationCommand command="add" params={`-D ${devDependencies?.join(' ')}`} />
-              </>
-            )}
+        <div className="my-3">
+          <TabPanel id="cli">
+            {children}
+          </TabPanel>
+          <TabPanel id="copy">
 
-            <h4>Copy + Paste</h4>
-            <p className="font-medium">Copy and paste the code of the
-              following {components.length === 1 ? 'component' : 'components'} into your project. Don't forget to update
-              the import
-              paths to match your project setup.</p>
-            {components.map((component) => (
-              <DemoCodePreview isComponent key={component} codePath={component} fileName={`${component}.tsx`} />
-            ))}
+            <div className="space-y-6 ">
+              {dependencies && (
+                <>
+                  <h4>Install dependencies</h4>
+                  <InstallationCommand command="add" params={`${dependencies?.join(' ')}`} />
+                </>
+              )}
+              {devDependencies && (
+                <>
+                  <h4>Install dev-dependencies</h4>
+                  <InstallationCommand command="add" params={`-D ${devDependencies?.join(' ')}`} />
+                </>
+              )}
+
+              <h4>Copy + Paste</h4>
+              <p className="font-medium">Copy and paste the code of
+                the {components.length === 1 ? 'component' : 'components'}
+                <ul className="list-disc list-inside ml-6 my-3">
+                  {components.map((component) => (
+                    <li key={component}>{component}.tsx</li>
+                  ))}
+                </ul>
+                into your project. Don't forget to
+                update
+                the import
+                paths to match your project setup.
+              </p>
+              {components.map((component) => (
+                <DemoCodePreview isComponent key={component} codePath={component} fileName={`${component}.tsx`} />
+              ))}
 
 
-            {copyAndPaste}
-          </div>
-        </TabPanel>
+              {copyAndPaste}
+            </div>
+          </TabPanel>
+        </div>
       </Tabs>
     </div>
   )
