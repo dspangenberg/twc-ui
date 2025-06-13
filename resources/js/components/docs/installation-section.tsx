@@ -49,11 +49,13 @@ export const InstallationSection: React.FC<DemoCodePreviewProps> = ({
               <h4>Copy + Paste</h4>
               <p className="font-medium">Copy and paste the code of
                 the {components.length === 1 ? 'component' : 'components'}
-                <ul className="list-disc list-inside ml-6 my-3">
-                  {components.map((component) => (
-                    <li key={component}>{component}.tsx</li>
-                  ))}
-                </ul>
+              </p>
+              <ul className="list-disc list-inside ml-6 my-3">
+                {components.map((component) => (
+                  <li key={component}>{component}.tsx</li>
+                ))}
+              </ul>
+              <p className="font-medium">
                 into your project. Don't forget to
                 update
                 the import

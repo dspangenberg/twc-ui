@@ -26,7 +26,7 @@ Route::get('/demo', function () {
 
 Route::get('/code', function () {
     return Inertia::render('code');
-})->name('code');
+})->name('demo');
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('dashboard', function () {
