@@ -1,38 +1,54 @@
 import type React from 'react'
 import DocsLayout from '@/layouts/docs-layout'
 
-const Imprint: React.FC<CodeProps> = ({}) => {
+const Legal: React.FC = ({}) => {
   return (
     <DocsLayout>
       <div className="doc mx-auto w-screen max-w-4xl gap-12 py-4 space-y-6">
         <div>
-          <h1>Imprint</h1>
+          <h1>Legal</h1>
+        </div>
+
+        <div>
+          <h2>Imprint</h2>
           <p className="font-medium">
-            This project is made in the European Union. Therefore, I have a responsibility to make my mark.
+            This project is made in the European Union. Therefore, I have a responsibility to make my mark and you can
+            find the <a href="https://twiceware.de/https://twiceware.de/rechtliches/impressum/"
+                        target="_blank"
+          >imprint here</a>.
           </p>
         </div>
 
-        <p>
-          twiceware solutions e. K.<br />
-          Inhaber Danny Spangenberg<br />
-          Belderberg 7<br />
-          D-53111 Bonn<br />
-          <a href="https://twiceware.de" target="_blank">https://twiceware.de</a>
-        </p>
+        <div>
+          <h2>MIT License</h2>
+          <p>
+            Copyright (c) 2025 Danny Spangenberg.
+          </p>
+          <p>
+            Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
+            documentation files (the "Software"), to deal in the Software without restriction, including without
+            limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+            the Software, and to permit persons to whom the Software is furnished to do so, subject to the following
+            conditions:
+          </p>
+          <p>
+            The above copyright notice and this permission notice shall be included in all copies or substantial
+            portions of the Software.
+          </p>
+          <p>
+            THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT
+            LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO
+            EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN
+            AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE
+            OR OTHER DEALINGS IN THE SOFTWARE.
+          </p>
 
-        <p>
-          Handelsregister:<br />
-          HRA 6091 (Amtsgericht Bonn)
-        </p>
+        </div>
 
-        <p>
-          Umsatzsteuer-Identifikationsnummer gem. § 27a UStG:<br />
-          DE240386270
-        </p>
 
       </div>
     </DocsLayout>
   )
 }
 
-export default Imprint
+export default Legal

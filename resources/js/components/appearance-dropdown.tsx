@@ -1,28 +1,27 @@
 import { Button } from '@/components/ui/button'
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger
-} from '@/components/ui/dropdown-menu'
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 import { useAppearance } from '@/hooks/use-appearance'
-import { Monitor, Moon, Sun } from 'lucide-react'
 import type { HTMLAttributes } from 'react'
+import { HugeiconsIcon } from '@hugeicons/react'
+import { ComputerIcon, Moon02Icon, Sun02Icon } from '@hugeicons/core-free-icons'
 
-export default function AppearanceToggleDropdown({
+export default function AppearanceToggleDropdown ({
   className = '',
   ...props
 }: HTMLAttributes<HTMLDivElement>) {
-  const { appearance, updateAppearance } = useAppearance()
+  const {
+    appearance,
+    updateAppearance
+  } = useAppearance()
 
   const getCurrentIcon = () => {
     switch (appearance) {
       case 'dark':
-        return <Moon className="h-5 w-5" />
+        return <HugeiconsIcon icon={Moon02Icon} className="size-5" />
       case 'light':
-        return <Sun className="h-5 w-5" />
+        return <HugeiconsIcon icon={Sun02Icon} className="size-5" />
       default:
-        return <Monitor className="h-5 w-5" />
+        return <HugeiconsIcon icon={ComputerIcon} className="size-5" />
     }
   }
 
@@ -38,19 +37,19 @@ export default function AppearanceToggleDropdown({
         <DropdownMenuContent align="end">
           <DropdownMenuItem onClick={() => updateAppearance('light')}>
             <span className="flex items-center gap-2">
-              <Sun className="h-5 w-5" />
+              <HugeiconsIcon icon={Sun02Icon} className="size-5" />
               Light
             </span>
           </DropdownMenuItem>
           <DropdownMenuItem onClick={() => updateAppearance('dark')}>
             <span className="flex items-center gap-2">
-              <Moon className="h-5 w-5" />
+              <HugeiconsIcon icon={Moon02Icon} className="size-5" />
               Dark
             </span>
           </DropdownMenuItem>
           <DropdownMenuItem onClick={() => updateAppearance('system')}>
             <span className="flex items-center gap-2">
-              <Monitor className="h-5 w-5" />
+              <HugeiconsIcon icon={ComputerIcon} className="size-5" />
               System
             </span>
           </DropdownMenuItem>

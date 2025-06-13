@@ -8,7 +8,6 @@ import {
 } from '@/components/ui/navigation-menu'
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
-import { useInitials } from '@/hooks/use-initials'
 import { cn } from '@/lib/utils'
 import type { BreadcrumbItem, NavItem, SharedData } from '@/types'
 import { Link, usePage } from '@inertiajs/react'
@@ -24,8 +23,10 @@ import {
   Github01Icon,
   Home13Icon,
   HugeiconsIcon as HugeIcon,
-  JudgeIcon
+  JudgeIcon,
+  SwatchIcon
 } from '@hugeicons/core-free-icons'
+import AppearanceToggleDropdown from '@/components/appearance-dropdown'
 
 const mainNavItems: NavItem[] = [
   {
@@ -44,13 +45,18 @@ const mainNavItems: NavItem[] = [
     icon: GeometricShapes01Icon
   },
   {
+    title: 'Style',
+    href: '/style',
+    icon: SwatchIcon
+  },
+  {
     title: 'Blocks',
-    href: '/dashboard',
+    href: '/blocks',
     icon: BlockGameIcon
   },
   {
-    title: 'Imprint',
-    href: '/imprint',
+    title: 'Legal',
+    href: '/legal',
     icon: JudgeIcon
   }
 ]
@@ -82,8 +88,7 @@ interface AppHeaderProps {
 
 export function AppHeader ({ breadcrumbs = [] }: AppHeaderProps) {
   const page = usePage<SharedData>()
-  const { auth } = page.props
-  const getInitials = useInitials()
+
   return (
     <>
       <div className="border-sidebar-border/80 border-b ">
@@ -220,7 +225,7 @@ export function AppHeader ({ breadcrumbs = [] }: AppHeaderProps) {
                           {item.icon && (
                             <HugeiconsIcon
                               icon={item.icon}
-                              className="opacity-80 group-hover:opacity-100"
+                              className="opacity-80 size-5 group-hover:opacity-100"
                             />
                           )}
                         </a>
@@ -232,6 +237,7 @@ export function AppHeader ({ breadcrumbs = [] }: AppHeaderProps) {
                   </TooltipProvider>
                 ))}
               </div>
+              <AppearanceToggleDropdown />
             </div>
           </div>
         </div>

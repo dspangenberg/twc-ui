@@ -20,7 +20,7 @@ export default function Home () {
                 <div className="bg-primary text-primary-foreground rounded-full p-1">
                   <TargetIcon className="size-4" />
                 </div>
-                <p>Just open-sourced and work in progress</p>
+                <p>Just open-sourced and still a work in progress</p>
               </div>
 
               <RevealText
@@ -29,12 +29,12 @@ export default function Home () {
                 Shadcn/ui meets Inertia.js
               </RevealText>
               <p className="text-foreground/80 mt-3 max-w-lg text-center max-sm:text-sm lg:mt-5 font-semibold">
-                DRY-er, more accessible <a href="https://ui.shadcn.com/" target="_blank">shadcn/ui</a>-inspired <a
+                DRY-er, more accessible <a href="https://ui.shadcn.com/" target="_blank">shadcn/ui</a>-alike <a
                 href="https://react-spectrum.adobe.com/react-aria/index.html" target="_blank"
               >React Aria</a> components, optimized for
                 <a href="https://inertiajs.com/" target="_blank"> Inertia.js</a> with
                 <a href="https://laravel.com/docs/12.x/precognition#main-content" target="_blank"
-                >&nbsp;Laravel's Precogintion</a> build in.
+                >&nbsp;Laravel's Precognition feature</a> build in.
               </p>
               <div className="mt-6 flex items-center gap-3 max-sm:flex-col sm:mt-8">
                 <SpringButton
@@ -47,7 +47,7 @@ export default function Home () {
                 </SpringButton>
               </div>
             </div>
-            <div className="mt-6 flex justify-center sm:mt-8 lg:mt-12">
+            <div className="hidden mt-6 flex justify-center sm:mt-8 lg:mt-12">
               <img
                 src="https://images.unsplash.com/photo-1674027392842-29f8354e236c?w=1000"
                 className="h-90 w-full max-w-4xl rounded-md object-cover shadow-xl sm:h-100 lg:h-120"

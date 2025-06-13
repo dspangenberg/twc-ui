@@ -38,7 +38,7 @@ const handleSystemThemeChange = () => {
   applyTheme(currentAppearance || 'system')
 }
 
-export function initializeTheme() {
+export function initializeTheme () {
   const savedAppearance = (localStorage.getItem('appearance') as Appearance) || 'system'
 
   applyTheme(savedAppearance)
@@ -47,7 +47,7 @@ export function initializeTheme() {
   mediaQuery()?.addEventListener('change', handleSystemThemeChange)
 }
 
-export function useAppearance() {
+export function useAppearance () {
   const [appearance, setAppearance] = useState<Appearance>('system')
 
   const updateAppearance = useCallback((mode: Appearance) => {
@@ -69,5 +69,8 @@ export function useAppearance() {
     return () => mediaQuery()?.removeEventListener('change', handleSystemThemeChange)
   }, [updateAppearance])
 
-  return { appearance, updateAppearance } as const
+  return {
+    appearance,
+    updateAppearance
+  } as const
 }

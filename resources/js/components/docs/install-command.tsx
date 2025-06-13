@@ -1,10 +1,10 @@
 'use client'
 
 import React, { useEffect, useState } from 'react'
-import { codeToHtml } from 'shiki'
 import { cn } from '@/lib/utils'
-import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group'
-import { ClipboardButton } from '@/components/docs/clipboard-button'
+import { SourceCodeViewer } from '@/components/docs/source-code-viewer'
+import { Tab, TabList, TabPanel, Tabs } from '@/components/twc-ui/tabs'
+import { Key } from 'react-aria-components'
 
 export type PackageManager = 'npm' | 'yarn' | 'bun' | 'pnpm'
 export type BaseCommand = 'add' | 'execute' | 'create'
@@ -45,15 +45,12 @@ export const getCommandAsPackageManager = (baseCommand: BaseCommand, manager: Pa
 export const InstallationCommand = ({
   command: baseCommand,
   className,
-  params: rawParams,
-  wrapperClassname
+  params: rawParams
 }: {
   command: BaseCommand
   params: string
   className?: string
-  wrapperClassname?: string
 }) => {
-  const [code, setCode] = useState<string>('')
   const [selectedPackageManager, setSelectedPackageManager] = useState<PackageManager>('pnpm')
   const [params, setParams] = useState<string>(rawParams.replace('~website/', import.meta.env.VITE_APP_URL + '/'))
   const [command, setCommand] = useState<string>('')
@@ -63,42 +60,36 @@ export const InstallationCommand = ({
     setCommand(packageLevelCommand + ' ' + params)
   })
 
-  const handlePackageManagerChange = (manager: PackageManager) => {
-    const newCommand = getCommandAsPackageManager(baseCommand, manager)
-    console.log(newCommand)
-    setCommand(newCommand + ' ' + params)
-    setSelectedPackageManager(manager)
+  const handlePackageManagerChange = (key: Key) => {
+    // Type Guard und Konvertierung
+    const manager = key as PackageManager
+    if (['npm', 'yarn', 'bun', 'pnpm'].includes(manager)) {
+      const newCommand = getCommandAsPackageManager(baseCommand, manager)
+      console.log(newCommand)
+      setCommand(newCommand + ' ' + params)
+      setSelectedPackageManager(manager)
+    }
   }
 
-  useEffect(() => {
-    codeToHtml(command, {
-      lang: 'bash',
-      theme: 'github-light'
-    }).then(setCode)
-  }, [command])
-
   return (
-    <div className={cn('relative', wrapperClassname)}>
-      <div className="w-full rounded-md border bg-muted text-sm p-1.5">
-        <div className="flex items-center px-4 pb-1">
-          <ToggleGroup
-            type="single"
-            value={selectedPackageManager}
-            className="flex-1"
-            onValueChange={handlePackageManagerChange}
-          >
-            <ToggleGroupItem value="pnpm">pnpm</ToggleGroupItem>
-            <ToggleGroupItem value="npm">npm</ToggleGroupItem>
-            <ToggleGroupItem value="bun">bun</ToggleGroupItem>
-            <ToggleGroupItem value="yarn">yarn</ToggleGroupItem>
-          </ToggleGroup>
-          <ClipboardButton code={command} />
-        </div>
-        <div
-          className={cn('select-all overflow-hidden rounded text-sm rounded-md [&>.shiki]:p-4', className)}
-          dangerouslySetInnerHTML={{ __html: code }}
-        />
-      </div>
+    <div className={cn('relative', className)}>
+      <SourceCodeViewer
+        code={command}
+        language="bash"
+        header={
+          <div className="flex items-center flex-1 px-4 pt-1">
+            <Tabs selectedKey={selectedPackageManager} onSelectionChange={handlePackageManagerChange} variant="line">
+              <TabList className="border-0">
+                <Tab id="pnpm">pnpm</Tab>
+                <Tab id="npm">npm</Tab>
+                <Tab id="bun">bun</Tab>
+                <Tab id="yarn">yarn</Tab>
+              </TabList>
+            </Tabs>
+          </div>
+        }
+      />
     </div>
   )
+
 }

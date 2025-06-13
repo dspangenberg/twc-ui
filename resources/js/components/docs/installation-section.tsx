@@ -1,4 +1,4 @@
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { Tab, TabList, TabPanel, Tabs } from '@/components/twc-ui/tabs'
 import type React from 'react'
 import { InstallationCommand } from '@/components/docs/install-command'
 import { DemoCodePreview } from '@/components/docs/DemoCodePreview'
@@ -21,15 +21,15 @@ export const InstallationSection: React.FC<DemoCodePreviewProps> = ({
 
   return (
     <div className="mx-auto w-full max-w-4xl">
-      <Tabs defaultValue="cli" className="mx-auto mt-6 w-full max-w-4xl gap-4">
-        <TabsList>
-          <TabsTrigger value="cli">CLI</TabsTrigger>
-          <TabsTrigger value="copy">Copy + Paste</TabsTrigger>
-        </TabsList>
-        <TabsContent value="cli">
+      <Tabs defaultSelectedKey="cli" className="mx-auto mt-6 w-full max-w-4xl gap-4">
+        <TabList>
+          <Tab id="cli">CLI</Tab>
+          <Tab id="copy">Copy + Paste</Tab>
+        </TabList>
+        <TabPanel id="cli">
           {children}
-        </TabsContent>
-        <TabsContent value="copy">
+        </TabPanel>
+        <TabPanel id="copy">
           <div className="space-y-6 ">
             {dependencies && (
               <>
@@ -56,7 +56,7 @@ export const InstallationSection: React.FC<DemoCodePreviewProps> = ({
 
             {copyAndPaste}
           </div>
-        </TabsContent>
+        </TabPanel>
       </Tabs>
     </div>
   )

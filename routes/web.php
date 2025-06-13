@@ -4,13 +4,20 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('/', function () {
-    return Inertia::render('index');
+    return Inertia::render('landing');
 })->name('home');
 
-Route::get('/imprint', function () {
-    return Inertia::render('imprint');
-})->name('imprint');
+Route::get('/blocks', function () {
+    return Inertia::render('blocks');
+})->name('blocks');
 
+Route::get('/legal', function () {
+    return Inertia::render('legal');
+})->name('legal');
+
+Route::get('/style', function () {
+    return Inertia::render('style');
+})->name('style');
 
 Route::get('/demo', function () {
 

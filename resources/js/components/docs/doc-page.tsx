@@ -1,18 +1,9 @@
-/*
- * opsc.core is licensed under the terms of the EUPL-1.2 license
- * Copyright (c) 2024-2025 by Danny Spangenberg (twiceware solutions e. K.)
- */
-
 import { Head } from '@inertiajs/react'
 import type React from 'react'
 import { useEffect, useMemo } from 'react'
 import { LayoutContainer } from '@/components/twc-ui/layout-container'
 import type { BreadcrumbProp } from '@/components/twc-ui/page-breadcrumbs'
-import {
-  type BackgroundColor,
-  type Container,
-  useThemeContainer
-} from '@/components/twc-ui/layout-container-provider'
+import { type BackgroundColor, type Container, useThemeContainer } from '@/components/twc-ui/layout-container-provider'
 import { cn } from '@/lib/utils'
 import { useBreadcrumbProvider } from '@/components/twc-ui/breadcrumb-provider'
 import { ClassicNavTabs } from '@/components/twc-ui/classic-nav-tabs'
@@ -47,7 +38,11 @@ export const PageContainer: React.FC<PageContainerProps> = ({
   footer,
   children
 }) => {
-  const { setWidth, setBackgroundColor, backgroundClass } = useThemeContainer()
+  const {
+    setWidth,
+    setBackgroundColor,
+    backgroundClass
+  } = useThemeContainer()
   const { setBreadcrumbs } = useBreadcrumbProvider()
 
   useEffect(() => {
