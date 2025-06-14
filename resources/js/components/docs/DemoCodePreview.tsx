@@ -27,8 +27,9 @@ export const DemoCodePreview: React.FC<DemoCodePreviewProps> = ({
 }) => {
 
   const [isLoading, setIsLoading] = useState(true)
-  const demoUrl = demoPath?.includes('https') ? demoPath : import.meta.env.VITE_APP_URL + '/' + demoPath
-
+  const demoUrl = demoPath?.includes('https')
+    ? demoPath
+    : `${import.meta.env.VITE_APP_URL.replace(/\/$/, '')}/${demoPath.replace(/^\//, '')}`
   const codeView = () => {
     return (
 
