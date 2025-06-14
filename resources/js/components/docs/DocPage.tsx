@@ -91,7 +91,7 @@ export const DocNavigation = () => {
             <ul className="ml-4 space-y-2">
               {item.children.map((child, index) => (
                 <li key={index}>
-                  {child.title}
+                  <a href={child.route}>{child.title}</a>
                   {child.children && (
                     <ul className="ml-4">
                       {child.children.map((grandChild, index) => (
@@ -108,6 +108,8 @@ export const DocNavigation = () => {
         </li>
       ))}
     </ul>
+  );
+};
   )
 }
 
