@@ -1,0 +1,58 @@
+---
+title: Tabs
+description: Tabs organize content into multiple sections and allow users to navigate between them.
+---
+<DemoCodePreview codePath="tabs/default.tsx" demoPath="demos/tabs/default" fileName="demo.tsx" />
+
+## Installation
+<InstallationSection
+  dependencies={['react-aria-components', '@hugeicons/react', 'tailwind-variants']}
+  components={['tabs']}
+>
+  <InstallationCommand command="execute" params="shadcn@latest add ~website/r/twc-ui/tabs" />
+</InstallationSection>
+
+
+## Examples
+
+<DemoCodePreview
+  codePath="tabs/underlined.tsx"
+  demoPath="demos/tabs/underlined"
+  title="Underlined tabs"
+/>
+
+<DemoCodePreview
+  codePath="tabs/classic.tsx"
+  demoPath="demos/tabs/classic"
+  title="Classic tabs"
+/>
+
+### Links
+
+<Callout title="Extra-Setup needed!">Hah!</Callout>
+
+<DemoCodePreview
+  disableCode={true}
+  codePath="tabs/links.tsx"
+  demoPath={route('tab-one')}
+/>
+
+
+## Documentation
+
+### Props
+
+| Prop             | Type                                                                    | Default   |
+  |------------------|-------------------------------------------------------------------------|-----------|
+| variant          | `default` \| `line` \| `classic`                                        | default   |
+| size             | `default` \| `sm` \| `lg` \| `icon` \| `icon-sm` \| `icon-xs` \| `auto` | `default` |
+| title            | string                                                                  | ''        |
+| icon             | IconSvgElement ([HugeIcons](https://hugeicons.com/?via=daspwork))       | ''        |
+| form             | string                                                                  | ''        |
+| loading          | boolean                                                                 | false     |
+| disabled         | boolean                                                                 | false     |
+| iconClassName    | string                                                                  | ''        |
+| tooltip          | string                                                                  | ``        |
+| tooltipPlacement | Placement                                                               | `bottom`  |
+
+

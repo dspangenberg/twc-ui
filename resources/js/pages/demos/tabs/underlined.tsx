@@ -4,8 +4,8 @@ import { DemoContainer } from '@/components/docs/DemoContainer'
 export const Demo = () => {
   return (
     <DemoContainer>
-      <Tabs className="text-sm">
-        <TabList aria-label="History of Ancient Rome">
+      <Tabs variant="underlined" className="w-lg">
+        <TabList aria-label="History of Ancient Rome" className="flex-1 bg-page-content border-b justify-start">
           <Tab id="FoR">Stammdaten</Tab>
           <Tab id="MaR">Komunikation</Tab>
           <Tab id="Emp">Empire</Tab>

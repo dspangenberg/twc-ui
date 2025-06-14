@@ -2,8 +2,8 @@
 
 import React, { useEffect, useState } from 'react'
 import { cn } from '@/lib/utils'
-import { SourceCodeViewer } from '@/components/docs/source-code-viewer'
-import { Tab, TabList, TabPanel, Tabs } from '@/components/twc-ui/tabs'
+import { SourceCode } from '@/components/docs/SourceCode'
+import { Tab, TabList, Tabs } from '@/components/twc-ui/tabs'
 import { Key } from 'react-aria-components'
 
 export type PackageManager = 'npm' | 'yarn' | 'bun' | 'pnpm'
@@ -52,7 +52,7 @@ export const InstallationCommand = ({
   className?: string
 }) => {
   const [selectedPackageManager, setSelectedPackageManager] = useState<PackageManager>('pnpm')
-  const [params, setParams] = useState<string>(rawParams.replace('~website/', import.meta.env.VITE_APP_URL + '/'))
+  const [params, _setParams] = useState<string>(rawParams.replace('~website/', import.meta.env.VITE_APP_URL + '/'))
   const [command, setCommand] = useState<string>('')
 
   useEffect(() => {
@@ -61,11 +61,9 @@ export const InstallationCommand = ({
   })
 
   const handlePackageManagerChange = (key: Key) => {
-    // Type Guard und Konvertierung
     const manager = key as PackageManager
     if (['npm', 'yarn', 'bun', 'pnpm'].includes(manager)) {
       const newCommand = getCommandAsPackageManager(baseCommand, manager)
-      console.log(newCommand)
       setCommand(newCommand + ' ' + params)
       setSelectedPackageManager(manager)
     }
@@ -73,12 +71,16 @@ export const InstallationCommand = ({
 
   return (
     <div className={cn('relative', className)}>
-      <SourceCodeViewer
+      <SourceCode
         code={command}
         language="bash"
         header={
           <div className="flex items-center flex-1 px-4 pt-1">
-            <Tabs selectedKey={selectedPackageManager} onSelectionChange={handlePackageManagerChange} variant="line">
+            <Tabs
+              selectedKey={selectedPackageManager}
+              onSelectionChange={handlePackageManagerChange}
+              variant="underlined"
+            >
               <TabList className="border-0">
                 <Tab id="pnpm">pnpm</Tab>
                 <Tab id="npm">npm</Tab>

@@ -4,7 +4,7 @@ import { AppShell } from '@/components/app-shell'
 import type { BreadcrumbItem } from '@/types'
 import type { PropsWithChildren } from 'react'
 
-export default function AppHeaderLayout({
+export default function AppHeaderLayout ({
   children,
   breadcrumbs
 }: PropsWithChildren<{ breadcrumbs?: BreadcrumbItem[] }>) {
@@ -12,6 +12,11 @@ export default function AppHeaderLayout({
     <AppShell>
       <AppHeader breadcrumbs={breadcrumbs} />
       <AppContent>{children}</AppContent>
+      <div className="w-full border-t">
+        <div className="mx-auto max-w-7xl flex w-full flex-1 p-2 text-sm text-center">
+          Made in the European Union. <a href="/docs/legal">Imprint</a>
+        </div>
+      </div>
     </AppShell>
   )
 }

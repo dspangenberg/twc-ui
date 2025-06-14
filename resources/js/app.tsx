@@ -11,8 +11,9 @@ import '@fontsource/clear-sans/500.css'
 import '@fontsource/clear-sans/700.css'
 import '@fontsource-variable/jetbrains-mono'
 import React from 'react'
-import { DocPage } from '@/layouts/DocPage'
+import { DocPage } from '@/components/docs/DocPage'
 import { MdxWrapper } from '@/mdx-wrapper'
+import { Providers } from './providers'
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel'
 
@@ -43,9 +44,13 @@ createInertiaApp({
     App,
     props
   }) {
-    const root = createRoot(el)
+    const appElement = (
+      <Providers>
+        <App {...props} />
+      </Providers>
+    )
 
-    root.render(<App {...props} />)
+    createRoot(el).render(appElement)
   },
   progress: {
     color: '#4B5563'
