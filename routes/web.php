@@ -11,10 +11,6 @@ Route::get('/blocks', function () {
     return Inertia::render('blocks');
 })->name('blocks');
 
-Route::get('/legal', function () {
-    return Inertia::render('legal');
-})->name('legal');
-
 Route::get('/style', function () {
     return Inertia::render('style');
 })->name('style');
