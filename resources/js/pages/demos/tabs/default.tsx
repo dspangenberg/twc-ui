@@ -6,12 +6,15 @@ export const Demo = () => {
     <DemoContainer>
       <Tabs className="text-sm">
         <TabList aria-label="History of Ancient Rome">
+        <TabList>
           <Tab id="FoR">Stammdaten</Tab>
-          <Tab id="MaR">Komunikation</Tab>
+-         <Tab id="MaR">Komunikation</Tab>
++         <Tab id="communication">Kommunikation</Tab>
           <Tab id="Emp">Empire</Tab>
         </TabList>
         <TabPanel id="FoR">Stammdaten</TabPanel>
-        <TabPanel id="MaR">Komunikation</TabPanel>
+-       <TabPanel id="MaR">Komunikation</TabPanel>
++       <TabPanel id="communication">Kommunikation</TabPanel>
         <TabPanel id="Emp">Empire</TabPanel>
       </Tabs>
     </DemoContainer>
