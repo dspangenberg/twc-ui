@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "twc-ui",
+  "homepage": "https://ui.twiceware.cloud",
+  "items": [
+    {
+      "name": "tabs",
+      "type": "registry:ui",
+      "title": "Tabs",
+      "description": "React aria component tabs",
+      "files": [
+        {
+          "path": "resources/js/components/twc-ui/tabs.tsx",
+          "type": "registry:ui",
+          "target": "components/twc-ui/tabs"
+        }
+      ]
+    }
+  ]
+}

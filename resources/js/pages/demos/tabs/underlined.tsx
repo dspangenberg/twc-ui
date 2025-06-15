@@ -6,13 +6,13 @@ export const Demo = () => {
     <DemoContainer>
       <Tabs variant="underlined" className="w-lg">
         <TabList aria-label="History of Ancient Rome" className="flex-1 bg-page-content border-b justify-start">
-          <Tab id="FoR">Stammdaten</Tab>
-          <Tab id="MaR">Komunikation</Tab>
-          <Tab id="Emp">Empire</Tab>
+          <Tab id="base-data">Stammdaten</Tab>
+          <Tab id="communication">Kommunikation</Tab>
+          <Tab id="notes">Notes</Tab>
         </TabList>
-        <TabPanel id="FoR">Stammdaten</TabPanel>
-        <TabPanel id="MaR">Komunikation</TabPanel>
-        <TabPanel id="Emp">Empire</TabPanel>
+        <TabPanel id="base-data">Stammdaten</TabPanel>
+        <TabPanel id="communication">Kommunikation</TabPanel>
+        <TabPanel id="notes">Notes</TabPanel>
       </Tabs>
     </DemoContainer>
   )

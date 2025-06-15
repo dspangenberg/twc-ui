@@ -23,8 +23,6 @@ createInertiaApp({
     if (name.startsWith('docs')) {
       const module = await resolvePageComponent(`./${name}.mdx`, import.meta.glob('./docs/**/*.mdx'))
       const MdxComponent = (module as any).default as React.ComponentType
-
-      // Extrahiere das Frontmatter aus dem Module
       const frontmatter = (module as any).frontmatter || (MdxComponent as any).frontmatter || null
 
       return {

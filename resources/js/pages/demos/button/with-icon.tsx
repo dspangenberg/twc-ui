@@ -6,7 +6,7 @@ export const WithIconDemo = () => {
   return (
     <DemoContainer className="gap-4">
       <Button variant="default" icon={Rocket02Icon} title="Get started" />
-      <Button variant="outline" icon={Rocket02Icon} size="icon" tooltip="Get started" />
+      <Button variant="outline" icon={Rocket02Icon} size="icon" title="Get started" />
     </DemoContainer>
   )
 }

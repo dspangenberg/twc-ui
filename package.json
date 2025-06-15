@@ -6,12 +6,18 @@
     "build:ssr": "vite build && vite build --ssr",
     "dev": "vite",
     "lint": "pnpm dlx oxlint",
-    "types": "tsc --noEmit"
+    "types": "tsc --noEmit",
+    "registry:build": "shadcn build"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.3.0",
+    "@testing-library/user-event": "^14.6.1",
+    "@types/jest": "^29.5.14",
     "@types/node": "^24.0.1",
     "shiki": "^3.6.0",
-    "tailwindcss-react-aria-components": "^2.0.0"
+    "tailwindcss-react-aria-components": "^2.0.0",
+    "vitest": "^3.2.3"
   },
   "dependencies": {
     "@fontsource-variable/jetbrains-mono": "^5.2.6",
@@ -59,6 +65,7 @@
     "remark-gfm": "^4.0.1",
     "remark-mdx-frontmatter": "^5.2.0",
     "remark-toc": "^9.0.0",
+    "shadcn": "2.6.0-canary.3",
     "tailwind-merge": "^3.3.1",
     "tailwind-variants": "^1.0.0",
     "tailwindcss": "^4.1.10",

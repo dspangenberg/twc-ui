@@ -26,5 +26,9 @@ Route::get('/docs/{path}', function (string $path) {
 
 
 Route::get('/demos/{path}', function (string $path) {
+    $tsxFile = resource_path('js/pages/demos/'.$path.'.tsx');
+    if (!file_exists($tsxFile)) {
+        abort(404);
+    }
     return Inertia::render("demos/$path");
-})->where('path', '.*')->name('demo');
+})->where('path', '[A-Za-z0-9\/_-]+')->name('demo');
