@@ -1,6 +1,8 @@
 import { ReactNode } from 'react'
 import DocLayout from '@/layouts/docs-layout'
 import { TableOfContents } from '@/components/docs/TableOfContents'
+import { useDocs, DocsItem } from '@/hooks/use-docs'
+import { Link, usePage } from '@inertiajs/react'
 
 interface Frontmatter {
   title?: string;
@@ -16,52 +18,6 @@ interface DocPageProps {
   frontmatter?: Frontmatter | null
 }
 
-interface MenuItemsProps {
-  title: string
-  route: string
-  activeRoute?: string
-  children?: MenuItemsProps[]
-}
-
-interface MenuProps {
-  title: string
-  activeRoute?: string
-  children?: MenuItemsProps[]
-}
-
-export const DocMenu: MenuProps[] = [{
-  title: 'Getting Started',
-  activeRoute: '/docs/introduction',
-  children: [
-    {
-      title: 'Introduction',
-      route: '/docs/introduction'
-    }
-  ]
-},
-  {
-    title: 'Components',
-    children: [
-      {
-        title: 'Button',
-        route: '/docs/components/button',
-        children: [{
-          title: '(Base-) Button',
-          route: '/docs/components/button'
-        }]
-      },
-      {
-        title: 'Navigaton',
-        route: '/docs/components/navigation',
-        children: [{
-          title: 'Tabs',
-          route: '/docs/components/tabs'
-        }]
-      }
-    ]
-  }
-]
-
 export const DocPage = ({
   children,
   frontmatter
@@ -75,39 +31,118 @@ export const DocPage = ({
   )
 }
 
-interface DocNavigationProps {
-  items: MenuProps[]
+interface DocNavigationItemProps {
+  item: DocsItem
+  currentPath?: string
+  depth?: number // Tiefe für Formatierung
+}
+
+const DocNavigationItem = ({
+  item,
+  currentPath,
+  depth = 0
+}: DocNavigationItemProps) => {
+  const isActive = currentPath === item.route
+  const isMainEntry = depth === 0
+
+  if (item.type === 'directory') {
+    return (
+      <li className={isMainEntry ? '' : 'pb-3'}>
+        <span className={`block font-bold ${
+          isMainEntry
+            ? 'text-foreground text-base mb-3' // Haupteinträge in Großbuchstaben
+            : 'text-gray-900 dark:text-gray-100 text-sm ml-3'
+        }`}
+        >
+          {item.title}
+        </span>
+        {item.children && item.children.length > 0 && (
+          <ul className={`space-y-1 ${isMainEntry ? 'pb-2' : 'pt-2'}`}>
+            {item.children.map((child, index) => (
+              <DocNavigationItem
+                key={`${child.path}-${index}`}
+                item={child}
+                currentPath={currentPath}
+                depth={depth + 1}
+              />
+            ))}
+          </ul>
+        )}
+      </li>
+    )
+  }
+
+  return (
+    <li>
+      <Link
+        href={item.route || '#'}
+        className={`block px-3 py-0 text-sm rounded-md transition-colors ${
+          isActive
+            ? 'text-foreground'
+            : isMainEntry
+              ? 'text-foreground hover:underline font-medium'
+              : 'text-muted-foreground hover:underline'
+        }`}
+      >
+        {item.title}
+      </Link>
+      {item.children && item.children.length > 0 && (
+        <ul className=" mt-1 space-y-1">
+          {item.children.map((child, index) => (
+            <DocNavigationItem
+              key={`${child.path}-${index}`}
+              item={child}
+              currentPath={currentPath}
+              depth={depth + 1}
+            />
+          ))}
+        </ul>
+      )}
+    </li>
+  )
 }
 
 export const DocNavigation = () => {
+  const {
+    docsStructure,
+    loading,
+    error
+  } = useDocs()
+  const { url } = usePage()
+
+  if (loading) {
+    return (
+      <div className="space-y-4">
+        <div className="h-5 bg-muted rounded animate-pulse"></div>
+        <div className="ml-4 space-y-2">
+          <div className="h-4 bg-muted/50 rounded animate-pulse w-3/4"></div>
+          <div className="h-4 bg-muted/50 rounded animate-pulse w-1/2"></div>
+        </div>
+      </div>
+    )
+  }
+
+  if (error) {
+    return (
+      <div className="text-destructive text-sm">
+        Fehler beim Laden der Navigation: {error}
+      </div>
+    )
+  }
+
   return (
-    <ul className="space-y-2">
-      {DocMenu.map((item, index) => (
-        <li key={index}>
-          <span className="font-bold">
-            {item.title}
-          </span>
-          {item.children && (
-            <ul className="ml-4 space-y-2">
-              {item.children.map((child, index) => (
-                <li key={index}>
-                  {child.title}
-                  {child.children && (
-                    <ul className="ml-4">
-                      {child.children.map((grandChild, index) => (
-                        <li key={index}>
-                          <a href={grandChild.route}>{grandChild.title}</a>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </li>
-              ))}
-            </ul>
-          )}
-        </li>
-      ))}
-    </ul>
+    <nav>
+      <ul className="space-y-5">
+        {docsStructure.map((item, index) => (
+          <DocNavigationItem
+            key={`${item.path}-${index}`}
+            item={item}
+            currentPath={url}
+            depth={0}
+          />
+        ))}
+      </ul>
+    </nav>
   )
 }
 
@@ -115,14 +150,13 @@ const DocPageContent = ({
   children,
   frontmatter
 }: DocPageProps) => {
-
   return (
     <>
-      <div className="flex mt-12 gap-4 mx-auto w-screen max-w-7xl ">
-        <aside className="w-48 p-4 sticky top-0 h-screen overflow-y-auto flex-none space-y-4 hidden lg:flex ">
+      <div className="flex mt-12 gap-4 mx-auto w-screen max-w-7xl">
+        <aside className="w-48 p-4 sticky top-0 h-screen overflow-y-auto flex-none space-y-4 hidden lg:flex">
           <DocNavigation />
         </aside>
-        <div className="doc  gap-12 py-4 space-y-6 flex-1">
+        <div className="doc gap-12 py-4 space-y-6 flex-1">
           {frontmatter && (
             <header className="mb-8 pb-6">
               <h1 className="text-4xl font-bold mb-4">{frontmatter?.title}</h1>
@@ -140,8 +174,8 @@ const DocPageContent = ({
                       key={index}
                       className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm"
                     >
-                  #{tag}
-                </span>
+                      #{tag}
+                    </span>
                   ))}
                 </div>
               )}

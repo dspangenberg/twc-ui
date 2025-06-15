@@ -35,12 +35,12 @@ const mainNavItems: NavItem[] = [
   },
   {
     title: 'Docs',
-    href: '/docs',
+    href: '/docs/getting-started/introduction',
     icon: BookOpen01Icon
   },
   {
     title: 'Components',
-    href: '/docs/button',
+    href: '/docs/components/buttons/button',
     icon: GeometricShapes01Icon
   },
   {

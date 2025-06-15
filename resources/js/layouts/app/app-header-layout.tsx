@@ -16,7 +16,7 @@ export default function AppHeaderLayout ({
       <div className="w-full border-t">
         <div className="mx-auto max-w-7xl flex w-full flex-1 p-2 text-sm text-center">
           Made in the European Union.
-          <Link href={route('legal')} className="ml-1 underline">
+          <Link href={route('imprint')} className="ml-1 underline">
             Imprint
           </Link>
         </div>

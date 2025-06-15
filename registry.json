@@ -12,7 +12,7 @@
         {
           "path": "resources/js/components/twc-ui/tabs.tsx",
           "type": "registry:ui",
-          "target": "components/twc-ui/tabs"
+          "target": "components/twc-ui/tabs.tsx"
         }
       ]
     }
