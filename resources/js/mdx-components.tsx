@@ -7,6 +7,7 @@ import { cn } from '@/lib/utils'
 import { DemoCodePreview } from '@/components/docs/DemoCodePreview'
 import { InstallationCommand } from '@/components/docs/install-command'
 import { InstallationSection } from '@/components/docs/installation-section'
+import { Callout } from './components/docs/callout'
 
 const sharedComponents = {
   h2: ({
@@ -135,7 +136,8 @@ const sharedComponents = {
   Tabs,
   TabsList,
   TabsTrigger,
-  TabsContent
+  TabsContent,
+  Callout
 }
 
 const useMDXComponent = (code: string) => {

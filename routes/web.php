@@ -19,14 +19,17 @@ Route::get('/style', function () {
     return Inertia::render('style');
 })->name('style');
 
-Route::get('/demo', function () {
+Route::get('/tabs/tab-one', function () {
+    return Inertia::render('tabs/tab-one');
+})->name('tab-one');
 
-    return Inertia::render('demo');
-})->name('code');
+Route::get('/tabs/tab-two', function () {
+    return Inertia::render('tabs/tab-two');
+})->name('tab-two');
 
-Route::get('/code', function () {
-    return Inertia::render('code');
-})->name('demo');
+Route::get('/tabs/tab-three', function () {
+    return Inertia::render('tabs/tab-three');
+})->name('tab-three');
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('dashboard', function () {

@@ -23,7 +23,6 @@ import {
   Github01Icon,
   Home13Icon,
   HugeiconsIcon as HugeIcon,
-  JudgeIcon,
   SwatchIcon
 } from '@hugeicons/core-free-icons'
 import AppearanceToggleDropdown from '@/components/appearance-dropdown'
@@ -53,18 +52,13 @@ const mainNavItems: NavItem[] = [
     title: 'Blocks',
     href: '/blocks',
     icon: BlockGameIcon
-  },
-  {
-    title: 'Legal',
-    href: '/legal',
-    icon: JudgeIcon
   }
 ]
 
 const rightNavItems: NavItem[] = [
   {
     title: 'Repository',
-    href: 'https://github.com/twiceware-cloud/ui',
+    href: import.meta.env.VITE_REPOSITORY_URL,
     icon: Github01Icon
   },
   {

@@ -23,3 +23,12 @@ Route::get('/md/{path}', function (string $path) {
 Route::get('/docs/{path}', function (string $path) {
     return Inertia::render("docs/$path");
 })->where('path', '.*')->name('docs');
+
+
+Route::get('/demos/{path}', function (string $path) {
+    $tsxFile = resource_path('js/pages/demos/'.$path.'.tsx');
+    if (!file_exists($tsxFile)) {
+        abort(404);
+    }
+    return Inertia::render("demos/$path");
+})->where('path', '[A-Za-z0-9\/_-]+')->name('demo');

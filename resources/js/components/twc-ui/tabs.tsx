@@ -12,13 +12,14 @@ import {
 } from 'react-aria-components'
 import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '@/lib/utils'
+import { Link } from '@inertiajs/react'
 
 // Varianten für Tabs definieren
 const tabsVariants = cva('', {
   variants: {
     variant: {
-      classic: 'border-b border-border',
-      line: '',
+      classic: '',
+      underlined: '',
       default: ''
     }
   },
@@ -27,10 +28,10 @@ const tabsVariants = cva('', {
   }
 })
 
-const tabListVariants = cva('flex text-sm', {
+const tabListVariants = cva('flex', {
   variants: {
     variant: {
-      line: 'flex gap-4',
+      underlined: 'flex gap-4',
       default: 'flex bg-muted rounded-lg p-1 w-fit',
       classic: 'w-full p-0 bg-background justify-start border-b rounded-none'
     }
@@ -38,11 +39,11 @@ const tabListVariants = cva('flex text-sm', {
 })
 
 const tabVariants = cva(
-  'cursor-pointer',
+  'cursor-pointer disabled:cursor-not-allowed disabled:opacity-50 disabled:text-muted-foreground',
   {
     variants: {
       variant: {
-        line: 'border-b-2 py-1 border-transparent data-[selected]:border-primary data-[selected]:text-foreground data-[hovered]:text-foreground',
+        underlined: 'border-b-2 py-1 border-transparent data-[selected]:border-primary data-[selected]:text-foreground data-[hovered]:text-foreground',
         default: 'font-medium rounded-md px-3 py-1 data-[selected]:bg-background data-[selected]:text-foreground data-[selected]:shadow',
         classic: 'px-2 py-1 rounded-none bg-background h-full border border-transparent border-b-border data-[selected]:border-border data-[selected]:border-b-background -mb-[2px] rounded-t-md'
       }
@@ -52,7 +53,7 @@ const tabVariants = cva(
 
 // Context für die Variant - erweitert um null und undefined
 type TabsContextType = {
-  variant: 'line' | 'classic' | 'default' | null | undefined
+  variant: 'underlined' | 'classic' | 'default' | null | undefined
 }
 
 const TabsContext = createContext<TabsContextType>({ variant: 'default' })
@@ -117,6 +118,7 @@ export function TabList<T extends object = object> ({
 // Tab Komponente
 export interface TabProps extends AriaTabProps {
   className?: string
+  href?: string // href als optional hinzugefügt
 }
 
 export const Tab = ({
@@ -144,7 +146,7 @@ export const TabPanel = ({
 }: TabPanelProps) => {
   return (
     <AriaTabPanel
-      className={cn('mt-2', className)}
+      className={cn('my-2', className)}
       {...props}
     />
   )

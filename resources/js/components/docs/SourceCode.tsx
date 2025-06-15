@@ -15,17 +15,19 @@ interface DemoCodePreviewProps {
   fileName?: string
 }
 
-export const SourceCodeViewer: React.FC<DemoCodePreviewProps> = ({
+export const SourceCode: React.FC<DemoCodePreviewProps> = ({
   codePath,
   isComponent = false,
   language = 'typescript',
   code: rawCode,
   title,
   header,
-  fileName
+  fileName: propFileName
 }) => {
   const [html, setHtml] = useState<string>('')
   const [code, setCode] = useState<string>('')
+
+  const fileName = propFileName || (codePath ? codePath.split('/').pop() : '')
 
   const {
     appearance
@@ -72,19 +74,19 @@ export const SourceCodeViewer: React.FC<DemoCodePreviewProps> = ({
   }, [generateHtml])
 
   return (
-    <div className="mx-auto w-full max-w-4xl space-y-3">
+    <div className="space-y-3 w-full">
       {title && <h3>{title}</h3>}
-      <div className="w-full rounded-md border bg-muted text-sm">
+      <div className="rounded-md border bg-muted text-sm max-w-full overflow-hidden">
         <div className="flex items-center ">
           {!!header ? header : (
             <div className="py-2 pl-4 font-medium flex-1 font-mono">{fileName}</div>
           )}
           <ClipboardButton code={code} />
         </div>
-        <div className="rounded-md bg-muted">
-          <div
+        <div className="rounded-md bg-muted overflow-x-hidden w-full">
+          <pre
             className={cn(
-              'text-sm [&>.shiki]:max-h-80 [&>.shiki]:overflow-auto [&>.shiki]:rounded-b-md [&>.shiki]:bg-muted [&>.shiki]:p-4'
+              'text-sm [&>.shiki]:w-full [&>.shiki]:text-balance [&>.shiki]:max-h-80 [&>.shiki]:overflow-scroll [&>.shiki]:rounded-b-md [&>.shiki]:bg-muted [&>.shiki]:p-4'
             )}
             dangerouslySetInnerHTML={{ __html: html }}
           />

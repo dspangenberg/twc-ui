@@ -1,14 +1,17 @@
 import { Button } from '@/components/twc-ui/button'
+import { DemoContainer } from '@/components/docs/DemoContainer'
 
 export const Demo = () => {
   return (
-    <div className="flex gap-4 m-4 flex-wrap">
+    <DemoContainer className="gap-4">
       <Button title="Default" />
       <Button variant="secondary" title="Secondary" />
       <Button variant="outline" title="Outline" />
       <Button variant="destructive" title="Destructive" />
       <Button variant="ghost" title="Ghost" />
       <Button variant="link" title="Link" />
-    </div>
+    </DemoContainer>
   )
 }
+
+export default Demo
