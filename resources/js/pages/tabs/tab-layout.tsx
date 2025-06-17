@@ -14,14 +14,16 @@ const TabLayout: React.FC<TabLayoutProps> = ({
 
   return (
     <DemoContainer className="flex-col">
-      <Tabs variant="classic" className="w-lg h-64" defaultSelectedKey={name}>
-        <TabList aria-label="History of Ancient Rome" className="flex-1 bg-page-content border-b justify-start">
+      <Tabs className="mx-auto" defaultSelectedKey={name}>
+        <TabList aria-label="Example Tabs">
           <Tab id="tab-one" href={route('tab-one', {}, false)}>Tab 1</Tab>
           <Tab id="tab-two" href={route('tab-two', {}, false)}>Tab 2</Tab>
           <Tab id="tab-three" href={route('tab-three', {}, false)}>Tab 3</Tab>
         </TabList>
 
-        {children}
+        <div className="mt-6 w-full">
+          {children}
+        </div>
 
       </Tabs>
     </DemoContainer>

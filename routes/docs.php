@@ -18,6 +18,11 @@ Route::get('/component-source/{path}', function (string $path) {
     return file_get_contents($path);
 })->where('path', '.*')->name('component-source');
 
+Route::get('/hook-source/{path}', function (string $path) {
+    $path = resource_path('js/hooks/'.$path);
+    return file_get_contents($path);
+})->where('path', '.*')->name('hook-source');
+
 Route::get('/md/{path}', function (string $path) {
     $path = resource_path('js/pages/docs/md/'.$path);
     return file_get_contents($path);
@@ -138,11 +143,3 @@ function extractFrontmatter($filePath): array
     return [];
 }
 
-
-Route::get('/demos/{path}', function (string $path) {
-    $file = resource_path('js/pages/demos/'.$path.'.tsx');
-    if (!file_exists($file)) {
-        abort(404);
-    }
-    return Inertia::render("demos/$path");
-})->where('path', '[A-Za-z0-9\/_-]+')->name('demo');

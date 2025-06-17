@@ -8,15 +8,16 @@ interface DemoCodePreviewProps {
   copyAndPaste?: React.ReactNode
   dependencies?: string[]
   devDependencies?: string[]
+  hooks: string[]
   components: string[]
 }
 
 export const InstallationSection: React.FC<DemoCodePreviewProps> = ({
-  copyAndPaste,
-  components,
-  dependencies,
-  devDependencies,
-  children
+  children,
+  components = [],
+  dependencies = [],
+  devDependencies = [],
+  hooks = []
 }) => {
 
   return (
@@ -39,7 +40,7 @@ export const InstallationSection: React.FC<DemoCodePreviewProps> = ({
                 <InstallationCommand command="add" params={`${dependencies?.join(' ')}`} />
               </>
             )}
-            {devDependencies && (
+            {devDependencies.length > 0 && (
               <>
                 <h4>Install dev-dependencies</h4>
                 <InstallationCommand command="add" params={`-D ${devDependencies?.join(' ')}`} />
@@ -47,7 +48,34 @@ export const InstallationSection: React.FC<DemoCodePreviewProps> = ({
             )}
 
             <h4>Copy + Paste</h4>
-            <p className="font-medium">Copy and paste the code of
+
+            {hooks.length > 0 && <div>
+              <h5>{hooks.length === 1 ? 'Hook' : 'Hooks'}</h5>
+
+              <p>Copy and paste the code of
+                the {hooks.length === 1 ? 'hook' : 'hooks'}
+              </p>
+              <ul className="list-disc list-inside ml-6 my-3">
+                {hooks.map((hook) => (
+                  <li key={hook}>{hook}</li>
+                ))}
+              </ul>
+              <p>
+                into your project.
+              </p>
+
+
+              <div className="space-y-3 w-full">
+                {hooks.map((hook) => (
+                  <DemoCodePreview key={hook} codePath={`${hook}`} type="hook" fileName={`${hook}`} />
+                ))}
+              </div>
+            </div>
+            }
+
+            <h5>{components.length === 1 ? 'Component' : 'Components'}</h5>
+
+            <p>Copy and paste the code of
               the {components.length === 1 ? 'component' : 'components'}
             </p>
             <ul className="list-disc list-inside ml-6 my-3">
@@ -55,17 +83,17 @@ export const InstallationSection: React.FC<DemoCodePreviewProps> = ({
                 <li key={component}>{component}.tsx</li>
               ))}
             </ul>
-            <p className="font-medium">
-              into your project. Don't forget to
-              update
-              the import
-              paths to match your project setup.
-            </p>
+
             <div className="space-y-3 w-full">
               {components.map((component) => (
-                <DemoCodePreview key={component} codePath={component} fileName={`${component}.tsx`} />
+                <DemoCodePreview key={component} type="component" codePath={component} fileName={`${component}.tsx`} />
               ))}
             </div>
+
+            <p className="font-medium">
+              Don't forget to update the import paths to match your project setup.
+            </p>
+
           </div>
         </TabPanel>
       </div>

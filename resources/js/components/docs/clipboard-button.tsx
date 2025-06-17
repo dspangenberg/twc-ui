@@ -28,7 +28,7 @@ export const ClipboardButton: React.FC<ClipboardButtonProps> = ({
     return (
       <Button
         variant="ghost"
-        size="icon"
+        size="icon-sm"
         iconClassName="text-green-600"
         icon={TaskDone01Icon}
         onClick={copy}

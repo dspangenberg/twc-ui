@@ -1,47 +1,24 @@
 ---
-title: "(Base-) Button"
-description: "A button allows a user to perform an action, with mouse, touch, and keyboard interactions."
+title: Form
 ---
 
 
 
 
-<DemoCodePreview codePath="button/loading-state.tsx" demoPath="demos/button/default" />
+<DemoCodePreview codePath="form/default.tsx" demoPath={route('contact.create')} className="h-[500px]"/>
 
 ## Installation
 
 <InstallationSection
-  dependencies={['react-aria-components', '@hugeicons/react', 'tailwind-variants']}
-  components={['base-button', 'tooltip', 'button']}
+  dependencies={['react-aria-components', '@inertiajs/core', 'laravel-precognition-react-inertia']}
+  components={['form']}
+  hooks={['use-form.ts']}
   copyAndPaste={
     <div>hi</div>
   }
 >
-  <InstallationCommand command="execute" params="shadcn@latest add ~website/r/button.json" />
+  <InstallationCommand command="execute" params="shadcn@latest add ~website/r/form.json" />
 </InstallationSection>
-
-## Examples
-
-### Button with Icon
-
-If you use the title prop instead of children, the title is used as a tooltip for sizes of <code>icon-sm</code>, icon-xs for the
-or use one of the toolbar variants. The variant "toolbar-default" shows the title for normal screen resolutions
-and falls back to a tooltip on small screens.
-
-<DemoCodePreview
-  codePath="button/with-icon.tsx"
-  demoPath="demos/button/with-icon"
-  title="With Icon"
-/>
-
-### Loading state
-
-<DemoCodePreview
-  codePath="button/loading-state.tsx"
-  demoPath="demos/button/loading-state"
-  title="With loading state"
-/>
-
 
 ## Documentation
 

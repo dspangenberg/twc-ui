@@ -17,6 +17,7 @@
     "@types/node": "^24.0.1",
     "shiki": "^3.6.0",
     "tailwindcss-react-aria-components": "^2.0.0",
+    "vite-plugin-run": "^0.6.1",
     "vitest": "^3.2.3"
   },
   "dependencies": {
@@ -26,6 +27,7 @@
     "@headlessui/react": "^2.2.4",
     "@hugeicons/core-free-icons": "^1.0.14",
     "@hugeicons/react": "^1.0.5",
+    "@inertiajs/core": "^2.0.12",
     "@inertiajs/react": "^2.0.12",
     "@mdx-js/react": "^3.1.0",
     "@mdx-js/rollup": "^3.1.0",
@@ -53,8 +55,11 @@
     "globals": "^16.2.0",
     "gray-matter": "^4.0.3",
     "gsap": "^3.13.0",
+    "laravel-precognition": "^0.7.2",
+    "laravel-precognition-react-inertia": "^0.7.2",
     "laravel-vite-plugin": "^1.0",
     "lucide-react": "^0.515.0",
+    "moderndash": "^4.0.0",
     "react": "^19.0.0",
     "react-aria-components": "^1.10.1",
     "react-dom": "^19.0.0",
@@ -71,6 +76,7 @@
     "tailwindcss": "^4.1.10",
     "tailwindcss-animate": "^1.0.7",
     "typescript": "^5.7.2",
+    "ui-api": "link:",
     "vite": "^6.0"
   },
   "optionalDependencies": {

@@ -15,6 +15,63 @@
           "target": "components/twc-ui/tabs.tsx"
         }
       ]
+    },
+    {
+      "name": "form",
+      "type": "registry:ui",
+      "title": "Form",
+      "description": "form component für inertia",
+      "dependencies": [
+        "react-aria-components"
+      ],
+      "registryDependencies": [
+        "https://ui-api.test/r/form-errors.json",
+        "https://ui-api.test/r/use-form.json"
+      ],
+      "files": [
+        {
+          "path": "resources/js/components/twc-ui/form.tsx",
+          "type": "registry:ui",
+          "target": "components/twc-ui/tabs.tsx"
+        }
+      ]
+    },
+    {
+      "name": "form-errors",
+      "type": "registry:ui",
+      "title": "Form errors",
+      "description": "form errors component für inertia",
+      "dependencies": [
+        "react-aria-components",
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons"
+      ],
+      "files": [
+        {
+          "path": "resources/js/components/twc-ui/form.tsx",
+          "type": "registry:ui",
+          "target": "components/twc-ui/tabs.tsx"
+        }
+      ]
+    },
+    {
+      "name": "use-form",
+      "type": "registry:hook",
+      "title": "use-form-Hook",
+      "description": "use-form-hook",
+      "dependencies": [
+        "@inertiajs/core",
+        "laravel-precognition",
+        "laravel-precognition-react-inertia",
+        "moderndash"
+      ],
+      "files": [
+        {
+          "path": "resources/js/hooks/use-form.ts",
+          "type": "registry:hook",
+          "target": "hooks/twc-ui/tabs.tsx"
+        }
+      ]
     }
   ]
 }
