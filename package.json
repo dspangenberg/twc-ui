@@ -76,6 +76,7 @@
     "tailwindcss": "^4.1.10",
     "tailwindcss-animate": "^1.0.7",
     "typescript": "^5.7.2",
+    "ui-api": "link:",
     "vite": "^6.0"
   },
   "optionalDependencies": {

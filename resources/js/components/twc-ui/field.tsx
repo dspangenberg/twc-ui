@@ -37,6 +37,7 @@ const Label = ({
   ...props
 }: LabelProps) => {
   const form = useFormContext()
+
   const valueWithColon = value && !form.hideColonInLabels ? `${value}:` : value
   return (
     <AriaLabel className={cn(labelVariants(), className)} {...props}>

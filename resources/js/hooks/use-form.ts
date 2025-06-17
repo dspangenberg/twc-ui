@@ -1,6 +1,7 @@
 import type { FormDataConvertible, FormDataKeys, FormDataValues } from '@inertiajs/core'
 import { useForm as useInertiaForm } from 'laravel-precognition-react-inertia'
 import type { ChangeEvent } from 'react'
+import { useRef } from 'react'
 import type { RequestMethod, ValidationConfig } from 'laravel-precognition'
 import { isEqual } from 'moderndash'
 
@@ -16,8 +17,7 @@ export function useForm<T extends Record<string, FormDataConvertible>> (
   // Capture the very first snapshot only once
   const initialDataRef = useRef({ ...data })
   const form = useInertiaForm<T>(method, url, data, config)
-- const isDirty = !isEqual(initialData, form.data)
-+ const isDirty = !isEqual(initialDataRef.current, form.data)
+  const isDirty = !isEqual(initialDataRef.current, form.data)
 
   const updateAndValidateWithoutEvent = <K extends FormDataKeys<T>> (
     name: K,

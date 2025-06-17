@@ -35,8 +35,15 @@ type ExtendedForm<T extends FormSchema> = {
   form: UseFormReturn<T> & { id: string };
 };
 
-// Vereinfachter Context ohne strikte Typisierung
-const FormContext = createContext<Record<string, any> | null>(null)
+// Typisierter Context mit zusätzlichen UI-Properties
+type FormContextValue = {
+  hideColonInLabels?: boolean;
+  errorTitle?: string;
+  errorVariant?: 'form' | 'field';
+  [key: string]: any; // Erlaubt alle ExtendedForm Properties
+}
+
+const FormContext = createContext<FormContextValue | null>(null)
 
 interface FormProps<T extends FormSchema> extends BaseFormProps {
   form: ExtendedForm<T>
@@ -112,7 +119,7 @@ export const useFormContext = <T extends FormSchema = FormSchema> () => {
   if (context === null) {
     throw new Error('useFormContext must be used within a Form component')
   }
-  return context as unknown as ExtendedForm<T> & {
+  return context as ExtendedForm<T> & {
     hideColonInLabels?: boolean;
     errorTitle?: string;
     errorVariant?: 'form' | 'field';

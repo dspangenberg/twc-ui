@@ -54,7 +54,7 @@ const TextArea = ({
           /* Focused */
           /* Resets */
           'focus-visible:border-ring focus-visible:ring-ring/20 focus-visible:ring-[3px]',
-          'data-[invalid]:focus-visible:ring-destructive/20  data-[invalid]:focus-visible:border-destructive  data-[invalid]:border-destructive',
+          'data-[invalid]:focus-visible:ring-destructive/20  data-[invalid]:focus-visible:border-destructive data-[invalid]:border-destructive',
           className
         )
       )}
