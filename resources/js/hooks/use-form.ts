@@ -13,9 +13,11 @@ export function useForm<T extends Record<string, FormDataConvertible>> (
   config?: ValidationConfig
 ) {
 
-  const initialData = { ...data }
+  // Capture the very first snapshot only once
+  const initialDataRef = useRef({ ...data })
   const form = useInertiaForm<T>(method, url, data, config)
-  const isDirty = !isEqual(initialData, form.data)
+- const isDirty = !isEqual(initialData, form.data)
++ const isDirty = !isEqual(initialDataRef.current, form.data)
 
   const updateAndValidateWithoutEvent = <K extends FormDataKeys<T>> (
     name: K,
