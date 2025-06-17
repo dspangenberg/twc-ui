@@ -9,6 +9,7 @@ import remarkToc from 'remark-toc'
 import rehypeSlug from 'rehype-slug'
 import remarkFrontmatter from 'remark-frontmatter'
 import remarkMdxFrontmatter from 'remark-mdx-frontmatter'
+import { run } from 'vite-plugin-run'
 
 export default defineConfig({
   plugins: [
@@ -39,7 +40,19 @@ export default defineConfig({
       })
     },
     react({ include: /\.(jsx|js|mdx|md|tsx|ts)$/ }),
-    tailwindcss()
+    tailwindcss(),
+    run([
+      {
+        name: 'typescript transform',
+        run: ['php', 'artisan', 'typescript:transform'],
+        pattern: ['app/**/*Data.php', 'app/**/Enums/**/*.php']
+      },
+      {
+        name: 'build routes',
+        run: ['php', 'artisan', 'routes:generate'],
+        condition: file => file.includes('/routes/')
+      }
+    ])
   ],
   esbuild: {
     jsx: 'automatic'

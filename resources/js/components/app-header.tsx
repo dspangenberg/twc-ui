@@ -175,7 +175,7 @@ export function AppHeader ({ breadcrumbs = [] }: AppHeaderProps) {
                       href={item.href}
                       className={cn(
                         navigationMenuTriggerStyle(),
-                        page.url === item.href &&
+                        page.url.startsWith(item.href) &&
                         activeItemStyles,
                         'h-9 cursor-pointer px-3'
                       )}

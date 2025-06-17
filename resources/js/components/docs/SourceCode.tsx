@@ -4,11 +4,13 @@ import { useCallback, useEffect, useState } from 'react'
 import { type BuiltinLanguage, codeToHtml } from 'shiki'
 import { ClipboardButton } from '@/components/docs/clipboard-button'
 import { useAppearance } from '@/hooks/use-appearance'
+import { DemoCodeComponentType } from './DemoCodePreview'
 
 interface DemoCodePreviewProps {
   codePath?: string
   code?: string
   header?: React.ReactNode
+  type?: DemoCodeComponentType
   title?: string
   isComponent?: boolean
   language?: BuiltinLanguage
@@ -19,6 +21,7 @@ export const SourceCode: React.FC<DemoCodePreviewProps> = ({
   codePath,
   isComponent = false,
   language = 'typescript',
+  type = 'demo',
   code: rawCode,
   title,
   header,
@@ -38,8 +41,24 @@ export const SourceCode: React.FC<DemoCodePreviewProps> = ({
       setCode(rawCode)
     }
     if (codePath) {
+
+      let routeName: string
+
+      switch (type) {
+        case 'component':
+          routeName = 'component-source'
+          break
+        case 'hook':
+          routeName = 'hook-source'
+          break
+        default:
+          routeName = 'source'
+      }
+
+      console.log(routeName)
+
       try {
-        const response = await fetch(route(isComponent ? 'component-source' : 'source', { path: codePath }))
+        const response = await fetch(route(routeName, { path: codePath }))
         const sourceText = await response.text()
         setCode(sourceText)
       } catch (error) {
@@ -47,7 +66,7 @@ export const SourceCode: React.FC<DemoCodePreviewProps> = ({
         setCode('')
       }
     }
-  }, [rawCode, codePath, isComponent])
+  }, [rawCode, codePath, type])
 
   const generateHtml = useCallback(async () => {
     if (!code) return
@@ -83,7 +102,7 @@ export const SourceCode: React.FC<DemoCodePreviewProps> = ({
           )}
           <ClipboardButton code={code} />
         </div>
-        <div className="rounded-md bg-muted overflow-x-hidden w-full">
+        <div className="rounded-md bg-muted overflow-x-hidden w-full p-1.5 pt-0">
           <pre
             className={cn(
               'text-sm [&>.shiki]:w-full [&>.shiki]:text-balance [&>.shiki]:max-h-80 [&>.shiki]:overflow-scroll [&>.shiki]:rounded-b-md [&>.shiki]:bg-muted [&>.shiki]:p-4'

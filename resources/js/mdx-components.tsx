@@ -8,6 +8,7 @@ import { DemoCodePreview } from '@/components/docs/DemoCodePreview'
 import { InstallationCommand } from '@/components/docs/install-command'
 import { InstallationSection } from '@/components/docs/installation-section'
 import { Callout } from './components/docs/callout'
+import { HugeiconsIcon } from '@hugeicons/react'
 
 const sharedComponents = {
   h2: ({
@@ -61,16 +62,16 @@ const sharedComponents = {
   blockquote: ({
     className,
     ...props
-  }) => (
+  }: React.HTMLAttributes<HTMLQuoteElement>) => (
     <blockquote
-      className={`mt-6 border-l-2 pl-6 italic ${className || ''}`}
+      className={cn('mt-6 border-l-2 pl-6 italic', className)}
       {...props}
     />
   ),
   strong: ({
     className,
     ...props
-  }: React.HTMLAttributes<HTMLParagraphElement>) => (
+  }: React.HTMLAttributes<HTMLElement>) => (
     <strong className={cn('font-medium', className)} {...props} />
   ),
   a: ({
@@ -133,6 +134,7 @@ const sharedComponents = {
   DemoCodePreview,
   InstallationCommand,
   InstallationSection,
+  HugeiconsIcon,
   Tabs,
   TabsList,
   TabsTrigger,

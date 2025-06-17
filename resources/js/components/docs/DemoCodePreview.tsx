@@ -2,16 +2,18 @@ import { Tab, TabList, TabPanel, Tabs } from '@/components/twc-ui/tabs'
 import { cn } from '@/lib/utils'
 import type React from 'react'
 import { useState } from 'react'
-import ReactMarkdown from 'react-markdown'
-import remarkGfm from 'remark-gfm'
 import { SourceCode } from './SourceCode'
 import { LogoSpinner } from '@/components/twc-ui/logo-spinner'
+
+export type DemoCodeComponentType = 'component' | 'hook' | 'demo'
 
 interface DemoCodePreviewProps {
   codePath: string
   demoPath?: string
   children?: React.ReactNode
   disableCode?: boolean
+  type?: DemoCodeComponentType
+  className?: string
   title?: string
   isComponent?: boolean
   fileName?: string
@@ -20,7 +22,9 @@ interface DemoCodePreviewProps {
 export const DemoCodePreview: React.FC<DemoCodePreviewProps> = ({
   codePath,
   demoPath,
+  className,
   title,
+  type = 'demo',
   disableCode = false,
   fileName,
   children
@@ -29,13 +33,14 @@ export const DemoCodePreview: React.FC<DemoCodePreviewProps> = ({
   const [isLoading, setIsLoading] = useState(true)
   const demoUrl = demoPath?.includes('https')
     ? demoPath
-    : `${import.meta.env.VITE_APP_URL.replace(/\/$/, '')}/${demoPath.replace(/^\//, '')}`
+    : `${import.meta.env.VITE_APP_URL.replace(/\/$/, '')}/${demoPath?.replace(/^\//, '')}`
   const codeView = () => {
     return (
 
       <SourceCode
         codePath={codePath}
         isComponent={!demoPath}
+        type={type}
         fileName={fileName}
       />
     )
@@ -47,20 +52,13 @@ export const DemoCodePreview: React.FC<DemoCodePreviewProps> = ({
 
   return (
     <div className="space-y-3">
-      {title && <h3>{title}</h3>}
-      {children && (
-        <div className="docs">
-          <ReactMarkdown remarkPlugins={[remarkGfm]}>{children as string}</ReactMarkdown>
-        </div>
-      )}
-
       <Tabs defaultSelectedKey="preview" className="gap-4 text-sm">
         <TabList>
           <Tab id="preview">Preview</Tab>
           <Tab id="code" isDisabled={disableCode}>Code</Tab>
         </TabList>
         <TabPanel id="preview">
-          <div className={cn('relative mb-6 min-h-80 overflow-hidden rounded-md')}>
+          <div className={cn('relative mb-6 min-h-80 overflow-hidden rounded-md', className)}>
             <div
               className="absolute inset-0 bg-[length:800px_300px] bg-[url(/dots-bg.png)] bg-repeat opacity-4 dark:opacity-6"
             />
