@@ -7,7 +7,8 @@
     "dev": "vite",
     "lint": "pnpm dlx oxlint",
     "types": "tsc --noEmit",
-    "registry:build": "shadcn build"
+    "registry:build": "shadcn build",
+    "build:docs": "tsx scripts/build-docs-structure.ts"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.6.3",
@@ -17,6 +18,7 @@
     "@types/node": "^24.0.1",
     "shiki": "^3.6.0",
     "tailwindcss-react-aria-components": "^2.0.0",
+    "tsx": "^4.20.3",
     "vite-plugin-run": "^0.6.1",
     "vitest": "^3.2.3"
   },
@@ -77,7 +79,8 @@
     "tailwindcss-animate": "^1.0.7",
     "typescript": "^5.7.2",
     "ui-api": "link:",
-    "vite": "^6.0"
+    "vite": "^6.0",
+    "zod": "^3.25.67"
   },
   "optionalDependencies": {
     "@rollup/rollup-linux-x64-gnu": "4.9.5",

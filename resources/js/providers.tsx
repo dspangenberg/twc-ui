@@ -1,8 +1,9 @@
 import { router } from '@inertiajs/react'
 import React, { useCallback } from 'react'
 import { RouterProvider } from 'react-aria-components'
+import { DocsStructureProvider } from '@/hooks/use-docs-structure'
 
-export function Providers({ children }: { children: React.ReactNode }) {
+export function Providers ({ children }: { children: React.ReactNode }) {
   const navigate = useCallback(
     (to: string, options?: Parameters<typeof router.visit>[1]) =>
       router.visit(to, options),
@@ -11,7 +12,9 @@ export function Providers({ children }: { children: React.ReactNode }) {
 
   return (
     <RouterProvider navigate={navigate}>
-      {children}
+      <DocsStructureProvider>
+        {children}
+      </DocsStructureProvider>
     </RouterProvider>
   )
 }
