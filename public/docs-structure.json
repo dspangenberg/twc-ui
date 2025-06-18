@@ -1,0 +1,117 @@
+[
+  {
+    "title": "Components",
+    "type": "directory",
+    "path": "components",
+    "children": [
+      {
+        "title": "Buttons",
+        "type": "directory",
+        "path": "components/buttons",
+        "children": [
+          {
+            "title": "(Base-) Button",
+            "type": "file",
+            "path": "components/buttons/button",
+            "route": "/docs/components/buttons/button",
+            "frontmatter": {
+              "title": "(Base-) Button",
+              "description": "A button allows a user to perform an action, with mouse, touch, and keyboard interactions."
+            }
+          }
+        ]
+      },
+      {
+        "title": "Forms",
+        "type": "directory",
+        "path": "components/forms",
+        "children": [
+          {
+            "title": "Form",
+            "type": "file",
+            "path": "components/forms/form",
+            "route": "/docs/components/forms/form",
+            "frontmatter": {
+              "title": "Form"
+            }
+          }
+        ]
+      },
+      {
+        "title": "Navigation",
+        "type": "directory",
+        "path": "components/navigation",
+        "children": [
+          {
+            "title": "Tabs",
+            "type": "file",
+            "path": "components/navigation/tabs",
+            "route": "/docs/components/navigation/tabs",
+            "frontmatter": {
+              "title": "Tabs",
+              "description": "Tabs organize content into multiple sections and allow users to navigate between them."
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Getting Started",
+    "type": "directory",
+    "path": "getting-started",
+    "children": [
+      {
+        "title": "Client side routing",
+        "type": "file",
+        "path": "getting-started/client-side-routing",
+        "route": "/docs/getting-started/client-side-routing",
+        "frontmatter": {
+          "title": "Client side routing",
+          "description": "To prevent the full page from being rendered during navigation, it is recommended that you implement client-side routing."
+        }
+      },
+      {
+        "title": "Introduction",
+        "type": "file",
+        "path": "getting-started/introduction",
+        "route": "/docs/getting-started/introduction",
+        "frontmatter": {
+          "title": "Introduction",
+          "description": "DRY, more accessible shadcn/ui-alike React Aria components, optimized for Inertia.js with Laravel's Precognition feature build in."
+        }
+      }
+    ]
+  },
+  {
+    "title": "Hooks",
+    "type": "directory",
+    "path": "hooks",
+    "children": []
+  },
+  {
+    "title": "Legal",
+    "type": "directory",
+    "path": "legal",
+    "children": [
+      {
+        "title": "Imprint",
+        "type": "file",
+        "path": "legal/imprint",
+        "route": "/docs/legal/imprint",
+        "frontmatter": {
+          "title": "Imprint"
+        }
+      },
+      {
+        "title": "License",
+        "type": "file",
+        "path": "legal/license",
+        "route": "/docs/legal/license",
+        "frontmatter": {
+          "title": "License"
+        }
+      }
+    ]
+  }
+]
