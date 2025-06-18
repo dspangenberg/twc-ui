@@ -1,4 +1,29 @@
 import { useState, useEffect, useCallback, useMemo } from 'react'
+import { z } from 'zod'
+
+// Zod-Schema für Frontmatter definieren
+const DocsFrontmatterSchema = z.object({
+  title: z.string().optional(),
+  author: z.string().optional(),
+  date: z.string().optional(),
+  tags: z.array(z.string()).optional(),
+  description: z.string().optional(),
+  published: z.boolean().optional(),
+  order: z.number().optional()
+}).catchall(z.any()) // Erlaubt zusätzliche Eigenschaften
+
+// Zod-Schema für DocItem definieren (rekursiv)
+const DocItemSchema: z.ZodType<DocItem> = z.lazy(() => z.object({
+  title: z.string(),
+  type: z.enum(['directory', 'file']),
+  path: z.string(),
+  route: z.string().optional(),
+  children: z.array(DocItemSchema).optional(),
+  frontmatter: z.record(z.any()).optional() // Flexiblere Frontmatter-Validierung
+}))
+
+// Schema für das gesamte Array
+const DocsStructureSchema = z.array(DocItemSchema)
 
 export interface DocItem {
   title: string;
@@ -96,14 +121,26 @@ export function useDocsStructure (): UseDocsStructureReturn {
           throw new Error(`Failed to load docs structure: ${response.status}`)
         }
 
-        const data = await response.json()
+        const rawData = await response.json()
+
+        // Validierung mit Zod
+        const validatedData = DocsStructureSchema.parse(rawData)
 
         // Sortierung anwenden
-        const sortedData = sortDocsItems(data)
+        const sortedData = sortDocsItems(validatedData)
         setStructure(sortedData)
       } catch (err) {
         console.error('Error loading docs structure:', err)
-        setError(err instanceof Error ? err.message : 'Unknown error')
+
+        if (err instanceof z.ZodError) {
+          // Spezielle Behandlung für Zod-Validierungsfehler
+          const errorMessage = `Invalid docs structure format: ${
+            err.errors.map(e => `${e.path.join('.')}: ${e.message}`).join(', ')
+          }`
+          setError(errorMessage)
+        } else {
+          setError(err instanceof Error ? err.message : 'Unknown error')
+        }
       } finally {
         setLoading(false)
       }
@@ -165,32 +202,19 @@ export function useDocsStructure (): UseDocsStructureReturn {
   }
 }
 
-// Zusätzliche Hooks
+// Zusätzliche Hooks bleiben unverändert...
 export function useDocByPath (path: string) {
   const {
     structure,
     loading,
-    error
+    error,
+    findByPath
   } = useDocsStructure()
 
   const doc = useMemo(() => {
     if (loading || error || !structure.length) return null
-
-    function searchInItems (items: DocItem[]): DocItem | null {
-      for (const item of items) {
-        if (item.path === path) {
-          return item
-        }
-        if (item.children) {
-          const found = searchInItems(item.children)
-          if (found) return found
-        }
-      }
-      return null
-    }
-
-    return searchInItems(structure)
-  }, [path, structure, loading, error])
+    return findByPath(path)
+  }, [path, findByPath, loading, error])
 
   return {
     doc,
