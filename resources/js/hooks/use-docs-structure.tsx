@@ -10,17 +10,6 @@ export interface DocItem {
   frontmatter?: Record<string, any>;
 }
 
-// Zod-Schema für Frontmatter definieren
-const DocsFrontmatterSchema = z.object({
-  title: z.string().optional(),
-  author: z.string().optional(),
-  date: z.string().optional(),
-  tags: z.array(z.string()).optional(),
-  description: z.string().optional(),
-  published: z.boolean().optional(),
-  order: z.number().optional()
-}).catchall(z.any())
-
 // Zod-Schema für DocItem definieren (rekursiv)
 const DocItemSchema: z.ZodType<DocItem> = z.lazy(() => z.object({
   title: z.string(),
@@ -41,10 +30,7 @@ interface DocsStructureContextType {
   refetch: () => void;
 }
 
-// Context erstellen
 const DocsStructureContext = createContext<DocsStructureContextType | null>(null)
-
-// Erweiterte Sortierungslogik
 const sortDocsItems = (items: DocItem[]): DocItem[] => {
   const priorityOrder: Record<string, number> = {
     'getting-started': 1,
@@ -53,6 +39,7 @@ const sortDocsItems = (items: DocItem[]): DocItem[] => {
     'quickstart': 4,
     'quick-start': 4,
     'components': 10,
+    'hooks': 15,
     'api': 20,
     'examples': 30,
     'guides': 40,
@@ -64,15 +51,20 @@ const sortDocsItems = (items: DocItem[]): DocItem[] => {
   }
 
   const sortedItems = [...items].sort((a, b) => {
-    const aOrder = a.frontmatter?.order
-    const bOrder = b.frontmatter?.order
+    const aOrder = typeof a.frontmatter?.order === 'number' ? a.frontmatter.order : null
+    const bOrder = typeof b.frontmatter?.order === 'number' ? b.frontmatter.order : null
 
-    if (typeof aOrder === 'number' && typeof bOrder === 'number') {
+    if (aOrder !== null && bOrder !== null) {
       return aOrder - bOrder
     }
 
-    if (typeof aOrder === 'number') return -1
-    if (typeof bOrder === 'number') return 1
+    if (aOrder !== null && bOrder === null) {
+      return -1
+    }
+
+    if (aOrder === null && bOrder !== null) {
+      return 1
+    }
 
     const aName = (a.path.split('/').pop() || '').toLowerCase()
     const bName = (b.path.split('/').pop() || '').toLowerCase()
@@ -99,7 +91,6 @@ const sortDocsItems = (items: DocItem[]): DocItem[] => {
   }))
 }
 
-// Provider Component
 interface DocsStructureProviderProps {
   children: ReactNode
 }
@@ -121,12 +112,9 @@ export function DocsStructureProvider ({ children }: DocsStructureProviderProps)
       }
 
       const rawData = await response.json()
-
-      // Validierung mit Zod
       const validatedData = DocsStructureSchema.parse(rawData)
-
-      // Sortierung anwenden
       const sortedData = sortDocsItems(validatedData)
+
       setStructure(sortedData)
     } catch (err) {
       console.error('Error loading docs structure:', err)
@@ -164,7 +152,6 @@ export function DocsStructureProvider ({ children }: DocsStructureProviderProps)
   )
 }
 
-// Hook um Context zu verwenden
 function useDocsStructureContext (): DocsStructureContextType {
   const context = useContext(DocsStructureContext)
 
@@ -193,7 +180,6 @@ export function useDocsStructure (): UseDocsStructureReturn {
     refetch
   } = useDocsStructureContext()
 
-  // Memoized Hilfsfunktion: Dokument nach Pfad finden
   const findByPath = useCallback((targetPath: string): DocItem | null => {
     function searchInItems (items: DocItem[]): DocItem | null {
       for (const item of items) {
@@ -211,7 +197,6 @@ export function useDocsStructure (): UseDocsStructureReturn {
     return searchInItems(structure)
   }, [structure])
 
-  // Memoized Hilfsfunktion: Alle Dateien sammeln
   const getAllFiles = useCallback((): DocItem[] => {
     function collectFiles (items: DocItem[]): DocItem[] {
       const files: DocItem[] = []
@@ -231,7 +216,6 @@ export function useDocsStructure (): UseDocsStructureReturn {
     return collectFiles(structure)
   }, [structure])
 
-  // Navigation-Items
   const getNavigationItems = useCallback((): DocItem[] => {
     return structure
   }, [structure])
@@ -247,7 +231,6 @@ export function useDocsStructure (): UseDocsStructureReturn {
   }
 }
 
-// Bestehende Hooks bleiben gleich, nutzen aber den Context
 export function useDocByPath (path: string) {
   const {
     findByPath,
@@ -287,30 +270,50 @@ export function useDocsNavigation () {
 }
 
 export function useBreadcrumb (currentPath: string) {
-  const { structure } = useDocsStructure()
+  const { structure } = useDocsStructureContext()
 
-  const breadcrumb = useMemo(() => {
+  const breadcrumbItems = useMemo(() => {
     if (!structure.length) return []
+
+    const normalizedPath = currentPath.replace(/^\/docs\//, '')
 
     function buildBreadcrumb (items: DocItem[], targetPath: string, path: DocItem[] = []): DocItem[] | null {
       for (const item of items) {
         const currentPath = [...path, item]
 
-        if (item.path === targetPath) {
+        if (item.type === 'file' && item.route === `/docs/${targetPath}`) {
           return currentPath
         }
 
-        if (item.children) {
-          const found = buildBreadcrumb(item.children, targetPath, currentPath)
-          if (found) return found
+        if (item.type === 'directory' && targetPath.startsWith(item.path + '/')) {
+          if (item.children) {
+            const found = buildBreadcrumb(item.children, targetPath, currentPath)
+            if (found) return found
+          }
         }
       }
       return null
     }
 
-    const result = buildBreadcrumb(structure, currentPath)
-    return result || []
+    const result = buildBreadcrumb(structure, normalizedPath)
+    if (!result) {
+      console.log('No breadcrumb found for path:', normalizedPath)
+      return []
+    }
+
+    console.log('Breadcrumb result:', result.map(r => ({
+      title: r.title,
+      route: r.route,
+      type: r.type
+    })))
+
+    return result.map((item) => {
+      return {
+        title: item.title,
+        href: item.route || '#'
+      }
+    })
   }, [currentPath, structure])
 
-  return breadcrumb
+  return breadcrumbItems
 }

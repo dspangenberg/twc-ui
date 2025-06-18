@@ -10,11 +10,9 @@ export type DemoCodeComponentType = 'component' | 'hook' | 'demo'
 interface DemoCodePreviewProps {
   codePath: string
   demoPath?: string
-  children?: React.ReactNode
   disableCode?: boolean
   type?: DemoCodeComponentType
   className?: string
-  title?: string
   isComponent?: boolean
   fileName?: string
 }
@@ -23,11 +21,9 @@ export const DemoCodePreview: React.FC<DemoCodePreviewProps> = ({
   codePath,
   demoPath,
   className,
-  title,
   type = 'demo',
   disableCode = false,
-  fileName,
-  children
+  fileName
 }) => {
 
   const [isLoading, setIsLoading] = useState(true)

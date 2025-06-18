@@ -1,7 +1,6 @@
-import { cn } from '@/lib/utils'
 import type { SVGAttributes } from 'react'
 
-export default function AppLogoIcon(props: SVGAttributes<SVGElement>) {
+export default function AppLogoIcon (props: SVGAttributes<SVGElement>) {
   return (
     <svg
       width="100%"

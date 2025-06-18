@@ -12,7 +12,6 @@ import {
 } from 'react-aria-components'
 import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '@/lib/utils'
-import { Link } from '@inertiajs/react'
 
 // Varianten für Tabs definieren
 const tabsVariants = cva('', {

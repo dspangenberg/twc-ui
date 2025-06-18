@@ -1,6 +1,6 @@
 import type React from 'react'
 import { DemoContainer } from '@/components/docs/DemoContainer'
-import { Tab, TabList, Tabs, TabPanel } from '@/components/twc-ui/tabs'
+import { Tab, TabList, Tabs } from '@/components/twc-ui/tabs'
 
 interface TabLayoutProps {
   children: React.ReactNode
