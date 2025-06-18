@@ -5,6 +5,7 @@
 /public/hot
 /public/r
 /public/storage
+/public/docs-structure.json
 /storage/*.key
 /storage/pail
 /vendor
