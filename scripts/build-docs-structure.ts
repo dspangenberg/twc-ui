@@ -22,23 +22,7 @@ function buildDocsStructure (basePath: string, relativePath: string = ''): DocIt
 
   const entries = fs.readdirSync(fullPath, { withFileTypes: true })
 
-  // Verzeichnisse verarbeiten
-  const directories = entries.filter(entry => entry.isDirectory())
-  for (const directory of directories) {
-    const dirName = directory.name
-    const childPath = relativePath ? `${relativePath}/${dirName}` : dirName
-
-    const item: DocItem = {
-      title: formatTitle(dirName),
-      type: 'directory',
-      path: childPath,
-      children: buildDocsStructure(basePath, childPath)
-    }
-
-    items.push(item)
-  }
-
-  // MDX-Dateien verarbeiten
+  // ERST Dateien sammeln
   const files = entries.filter(entry => entry.isFile() && path.extname(entry.name) === '.mdx')
   for (const file of files) {
     const fileName = path.parse(file.name).name
@@ -58,7 +42,91 @@ function buildDocsStructure (basePath: string, relativePath: string = ''): DocIt
     items.push(item)
   }
 
-  return items
+  // DANN Verzeichnisse sammeln
+  const directories = entries.filter(entry => entry.isDirectory())
+  for (const directory of directories) {
+    const dirName = directory.name
+    const childPath = relativePath ? `${relativePath}/${dirName}` : dirName
+
+    // Rekursiv Kinder laden
+    const children = buildDocsStructure(basePath, childPath)
+
+    // Das erste Dokument finden (wichtig: NACH dem Sortieren!)
+    const sortedChildren = sortItems(children)
+    const firstDoc = findFirstDocument(sortedChildren)
+
+    console.log(`\nProcessing directory: ${dirName}`)
+    console.log(`Child path: ${childPath}`)
+    console.log(`Children count: ${children.length}`)
+    console.log(`First doc found: ${firstDoc ? firstDoc.route : 'NONE'}`)
+    if (sortedChildren.length > 0) {
+      console.log(`Sorted children:`)
+      sortedChildren.forEach((child, i) => {
+        console.log(`  ${i + 1}. ${child.type}: ${child.title} (order: ${child.frontmatter?.order || 'none'}) -> ${child.route}`)
+      })
+    }
+
+    const item: DocItem = {
+      title: formatTitle(dirName),
+      type: 'directory',
+      path: childPath,
+      route: firstDoc?.route,
+      children: sortedChildren.length > 0 ? sortedChildren : undefined
+    }
+
+    items.push(item)
+  }
+
+  return sortItems(items)
+}
+
+function sortItems (items: DocItem[]): DocItem[] {
+  return items.sort((a, b) => {
+    // 1. Explizite order aus frontmatter (NIEDRIGSTE ZAHL = ERSTE)
+    const aOrder = typeof a.frontmatter?.order === 'number' ? a.frontmatter.order : 999
+    const bOrder = typeof b.frontmatter?.order === 'number' ? b.frontmatter.order : 999
+
+    if (aOrder !== bOrder) {
+      return aOrder - bOrder
+    }
+
+    // 2. Spezielle Namen-Prioritäten
+    const priorityOrder: Record<string, number> = {
+      // Getting Started Reihenfolge
+      'introduction': 1,
+      'installation': 2,
+      'client-side-routing': 3,
+
+      // Components Reihenfolge
+      'button': 1,
+      'base-button': 2,
+      'form': 10,
+
+      // Directory Prioritäten
+      'getting-started': 1,
+      'components': 2,
+      'hooks': 3,
+      'legal': 99
+    }
+
+    const aName = (a.path.split('/').pop() || '').toLowerCase()
+    const bName = (b.path.split('/').pop() || '').toLowerCase()
+
+    const aPriority = priorityOrder[aName] ?? 50
+    const bPriority = priorityOrder[bName] ?? 50
+
+    if (aPriority !== bPriority) {
+      return aPriority - bPriority
+    }
+
+    // 3. Dateien vor Verzeichnissen auf gleicher Ebene
+    if (a.type !== b.type) {
+      return a.type === 'file' ? -1 : 1
+    }
+
+    // 4. Alphabetisch
+    return a.title.localeCompare(b.title)
+  })
 }
 
 function formatTitle (name: string): string {
@@ -79,7 +147,49 @@ function extractFrontmatter (filePath: string): Record<string, any> {
   }
 }
 
-// Prüfen ob das Script direkt ausgeführt wird
+// KORRIGIERTE findFirstDocument Funktion - sucht das erste nach order sortierte Element
+function findFirstDocument (items: DocItem[]): DocItem | undefined {
+  console.log(`Looking for first document in ${items.length} items:`)
+
+  // Items sind bereits sortiert - nimm das erste File
+  for (const item of items) {
+    console.log(`  - ${item.type}: ${item.title} (order: ${item.frontmatter?.order || 'none'}) route: ${item.route}`)
+    if (item.type === 'file' && item.route) {
+      console.log(`    -> Found first file: ${item.route}`)
+      return item
+    }
+  }
+
+  // Wenn keine Files, dann rekursiv in Verzeichnissen suchen (ebenfalls sortiert)
+  for (const item of items) {
+    if (item.type === 'directory' && item.children && item.children.length > 0) {
+      console.log(`  -> Searching in directory: ${item.title}`)
+      const firstDoc = findFirstDocument(item.children)
+      if (firstDoc) {
+        console.log(`    -> Found in subdirectory: ${firstDoc.route}`)
+        return firstDoc
+      }
+    }
+  }
+
+  console.log('  -> No document found')
+  return undefined
+}
+
+// Debug-Ausgabe verbessern
+function debugStructure (items: DocItem[], indent = 0) {
+  const prefix = '  '.repeat(indent)
+  for (const item of items) {
+    const routeInfo = item.route ? `-> ${item.route}` : '-> NO ROUTE'
+    const orderInfo = item.frontmatter?.order ? ` [${item.frontmatter.order}]` : ''
+    console.log(`${prefix}${item.type === 'directory' ? '📁' : '📄'} ${item.title}${orderInfo} ${routeInfo}`)
+    if (item.children) {
+      debugStructure(item.children, indent + 1)
+    }
+  }
+}
+
+// Script ausführen
 const __filename = fileURLToPath(import.meta.url)
 const isMainModule = process.argv[1] === __filename
 
@@ -96,10 +206,10 @@ if (isMainModule) {
 
   const structure = buildDocsStructure(docsPath)
 
-  // Struktur in JSON-Datei speichern
-  const outputPath = path.join(process.cwd(), 'public/docs-structure.json')
+  console.log('\n📋 Final structure:')
+  debugStructure(structure)
 
-  // Sicherstellen, dass das public-Verzeichnis existiert
+  const outputPath = path.join(process.cwd(), 'public/docs-structure.json')
   const publicDir = path.dirname(outputPath)
   if (!fs.existsSync(publicDir)) {
     fs.mkdirSync(publicDir, { recursive: true })
@@ -107,7 +217,7 @@ if (isMainModule) {
 
   fs.writeFileSync(outputPath, JSON.stringify(structure, null, 2))
 
-  console.log('✅ Docs structure built successfully!')
+  console.log('\n✅ Docs structure built successfully!')
   console.log('📁 Output:', outputPath)
   console.log('📄 Found', structure.length, 'items')
 }

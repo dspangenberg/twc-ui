@@ -20,7 +20,7 @@ interface DemoCodePreviewProps {
 export const SourceCode: React.FC<DemoCodePreviewProps> = ({
   codePath,
   isComponent = false,
-  language = 'typescript',
+  language = 'tsx',
   type = 'demo',
   code: rawCode,
   title,

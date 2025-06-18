@@ -53,6 +53,7 @@ const sortDocsItems = (items: DocItem[]): DocItem[] => {
     'quickstart': 4,
     'quick-start': 4,
     'components': 10,
+    'hooks': 15,
     'api': 20,
     'examples': 30,
     'guides': 40,
@@ -64,16 +65,26 @@ const sortDocsItems = (items: DocItem[]): DocItem[] => {
   }
 
   const sortedItems = [...items].sort((a, b) => {
-    const aOrder = a.frontmatter?.order
-    const bOrder = b.frontmatter?.order
+    // Zuerst nach expliziter order in frontmatter sortieren
+    const aOrder = typeof a.frontmatter?.order === 'number' ? a.frontmatter.order : null
+    const bOrder = typeof b.frontmatter?.order === 'number' ? b.frontmatter.order : null
 
-    if (typeof aOrder === 'number' && typeof bOrder === 'number') {
+    // Beide haben order-Werte
+    if (aOrder !== null && bOrder !== null) {
       return aOrder - bOrder
     }
 
-    if (typeof aOrder === 'number') return -1
-    if (typeof bOrder === 'number') return 1
+    // Nur a hat order-Wert
+    if (aOrder !== null && bOrder === null) {
+      return -1
+    }
 
+    // Nur b hat order-Wert
+    if (aOrder === null && bOrder !== null) {
+      return 1
+    }
+
+    // Beide haben keine order-Werte, fallback auf Name-basierte Priorität
     const aName = (a.path.split('/').pop() || '').toLowerCase()
     const bName = (b.path.split('/').pop() || '').toLowerCase()
 
@@ -84,13 +95,16 @@ const sortDocsItems = (items: DocItem[]): DocItem[] => {
       return aPriority - bPriority
     }
 
+    // Nach Typ sortieren (Ordner vor Dateien)
     if (a.type !== b.type) {
       return a.type === 'directory' ? -1 : 1
     }
 
+    // Alphabetisch nach Titel
     return a.title.localeCompare(b.title)
   })
 
+  // Rekursiv für Kinder anwenden
   return sortedItems.map(item => ({
     ...item,
     children: item.children && item.children.length > 0
@@ -286,31 +300,62 @@ export function useDocsNavigation () {
   }
 }
 
-export function useBreadcrumb (currentPath: string) {
-  const { structure } = useDocsStructure()
+// ... bestehender Code bis useBreadcrumb ...
 
-  const breadcrumb = useMemo(() => {
+export function useBreadcrumb (currentPath: string) {
+  const { structure } = useDocsStructureContext()
+
+  const breadcrumbItems = useMemo(() => {
     if (!structure.length) return []
+
+    // URL normalisieren: "/docs/components/buttons/button" -> "components/buttons/button"
+    const normalizedPath = currentPath.replace(/^\/docs\//, '')
 
     function buildBreadcrumb (items: DocItem[], targetPath: string, path: DocItem[] = []): DocItem[] | null {
       for (const item of items) {
         const currentPath = [...path, item]
 
-        if (item.path === targetPath) {
+        // Bei Dateien: Vergleiche mit der normalisierten Route
+        if (item.type === 'file' && item.route === `/docs/${targetPath}`) {
           return currentPath
         }
 
-        if (item.children) {
-          const found = buildBreadcrumb(item.children, targetPath, currentPath)
-          if (found) return found
+        // Bei Verzeichnissen: Prüfe ob der Pfad in diesem Verzeichnis liegt
+        if (item.type === 'directory' && targetPath.startsWith(item.path + '/')) {
+          if (item.children) {
+            const found = buildBreadcrumb(item.children, targetPath, currentPath)
+            if (found) return found
+          }
         }
       }
       return null
     }
 
-    const result = buildBreadcrumb(structure, currentPath)
-    return result || []
+    const result = buildBreadcrumb(structure, normalizedPath)
+    if (!result) {
+      console.log('No breadcrumb found for path:', normalizedPath)
+      return []
+    }
+
+    console.log('Breadcrumb result:', result.map(r => ({
+      title: r.title,
+      route: r.route,
+      type: r.type
+    })))
+
+    // WICHTIG: Alle Items bekommen ihre Links, auch Verzeichnisse
+    return result.map((item, index) => {
+      const isLastItem = index === result.length - 1
+
+      return {
+        title: item.title,
+        // Verzeichnisse: Verwende ihre route (zeigt auf erstes Dokument)
+        // Dateien: Verwende ihre route
+        // Falls keine route vorhanden: '#' für inaktive Links
+        href: item.route || '#'
+      }
+    })
   }, [currentPath, structure])
 
-  return breadcrumb
+  return breadcrumbItems
 }

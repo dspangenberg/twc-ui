@@ -48,6 +48,11 @@ export default defineConfig({
         pattern: ['app/**/*Data.php', 'app/**/Enums/**/*.php']
       },
       {
+        name: 'typescript transform',
+        run: ['pnpm', 'build:docs'],
+        pattern: ['resources/js/docs/**/*.mdx']
+      },
+      {
         name: 'build routes',
         run: ['php', 'artisan', 'routes:generate'],
         condition: file => file.includes('/routes/')
