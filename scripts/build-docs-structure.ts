@@ -1,6 +1,7 @@
 import * as fs from 'node:fs'
 import * as path from 'node:path'
 import { fileURLToPath } from 'node:url'
+import matter from 'gray-matter'
 
 interface DocItem {
   title: string;
@@ -69,46 +70,13 @@ function formatTitle (name: string): string {
 function extractFrontmatter (filePath: string): Record<string, any> {
   const content = fs.readFileSync(filePath, 'utf-8')
 
-  const frontmatterMatch = content.match(/^---\s*\n(.*?)\n---\s*\n/s)
-  if (!frontmatterMatch) {
+  try {
+    const parsed = matter(content)
+    return parsed.data
+  } catch (error) {
+    console.warn(`Warning: Could not parse frontmatter in ${filePath}:`, error)
     return {}
   }
-
-  const frontmatterContent = frontmatterMatch[1]
-  const frontmatter: Record<string, any> = {}
-  const lines = frontmatterContent.split('\n')
-
-  for (const line of lines) {
-    const trimmedLine = line.trim()
-    if (!trimmedLine) continue
-
-    const colonIndex = trimmedLine.indexOf(':')
-    if (colonIndex === -1) continue
-
-    const key = trimmedLine.substring(0, colonIndex).trim()
-    let value = trimmedLine.substring(colonIndex + 1).trim()
-
-    // Anführungszeichen entfernen
-    value = value.replace(/^["']|["']$/g, '')
-
-    // Arrays handhaben
-    if (key === 'tags' && value.includes('[')) {
-      value = value.replace(/[\[\]"']/g, '')
-      frontmatter[key] = value.split(',').map(tag => tag.trim())
-    }
-    // Zahlen-Felder parsen (order)
-    else if (key === 'order' && !isNaN(Number(value))) {
-      frontmatter[key] = Number(value)
-    }
-    // Boolean-Felder parsen
-    else if (value === 'true' || value === 'false') {
-      frontmatter[key] = value === 'true'
-    } else {
-      frontmatter[key] = value
-    }
-  }
-
-  return frontmatter
 }
 
 // Prüfen ob das Script direkt ausgeführt wird
