@@ -40,8 +40,7 @@ export default function AppearanceToggleTab ({
     >
       {tabs.map(({
         value,
-        icon: Icon,
-        label
+        icon: Icon
       }) => (
         <button
           key={value}

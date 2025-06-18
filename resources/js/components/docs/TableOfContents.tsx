@@ -17,7 +17,7 @@ const generateId = (text: string): string => {
 
 export const TableOfContents = () => {
   const [tocItems, setTocItems] = useState<TocItem[]>([])
-  const [activeId, setActiveId] = useState<string>('')
+  const [_activeId, setActiveId] = useState<string>('')
 
   useEffect(() => {
     // Alle Überschriften sammeln

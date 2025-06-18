@@ -19,7 +19,6 @@ interface DemoCodePreviewProps {
 
 export const SourceCode: React.FC<DemoCodePreviewProps> = ({
   codePath,
-  isComponent = false,
   language = 'tsx',
   type = 'demo',
   code: rawCode,
@@ -97,7 +96,7 @@ export const SourceCode: React.FC<DemoCodePreviewProps> = ({
       {title && <h3>{title}</h3>}
       <div className="rounded-md border bg-muted text-sm max-w-full overflow-hidden">
         <div className="flex items-center ">
-          {!!header ? header : (
+          {header ? header : (
             <div className="py-2 pl-4 font-medium flex-1 font-mono">{fileName}</div>
           )}
           <ClipboardButton code={code} />

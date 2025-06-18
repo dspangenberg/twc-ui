@@ -1,4 +1,3 @@
-import { Icon } from '@/components/icon'
 import {
   SidebarGroup,
   SidebarGroupContent,
@@ -10,7 +9,7 @@ import type { NavItem } from '@/types'
 import type { ComponentPropsWithoutRef } from 'react'
 import { HugeiconsIcon } from '@hugeicons/react'
 
-export function NavFooter({
+export function NavFooter ({
   items,
   className,
   ...props
