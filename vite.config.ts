@@ -1,14 +1,14 @@
+import { resolve } from 'node:path'
+import mdx from '@mdx-js/rollup'
 import tailwindcss from '@tailwindcss/vite'
 import react from '@vitejs/plugin-react'
 import laravel from 'laravel-vite-plugin'
-import { resolve } from 'node:path'
-import { defineConfig } from 'vite'
-import mdx from '@mdx-js/rollup'
-import remarkGfm from 'remark-gfm'
-import remarkToc from 'remark-toc'
 import rehypeSlug from 'rehype-slug'
 import remarkFrontmatter from 'remark-frontmatter'
+import remarkGfm from 'remark-gfm'
 import remarkMdxFrontmatter from 'remark-mdx-frontmatter'
+import remarkToc from 'remark-toc'
+import { defineConfig } from 'vite'
 import { run } from 'vite-plugin-run'
 
 export default defineConfig({
@@ -25,13 +25,16 @@ export default defineConfig({
           remarkGfm,
           remarkFrontmatter,
           [remarkMdxFrontmatter, { name: 'frontmatter' }], // expliziter Name
-          [remarkToc, {
-            heading: 'contents|toc|table[ -]of[ -]contents?', // Erkennt verschiedene TOC-Überschriften
-            minDepth: 2,
-            maxDepth: 5, // Maximale Tiefe der Headings im TOC
-            tight: true, // Kompakte Liste ohne <p> Tags
-            ordered: false // Ungeordnete Liste verwenden
-          }]
+          [
+            remarkToc,
+            {
+              heading: 'contents|toc|table[ -]of[ -]contents?', // Erkennt verschiedene TOC-Überschriften
+              minDepth: 2,
+              maxDepth: 5, // Maximale Tiefe der Headings im TOC
+              tight: true, // Kompakte Liste ohne <p> Tags
+              ordered: false // Ungeordnete Liste verwenden
+            }
+          ]
         ],
         rehypePlugins: [
           rehypeSlug // Muss als rehypePlugin definiert werden

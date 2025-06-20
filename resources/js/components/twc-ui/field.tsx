@@ -12,9 +12,8 @@ import {
   type TextProps as AriaTextProps,
   composeRenderProps
 } from 'react-aria-components'
-
-import { cn } from '@/lib/utils'
 import { useFormContext } from '@/components/twc-ui/form'
+import { cn } from '@/lib/utils'
 
 const labelVariants = cva([
   'text-base font-normal leading-none',
@@ -29,13 +28,7 @@ interface LabelProps extends AriaLabelProps {
   value?: string
 }
 
-const Label = ({
-  className,
-  children,
-  value,
-  required = false,
-  ...props
-}: LabelProps) => {
+const Label = ({ className, children, value, required = false, ...props }: LabelProps) => {
   const form = useFormContext()
 
   const valueWithColon = value && !form.hideColonInLabels ? `${value}:` : value
@@ -46,10 +39,7 @@ const Label = ({
   )
 }
 
-function FormDescription ({
-  className,
-  ...props
-}: AriaTextProps) {
+function FormDescription({ className, ...props }: AriaTextProps) {
   return (
     <AriaText
       className={cn('text-[0.8rem] text-muted-foreground', className)}
@@ -59,17 +49,14 @@ function FormDescription ({
   )
 }
 
-function FieldError ({
-  className,
-  ...props
-}: AriaFieldErrorProps) {
+function FieldError({ className, ...props }: AriaFieldErrorProps) {
   const form = useFormContext()
 
   if (form.errorVariant === 'form') return null
 
   return (
     <AriaFieldError
-      className={cn('text-[0.8rem] font-medium text-destructive', className)}
+      className={cn('font-medium text-[0.8rem] text-destructive', className)}
       {...props}
     />
   )
@@ -94,18 +81,12 @@ const fieldGroupVariants = cva('', {
   }
 })
 
-interface GroupProps
-  extends AriaGroupProps,
-    VariantProps<typeof fieldGroupVariants> {}
+interface GroupProps extends AriaGroupProps, VariantProps<typeof fieldGroupVariants> {}
 
-function FieldGroup ({
-  className,
-  variant,
-  ...props
-}: GroupProps) {
+function FieldGroup({ className, variant, ...props }: GroupProps) {
   return (
     <AriaGroup
-      className={composeRenderProps(className, (className) =>
+      className={composeRenderProps(className, className =>
         cn(fieldGroupVariants({ variant }), className)
       )}
       {...props}
@@ -113,11 +94,4 @@ function FieldGroup ({
   )
 }
 
-export {
-  Label,
-  labelVariants,
-  FieldGroup,
-  fieldGroupVariants,
-  FieldError,
-  FormDescription
-}
+export { Label, labelVariants, FieldGroup, fieldGroupVariants, FieldError, FormDescription }

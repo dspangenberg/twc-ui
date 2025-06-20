@@ -4,8 +4,10 @@ import { Tab, TabList, TabPanel, Tabs } from '@/components/twc-ui/tabs'
 export const Demo = () => {
   return (
     <DemoContainer>
-      <Tabs className="text-sm">
-        <TabList aria-label="History of Ancient Rome">
+      <Tabs tabClassName="text-destructive text-lg">
+        <TabList
+          aria-label="History of Ancient Rome"
+        >
           <Tab id="FoundingRome">Founding of Rome</Tab>
           <Tab id="Monarchy">Monarchy and Republic</Tab>
           <Tab id="Empire">Empire</Tab>

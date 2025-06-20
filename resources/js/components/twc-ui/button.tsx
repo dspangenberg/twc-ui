@@ -1,7 +1,7 @@
-import { Tooltip, TooltipTrigger } from './tooltip'
-import type { TooltipProps } from 'react-aria-components'
-import { BaseButton, buttonVariants, type BaseButtonProps } from './base-button'
 import type { JSX } from 'react'
+import type { TooltipProps } from 'react-aria-components'
+import { BaseButton, type BaseButtonProps, buttonVariants } from './base-button'
+import { Tooltip, TooltipTrigger } from './tooltip'
 
 export interface ButtonProps extends BaseButtonProps {
   tooltip?: string

@@ -1,18 +1,20 @@
-import { Button } from '@/components/ui/button'
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
-import { useAppearance } from '@/hooks/use-appearance'
-import type { HTMLAttributes } from 'react'
-import { HugeiconsIcon } from '@hugeicons/react'
 import { ComputerIcon, Moon02Icon, Sun02Icon } from '@hugeicons/core-free-icons'
+import { HugeiconsIcon } from '@hugeicons/react'
+import type { HTMLAttributes } from 'react'
+import { Button } from '@/components/ui/button'
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger
+} from '@/components/ui/dropdown-menu'
+import { useAppearance } from '@/hooks/use-appearance'
 
-export default function AppearanceToggleDropdown ({
+export default function AppearanceToggleDropdown({
   className = '',
   ...props
 }: HTMLAttributes<HTMLDivElement>) {
-  const {
-    appearance,
-    updateAppearance
-  } = useAppearance()
+  const { appearance, updateAppearance } = useAppearance()
 
   const getCurrentIcon = () => {
     switch (appearance) {

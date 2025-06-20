@@ -5,12 +5,15 @@
     "build": "vite build",
     "build:ssr": "vite build && vite build --ssr",
     "dev": "vite",
-    "lint": "pnpm dlx oxlint",
+    "lint": "pnpm  dlx @biomejs/biome lint .",
+    "format:check": "pnpm  dlx @biomejs/biome format .",
+    "format:write": "pnpm  dlx @biomejs/biome format --write .",
     "types": "tsc --noEmit",
     "registry:build": "shadcn build",
     "build:docs": "tsx scripts/build-docs-structure.ts"
   },
   "devDependencies": {
+    "@biomejs/biome": "2.0.0",
     "@react-types/shared": "^3.30.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.3.0",

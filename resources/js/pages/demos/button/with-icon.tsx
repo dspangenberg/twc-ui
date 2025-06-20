@@ -1,6 +1,6 @@
+import { Rocket02Icon } from '@hugeicons/core-free-icons'
 import { DemoContainer } from '@/components/docs/DemoContainer'
 import { Button } from '@/components/twc-ui/button'
-import { Rocket02Icon } from '@hugeicons/core-free-icons'
 
 export const WithIconDemo = () => {
   return (

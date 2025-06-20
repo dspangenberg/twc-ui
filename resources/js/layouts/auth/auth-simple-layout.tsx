@@ -1,6 +1,6 @@
-import AppLogoIcon from '@/components/app-logo-icon'
 import { Link } from '@inertiajs/react'
 import type { PropsWithChildren } from 'react'
+import AppLogoIcon from '@/components/app-logo-icon'
 
 interface AuthLayoutProps {
   name?: string

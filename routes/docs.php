@@ -12,7 +12,7 @@ Route::get('/source/{path}', function (string $path) {
 })->where('path', '.*')->name('source');
 
 Route::get('/component-source/{path}', function (string $path) {
-    $path = resource_path('js/components/twc-ui/'.$path.'.tsx');
+    $path = resource_path('js/components/twc-ui/'.$path);
     return file_get_contents($path);
 })->where('path', '.*')->name('component-source');
 

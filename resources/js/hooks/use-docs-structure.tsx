@@ -1,53 +1,63 @@
-import { useState, useEffect, useCallback, useMemo, createContext, useContext, ReactNode } from 'react'
+import {
+  createContext,
+  type ReactNode,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState
+} from 'react'
 import { z } from 'zod'
 
 export interface DocItem {
-  title: string;
-  type: 'directory' | 'file';
-  path: string;
-  route?: string;
-  children?: DocItem[];
-  frontmatter?: Record<string, any>;
+  title: string
+  type: 'directory' | 'file'
+  path: string
+  route?: string
+  children?: DocItem[]
+  frontmatter?: Record<string, any>
 }
 
 // Zod-Schema für DocItem definieren (rekursiv)
-const DocItemSchema: z.ZodType<DocItem> = z.lazy(() => z.object({
-  title: z.string(),
-  type: z.enum(['directory', 'file']),
-  path: z.string(),
-  route: z.string().optional(),
-  children: z.array(DocItemSchema).optional(),
-  frontmatter: z.record(z.any()).optional()
-}))
+const DocItemSchema: z.ZodType<DocItem> = z.lazy(() =>
+  z.object({
+    title: z.string(),
+    type: z.enum(['directory', 'file']),
+    path: z.string(),
+    route: z.string().optional(),
+    children: z.array(DocItemSchema).optional(),
+    frontmatter: z.record(z.any()).optional()
+  })
+)
 
 // Schema für das gesamte Array
 const DocsStructureSchema = z.array(DocItemSchema)
 
 interface DocsStructureContextType {
-  structure: DocItem[];
-  loading: boolean;
-  error: string | null;
-  refetch: () => void;
+  structure: DocItem[]
+  loading: boolean
+  error: string | null
+  refetch: () => void
 }
 
 const DocsStructureContext = createContext<DocsStructureContextType | null>(null)
 const sortDocsItems = (items: DocItem[]): DocItem[] => {
   const priorityOrder: Record<string, number> = {
     'getting-started': 1,
-    'introduction': 2,
-    'installation': 3,
-    'quickstart': 4,
+    introduction: 2,
+    installation: 3,
+    quickstart: 4,
     'quick-start': 4,
-    'components': 10,
-    'hooks': 15,
-    'api': 20,
-    'examples': 30,
-    'guides': 40,
-    'advanced': 50,
-    'reference': 60,
-    'legal': 70,
-    'changelog': 100,
-    'faq': 110
+    components: 10,
+    hooks: 15,
+    api: 20,
+    examples: 30,
+    guides: 40,
+    advanced: 50,
+    reference: 60,
+    legal: 70,
+    changelog: 100,
+    faq: 110
   }
 
   const sortedItems = [...items].sort((a, b) => {
@@ -85,9 +95,7 @@ const sortDocsItems = (items: DocItem[]): DocItem[] => {
 
   return sortedItems.map(item => ({
     ...item,
-    children: item.children && item.children.length > 0
-      ? sortDocsItems(item.children)
-      : undefined
+    children: item.children && item.children.length > 0 ? sortDocsItems(item.children) : undefined
   }))
 }
 
@@ -95,7 +103,7 @@ interface DocsStructureProviderProps {
   children: ReactNode
 }
 
-export function DocsStructureProvider ({ children }: DocsStructureProviderProps) {
+export function DocsStructureProvider({ children }: DocsStructureProviderProps) {
   const [structure, setStructure] = useState<DocItem[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
@@ -120,9 +128,9 @@ export function DocsStructureProvider ({ children }: DocsStructureProviderProps)
       console.error('Error loading docs structure:', err)
 
       if (err instanceof z.ZodError) {
-        const errorMessage = `Invalid docs structure format: ${
-          err.errors.map(e => `${e.path.join('.')}: ${e.message}`).join(', ')
-        }`
+        const errorMessage = `Invalid docs structure format: ${err.errors
+          .map(e => `${e.path.join('.')}: ${e.message}`)
+          .join(', ')}`
         setError(errorMessage)
       } else {
         setError(err instanceof Error ? err.message : 'Unknown error')
@@ -136,23 +144,22 @@ export function DocsStructureProvider ({ children }: DocsStructureProviderProps)
     loadDocsStructure()
   }, [loadDocsStructure])
 
-  const contextValue = useMemo<DocsStructureContextType>(() => ({
-    structure,
-    loading,
-    error,
-    refetch: loadDocsStructure
-  }), [structure, loading, error, loadDocsStructure])
+  const contextValue = useMemo<DocsStructureContextType>(
+    () => ({
+      structure,
+      loading,
+      error,
+      refetch: loadDocsStructure
+    }),
+    [structure, loading, error, loadDocsStructure]
+  )
 
   const Provider = DocsStructureContext.Provider
 
-  return (
-    <Provider value={contextValue}>
-      {children}
-    </Provider>
-  )
+  return <Provider value={contextValue}>{children}</Provider>
 }
 
-function useDocsStructureContext (): DocsStructureContextType {
+function useDocsStructureContext(): DocsStructureContextType {
   const context = useContext(DocsStructureContext)
 
   if (!context) {
@@ -163,42 +170,40 @@ function useDocsStructureContext (): DocsStructureContextType {
 }
 
 interface UseDocsStructureReturn {
-  structure: DocItem[];
-  loading: boolean;
-  error: string | null;
-  findByPath: (path: string) => DocItem | null;
-  getAllFiles: () => DocItem[];
-  getNavigationItems: () => DocItem[];
-  refetch: () => void;
+  structure: DocItem[]
+  loading: boolean
+  error: string | null
+  findByPath: (path: string) => DocItem | null
+  getAllFiles: () => DocItem[]
+  getNavigationItems: () => DocItem[]
+  refetch: () => void
 }
 
-export function useDocsStructure (): UseDocsStructureReturn {
-  const {
-    structure,
-    loading,
-    error,
-    refetch
-  } = useDocsStructureContext()
+export function useDocsStructure(): UseDocsStructureReturn {
+  const { structure, loading, error, refetch } = useDocsStructureContext()
 
-  const findByPath = useCallback((targetPath: string): DocItem | null => {
-    function searchInItems (items: DocItem[]): DocItem | null {
-      for (const item of items) {
-        if (item.path === targetPath) {
-          return item
+  const findByPath = useCallback(
+    (targetPath: string): DocItem | null => {
+      function searchInItems(items: DocItem[]): DocItem | null {
+        for (const item of items) {
+          if (item.path === targetPath) {
+            return item
+          }
+          if (item.children) {
+            const found = searchInItems(item.children)
+            if (found) return found
+          }
         }
-        if (item.children) {
-          const found = searchInItems(item.children)
-          if (found) return found
-        }
+        return null
       }
-      return null
-    }
 
-    return searchInItems(structure)
-  }, [structure])
+      return searchInItems(structure)
+    },
+    [structure]
+  )
 
   const getAllFiles = useCallback((): DocItem[] => {
-    function collectFiles (items: DocItem[]): DocItem[] {
+    function collectFiles(items: DocItem[]): DocItem[] {
       const files: DocItem[] = []
 
       for (const item of items) {
@@ -231,12 +236,8 @@ export function useDocsStructure (): UseDocsStructureReturn {
   }
 }
 
-export function useDocByPath (path: string) {
-  const {
-    findByPath,
-    loading,
-    error
-  } = useDocsStructure()
+export function useDocByPath(path: string) {
+  const { findByPath, loading, error } = useDocsStructure()
 
   const doc = useMemo(() => {
     if (loading || error) return null
@@ -250,12 +251,8 @@ export function useDocByPath (path: string) {
   }
 }
 
-export function useDocsNavigation () {
-  const {
-    structure,
-    loading,
-    error
-  } = useDocsStructure()
+export function useDocsNavigation() {
+  const { structure, loading, error } = useDocsStructure()
 
   const navigationItems = useMemo(() => {
     if (loading || error || !structure.length) return []
@@ -269,7 +266,7 @@ export function useDocsNavigation () {
   }
 }
 
-export function useBreadcrumb (currentPath: string) {
+export function useBreadcrumb(currentPath: string) {
   const { structure } = useDocsStructureContext()
 
   const breadcrumbItems = useMemo(() => {
@@ -277,7 +274,11 @@ export function useBreadcrumb (currentPath: string) {
 
     const normalizedPath = currentPath.replace(/^\/docs\//, '')
 
-    function buildBreadcrumb (items: DocItem[], targetPath: string, path: DocItem[] = []): DocItem[] | null {
+    function buildBreadcrumb(
+      items: DocItem[],
+      targetPath: string,
+      path: DocItem[] = []
+    ): DocItem[] | null {
       for (const item of items) {
         const currentPath = [...path, item]
 
@@ -301,13 +302,7 @@ export function useBreadcrumb (currentPath: string) {
       return []
     }
 
-    console.log('Breadcrumb result:', result.map(r => ({
-      title: r.title,
-      route: r.route,
-      type: r.type
-    })))
-
-    return result.map((item) => {
+    return result.map(item => {
       return {
         title: item.title,
         href: item.route || '#'

@@ -2,10 +2,9 @@ import { Head } from '@inertiajs/react'
 
 import AppearanceTabs from '@/components/appearance-tabs'
 import HeadingSmall from '@/components/heading-small'
-import type { BreadcrumbItem } from '@/types'
-
 import AppLayout from '@/layouts/app-layout'
 import SettingsLayout from '@/layouts/settings/layout'
+import type { BreadcrumbItem } from '@/types'
 
 const breadcrumbs: BreadcrumbItem[] = [
   {

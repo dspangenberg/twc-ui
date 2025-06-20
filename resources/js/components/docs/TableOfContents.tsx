@@ -24,7 +24,7 @@ export const TableOfContents = () => {
     const headings = document.querySelectorAll('h1, h2, h3, h4, h5, h6')
     const items: TocItem[] = []
 
-    headings.forEach((heading) => {
+    headings.forEach(heading => {
       // Nur Überschriften im doc-Content-Bereich berücksichtigen
       const docContent = document.querySelector('.doc')
       if (docContent && docContent.contains(heading)) {
@@ -36,7 +36,7 @@ export const TableOfContents = () => {
         items.push({
           id,
           text: heading.textContent || '',
-          level: parseInt(heading.tagName.charAt(1))
+          level: Number.parseInt(heading.tagName.charAt(1))
         })
       }
     })
@@ -45,8 +45,8 @@ export const TableOfContents = () => {
 
     // Intersection Observer für aktive Überschrift
     const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
+      entries => {
+        entries.forEach(entry => {
           if (entry.isIntersecting) {
             setActiveId(entry.target.id)
           }
@@ -58,14 +58,14 @@ export const TableOfContents = () => {
       }
     )
 
-    headings.forEach((heading) => {
+    headings.forEach(heading => {
       if (heading.id) {
         observer.observe(heading)
       }
     })
 
     return () => {
-      headings.forEach((heading) => {
+      headings.forEach(heading => {
         if (heading.id) {
           observer.unobserve(heading)
         }
@@ -90,15 +90,13 @@ export const TableOfContents = () => {
 
   return (
     <nav className="space-y-2">
-      <h4 className="font-semibold !text-sm text-gray-900 dark:text-gray-100 mb-3">
-        On this page
-      </h4>
-      <ul className="space-y-1">
-        {tocItems.map((item) => (
+      <h4 className="!text-sm mb-3 font-semibold text-gray-900 dark:text-gray-100">On this page</h4>
+      <ul>
+        {tocItems.map(item => (
           <li key={item.id}>
             <button
               onClick={() => handleClick(item.id)}
-              className="block w-full text-left text-sm transition-colors py-1 px-2 rounded"
+              className="block w-full rounded px-2 py-1 text-left text-sm transition-colors"
               style={{
                 paddingLeft: `${(item.level - 1) * 0.75 + 0.5}rem`
               }}

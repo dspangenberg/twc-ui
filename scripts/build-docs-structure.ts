@@ -4,15 +4,15 @@ import { fileURLToPath } from 'node:url'
 import matter from 'gray-matter'
 
 interface DocItem {
-  title: string;
-  type: 'directory' | 'file';
-  path: string;
-  route?: string;
-  children?: DocItem[];
-  frontmatter?: Record<string, any>;
+  title: string
+  type: 'directory' | 'file'
+  path: string
+  route?: string
+  children?: DocItem[]
+  frontmatter?: Record<string, any>
 }
 
-function buildDocsStructure (basePath: string, relativePath: string = ''): DocItem[] {
+function buildDocsStructure(basePath: string, relativePath = ''): DocItem[] {
   const items: DocItem[] = []
   const fullPath = path.join(basePath, relativePath)
 
@@ -60,9 +60,11 @@ function buildDocsStructure (basePath: string, relativePath: string = ''): DocIt
     console.log(`Children count: ${children.length}`)
     console.log(`First doc found: ${firstDoc ? firstDoc.route : 'NONE'}`)
     if (sortedChildren.length > 0) {
-      console.log(`Sorted children:`)
+      console.log('Sorted children:')
       sortedChildren.forEach((child, i) => {
-        console.log(`  ${i + 1}. ${child.type}: ${child.title} (order: ${child.frontmatter?.order || 'none'}) -> ${child.route}`)
+        console.log(
+          `  ${i + 1}. ${child.type}: ${child.title} (order: ${child.frontmatter?.order || 'none'}) -> ${child.route}`
+        )
       })
     }
 
@@ -80,7 +82,7 @@ function buildDocsStructure (basePath: string, relativePath: string = ''): DocIt
   return sortItems(items)
 }
 
-function sortItems (items: DocItem[]): DocItem[] {
+function sortItems(items: DocItem[]): DocItem[] {
   return items.sort((a, b) => {
     // 1. Explizite order aus frontmatter (NIEDRIGSTE ZAHL = ERSTE)
     const aOrder = typeof a.frontmatter?.order === 'number' ? a.frontmatter.order : 999
@@ -93,20 +95,20 @@ function sortItems (items: DocItem[]): DocItem[] {
     // 2. Spezielle Namen-Prioritäten
     const priorityOrder: Record<string, number> = {
       // Getting Started Reihenfolge
-      'introduction': 1,
-      'installation': 2,
+      introduction: 1,
+      installation: 2,
       'client-side-routing': 3,
 
       // Components Reihenfolge
-      'button': 1,
+      button: 1,
       'base-button': 2,
-      'form': 10,
+      form: 10,
 
       // Directory Prioritäten
       'getting-started': 1,
-      'components': 2,
-      'hooks': 3,
-      'legal': 99
+      components: 2,
+      hooks: 3,
+      legal: 99
     }
 
     const aName = (a.path.split('/').pop() || '').toLowerCase()
@@ -129,13 +131,11 @@ function sortItems (items: DocItem[]): DocItem[] {
   })
 }
 
-function formatTitle (name: string): string {
-  return name
-    .replace(/[-_]/g, ' ')
-    .replace(/\b\w/g, l => l.toUpperCase())
+function formatTitle(name: string): string {
+  return name.replace(/[-_]/g, ' ').replace(/\b\w/g, l => l.toUpperCase())
 }
 
-function extractFrontmatter (filePath: string): Record<string, any> {
+function extractFrontmatter(filePath: string): Record<string, any> {
   const content = fs.readFileSync(filePath, 'utf-8')
 
   try {
@@ -148,12 +148,14 @@ function extractFrontmatter (filePath: string): Record<string, any> {
 }
 
 // KORRIGIERTE findFirstDocument Funktion - sucht das erste nach order sortierte Element
-function findFirstDocument (items: DocItem[]): DocItem | undefined {
+function findFirstDocument(items: DocItem[]): DocItem | undefined {
   console.log(`Looking for first document in ${items.length} items:`)
 
   // Items sind bereits sortiert - nimm das erste File
   for (const item of items) {
-    console.log(`  - ${item.type}: ${item.title} (order: ${item.frontmatter?.order || 'none'}) route: ${item.route}`)
+    console.log(
+      `  - ${item.type}: ${item.title} (order: ${item.frontmatter?.order || 'none'}) route: ${item.route}`
+    )
     if (item.type === 'file' && item.route) {
       console.log(`    -> Found first file: ${item.route}`)
       return item
@@ -177,12 +179,14 @@ function findFirstDocument (items: DocItem[]): DocItem | undefined {
 }
 
 // Debug-Ausgabe verbessern
-function debugStructure (items: DocItem[], indent = 0) {
+function debugStructure(items: DocItem[], indent = 0) {
   const prefix = '  '.repeat(indent)
   for (const item of items) {
     const routeInfo = item.route ? `-> ${item.route}` : '-> NO ROUTE'
     const orderInfo = item.frontmatter?.order ? ` [${item.frontmatter.order}]` : ''
-    console.log(`${prefix}${item.type === 'directory' ? '📁' : '📄'} ${item.title}${orderInfo} ${routeInfo}`)
+    console.log(
+      `${prefix}${item.type === 'directory' ? '📁' : '📄'} ${item.title}${orderInfo} ${routeInfo}`
+    )
     if (item.children) {
       debugStructure(item.children, indent + 1)
     }

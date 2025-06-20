@@ -6,21 +6,26 @@ interface TabLayoutProps {
   children: React.ReactNode
 }
 
-export const LinkDemo: React.FC<TabLayoutProps> = ({
-  children
-}) => {
+export const LinkDemo: React.FC<TabLayoutProps> = ({ children }) => {
   return (
     <DemoContainer>
       <Tabs variant="classic" className="w-lg">
-        <TabList aria-label="History of Ancient Rome" className="flex-1 bg-page-content border-b justify-start">
-          <Tab id="tab-one" href={route('tab-one')}>Tab 1</Tab>
-          <Tab id="tab-two" href={route('tab-one')}>Tab 2</Tab>
-          <Tab id="tab-three" href={route('tab-one')}>Tab 3</Tab>
+        <TabList
+          aria-label="History of Ancient Rome"
+          className="flex-1 justify-start border-b bg-page-content"
+        >
+          <Tab id="tab-one" href={route('tab-one')}>
+            Tab 1
+          </Tab>
+          <Tab id="tab-two" href={route('tab-one')}>
+            Tab 2
+          </Tab>
+          <Tab id="tab-three" href={route('tab-one')}>
+            Tab 3
+          </Tab>
         </TabList>
       </Tabs>
-      <div>
-        {children}
-      </div>
+      <div>{children}</div>
     </DemoContainer>
   )
 }

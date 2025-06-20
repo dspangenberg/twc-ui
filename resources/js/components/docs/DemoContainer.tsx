@@ -5,12 +5,9 @@ interface DemoContainerProps {
   className?: string
 }
 
-export const DemoContainer = ({
-  children,
-  className
-}: DemoContainerProps) => {
+export const DemoContainer = ({ children, className }: DemoContainerProps) => {
   return (
-    <div className={cn('flex flex-wrap w-screen justify-center items-center h-screen', className)}>
+    <div className={cn('flex h-screen w-screen flex-wrap items-center justify-center', className)}>
       {children}
     </div>
   )

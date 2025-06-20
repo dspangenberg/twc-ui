@@ -21,9 +21,7 @@
       "type": "registry:ui",
       "title": "Form",
       "description": "form component für inertia",
-      "dependencies": [
-        "react-aria-components"
-      ],
+      "dependencies": ["react-aria-components"],
       "registryDependencies": [
         "https://ui-api.test/r/form-errors.json",
         "https://ui-api.test/r/use-form.json"
@@ -41,11 +39,7 @@
       "type": "registry:ui",
       "title": "Form errors",
       "description": "form errors component für inertia",
-      "dependencies": [
-        "react-aria-components",
-        "@hugeicons/react",
-        "@hugeicons/core-free-icons"
-      ],
+      "dependencies": ["react-aria-components", "@hugeicons/react", "@hugeicons/core-free-icons"],
       "files": [
         {
           "path": "resources/js/components/twc-ui/form.tsx",

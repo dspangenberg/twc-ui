@@ -1,51 +1,47 @@
 import type { FormDataConvertible, FormDataKeys, FormDataValues } from '@inertiajs/core'
+import type { RequestMethod, ValidationConfig } from 'laravel-precognition'
 import { useForm as useInertiaForm } from 'laravel-precognition-react-inertia'
+import { isEqual } from 'moderndash'
 import type { ChangeEvent } from 'react'
 import { useRef } from 'react'
-import type { RequestMethod, ValidationConfig } from 'laravel-precognition'
-import { isEqual } from 'moderndash'
 
-type InputElements = HTMLInputElement | HTMLSelectElement;
+type InputElements = HTMLInputElement | HTMLSelectElement
 
-export function useForm<T extends Record<string, FormDataConvertible>> (
+export function useForm<T extends Record<string, FormDataConvertible>>(
   method: RequestMethod,
   url: string,
   data: T,
   config?: ValidationConfig
 ) {
-
   // Capture the very first snapshot only once
   const initialDataRef = useRef({ ...data })
   const form = useInertiaForm<T>(method, url, data, config)
   const isDirty = !isEqual(initialDataRef.current, form.data)
 
-  const updateAndValidateWithoutEvent = <K extends FormDataKeys<T>> (
+  const updateAndValidateWithoutEvent = <K extends FormDataKeys<T>>(
     name: K,
     value: FormDataValues<T, K>
   ) => {
-    form.touched(name)
     form.setData(name, value)
     form.validate(name)
   }
 
-  function register<K extends FormDataKeys<T>> (name: K) {
+  function register<K extends FormDataKeys<T>>(name: K) {
     return {
       name,
       value: form.data[name],
       error: form.errors[name],
       onChange: (value: FormDataValues<T, K>) => {
-        form.touched(name)
         form.setData(name, value)
         form.validate(name)
       },
       onBlur: () => {
-        form.touched(name)
         form.validate(name)
       }
     } as const
   }
 
-  function registerEvent<K extends FormDataKeys<T>> (name: K) {
+  function registerEvent<K extends FormDataKeys<T>>(name: K) {
     return {
       name,
       value: form.data[name],
@@ -60,7 +56,7 @@ export function useForm<T extends Record<string, FormDataConvertible>> (
     } as const
   }
 
-  const registerCheckbox = <K extends FormDataKeys<T>> (name: K) => {
+  const registerCheckbox = <K extends FormDataKeys<T>>(name: K) => {
     return {
       name,
       checked: Boolean(form.data[name]),
@@ -79,11 +75,7 @@ export function useForm<T extends Record<string, FormDataConvertible>> (
   const updateAndValidate = (
     e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
   ) => {
-    const {
-      name,
-      value,
-      type
-    } = e.target
+    const { name, value, type } = e.target
     const newValue = type === 'checkbox' ? (e.target as HTMLInputElement).checked : value
     form.touched(name)
     form.setData(name as FormDataKeys<T>, newValue as FormDataValues<T, FormDataKeys<T>>)

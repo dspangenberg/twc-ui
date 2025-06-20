@@ -1,12 +1,7 @@
 h4 {
-    @apply mt-6 scroll-m-16 font-medium text-lg;
+  @apply mt-6 scroll-m-16 font-medium text-lg;
 }
 
 h5 {
-    @apply mt-6 scroll-m-16 font-medium text-base;
+  @apply mt-6 scroll-m-16 font-medium text-base;
 }
-
-
-
-
-

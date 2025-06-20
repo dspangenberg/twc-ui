@@ -1,8 +1,6 @@
-import type { BreadcrumbItem, SharedData } from '@/types'
 import { Transition } from '@headlessui/react'
 import { Head, Link, useForm, usePage } from '@inertiajs/react'
 import type { FormEventHandler } from 'react'
-
 import DeleteUser from '@/components/delete-user'
 import HeadingSmall from '@/components/heading-small'
 import InputError from '@/components/input-error'
@@ -11,6 +9,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import AppLayout from '@/layouts/app-layout'
 import SettingsLayout from '@/layouts/settings/layout'
+import type { BreadcrumbItem, SharedData } from '@/types'
 
 const breadcrumbs: BreadcrumbItem[] = [
   {
@@ -27,7 +26,10 @@ type ProfileForm = {
 export default function Profile({
   mustVerifyEmail,
   status
-}: { mustVerifyEmail: boolean; status?: string }) {
+}: {
+  mustVerifyEmail: boolean
+  status?: string
+}) {
   const { auth } = usePage<SharedData>().props
 
   const { data, setData, patch, errors, processing, recentlySuccessful } = useForm<

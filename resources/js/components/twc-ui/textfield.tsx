@@ -1,36 +1,32 @@
 import * as React from 'react'
 import {
-  composeRenderProps,
   Input as AriaInput,
   type InputProps as AriaInputProps,
-  Text,
   TextArea as AriaTextArea,
   type TextAreaProps as AriaTextAreaProps,
   TextField as AriaTextField,
-  type TextFieldProps as AriaTextFieldProps
+  type TextFieldProps as AriaTextFieldProps,
+  composeRenderProps,
+  Text
 } from 'react-aria-components'
-
+import { useFormContext } from '@/components/twc-ui/form'
 import { cn } from '@/lib/utils'
 import { FieldError, Label } from './field'
-import { useFormContext } from '@/components/twc-ui/form'
 
 const BaseTextField = AriaTextField
 
-const Input = ({
-  className,
-  ...props
-}: AriaInputProps) => {
+const Input = ({ className, ...props }: AriaInputProps) => {
   return (
     <AriaInput
       className={composeRenderProps(className, className =>
         cn(
-          'flex h-9 w-full rounded-sm border border-input bg-transparent px-3 py-1 text-base font-medium shadow-none transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground',
+          'flex h-9 w-full rounded-sm border border-input bg-transparent px-3 py-1 font-medium text-base shadow-none outline-0 transition-colors file:border-0 file:bg-transparent file:font-medium file:text-sm placeholder:text-muted-foreground',
           /* Disabled */
           'data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50 ',
           /* Focused */
           /* Resets */
-          'focus-visible:border-ring focus-visible:ring-ring/20 focus-visible:ring-[3px]',
-          'data-[invalid]:focus-visible:ring-destructive/20  data-[invalid]:focus-visible:border-destructive  data-[invalid]:border-destructive',
+          'focus:border-primary focus-visible:border-primary focus-visible:ring-[3px] focus-visible:ring-primary/20',
+          'data-[invalid]:border-destructive data-[invalid]:focus-visible:border-destructive data-[invalid]:focus-visible:ring-destructive/20',
           className
         )
       )}
@@ -40,21 +36,18 @@ const Input = ({
   )
 }
 
-const TextArea = ({
-  className,
-  ...props
-}: AriaTextAreaProps) => {
+const TextArea = ({ className, ...props }: AriaTextAreaProps) => {
   return (
     <AriaTextArea
       className={composeRenderProps(className, className =>
         cn(
-          'flex h-9 w-full min-h-[80px] outline-0 rounded-sm border border-input bg-transparent px-3 py-1 text-base font-medium shadow-none transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground',
+          'flex h-9 min-h-[80px] w-full rounded-sm border border-input bg-transparent px-3 py-1 font-medium text-base shadow-none outline-0 transition-colors file:border-0 file:bg-transparent file:font-medium file:text-sm placeholder:text-muted-foreground',
           /* Disabled */
           'data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50',
           /* Focused */
           /* Resets */
-          'focus-visible:border-ring focus-visible:ring-ring/20 focus-visible:ring-[3px]',
-          'data-[invalid]:focus-visible:ring-destructive/20  data-[invalid]:focus-visible:border-destructive data-[invalid]:border-destructive',
+          'focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/20',
+          'data-[invalid]:border-destructive data-[invalid]:focus-visible:border-destructive data-[invalid]:focus-visible:ring-destructive/20',
           className
         )
       )}
@@ -77,7 +70,7 @@ interface TextFieldProps extends Omit<AriaTextFieldProps, 'onChange'> {
   onBlur?: () => void
 }
 
-function TextField ({
+function TextField({
   label,
   description,
   textArea,
@@ -101,15 +94,9 @@ function TextField ({
       {...props}
     >
       <Label required={required} value={label} />
-      {textArea ? (
-        <TextArea
-          rows={rows}
-        />
-      ) : (
-        <Input />
-      )}
+      {textArea ? <TextArea rows={rows} /> : <Input />}
       {description && (
-        <Text className="text-sm text-muted-foreground" slot="description">
+        <Text className="text-muted-foreground text-sm" slot="description">
           {description}
         </Text>
       )}

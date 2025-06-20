@@ -1,11 +1,13 @@
-import { Tab, TabList, TabPanel, Tabs } from '@/components/twc-ui/tabs'
 import { DemoContainer } from '@/components/docs/DemoContainer'
+import { Tab, TabList, TabPanel, Tabs } from '@/components/twc-ui/tabs'
 
 export const Demo = () => {
   return (
     <DemoContainer>
       <Tabs variant="classic" className="w-lg">
-        <TabList aria-label="History of Ancient Rome" className="flex-1 bg-page-content border-b justify-start">
+        <TabList
+          aria-label="History of Ancient Rome"
+        >
           <Tab id="FoR">Stammdaten</Tab>
           <Tab id="MaR">Komunikation</Tab>
           <Tab id="Emp">Empire</Tab>

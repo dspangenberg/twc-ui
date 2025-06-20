@@ -10,30 +10,38 @@ import { InformationSquareIcon } from '@hugeicons/core-free-icons'
 ## Installation
 <InstallationSection
   dependencies={['react-aria-components', '@hugeicons/react', 'tailwind-variants']}
-  components={['tabs']}
+  components={['tabs.tsx']}
 >
   <InstallationCommand command="execute" params="shadcn@latest add ~website/r/tabs.json" />
 </InstallationSection>
 
 
 ## Examples
-
+### Underlined tabs
 <DemoCodePreview
   codePath="tabs/underlined.tsx"
   demoPath="demos/tabs/underlined"
   title="Underlined tabs"
 />
 
+### Classic (Bootstrap) tabs
 <DemoCodePreview
   codePath="tabs/classic.tsx"
   demoPath="demos/tabs/classic"
   title="Classic tabs"
 />
 
+### DRY-er styling of Tabs
+<DemoCodePreview
+  codePath="tabs/tab-class-name.tsx"
+  demoPath="demos/tabs/tab-class-name"
+  title="Classic tabs"
+/>
+
 ### Links
 
 <Callout icon={InformationSquareIcon} className="font-semibold">
-  To prevent the full page from being rendered during navigation, it is recommended that you implement [client-side routing](https://ui-api.test/docs/getting-started/client-side-routing).
+  To prevent the full page from being re-rendered during navigation, it is recommended that you implement [client-side routing](https://ui-api.test/docs/getting-started/client-side-routing).
 </Callout>
 
 <DemoCodePreview
@@ -47,19 +55,12 @@ You can find the source code of this demo on [Github](https://github.com/dspange
 
 ## Documentation
 
-### Props
+### Tab
+#### Props
 
 | Prop             | Type                                                                    | Default   |
   |------------------|-------------------------------------------------------------------------|-----------|
-| variant          | `default` \| `line` \| `classic`                                        | default   |
-| size             | `default` \| `sm` \| `lg` \| `icon` \| `icon-sm` \| `icon-xs` \| `auto` | `default` |
-| title            | string                                                                  | ''        |
-| icon             | IconSvgElement ([HugeIcons](https://hugeicons.com/?via=daspwork))       | ''        |
-| form             | string                                                                  | ''        |
-| loading          | boolean                                                                 | false     |
-| disabled         | boolean                                                                 | false     |
-| iconClassName    | string                                                                  | ''        |
-| tooltip          | string                                                                  | ``        |
-| tooltipPlacement | Placement                                                               | `bottom`  |
+| variant          | `default` \| `underline` \| `classic`                                        | default   |
+| tabClassName             | string | ``|
 
 

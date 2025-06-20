@@ -1,8 +1,12 @@
-import { cva, type VariantProps } from 'class-variance-authority'
-import { Button as AriaButton, type ButtonProps as AriaButtonProps, composeRenderProps } from 'react-aria-components'
-import { cn } from '@/lib/utils'
 import { HugeiconsIcon, type IconSvgElement } from '@hugeicons/react'
+import { cva, type VariantProps } from 'class-variance-authority'
 import { LoaderCircleIcon } from 'lucide-react'
+import {
+  Button as AriaButton,
+  type ButtonProps as AriaButtonProps,
+  composeRenderProps
+} from 'react-aria-components'
+import { cn } from '@/lib/utils'
 
 const buttonVariants = cva(
   [
@@ -26,7 +30,8 @@ const buttonVariants = cva(
           'border border-input bg-background  data-[hovered]:bg-accent data-[hovered]:text-accent-foreground focus-visible:ring-ring/20 pressed:ring-ring/50',
         secondary:
           'bg-secondary/90 text-secondary-foreground border-transparent border focus-visible:border-input focus-visible:border data-[hovered]:bg-secondary/20 pressed:ring-ring/50',
-        ghost: 'data-[hovered]:bg-accent data-[hovered]:text-accent-foreground focus-visible:border border border-transparent focus-visible:border-input focus-visible:ring-ring/20 pressed:ring-ring/50 text-sm',
+        ghost:
+          'data-[hovered]:bg-accent data-[hovered]:text-accent-foreground focus-visible:border border border-transparent focus-visible:border-input focus-visible:ring-ring/20 pressed:ring-ring/50 text-sm',
         link: 'text-primary underline-offset-4 data-[hovered]:underline',
         toolbar:
           'data-[hovered]:bg-accent data-[hovered]:text-accent-foreground pressed:ring-ring/50 active:ring-ring/50 focus-visible:border focus-visible:border-primary focus-visible:ring-ring/20  text-sm',
@@ -50,15 +55,13 @@ const buttonVariants = cva(
   }
 )
 
-export interface BaseButtonProps
-  extends AriaButtonProps,
-    VariantProps<typeof buttonVariants> {
-  loading?: boolean;
-  disabled?: boolean;
-  icon?: IconSvgElement;
-  iconClassName?: string;
-  slot?: string | null;
-  title?: string;
+export interface BaseButtonProps extends AriaButtonProps, VariantProps<typeof buttonVariants> {
+  loading?: boolean
+  disabled?: boolean
+  icon?: IconSvgElement
+  iconClassName?: string
+  slot?: string | null
+  title?: string
 }
 
 export const BaseButton = ({
@@ -104,7 +107,7 @@ export const BaseButton = ({
       slot={slot}
       isDisabled={disabled || loading}
       isPending={loading}
-      className={composeRenderProps(className, (className) =>
+      className={composeRenderProps(className, className =>
         cn(
           'gap-2',
           buttonVariants({
@@ -116,13 +119,8 @@ export const BaseButton = ({
       )}
       {...props}
     >
-      {composeRenderProps(children, (children) => (
-        <div
-          className={cn(
-            'flex gap-2',
-            size === 'icon' ? 'mx-auto' : ''
-          )}
-        >
+      {composeRenderProps(children, children => (
+        <div className={cn('flex gap-2', size === 'icon' ? 'mx-auto' : '')}>
           {!loading && icon && (
             <HugeiconsIcon
               icon={icon}
@@ -135,15 +133,10 @@ export const BaseButton = ({
             />
           )}
           {loading && (
-            <LoaderCircleIcon
-              className={cn('animate-spin', iconSizeClass)}
-              aria-hidden="true"
-            />
+            <LoaderCircleIcon className={cn('animate-spin', iconSizeClass)} aria-hidden="true" />
           )}
           {(title || children) && variant !== 'toolbar' && (
-            <div className={cn(isToolbar ? 'hidden lg:flex' : '')}>
-              {title || children}
-            </div>
+            <div className={cn(isToolbar ? 'hidden lg:flex' : '')}>{title || children}</div>
           )}
         </div>
       ))}

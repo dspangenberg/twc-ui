@@ -1,3 +1,12 @@
+import {
+  BlockGameIcon,
+  BlueskyIcon,
+  BookOpen01Icon,
+  GeometricShapes01Icon,
+  Github01Icon,
+  Home13Icon
+} from '@hugeicons/core-free-icons'
+import { Link } from '@inertiajs/react'
 import { NavFooter } from '@/components/nav-footer'
 import { NavMain } from '@/components/nav-main'
 import {
@@ -10,15 +19,6 @@ import {
   SidebarMenuItem
 } from '@/components/ui/sidebar'
 import type { NavItem } from '@/types'
-import { Link } from '@inertiajs/react'
-import {
-  Home13Icon,
-  BlueskyIcon,
-  BlockGameIcon,
-  GeometricShapes01Icon,
-  BookOpen01Icon,
-  Github01Icon
-} from '@hugeicons/core-free-icons'
 import AppLogo from './app-logo'
 
 const mainNavItems: NavItem[] = [
@@ -57,7 +57,7 @@ const footerNavItems: NavItem[] = [
   }
 ]
 
-export function AppSidebar () {
+export function AppSidebar() {
   return (
     <Sidebar collapsible="icon" variant="inset">
       <SidebarHeader>

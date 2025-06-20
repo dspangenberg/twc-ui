@@ -1,19 +1,18 @@
+import { cva, type VariantProps } from 'class-variance-authority'
 import React, { createContext, useContext } from 'react'
 import {
-  Tabs as AriaTabs,
-  TabList as AriaTabList,
   Tab as AriaTab,
-  TabPanel as AriaTabPanel,
-  type TabsProps as AriaTabsProps,
+  TabList as AriaTabList,
   type TabListProps as AriaTabListProps,
-  type TabProps as AriaTabProps,
+  TabPanel as AriaTabPanel,
   type TabPanelProps as AriaTabPanelProps,
+  type TabProps as AriaTabProps,
+  Tabs as AriaTabs,
+  type TabsProps as AriaTabsProps,
   type Key
 } from 'react-aria-components'
-import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '@/lib/utils'
 
-// Varianten für Tabs definieren
 const tabsVariants = cva('', {
   variants: {
     variant: {
@@ -32,32 +31,35 @@ const tabListVariants = cva('flex', {
     variant: {
       underlined: 'flex gap-4',
       default: 'flex bg-muted rounded-lg p-1 w-fit',
-      classic: 'w-full p-0 bg-background justify-start border-b rounded-none'
+      classic: 'w-full p-0 justify-start rounded-none'
     }
   }
 })
 
 const tabVariants = cva(
-  'cursor-pointer disabled:cursor-not-allowed disabled:opacity-50 disabled:text-muted-foreground',
+  'cursor-pointer disabled:cursor-not-allowed disabled:opacity-50 disabled:text-muted-foreground data-[selected]:font-medium text-sm',
   {
     variants: {
       variant: {
-        underlined: 'border-b-2 py-1 border-transparent data-[selected]:border-primary data-[selected]:text-foreground data-[hovered]:text-foreground',
-        default: 'font-medium rounded-md px-3 py-1 data-[selected]:bg-background data-[selected]:text-foreground data-[selected]:shadow',
-        classic: 'px-2 py-1 rounded-none bg-background h-full border border-transparent border-b-border data-[selected]:border-border data-[selected]:border-b-background -mb-[2px] rounded-t-md'
+        underlined:
+          'border-b-2 py-1 border-transparent data-[selected]:border-primary data-[selected]:text-foreground data-[hovered]:text-foreground',
+        default:
+          'rounded-md px-3 py-1 data-[selected]:bg-background data-[selected]:text-foreground data-[selected]:shadow',
+        classic:
+          'px-4 py-2 rounded-none border border-transparent border-b-border data-[selected]:border-border  data-[selected]:border-b-transparent  data-[selected]:rounded-t-md'
       }
     }
   }
 )
 
-// Context für die Variant - erweitert um null und undefined
 type TabsContextType = {
-  variant: 'underlined' | 'classic' | 'default' | null | undefined
+  variant: 'underlined' | 'classic' | 'default' | null | undefined,
+  tabClassName?: string
+  panelClassName?: string
 }
 
-const TabsContext = createContext<TabsContextType>({ variant: 'default' })
+const TabsContext = createContext<TabsContextType>({ variant: 'default', tabClassName: '', panelClassName: '' })
 
-// Hook für den Context
 const useTabsContext = () => {
   const context = useContext(TabsContext)
   if (!context) {
@@ -66,24 +68,26 @@ const useTabsContext = () => {
   return context
 }
 
-// Tabs Props Interface - Custom onSelectionChange erlauben
 export interface TabsProps
   extends Omit<AriaTabsProps, 'onSelectionChange'>,
     VariantProps<typeof tabsVariants> {
   className?: string
+  tabClassName?: string
+  panelClassName?: string
   onSelectionChange?: (key: Key) => void
 }
 
-// Hauptkomponente Tabs
 export const Tabs = ({
   className,
   variant = 'default',
   onSelectionChange,
+  tabClassName = '',
+  panelClassName = '',
   children,
   ...props
 }: TabsProps) => {
   return (
-    <TabsContext.Provider value={{ variant }}>
+    <TabsContext.Provider value={{ variant, tabClassName, panelClassName }}>
       <AriaTabs
         className={cn(tabsVariants({ variant }), className)}
         onSelectionChange={onSelectionChange}
@@ -95,15 +99,11 @@ export const Tabs = ({
   )
 }
 
-// TabList Komponente
 export interface TabListProps<T extends object = object> extends AriaTabListProps<T> {
   className?: string
 }
 
-export function TabList<T extends object = object> ({
-  className,
-  ...props
-}: TabListProps<T>) {
+export function TabList<T extends object = object>({ className, ...props }: TabListProps<T>) {
   const { variant } = useTabsContext()
 
   return (
@@ -114,39 +114,24 @@ export function TabList<T extends object = object> ({
   )
 }
 
-// Tab Komponente
 export interface TabProps extends AriaTabProps {
   className?: string
-  href?: string // href als optional hinzugefügt
+  href?: string
 }
 
-export const Tab = ({
-  className,
-  ...props
-}: TabProps) => {
-  const { variant } = useTabsContext()
+export const Tab = ({ className, ...props }: TabProps) => {
+  const { variant, tabClassName } = useTabsContext()
 
   return (
-    <AriaTab
-      className={cn(tabVariants({ variant: variant ?? 'default' }), className)}
-      {...props}
-    />
+    <AriaTab className={cn(tabVariants({ variant: variant ?? 'default' }), tabClassName, className)} {...props} />
   )
 }
 
-// TabPanel Komponente
 export interface TabPanelProps extends AriaTabPanelProps {
   className?: string
 }
 
-export const TabPanel = ({
-  className,
-  ...props
-}: TabPanelProps) => {
-  return (
-    <AriaTabPanel
-      className={cn('my-2', className)}
-      {...props}
-    />
-  )
+export const TabPanel = ({ className, ...props }: TabPanelProps) => {
+  const { panelClassName } = useTabsContext()
+  return <AriaTabPanel className={cn('my-2', panelClassName, className)} {...props} />
 }
