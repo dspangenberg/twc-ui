@@ -74,7 +74,7 @@ function TextField({
   label,
   description,
   textArea,
-  required = false,
+  isRequired = false,
   rows = 3,
   className,
   onChange,
@@ -93,7 +93,7 @@ function TextField({
       onChange={onChange}
       {...props}
     >
-      <Label required={required} value={label} />
+      <Label isRequired={isRequired} value={label} />
       {textArea ? <TextArea rows={rows} /> : <Input />}
       {description && (
         <Text className="text-muted-foreground text-sm" slot="description">

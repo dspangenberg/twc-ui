@@ -24,17 +24,17 @@ const labelVariants = cva([
 ])
 
 interface LabelProps extends AriaLabelProps {
-  required?: boolean
+  isRequired?: boolean
   value?: string
 }
 
-const Label = ({ className, children, value, required = false, ...props }: LabelProps) => {
+const Label = ({ className, children, value, isRequired = false, ...props }: LabelProps) => {
   const form = useFormContext()
 
   const valueWithColon = value && !form.hideColonInLabels ? `${value}:` : value
   return (
     <AriaLabel className={cn(labelVariants(), className)} {...props}>
-      {valueWithColon ?? children} {required && <span className="text-destructive">*</span>}
+      {valueWithColon ?? children} {isRequired && <span className="text-destructive">*</span>}
     </AriaLabel>
   )
 }

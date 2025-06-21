@@ -5,7 +5,8 @@ import { DemoCodePreview } from '@/components/docs/DemoCodePreview'
 import { InstallationCommand } from '@/components/docs/install-command'
 import { InstallationSection } from '@/components/docs/installation-section'
 import { cn } from '@/lib/utils'
-import { Callout } from './components/docs/callout'
+import { Callout } from '@/components/docs/callout'
+import { TypeInfo } from '@/components/docs/TypeInfo'
 
 const sharedComponents = {
   h2: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
@@ -50,7 +51,7 @@ const sharedComponents = {
     />
   ),
   table: ({ className, ...props }: React.HTMLAttributes<HTMLTableElement>) => (
-    <div className="my-6 w-full overflow-y-auto rounded border">
+    <div className="my-6 w-full overflow-y-auto rounded border text-sm">
       <table className={cn('w-full', className)} {...props} />
     </div>
   ),
@@ -83,6 +84,7 @@ const sharedComponents = {
   InstallationCommand,
   InstallationSection,
   HugeiconsIcon,
+  TypeInfo,
   Callout
 }
 

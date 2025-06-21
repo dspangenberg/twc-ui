@@ -5,17 +5,20 @@ export const Demo = () => {
   return (
     <DemoContainer>
       <Tabs variant="underlined" className="w-lg">
-        <TabList
-          aria-label="History of Ancient Rome"
-          className="flex-1 justify-start border-b bg-page-content"
-        >
-          <Tab id="base-data">Stammdaten</Tab>
-          <Tab id="communication">Kommunikation</Tab>
-          <Tab id="notes">Notes</Tab>
+        <TabList aria-label="History of Ancient Rome">
+          <Tab id="Founding">Founding of Rome</Tab>
+          <Tab id="Monarchy">Monarchy and Republic</Tab>
+          <Tab id="Empire">Empire</Tab>
         </TabList>
-        <TabPanel id="base-data">Stammdaten</TabPanel>
-        <TabPanel id="communication">Kommunikation</TabPanel>
-        <TabPanel id="notes">Notes</TabPanel>
+        <TabPanel id="Founding">
+          Arma virumque cano, Troiae qui primus ab oris.
+        </TabPanel>
+        <TabPanel id="Monarchy">
+          Senatus Populusque Romanus.
+        </TabPanel>
+        <TabPanel id="Empire">
+          Alea jacta est.
+        </TabPanel>
       </Tabs>
     </DemoContainer>
   )

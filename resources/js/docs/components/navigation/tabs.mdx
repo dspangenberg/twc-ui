@@ -31,7 +31,7 @@ import { InformationSquareIcon } from '@hugeicons/core-free-icons'
   title="Classic tabs"
 />
 
-### DRY-er styling of Tabs
+### DRY-er styling of tabs and tab-panels
 <DemoCodePreview
   codePath="tabs/tab-class-name.tsx"
   demoPath="demos/tabs/tab-class-name"
@@ -55,12 +55,12 @@ You can find the source code of this demo on [Github](https://github.com/dspange
 
 ## Documentation
 
-### Tab
+### Tabs
 #### Props
 
-| Prop             | Type                                                                    | Default   |
-  |------------------|-------------------------------------------------------------------------|-----------|
-| variant          | `default` \| `underline` \| `classic`                                        | default   |
-| tabClassName             | string | ``|
-
+| Prop           | Type                                                                      | Default |Description|
+  |----------------|---------------------------------------------------------------------------|---------|---------|
+| variant        | <TypeInfo title="variant" types={['default', 'underlined', 'classic']} /> | default | The variant style for the tabs.|
+| tabClassName   | string                                                                    | ``      |Custom classes for all tabs.|
+| panelClassName | string                                                                    | ``      |Custom classes for all tab panels.|
 
