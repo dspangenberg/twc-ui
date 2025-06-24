@@ -10,7 +10,11 @@
     "format:write": "pnpm  dlx @biomejs/biome format --write .",
     "types": "tsc --noEmit",
     "registry:build": "shadcn build",
-    "build:docs": "tsx scripts/build-docs-structure.ts"
+    "build:docs": "tsx scripts/build-docs-structure.ts",
+    "test": "NODE_ENV=test vitest --config vitest.config.ts",
+    "test:watch": "NODE_ENV=test vitest --watch --config vitest.config.ts",
+    "test:ui": "NODE_ENV=test vitest --ui --config vitest.config.ts",
+    "test:coverage": "NODE_ENV=test vitest --coverage --config vitest.config.ts"
   },
   "devDependencies": {
     "@biomejs/biome": "2.0.0",
@@ -20,6 +24,7 @@
     "@testing-library/user-event": "^14.6.1",
     "@types/jest": "^30.0.0",
     "@types/node": "^24.0.3",
+    "jsdom": "^26.1.0",
     "shiki": "^3.6.0",
     "tailwindcss-react-aria-components": "^2.0.0",
     "tsx": "^4.20.3",

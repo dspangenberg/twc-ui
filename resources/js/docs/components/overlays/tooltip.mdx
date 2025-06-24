@@ -1,6 +1,25 @@
 ---
 title: Tooltip
 order: 10
+description: A tooltip displays a description of an element on hover or focus.
 ---
+<DemoCodePreview
+  codePath="tooltip/default.tsx"
+  demoPath="demos/tooltip/default"
+/>
 
-Hi
+## Installation
+<InstallationSection
+  dependencies={['react-aria-components']}
+  components={['tooltip.tsx']}
+>
+  <InstallationCommand command="execute" params="shadcn@latest add ~website/r/tooltip.json" />
+</InstallationSection>
+
+## Usage
+<SourceCode code={`import { Tooltip } from '@/components/twc-ui/tooltip'`} />
+
+## Documentation
+### Props
+
+[see React Aria Tooltip props](https://react-spectrum.adobe.com/react-aria/Tooltip.html#props)

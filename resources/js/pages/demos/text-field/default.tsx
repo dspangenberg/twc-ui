@@ -26,13 +26,10 @@ export default function Dashboard({ contact }: Props) {
             <TextField isRequired label="First name" {...form.register('first_name')} />
           </div>
           <div className="col-span-12">
-            <TextField isRequired label="Last name" {...form.register('last_name')} />
+            <TextField label="Last name" {...form.register('last_name')} />
           </div>
           <div className="col-span-12">
-            <TextField isRequired label="E-Mail" {...form.register('email')} />
-          </div>
-          <div className="col-span-24">
-            <TextField textArea autoSize label="Note" {...form.register('note')} />
+            <TextField label="E-Mail" {...form.register('email')} />
           </div>
           <div className="col-span-12">
             <Button title="Save" type="submit" />

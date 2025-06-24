@@ -2,6 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry.json",
   "name": "twc-ui",
   "homepage": "https://ui.twiceware.cloud",
+  "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>",
   "items": [
     {
       "name": "tabs",
@@ -12,7 +13,7 @@
         {
           "path": "resources/js/components/twc-ui/tabs.tsx",
           "type": "registry:ui",
-          "target": "components/twc-ui/tabs.tsx"
+          "target": "components/ui/twc-ui/tabs.tsx"
         }
       ]
     },

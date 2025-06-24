@@ -43,4 +43,6 @@
 <body class="font-sans antialiased">
 @inertia
 </body>
+<script defer src="https://umami.twiceware.cloud/script.js" data-website-id="9d354c00-87aa-46bb-a3ed-cbb3014465be"
+></script>
 </html>

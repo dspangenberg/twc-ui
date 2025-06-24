@@ -71,7 +71,7 @@ export const InstallationSection: React.FC<DemoCodePreviewProps> = ({
             </p>
             <ul className="my-3 ml-6 list-inside list-disc">
               {components.map(component => (
-                <li key={component}>{component}.tsx</li>
+                <li key={component}>{component}</li>
               ))}
             </ul>
 

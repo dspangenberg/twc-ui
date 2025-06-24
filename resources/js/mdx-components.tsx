@@ -1,4 +1,3 @@
-import { HugeiconsIcon } from '@hugeicons/react'
 import type React from 'react'
 import * as runtime from 'react/jsx-runtime'
 import { DemoCodePreview } from '@/components/docs/DemoCodePreview'
@@ -7,6 +6,9 @@ import { InstallationSection } from '@/components/docs/installation-section'
 import { cn } from '@/lib/utils'
 import { Callout } from '@/components/docs/callout'
 import { TypeInfo } from '@/components/docs/TypeInfo'
+import { Required } from '@/components/docs/required'
+import { Icon } from '@/components/twc-ui/icon'
+import { SourceCode } from '@/components/docs/SourceCode'
 
 const sharedComponents = {
   h2: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
@@ -83,7 +85,9 @@ const sharedComponents = {
   DemoCodePreview,
   InstallationCommand,
   InstallationSection,
-  HugeiconsIcon,
+  Icon,
+  Required,
+  SourceCode,
   TypeInfo,
   Callout
 }

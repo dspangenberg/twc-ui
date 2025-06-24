@@ -17,6 +17,7 @@ interface DemoCodePreviewProps {
   isComponent?: boolean
   language?: BuiltinLanguage
   fileName?: string
+  hideHeader?: boolean
 }
 
 export const SourceCode: React.FC<DemoCodePreviewProps> = ({
@@ -24,6 +25,7 @@ export const SourceCode: React.FC<DemoCodePreviewProps> = ({
   language = 'tsx',
   type = 'demo',
   code: rawCode,
+  hideHeader = false,
   isComponent = false,
   title,
   header,
@@ -99,6 +101,7 @@ export const SourceCode: React.FC<DemoCodePreviewProps> = ({
     <div className="w-full space-y-3">
       {title && <h3>{title}</h3>}
       <div className="max-w-full overflow-hidden rounded-md border bg-muted text-sm">
+        {!hideHeader && (
         <div className="flex items-center ">
           {header ? (
             header
@@ -109,7 +112,8 @@ export const SourceCode: React.FC<DemoCodePreviewProps> = ({
             <ClipboardButton code={code} />
           </div>
         </div>
-        <div className={cn('w-full overflow-x-hidden rounded-md bg-muted p-1.5 pt-0')}>
+        )}
+        <div className={cn('w-full overflow-x-hidden rounded-md bg-muted p-1.5 pt-0', { 'pt-1.5': hideHeader })}>
           {isLoading ? (
             <div className=" absolute right-0 left-0">
               <LogoSpinner className="mx-auto" />

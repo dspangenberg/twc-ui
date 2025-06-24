@@ -1,18 +1,19 @@
 ---
-title: "(Base-) Button"
+title: "Button"
 description: "A button allows a user to perform an action, with mouse, touch, and keyboard interactions."
 ---
 
 
 
 
-<DemoCodePreview codePath="button/loading-state.tsx" demoPath="demos/button/default" />
+<DemoCodePreview codePath="button/default.tsx" demoPath="demos/button/default" />
+
 
 ## Installation
 
 <InstallationSection
   dependencies={['react-aria-components', '@hugeicons/react', 'tailwind-variants']}
-  components={['base-button.tsx', 'tooltip.tsx', 'button.tsx']}
+  components={['tooltip.tsx', 'button.tsx']}
 >
   <InstallationCommand command="execute" params="shadcn@latest add ~website/r/button.json" />
 </InstallationSection>
@@ -21,9 +22,8 @@ description: "A button allows a user to perform an action, with mouse, touch, an
 
 ### Button with Icon
 
-If you use the title prop instead of children, the title is used as a tooltip for sizes of <code>icon-sm</code>, icon-xs for the
-or use one of the toolbar variants. The variant "toolbar-default" shows the title for normal screen resolutions
-and falls back to a tooltip on small screens.
+On small screens the title is hidden and used as a tooltip as well as an aria-label.
+
 
 <DemoCodePreview
   codePath="button/with-icon.tsx"
@@ -32,42 +32,32 @@ and falls back to a tooltip on small screens.
 />
 
 ### Loading state
-
 <DemoCodePreview
   codePath="button/loading-state.tsx"
   demoPath="demos/button/loading-state"
-  title="With loading state"
 />
 
+### Toolbar variants
+The variants `toolbar` (edit) and `toolbar-default` on a default (blue icons) and a secondary [toolbar](/docs/components/content/toolbar).
+
+<DemoCodePreview
+  codePath="button/toolbar.tsx"
+  demoPath="demos/button/toolbar"
+/>
 
 ## Documentation
 
-Lorem ipsum
-
-~~strikethrough~~
-
-A paragraph
-with *emphasis* and **strong importance**
-.
-
-  * Lists
-  * [ ] todo
-  * [x] done
-
-A table:
-
 ### Props
 
+[React Aria Button props](https://react-spectrum.adobe.com/react-aria/Button.html#props)
 
 | Prop             | Type                                                                                                         | Default   |
   |------------------|--------------------------------------------------------------------------------------------------------------|-----------|
-| variant          | `default` \| `secondary` \| `outline` \| `ghost`\| `destructive` \| `link` \| `toolbar` \| `toolbar-default` | `default` |
-| size             | `default` \| `sm` \| `lg` \| `icon` \| `icon-sm` \| `icon-xs` \| `auto`                                      | `default` |
+| variant          |<TypeInfo title="variant" types={['default', 'secondary', 'outline', 'ghost', 'destructive', 'link', 'toolbar', 'toolbar-default']} />| `default` |
+| size          |<TypeInfo title="size" types={['default', 'sm', 'lg', 'icon', 'icon-sm', 'icon-xs', 'auto']} />| `default` |
 | title            | string                                                                                                       | ''        |
-| icon             | IconSvgElement ([HugeIcons](https://hugeicons.com/?via=daspwork))                                            | ''        |
-| form             | string                                                                                                       | ''        |
-| loading          | boolean                                                                                                      | false     |
-| disabled         | boolean                                                                                                      | false     |
+| icon             | HugeIcons or Lucide icon                                            | ''        |
+| isLoading          |  `boolean`                                                                                                     |  `false`     |
 | iconClassName    | string                                                                                                       | ''        |
 | tooltip          | string                                                                                                       | ``        |
 | tooltipPlacement | Placement                                                                                                    | `bottom`  |

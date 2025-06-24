@@ -7,14 +7,14 @@ import {
   TooltipTrigger
 } from 'react-aria-components'
 import { cva } from 'class-variance-authority'
-import { cn } from '@/lib/utils' // Utility-Funktion für Klassen-Zusammenführung
+import { cn } from '@/lib/utils'
 
 export interface TooltipProps extends Omit<AriaTooltipProps, 'children'> {
   children: React.ReactNode
 }
 
 const tooltipVariants = cva(
-  'group rounded-md bg-foreground px-3 py-1.5 text-sm text-white will-change-transform',
+  'group rounded-md bg-foreground px-3 pt-1.5 pt-1.5 pb-1 text-sm text-white will-change-transform',
   {
     variants: {
       isEntering: {
@@ -45,7 +45,7 @@ export function Tooltip({ children, ...props }: TooltipProps) {
           height={8}
           data-placement={props.placement}
           viewBox="0 0 8 8"
-          className="data-[placement=left]:-rotate-90 fill-bg-foreground stroke-foreground data-[placement=bottom]:rotate-180 data-[placement=right]:rotate-90 forced-colors:fill-[Canvas]"
+          className="data-[placement=left]:-rotate-90 fill-bg-foreground stroke-foreground data-[placement=bottom]:rotate-180 data-[placement=right]:rotate-90"
         >
           <title>Tooltip-Arrow</title>
           <path d="M0 0 L4 4 L8 0" />
