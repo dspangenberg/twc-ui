@@ -1,8 +1,7 @@
+import { HugeiconsIcon, type IconSvgElement } from '@hugeicons/react'
 import type { ReactNode } from 'react'
-
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { cn } from '@/lib/utils'
-import { HugeiconsIcon, type IconSvgElement } from '@hugeicons/react'
 
 type CalloutProps = {
   title?: string
@@ -11,14 +10,9 @@ type CalloutProps = {
   className?: string
 }
 
-export const Callout = ({
-  children,
-  className,
-  icon,
-  title
-}: CalloutProps) => {
+export const Callout = ({ children, className, icon, title }: CalloutProps) => {
   return (
-    <Alert className={cn('text-base flex items-center', className)}>
+    <Alert className={cn('flex items-center text-base', className)}>
       <div className="pr-3">
         <HugeiconsIcon icon={icon} />
       </div>

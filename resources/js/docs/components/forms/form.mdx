@@ -6,13 +6,13 @@ order: 10
 
 
 
-<DemoCodePreview codePath="form/default.tsx" demoPath={route('contact.create')} className="h-[500px]"/>
+<DemoCodePreview codePath="form/default.tsx" demoPath={route('contact.create')} className="h-[500px]" />
 
 ## Installation
 
 <InstallationSection
   dependencies={['react-aria-components', '@inertiajs/core', 'laravel-precognition-react-inertia']}
-  components={['form']}
+  components={['form.tsx']}
   hooks={['use-form.ts']}
   copyAndPaste={
     <div>hi</div>
@@ -25,30 +25,16 @@ order: 10
 
 Lorem ipsum
 
-~~strikethrough~~
-
-A paragraph
-with *emphasis* and **strong importance**
-.
-
-  * Lists
-  * [ ] todo
-  * [x] done
-
-A table:
-
 ### Props
 
+| Prop             | Type                                                                    | Default   |
+  |------------------|-------------------------------------------------------------------------|-----------|
+| errorVariant     | `form` \| `field`                                                       | `form`    |
+| hideColonInLabels             | boolean | `false`  |
+| errorTitle            | string                                                                  | Something went wrong       |
 
-| Prop             | Type                                                                                                         | Default   |
-  |------------------|--------------------------------------------------------------------------------------------------------------|-----------|
-| variant          | `default` \| `secondary` \| `outline` \| `ghost`\| `destructive` \| `link` \| `toolbar` \| `toolbar-default` | `default` |
-| size             | `default` \| `sm` \| `lg` \| `icon` \| `icon-sm` \| `icon-xs` \| `auto`                                      | `default` |
-| title            | string                                                                                                       | ''        |
-| icon             | IconSvgElement ([HugeIcons](https://hugeicons.com/?via=daspwork))                                            | ''        |
-| form             | string                                                                                                       | ''        |
-| loading          | boolean                                                                                                      | false     |
-| disabled         | boolean                                                                                                      | false     |
-| iconClassName    | string                                                                                                       | ''        |
-| tooltip          | string                                                                                                       | ``        |
-| tooltipPlacement | Placement                                                                                                    | `bottom`  |
+### Events
+
+| Prop             | Type                                                                    | Default   |
+  |------------------|-------------------------------------------------------------------------|-----------|
+| onSubmitted     | `form` \| `field`                                                       | `form`    |

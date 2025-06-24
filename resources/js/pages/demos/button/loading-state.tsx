@@ -1,7 +1,7 @@
-import { DemoContainer } from '@/components/docs/DemoContainer'
-import { Button } from '@/components/twc-ui/button'
 import { PrinterIcon } from '@hugeicons/core-free-icons'
 import { useState } from 'react'
+import { DemoContainer } from '@/components/docs/DemoContainer'
+import { Button } from '@/components/twc-ui/button'
 
 export const LoadingStateDemo = () => {
   const [isLoading, setIsLoading] = useState(false)
@@ -13,12 +13,7 @@ export const LoadingStateDemo = () => {
 
   return (
     <DemoContainer className="gap-4">
-      <Button
-        loading={isLoading}
-        icon={PrinterIcon}
-        onClick={showLoading}
-        title="Print"
-      />
+      <Button loading={isLoading} icon={PrinterIcon} onClick={showLoading} title="Print" />
       <Button
         loading={isLoading}
         icon={PrinterIcon}

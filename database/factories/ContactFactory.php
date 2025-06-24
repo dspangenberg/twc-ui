@@ -16,8 +16,10 @@ class ContactFactory extends Factory
             'first_name' => $this->faker->firstName(),
             'last_name' => $this->faker->lastName(),
             'email' => $this->faker->unique()->safeEmail(),
-            'gender' => $this->faker->word(),
-            'is_vip' => $this->faker->word(),
+            'is_vip' => $this->faker->boolean(),
+            'dob' => $this->faker->date(),
+            'gender' => $this->faker->randomElement(['m', 'f']),
+            'note' => $this->faker->text(),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ];

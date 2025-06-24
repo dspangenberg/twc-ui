@@ -1,10 +1,10 @@
 'use client'
 
 import React, { useEffect, useState } from 'react'
-import { cn } from '@/lib/utils'
+import type { Key } from 'react-aria-components'
 import { SourceCode } from '@/components/docs/SourceCode'
 import { Tab, TabList, Tabs } from '@/components/twc-ui/tabs'
-import { Key } from 'react-aria-components'
+import { cn } from '@/lib/utils'
 
 export type PackageManager = 'npm' | 'yarn' | 'bun' | 'pnpm'
 export type BaseCommand = 'add' | 'execute' | 'create'
@@ -39,7 +39,6 @@ export const getCommandAsPackageManager = (baseCommand: BaseCommand, manager: Pa
     case 'create':
       return createCommands[manager]
   }
-
 }
 
 export const InstallationCommand = ({
@@ -52,7 +51,9 @@ export const InstallationCommand = ({
   className?: string
 }) => {
   const [selectedPackageManager, setSelectedPackageManager] = useState<PackageManager>('pnpm')
-  const [params, _setParams] = useState<string>(rawParams.replace('~website/', import.meta.env.VITE_APP_URL + '/'))
+  const [params, _setParams] = useState<string>(
+    rawParams.replace('~website/', import.meta.env.VITE_APP_URL + '/')
+  )
   const [command, setCommand] = useState<string>('')
 
   useEffect(() => {
@@ -75,7 +76,7 @@ export const InstallationCommand = ({
         code={command}
         language="bash"
         header={
-          <div className="flex items-center flex-1 px-4 pt-1">
+          <div className="flex flex-1 items-center px-4 pt-1">
             <Tabs
               selectedKey={selectedPackageManager}
               onSelectionChange={handlePackageManagerChange}
@@ -93,5 +94,4 @@ export const InstallationCommand = ({
       />
     </div>
   )
-
 }

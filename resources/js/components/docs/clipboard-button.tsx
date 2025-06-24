@@ -1,8 +1,8 @@
+import { Task01Icon, TaskDone01Icon } from '@hugeicons/core-free-icons'
 import type React from 'react'
 import { useState } from 'react'
 import { Button } from '@/components/twc-ui/button'
 import { copyToClipboard } from '@/lib/docs'
-import { Task01Icon, TaskDone01Icon } from '@hugeicons/core-free-icons'
 
 interface ClipboardButtonProps {
   tooltip?: string
@@ -37,12 +37,6 @@ export const ClipboardButton: React.FC<ClipboardButtonProps> = ({
   }
 
   return (
-    <Button
-      variant="ghost"
-      size="icon"
-      icon={Task01Icon}
-      tooltip={tooltip}
-      onClick={copy}
-    />
+    <Button variant="ghost" size="icon-sm" icon={Task01Icon} tooltip={tooltip} onClick={copy} />
   )
 }

@@ -10,7 +10,7 @@ import '@fontsource/clear-sans/400.css'
 import '@fontsource/clear-sans/500.css'
 import '@fontsource/clear-sans/700.css'
 import '@fontsource-variable/jetbrains-mono'
-import React from 'react'
+import type React from 'react'
 import { DocPage } from '@/components/docs/DocPage'
 import { MdxWrapper } from '@/mdx-wrapper'
 import { Providers } from './providers'
@@ -21,7 +21,10 @@ createInertiaApp({
   title: title => `${title} - ${appName}`,
   resolve: async name => {
     if (name.startsWith('docs')) {
-      const module = await resolvePageComponent(`./${name}.mdx`, import.meta.glob('./docs/**/*.mdx'))
+      const module = await resolvePageComponent(
+        `./${name}.mdx`,
+        import.meta.glob('./docs/**/*.mdx')
+      )
       const MdxComponent = (module as any).default as React.ComponentType
       const frontmatter = (module as any).frontmatter || (MdxComponent as any).frontmatter || null
 
@@ -32,16 +35,10 @@ createInertiaApp({
           </DocPage>
         )
       }
-
-    } else {
-      return resolvePageComponent(`./pages/${name}.tsx`, import.meta.glob('./pages/**/*.tsx'))
     }
+    return resolvePageComponent(`./pages/${name}.tsx`, import.meta.glob('./pages/**/*.tsx'))
   },
-  setup ({
-    el,
-    App,
-    props
-  }) {
+  setup({ el, App, props }) {
     const appElement = (
       <Providers>
         <App {...props} />

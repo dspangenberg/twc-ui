@@ -1,12 +1,12 @@
 import type { FormDataConvertible } from '@inertiajs/core'
+import type { RequestMethod, SimpleValidationErrors, ValidationConfig } from 'laravel-precognition'
 import type React from 'react'
 import { createContext, type FormEvent, type HTMLAttributes, useContext } from 'react'
-import { useForm as internalUseForm } from '@/hooks/use-form'
-import type { RequestMethod, SimpleValidationErrors, ValidationConfig } from 'laravel-precognition'
-import { cn } from '@/lib/utils'
 import { FormErrors } from '@/components/twc-ui/form-errors'
+import { useForm as internalUseForm } from '@/hooks/use-form'
+import { cn } from '@/lib/utils'
 
-export type FormSchema = Record<string, FormDataConvertible>;
+export type FormSchema = Record<string, FormDataConvertible>
 
 type UseFormReturn<T extends FormSchema> = ReturnType<typeof internalUseForm<T>>
 type BaseFormProps = Omit<HTMLAttributes<HTMLFormElement>, 'onSubmit'>
@@ -32,15 +32,15 @@ type ExtendedForm<T extends FormSchema> = {
   setErrors: UseFormReturn<T>['setErrors']
   validate: UseFormReturn<T>['validate']
   touched: UseFormReturn<T>['touched']
-  form: UseFormReturn<T> & { id: string };
-};
+  form: UseFormReturn<T> & { id: string }
+}
 
 // Typisierter Context mit zusätzlichen UI-Properties
 type FormContextValue = {
-  hideColonInLabels?: boolean;
-  errorTitle?: string;
-  errorVariant?: 'form' | 'field';
-  [key: string]: any; // Erlaubt alle ExtendedForm Properties
+  hideColonInLabels?: boolean
+  errorTitle?: string
+  errorVariant?: 'form' | 'field'
+  [key: string]: any // Erlaubt alle ExtendedForm Properties
 }
 
 const FormContext = createContext<FormContextValue | null>(null)
@@ -49,13 +49,13 @@ interface FormProps<T extends FormSchema> extends BaseFormProps {
   form: ExtendedForm<T>
   children: React.ReactNode
   hideColonInLabels?: boolean
-  onSubmitted?: () => void,
-  errorTitle?: string,
+  onSubmitted?: () => void
+  errorTitle?: string
   className?: string
   errorVariant?: 'form' | 'field'
 }
 
-export const Form = <T extends FormSchema> ({
+export const Form = <T extends FormSchema>({
   form,
   children,
   errorVariant = 'form',
@@ -90,12 +90,13 @@ export const Form = <T extends FormSchema> ({
   }
 
   return (
-    <FormContext.Provider value={{
-      ...form,
-      hideColonInLabels,
-      errorTitle,
-      errorVariant
-    }}
+    <FormContext.Provider
+      value={{
+        ...form,
+        hideColonInLabels,
+        errorTitle,
+        errorVariant
+      }}
     >
       <form
         id={form.id}
@@ -106,27 +107,25 @@ export const Form = <T extends FormSchema> ({
         {...props}
       >
         <FormErrors errors={form.errors} title={errorTitle} showErrors={errorVariant === 'form'} />
-        <fieldset disabled={form.processing}>
-          {children}
-        </fieldset>
+        <fieldset disabled={form.processing}>{children}</fieldset>
       </form>
     </FormContext.Provider>
   )
 }
 
-export const useFormContext = <T extends FormSchema = FormSchema> () => {
+export const useFormContext = <T extends FormSchema = FormSchema>() => {
   const context = useContext(FormContext)
   if (context === null) {
     throw new Error('useFormContext must be used within a Form component')
   }
   return context as ExtendedForm<T> & {
-    hideColonInLabels?: boolean;
-    errorTitle?: string;
-    errorVariant?: 'form' | 'field';
+    hideColonInLabels?: boolean
+    errorTitle?: string
+    errorVariant?: 'form' | 'field'
   }
 }
 
-export const useForm = <T extends FormSchema> (
+export const useForm = <T extends FormSchema>(
   id: string,
   method: RequestMethod,
   action: string,

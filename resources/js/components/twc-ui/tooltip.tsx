@@ -1,28 +1,31 @@
 import type React from 'react'
 import {
-  composeRenderProps,
-  OverlayArrow,
   Tooltip as AriaTooltip,
   type TooltipProps as AriaTooltipProps,
+  composeRenderProps,
+  OverlayArrow,
   TooltipTrigger
 } from 'react-aria-components'
-import { tv } from 'tailwind-variants'
+import { cva } from 'class-variance-authority'
+import { cn } from '@/lib/utils'
 
 export interface TooltipProps extends Omit<AriaTooltipProps, 'children'> {
   children: React.ReactNode
 }
 
-const styles = tv({
-  base: 'group rounded-md bg-foreground px-3 py-1.5 text-sm text-white will-change-transform',
-  variants: {
-    isEntering: {
-      true: 'fade-in animate-in duration-200'
-    },
-    isExiting: {
-      true: 'fade-out animate-out duration-150'
+const tooltipVariants = cva(
+  'group rounded-md bg-foreground px-3 pt-1.5 pt-1.5 pb-1 text-sm text-white will-change-transform',
+  {
+    variants: {
+      isEntering: {
+        true: 'fade-in animate-in duration-200'
+      },
+      isExiting: {
+        true: 'fade-out animate-out duration-150'
+      }
     }
   }
-})
+)
 
 export function Tooltip({ children, ...props }: TooltipProps) {
   return (
@@ -30,10 +33,10 @@ export function Tooltip({ children, ...props }: TooltipProps) {
       {...props}
       offset={8}
       className={composeRenderProps(props.className, (className, renderProps) =>
-        styles({
-          ...renderProps,
-          className
-        })
+        cn(tooltipVariants({
+          isEntering: renderProps.isEntering,
+          isExiting: renderProps.isExiting
+        }), className)
       )}
     >
       <OverlayArrow>
@@ -42,7 +45,7 @@ export function Tooltip({ children, ...props }: TooltipProps) {
           height={8}
           data-placement={props.placement}
           viewBox="0 0 8 8"
-          className="data-[placement=left]:-rotate-90 fill-bg-foreground stroke-primary data-[placement=bottom]:rotate-180 data-[placement=right]:rotate-90 forced-colors:fill-[Canvas]"
+          className="data-[placement=left]:-rotate-90 fill-bg-foreground stroke-foreground data-[placement=bottom]:rotate-180 data-[placement=right]:rotate-90"
         >
           <title>Tooltip-Arrow</title>
           <path d="M0 0 L4 4 L8 0" />

@@ -1,5 +1,5 @@
-import type { SharedData } from '@/types'
 import { Head, Link, usePage } from '@inertiajs/react'
+import type { SharedData } from '@/types'
 
 export default function Welcome() {
   const { auth } = usePage<SharedData>().props
@@ -793,7 +793,7 @@ export default function Welcome() {
             </div>
           </main>
         </div>
-        <div className="hidden h-14.5 lg:block"></div>
+        <div className="hidden h-14.5 lg:block" />
       </div>
     </>
   )

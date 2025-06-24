@@ -1,18 +1,26 @@
-import { Tab, TabList, TabPanel, Tabs } from '@/components/twc-ui/tabs'
 import { DemoContainer } from '@/components/docs/DemoContainer'
+import { Tab, TabList, TabPanel, Tabs } from '@/components/twc-ui/tabs'
 
 export const Demo = () => {
   return (
     <DemoContainer>
       <Tabs variant="classic" className="w-lg">
-        <TabList aria-label="History of Ancient Rome" className="flex-1 bg-page-content border-b justify-start">
-          <Tab id="FoR">Stammdaten</Tab>
-          <Tab id="MaR">Komunikation</Tab>
-          <Tab id="Emp">Empire</Tab>
+        <TabList
+          aria-label="History of Ancient Rome"
+        >
+          <Tab id="Founding">Founding of Rome</Tab>
+          <Tab id="Monarchy">Monarchy and Republic</Tab>
+          <Tab id="Empire">Empire</Tab>
         </TabList>
-        <TabPanel id="FoR">Stammdaten</TabPanel>
-        <TabPanel id="MaR">Komunikation</TabPanel>
-        <TabPanel id="Emp">Empire</TabPanel>
+        <TabPanel id="Founding">
+          Arma virumque cano, Troiae qui primus ab oris.
+        </TabPanel>
+        <TabPanel id="Monarchy">
+          Senatus Populusque Romanus.
+        </TabPanel>
+        <TabPanel id="Empire">
+          Alea jacta est.
+        </TabPanel>
       </Tabs>
     </DemoContainer>
   )

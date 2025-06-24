@@ -26,28 +26,35 @@ export const FormErrors: React.FC<Props> = ({
 
   return (
     <>
-      <div className="rounded-lg border border-destructive p-4 mx-4 pt-2 mb-6 text-destructive" role="alert">
+      <div
+        className="mx-4 mb-6 rounded-lg border border-destructive/50 bg-destructive/5 p-4 pt-2 text-destructive"
+        role="alert"
+      >
         <div className="flex flex-col">
           <div className="flex items-center gap-3">
             <div className="flex-none">
               <div
-                className={cn('mx-auto flex size-6 shrink-0 items-center justify-center rounded-full sm:mx-0 sm:size-8 bg-destructive/20')}
+                className={cn(
+                  'mx-auto flex size-6 shrink-0 items-center justify-center rounded-full bg-destructive/20 sm:mx-0 sm:size-8'
+                )}
               >
-                <HugeiconsIcon icon={Sad01Icon} className={cn('size-5 stroke-3 text-destructive')} />
+                <HugeiconsIcon
+                  icon={Sad01Icon}
+                  className={cn('size-5 stroke-3 text-destructive')}
+                />
               </div>
             </div>
-            <div className="text-base font-medium flex-1">{title}</div>
+            <div className="flex-1 font-medium text-base">{title}</div>
           </div>
-          {showErrors && <div className="grow space-y-1">
-            <ul
-              className="list-inside list-disc text-sm opacity-80 pl-12 motion-opacity-in-0 motion-translate-y-in-100 motion-blur-in-md"
-            >
-              {errorMessages.map((message, index) => (
-                <li key={index}>{message}</li>
-              ))}
-            </ul>
-          </div>
-          }
+          {showErrors && (
+            <div className="grow space-y-1 pt-2">
+              <ul className="motion-opacity-in-0 motion-translate-y-in-100 motion-blur-in-md list-inside list-disc pl-12 text-sm opacity-80">
+                {errorMessages.map((message, index) => (
+                  <li key={index}>{message}</li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
       </div>
     </>

@@ -22,6 +22,7 @@ class ContactData extends Data
         public readonly string $last_name,
         public readonly string $email,
         public readonly string $gender,
+        public readonly ?string $note,
         public readonly bool $is_vip,
 
         #[WithTransformer(DateTimeInterfaceTransformer::class, format: 'Y-m-d')]

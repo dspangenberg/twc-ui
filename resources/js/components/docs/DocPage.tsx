@@ -1,13 +1,11 @@
-import { ReactNode } from 'react'
-import DocLayout from '@/layouts/docs-layout'
-import { TableOfContents } from '@/components/docs/TableOfContents'
-import { Link, usePage } from '@inertiajs/react'
-import { useBreadcrumb, useDocsNavigation } from '@/hooks/use-docs-structure'
-import { ChevronRight } from 'lucide-react'
+import { Home13Icon } from '@hugeicons/core-free-icons'
 import { HugeiconsIcon } from '@hugeicons/react'
-import {
-  Home13Icon
-} from '@hugeicons/core-free-icons'
+import { Link, usePage } from '@inertiajs/react'
+import { ChevronRight } from 'lucide-react'
+import type { ReactNode } from 'react'
+import { TableOfContents } from '@/components/docs/TableOfContents'
+import { useBreadcrumb, useDocsNavigation } from '@/hooks/use-docs-structure'
+import DocLayout from '@/layouts/docs-layout'
 
 interface DocItem {
   title: string
@@ -33,15 +31,10 @@ interface DocPageProps {
   frontmatter?: Frontmatter | null
 }
 
-export const DocPage = ({
-  children,
-  frontmatter
-}: DocPageProps) => {
+export const DocPage = ({ children, frontmatter }: DocPageProps) => {
   return (
     <DocLayout>
-      <DocPageContent frontmatter={frontmatter}>
-        {children}
-      </DocPageContent>
+      <DocPageContent frontmatter={frontmatter}>{children}</DocPageContent>
     </DocLayout>
   )
 }
@@ -52,11 +45,7 @@ interface DocNavigationItemProps {
   depth?: number
 }
 
-const DocNavigationItem = ({
-  item,
-  currentRoute,
-  depth = 0
-}: DocNavigationItemProps) => {
+const DocNavigationItem = ({ item, currentRoute, depth = 0 }: DocNavigationItemProps) => {
   // WICHTIG: Vergleiche mit der ROUTE, nicht dem Pfad
   const isActive = currentRoute === item.route
   const hasChildren = item.children && item.children.length > 0
@@ -67,30 +56,31 @@ const DocNavigationItem = ({
         {item.route ? (
           <Link
             href={item.route}
-            className={`font-semibold text-sm mb-2 block hover:text-blue-600 dark:hover:text-blue-400 transition-colors ${
+            className={`mb-2 block font-semibold text-sm transition-colors hover:text-blue-600 dark:hover:text-blue-400 ${
               depth === 0
-                ? 'text-foreground text-base uppercase tracking-wide'
+                ? 'text-base text-foreground uppercase tracking-wide'
                 : depth === 1
-                  ? 'text-gray-900 dark:text-gray-100 ml-0'
-                  : 'text-gray-800 dark:text-gray-200 ml-0'
+                  ? 'ml-0 text-gray-900 dark:text-gray-100'
+                  : 'ml-0 text-gray-800 dark:text-gray-200'
             } ${isActive ? 'text-blue-600 dark:text-blue-400' : ''}`}
           >
             {item.title}
           </Link>
         ) : (
-          <div className={`font-semibold text-sm mb-2 ${
-            depth === 0
-              ? 'text-foreground text-base uppercase tracking-wide'
-              : depth === 1
-                ? 'text-gray-900 dark:text-gray-100 ml-0'
-                : 'text-gray-800 dark:text-gray-200 ml-0'
-          }`}
+          <div
+            className={`mb-2 font-semibold text-sm ${
+              depth === 0
+                ? 'text-base text-foreground uppercase tracking-wide'
+                : depth === 1
+                  ? 'ml-0 text-gray-900 dark:text-gray-100'
+                  : 'ml-0 text-gray-800 dark:text-gray-200'
+            }`}
           >
             {item.title}
           </div>
         )}
         {hasChildren && (
-          <ul className={`space-y-1 list-none list-image-none ${depth === 0 ? 'mb-4' : 'mb-2'}`}>
+          <ul className={`list-none list-image-none ${depth === 0 ? 'mb-4' : 'mb-2'}`}>
             {item.children!.map((child, index) => (
               <DocNavigationItem
                 key={`${child.path}-${index}`}
@@ -110,22 +100,18 @@ const DocNavigationItem = ({
     <li>
       <Link
         href={item.route || '#'}
-        className={`block py-1 text-sm rounded transition-colors ${
-          depth === 0
-            ? 'px-0 font-medium'
-            : depth === 1
-              ? 'px-3 ml-0'
-              : 'px-3 ml-0'
+        className={`block rounded py-1 text-sm transition-colors ${
+          depth === 0 ? 'px-0 font-medium' : depth === 1 ? 'ml-0 px-3' : 'ml-0 px-3'
         } ${
           isActive
-            ? 'text-blue-600 dark:text-blue-400 font-medium'
-            : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100'
+            ? 'font-medium text-blue-600 dark:text-blue-400'
+            : 'text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100'
         }`}
       >
         {item.title}
       </Link>
       {hasChildren && (
-        <ul className="mt-1 space-y-1 list-none">
+        <ul className="mt-1 list-none space-y-1">
           {item.children!.map((child, index) => (
             <DocNavigationItem
               key={`${child.path}-${index}`}
@@ -140,26 +126,23 @@ const DocNavigationItem = ({
   )
 }
 
-function DocsNavigation () {
-  const {
-    navigationItems,
-    loading
-  } = useDocsNavigation()
+function DocsNavigation() {
+  const { navigationItems, loading } = useDocsNavigation()
   const { url } = usePage()
 
   if (loading) {
     return (
       <div className="animate-pulse">
-        <div className="h-4 bg-gray-200 rounded mb-4"></div>
-        <div className="h-4 bg-gray-200 rounded mb-2"></div>
-        <div className="h-4 bg-gray-200 rounded mb-2"></div>
+        <div className="mb-4 h-4 rounded bg-gray-200" />
+        <div className="mb-2 h-4 rounded bg-gray-200" />
+        <div className="mb-2 h-4 rounded bg-gray-200" />
       </div>
     )
   }
 
   return (
     <nav className="space-y-2">
-      <ul className="space-y-1 list-none list-image-none">
+      <ul className="list-none list-image-none space-y-1">
         {navigationItems.map((item, index) => (
           <DocNavigationItem
             key={`${item.path}-${index}`}
@@ -185,14 +168,11 @@ const Breadcrumb = ({ currentPath }: BreadcrumbProps) => {
   }
 
   return (
-    <nav className="flex items-center space-x-1 text-sm text-gray-500 mb-6">
-      <Link
-        href="/"
-        className="flex items-center hover:text-gray-700 dark:hover:text-gray-300"
-      >
+    <nav className="mb-6 flex items-center space-x-1 text-gray-500 text-sm">
+      <Link href="/" className="flex items-center hover:text-gray-700 dark:hover:text-gray-300">
         <HugeiconsIcon icon={Home13Icon} className="size-5" />
       </Link>
-      <ChevronRight className="h-4 w-4 mx-2 text-gray-400" />
+      <ChevronRight className="mx-2 h-4 w-4 text-gray-400" />
       <Link
         href="/docs/"
         className="flex items-center hover:text-gray-700 dark:hover:text-gray-300"
@@ -201,16 +181,11 @@ const Breadcrumb = ({ currentPath }: BreadcrumbProps) => {
       </Link>
       {breadcrumbItems.map((item, index) => (
         <div key={`breadcrumb-${index}`} className="flex items-center">
-          <ChevronRight className="h-4 w-4 mx-2 text-gray-400" />
+          <ChevronRight className="mx-2 h-4 w-4 text-gray-400" />
           {item.href === '#' ? (
-            <span className="text-gray-900 dark:text-gray-100 font-medium">
-              {item.title}
-            </span>
+            <span className="font-medium text-gray-900 dark:text-gray-100">{item.title}</span>
           ) : (
-            <Link
-              href={item.href}
-              className="hover:text-gray-700 dark:hover:text-gray-300"
-            >
+            <Link href={item.href} className="hover:text-gray-700 dark:hover:text-gray-300">
               {item.title}
             </Link>
           )}
@@ -220,30 +195,25 @@ const Breadcrumb = ({ currentPath }: BreadcrumbProps) => {
   )
 }
 
-const DocPageContent = ({
-  children,
-  frontmatter
-}: DocPageProps) => {
+const DocPageContent = ({ children, frontmatter }: DocPageProps) => {
   const { url } = usePage()
 
   return (
     <>
-      <div className="flex mt-12 gap-4 mx-auto w-screen max-w-7xl">
-        <aside className="w-64 p-4 sticky top-0 h-screen overflow-y-auto flex-none space-y-4 hidden lg:flex">
+      <div className="mx-auto mt-12 flex w-screen max-w-7xl gap-4">
+        <aside className="sticky top-0 hidden h-screen w-64 flex-none space-y-4 overflow-y-auto p-4 lg:flex">
           <DocsNavigation />
         </aside>
-        <div className="doc gap-12 py-4 space-y-6 flex-1">
+        <div className="doc flex-1 gap-12 space-y-6 py-4">
           {/* Breadcrumb Navigation */}
           <Breadcrumb currentPath={url} />
 
           {frontmatter && (
             <header className="mb-8 pb-6">
-              <h1 className="text-4xl font-bold mb-4">{frontmatter?.title}</h1>
+              <h1 className="mb-4 font-bold text-4xl">{frontmatter?.title}</h1>
 
               {frontmatter.description && (
-                <p className="text-base text-muted-foreground mb-4">
-                  {frontmatter.description}
-                </p>
+                <p className="mb-4 text-base text-muted-foreground">{frontmatter.description}</p>
               )}
 
               {frontmatter.tags && frontmatter.tags.length > 0 && (
@@ -251,7 +221,7 @@ const DocPageContent = ({
                   {frontmatter.tags.map((tag, index) => (
                     <span
                       key={index}
-                      className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm"
+                      className="rounded-full bg-blue-100 px-3 py-1 text-blue-800 text-sm"
                     >
                       #{tag}
                     </span>
@@ -263,7 +233,7 @@ const DocPageContent = ({
 
           {children}
         </div>
-        <aside className="hidden lg:flex w-48 p-4 sticky top-0 h-screen overflow-y-auto flex-none space-y-4">
+        <aside className="sticky top-0 hidden h-screen w-48 flex-none space-y-4 overflow-y-auto p-4 lg:flex">
           <TableOfContents />
         </aside>
       </div>

@@ -1,16 +1,13 @@
-import { type Appearance, useAppearance } from '@/hooks/use-appearance'
-import { cn } from '@/lib/utils'
 import { type LucideIcon, Monitor, Moon, Sun } from 'lucide-react'
 import type { HTMLAttributes } from 'react'
+import { type Appearance, useAppearance } from '@/hooks/use-appearance'
+import { cn } from '@/lib/utils'
 
-export default function AppearanceToggleTab ({
+export default function AppearanceToggleTab({
   className = '',
   ...props
 }: HTMLAttributes<HTMLDivElement>) {
-  const {
-    appearance,
-    updateAppearance
-  } = useAppearance()
+  const { appearance, updateAppearance } = useAppearance()
 
   const tabs: { value: Appearance; icon: LucideIcon; label: string }[] = [
     {
@@ -38,10 +35,7 @@ export default function AppearanceToggleTab ({
       )}
       {...props}
     >
-      {tabs.map(({
-        value,
-        icon: Icon
-      }) => (
+      {tabs.map(({ value, icon: Icon }) => (
         <button
           key={value}
           onClick={() => updateAppearance(value)}

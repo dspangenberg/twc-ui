@@ -7,10 +7,10 @@ declare global {
     absolute?: boolean,
     config?: Config
   ) => string) & {
-    current (): string | null
-    current (name: string, params?: RouteParamsWithQueryOverload): boolean
-    check (name: string): boolean
-    has (name: string): boolean
+    current(): string | null
+    current(name: string, params?: RouteParamsWithQueryOverload): boolean
+    check(name: string): boolean
+    has(name: string): boolean
   }
 }
 
@@ -21,6 +21,6 @@ import { PageProps as AppPageProps } from './'
 
 declare module 'react-aria-components' {
   interface RouterConfig {
-    routerOptions: VisitOptions;
+    routerOptions: VisitOptions
   }
 }

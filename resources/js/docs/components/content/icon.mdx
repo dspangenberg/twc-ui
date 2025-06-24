@@ -1,0 +1,24 @@
+---
+title: Icon
+description: Shows a Lucide or HugeIcons (free or pro) icon.
+order: 10
+---
+
+<DemoCodePreview codePath="icon/default.tsx" demoPath="demos/icon/default" />
+
+## Installation
+
+<InstallationSection
+  dependencies={['@hugeicons/react', 'lucide-react']}
+  components={['icon.tsx']}
+>
+  <InstallationCommand command="execute" params="shadcn@latest add ~website/r/icon.json" />
+</InstallationSection>
+
+## Documentation
+### Props
+
+| Prop              | Type                                                                                         | Default |
+  |-------------------|----------------------------------------------------------------------------------------------|---------|
+| icon <Required /> | [HugeIcons](https://hugeicons.com/?via=daspwork) or [Lucide](https://lucide.dev/icons/) icon | `null`  |
+| strokeWidth       | `number`                                                                                     | `1.5`   |

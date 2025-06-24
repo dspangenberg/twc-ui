@@ -1,6 +1,6 @@
-import Logo from './logo'
-import { cn } from '@/lib/utils'
 import type React from 'react'
+import { cn } from '@/lib/utils'
+import Logo from './logo'
 
 interface LogoSpinnerProps {
   className?: string
@@ -9,7 +9,7 @@ interface LogoSpinnerProps {
 export const LogoSpinner: React.FC<LogoSpinnerProps> = ({ className = '' }) => {
   return (
     <div className="rounded-full bg-transparent" data-testid="logo-spinner">
-      <div className="relative flex justify-center items-center rounded-full bg-foreground">
+      <div className="relative flex items-center justify-center rounded-full bg-foreground">
         <span className="absolute">
           <Logo className="size-6 rounded-full border border-white" />
         </span>
@@ -17,7 +17,7 @@ export const LogoSpinner: React.FC<LogoSpinnerProps> = ({ className = '' }) => {
           aria-hidden="true"
           data-testid="logo-spinner-svg"
           className={cn(
-            'absolute animate animate-spin size-6 bg-[transparent] rounded-full',
+            'animate absolute size-6 animate-spin rounded-full bg-[transparent]',
             'text-bg-foreground/80',
             className
           )}

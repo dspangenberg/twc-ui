@@ -1,36 +1,32 @@
 import * as React from 'react'
 import {
-  composeRenderProps,
   Input as AriaInput,
   type InputProps as AriaInputProps,
-  Text,
   TextArea as AriaTextArea,
   type TextAreaProps as AriaTextAreaProps,
   TextField as AriaTextField,
-  type TextFieldProps as AriaTextFieldProps
+  type TextFieldProps as AriaTextFieldProps,
+  composeRenderProps,
+  Text
 } from 'react-aria-components'
-
+import { useFormContext } from '@/components/twc-ui/form'
 import { cn } from '@/lib/utils'
 import { FieldError, Label } from './field'
-import { useFormContext } from '@/components/twc-ui/form'
 
 const BaseTextField = AriaTextField
 
-const Input = ({
-  className,
-  ...props
-}: AriaInputProps) => {
+const Input = ({ className, ...props }: AriaInputProps) => {
   return (
     <AriaInput
       className={composeRenderProps(className, className =>
         cn(
-          'flex h-9 w-full rounded-sm border border-input bg-transparent px-3 py-1 text-base font-medium shadow-none transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground',
+          'flex h-9 w-full rounded-sm border border-input bg-transparent px-3 py-1 font-medium text-base shadow-none outline-0 transition-colors file:border-0 file:bg-transparent file:font-medium file:text-sm placeholder:text-muted-foreground',
           /* Disabled */
           'data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50 ',
           /* Focused */
           /* Resets */
-          'focus-visible:border-ring focus-visible:ring-ring/20 focus-visible:ring-[3px]',
-          'data-[invalid]:focus-visible:ring-destructive/20  data-[invalid]:focus-visible:border-destructive  data-[invalid]:border-destructive',
+          'focus:border-primary focus-visible:border-primary focus-visible:ring-[3px] focus-visible:ring-primary/20',
+          'data-[invalid]:border-destructive data-[invalid]:focus-visible:border-destructive data-[invalid]:focus-visible:ring-destructive/20',
           className
         )
       )}
@@ -40,56 +36,72 @@ const Input = ({
   )
 }
 
-const TextArea = ({
-  className,
-  ...props
-}: AriaTextAreaProps) => {
+interface TextAreaProps extends AriaTextAreaProps {
+  autoSize?: boolean
+}
+
+const TextArea = ({ className, autoSize=false, ...props }: TextAreaProps) => {
   return (
     <AriaTextArea
       className={composeRenderProps(className, className =>
         cn(
-          'flex h-9 w-full min-h-[80px] outline-0 rounded-sm border border-input bg-transparent px-3 py-1 text-base font-medium shadow-none transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground',
+          'flex h-9 min-h-[80px] w-full rounded-sm border border-input bg-transparent px-3 py-1 font-medium text-base shadow-none outline-0 transition-colors file:border-0 file:bg-transparent file:font-medium file:text-sm placeholder:text-muted-foreground',
           /* Disabled */
           'data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50',
           /* Focused */
           /* Resets */
-          'focus-visible:border-ring focus-visible:ring-ring/20 focus-visible:ring-[3px]',
-          'data-[invalid]:focus-visible:ring-destructive/20  data-[invalid]:focus-visible:border-destructive data-[invalid]:border-destructive',
+          'focus:border-primary focus-visible:border-primary focus-visible:ring-[3px] focus-visible:ring-primary/20',
+          'data-[invalid]:border-destructive data-[invalid]:focus-visible:border-destructive data-[invalid]:focus-visible:ring-destructive/20',
+          autoSize
+            ? 'min-h-[80px] resize-none field-sizing-content'
+            : 'h-9 min-h-[80px]',
           className
         )
       )}
-      onFocus={event => event.target.select()}
       {...props}
     />
   )
 }
 
-interface TextFieldProps extends Omit<AriaTextFieldProps, 'onChange'> {
+interface TextFieldProps extends Omit<AriaTextFieldProps, "value" | "onChange"> {
   label?: string
   description?: string
   textArea?: boolean
   rows?: number
-  required?: boolean
-  onChange?: (value: string) => void
+  autoSize?: boolean
+  onChange?: ((value: string | null) => void) | ((value: string) => void)
   name?: string
-  value?: string
+  value?: string | null | undefined
   error?: string | undefined
   onBlur?: () => void
 }
 
-function TextField ({
+function TextField({
   label,
   description,
   textArea,
-  required = false,
+  isRequired = false,
+  autoSize = false,
   rows = 3,
   className,
   onChange,
+  value,
   ...props
 }: TextFieldProps) {
   const form = useFormContext()
   const error = form?.errors?.[props.name as string] || props.error
   const hasError = !!error
+
+  const handleChange = (val: string) => {
+    if (onChange) {
+      try {
+        onChange(val || '')
+      } catch {
+        // Falls nicht, verwenden Sie den string direkt
+        (onChange as (value: string) => void)(val)
+      }
+    }
+  }
 
   return (
     <AriaTextField
@@ -97,19 +109,14 @@ function TextField ({
         cn('group flex flex-col gap-1.5', className)
       )}
       isInvalid={hasError}
-      onChange={onChange}
+      value={value ?? undefined}
+      onChange={handleChange}
       {...props}
     >
-      <Label required={required} value={label} />
-      {textArea ? (
-        <TextArea
-          rows={rows}
-        />
-      ) : (
-        <Input />
-      )}
+      <Label isRequired={isRequired} value={label} />
+      {textArea ? <TextArea rows={rows} autoSize={autoSize} /> : <Input />}
       {description && (
-        <Text className="text-sm text-muted-foreground" slot="description">
+        <Text className="text-muted-foreground text-sm" slot="description">
           {description}
         </Text>
       )}
