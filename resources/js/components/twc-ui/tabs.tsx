@@ -53,12 +53,16 @@ const tabVariants = cva(
 )
 
 type TabsContextType = {
-  variant: 'underlined' | 'classic' | 'default' | null | undefined,
+  variant: 'underlined' | 'classic' | 'default' | null | undefined
   tabClassName?: string
   panelClassName?: string
 }
 
-const TabsContext = createContext<TabsContextType>({ variant: 'default', tabClassName: '', panelClassName: '' })
+const TabsContext = createContext<TabsContextType>({
+  variant: 'default',
+  tabClassName: '',
+  panelClassName: ''
+})
 
 const useTabsContext = () => {
   const context = useContext(TabsContext)
@@ -123,7 +127,10 @@ export const Tab = ({ className, ...props }: TabProps) => {
   const { variant, tabClassName } = useTabsContext()
 
   return (
-    <AriaTab className={cn(tabVariants({ variant: variant ?? 'default' }), tabClassName, className)} {...props} />
+    <AriaTab
+      className={cn(tabVariants({ variant: variant ?? 'default' }), tabClassName, className)}
+      {...props}
+    />
   )
 }
 

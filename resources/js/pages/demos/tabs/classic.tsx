@@ -5,22 +5,14 @@ export const Demo = () => {
   return (
     <DemoContainer>
       <Tabs variant="classic" className="w-lg">
-        <TabList
-          aria-label="History of Ancient Rome"
-        >
+        <TabList aria-label="History of Ancient Rome">
           <Tab id="Founding">Founding of Rome</Tab>
           <Tab id="Monarchy">Monarchy and Republic</Tab>
           <Tab id="Empire">Empire</Tab>
         </TabList>
-        <TabPanel id="Founding">
-          Arma virumque cano, Troiae qui primus ab oris.
-        </TabPanel>
-        <TabPanel id="Monarchy">
-          Senatus Populusque Romanus.
-        </TabPanel>
-        <TabPanel id="Empire">
-          Alea jacta est.
-        </TabPanel>
+        <TabPanel id="Founding">Arma virumque cano, Troiae qui primus ab oris.</TabPanel>
+        <TabPanel id="Monarchy">Senatus Populusque Romanus.</TabPanel>
+        <TabPanel id="Empire">Alea jacta est.</TabPanel>
       </Tabs>
     </DemoContainer>
   )

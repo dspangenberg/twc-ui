@@ -31,7 +31,7 @@
         {
           "path": "resources/js/components/twc-ui/form.tsx",
           "type": "registry:ui",
-          "target": "components/twc-ui/tabs.tsx"
+          "target": "components/twc-ui/form.tsx"
         }
       ]
     },
@@ -43,9 +43,9 @@
       "dependencies": ["react-aria-components", "@hugeicons/react", "@hugeicons/core-free-icons"],
       "files": [
         {
-          "path": "resources/js/components/twc-ui/form.tsx",
+          "path": "resources/js/components/twc-ui/form-errors.tsx",
           "type": "registry:ui",
-          "target": "components/twc-ui/tabs.tsx"
+          "target": "components/twc-ui/form-errors.tsx"
         }
       ]
     },
@@ -64,7 +64,7 @@
         {
           "path": "resources/js/hooks/use-form.ts",
           "type": "registry:hook",
-          "target": "hooks/twc-ui/tabs.tsx"
+          "target": "hooks/twc-ui/use-form.ts"
         }
       ]
     }

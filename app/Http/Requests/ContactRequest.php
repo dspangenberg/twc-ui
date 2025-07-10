@@ -14,6 +14,7 @@ class ContactRequest extends FormRequest
             'email' => ['required', 'email', 'max:254'],
             'gender' => ['required'],
             'is_vip' => ['required'],
+            'hourly' => ['required', 'numeric', 'gt:0'],
         ];
     }
 

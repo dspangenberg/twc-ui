@@ -2,10 +2,7 @@ import React from 'react'
 import { cn } from '@/lib/utils' // oder der entsprechende Pfad zu Ihrer cn-Funktion
 
 const Step = ({ className, ...props }: React.ComponentProps<'h3'>) => (
-  <h3
-    className={cn('step mt-8 mb-4 scroll-m-20 tracking-tight', className)}
-    {...props}
-  />
+  <h3 className={cn('step mt-8 mb-4 scroll-m-20 tracking-tight', className)} {...props} />
 )
 
 const Steps = ({ ...props }: React.ComponentProps<'div'>) => (

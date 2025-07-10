@@ -24,6 +24,8 @@ class ContactData extends Data
         public readonly string $gender,
         public readonly ?string $note,
         public readonly bool $is_vip,
+        public readonly float $hourly,
+        public readonly ?int $country_id,
 
         #[WithTransformer(DateTimeInterfaceTransformer::class, format: 'Y-m-d')]
         public readonly ?DateTime $dob,

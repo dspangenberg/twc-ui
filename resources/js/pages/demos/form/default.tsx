@@ -3,13 +3,16 @@ import { DemoContainer } from '@/components/docs/DemoContainer'
 import { Button } from '@/components/twc-ui/button'
 import { Form, useForm } from '@/components/twc-ui/form'
 import { FormGroup } from '@/components/twc-ui/form-group'
-import { TextField } from '@/components/twc-ui/textfield'
+import { NumberField } from '@/components/twc-ui/number-field'
+import { Select } from '@/components/twc-ui/select'
+import { TextField } from '@/components/twc-ui/text-field'
 
 interface Props {
   contact: App.Data.ContactData
+  countries: App.Data.CountryData[]
 }
 
-export default function Dashboard({ contact }: Props) {
+export default function Dashboard({ contact, countries }: Props) {
   const form = useForm<App.Data.ContactData>(
     'contact-form',
     'post',
@@ -20,16 +23,27 @@ export default function Dashboard({ contact }: Props) {
   return (
     <DemoContainer>
       <Head title="Form Demo" />
-      <Form form={form} className="mx-auto max-w-lg">
+      <Form form={form} className="mx-auto my-12 max-w-lg">
         <FormGroup>
           <div className="col-span-12">
-            <TextField isRequired label="First name" {...form.register('first_name')} />
+            <TextField autoFocus isRequired label="First name" {...form.register('first_name')} />
           </div>
           <div className="col-span-12">
             <TextField isRequired label="Last name" {...form.register('last_name')} />
           </div>
           <div className="col-span-12">
             <TextField isRequired label="E-Mail" {...form.register('email')} />
+          </div>
+          <div className="col-span-12">
+            <Select label="Country" {...form.register('country_id')} items={countries} />
+          </div>
+          <div className="col-span-12">
+            <NumberField
+              isRequired
+              label="Hourly rate"
+              {...form.register('hourly')}
+              description="How much is the fish?"
+            />
           </div>
           <div className="col-span-24">
             <TextField textArea autoSize label="Note" {...form.register('note')} />

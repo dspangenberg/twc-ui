@@ -77,7 +77,6 @@ export const Form = <T extends FormSchema>({
       form.submit({
         preserveScroll: true,
         onError: (errors: SimpleValidationErrors) => {
-          console.error(errors)
           form.setErrors(errors)
           reject(errors)
         },

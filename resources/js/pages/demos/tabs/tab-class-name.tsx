@@ -10,15 +10,9 @@ export const Demo = () => {
           <Tab id="Monarchy">Monarchy and Republic</Tab>
           <Tab id="Empire">Empire</Tab>
         </TabList>
-        <TabPanel id="Founding">
-          Arma virumque cano, Troiae qui primus ab oris.
-        </TabPanel>
-        <TabPanel id="Monarchy">
-          Senatus Populusque Romanus.
-        </TabPanel>
-        <TabPanel id="Empire">
-          Alea jacta est.
-        </TabPanel>
+        <TabPanel id="Founding">Arma virumque cano, Troiae qui primus ab oris.</TabPanel>
+        <TabPanel id="Monarchy">Senatus Populusque Romanus.</TabPanel>
+        <TabPanel id="Empire">Alea jacta est.</TabPanel>
       </Tabs>
     </DemoContainer>
   )

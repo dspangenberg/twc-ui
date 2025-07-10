@@ -20,7 +20,7 @@ const Input = ({ className, ...props }: AriaInputProps) => {
     <AriaInput
       className={composeRenderProps(className, className =>
         cn(
-          'flex h-9 w-full rounded-sm border border-input bg-transparent px-3 py-1 font-medium text-base shadow-none outline-0 transition-colors file:border-0 file:bg-transparent file:font-medium file:text-sm placeholder:text-muted-foreground',
+          'flex h-9 w-full rounded-sm border border-input bg-transparent px-3 py-1 font-medium text-sm shadow-none outline-0 transition-colors file:border-0 file:bg-transparent file:font-medium file:text-sm placeholder:text-muted-foreground',
           /* Disabled */
           'data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50 ',
           /* Focused */
@@ -40,21 +40,19 @@ interface TextAreaProps extends AriaTextAreaProps {
   autoSize?: boolean
 }
 
-const TextArea = ({ className, autoSize=false, ...props }: TextAreaProps) => {
+const TextArea = ({ className, autoSize = false, ...props }: TextAreaProps) => {
   return (
     <AriaTextArea
       className={composeRenderProps(className, className =>
         cn(
-          'flex h-9 min-h-[80px] w-full rounded-sm border border-input bg-transparent px-3 py-1 font-medium text-base shadow-none outline-0 transition-colors file:border-0 file:bg-transparent file:font-medium file:text-sm placeholder:text-muted-foreground',
+          'flex h-9 min-h-[80px] w-full rounded-sm border border-input bg-transparent px-3 py-1 font-medium shadow-none outline-0 transition-colors file:border-0 file:bg-transparent file:font-medium file:text-sm placeholder:text-muted-foreground',
           /* Disabled */
           'data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50',
           /* Focused */
           /* Resets */
           'focus:border-primary focus-visible:border-primary focus-visible:ring-[3px] focus-visible:ring-primary/20',
           'data-[invalid]:border-destructive data-[invalid]:focus-visible:border-destructive data-[invalid]:focus-visible:ring-destructive/20',
-          autoSize
-            ? 'min-h-[80px] resize-none field-sizing-content'
-            : 'h-9 min-h-[80px]',
+          autoSize ? 'min-h-[80px] resize-none field-sizing-content' : 'h-9 min-h-[80px]',
           className
         )
       )}
@@ -63,7 +61,7 @@ const TextArea = ({ className, autoSize=false, ...props }: TextAreaProps) => {
   )
 }
 
-interface TextFieldProps extends Omit<AriaTextFieldProps, "value" | "onChange"> {
+interface TextFieldProps extends Omit<AriaTextFieldProps, 'value' | 'onChange'> {
   label?: string
   description?: string
   textArea?: boolean
@@ -98,7 +96,7 @@ function TextField({
         onChange(val || '')
       } catch {
         // Falls nicht, verwenden Sie den string direkt
-        (onChange as (value: string) => void)(val)
+        ;(onChange as (value: string) => void)(val)
       }
     }
   }

@@ -1,6 +1,24 @@
 ---
-title: Alert dialog
+title: Alert dialog (Promise)
 order: 10
 ---
-
-Hi
+<DemoCodePreview codePath="alert-dialog/default.tsx" demoPath="demos/alert-dialog/default" />
+## Installation
+<InstallationSection
+  dependencies={['react-aria-components']}
+  components={['dialog.tsx', 'alert-dialog.tsx']}
+>
+  <InstallationCommand command="execute" params="shadcn@latest add ~website/r/alert-dialog.json" />
+</InstallationSection>
+## Usage
+<SourceCode code={`
+import { AlertDialog } from '@/components/twc-ui/alert-dialog'
+const doSomething = async () => {
+  const confirmed = await AlertDialog.call({
+        title: 'Are you absolutely sure?',
+        message:
+          'This action cannot be undone. This will permanently delete your account and remove your data from our servers.',
+        buttonTitle: 'Delete Account',
+        variant: 'destructive'
+      })}
+`} />

@@ -1,4 +1,3 @@
-
 import '@testing-library/jest-dom'
 import { vi } from 'vitest'
 import { configure } from '@testing-library/react'
@@ -7,7 +6,7 @@ import { configure } from '@testing-library/react'
 configure({
   testIdAttribute: 'data-testid',
   // This helps with React 18+ async rendering
-  asyncUtilTimeout: 2000,
+  asyncUtilTimeout: 2000
 })
 
 // Nur in Testumgebung ausführen
@@ -16,7 +15,7 @@ if (typeof window !== 'undefined' && process.env.NODE_ENV === 'test') {
   global.ResizeObserver = vi.fn().mockImplementation(() => ({
     observe: vi.fn(),
     unobserve: vi.fn(),
-    disconnect: vi.fn(),
+    disconnect: vi.fn()
   }))
 
   // Mock für matchMedia (für responsive Tests)
@@ -30,8 +29,8 @@ if (typeof window !== 'undefined' && process.env.NODE_ENV === 'test') {
       removeListener: vi.fn(), // deprecated
       addEventListener: vi.fn(),
       removeEventListener: vi.fn(),
-      dispatchEvent: vi.fn(),
-    })),
+      dispatchEvent: vi.fn()
+    }))
   })
 
   // Mock für IntersectionObserver (für Tooltips)
@@ -41,15 +40,15 @@ if (typeof window !== 'undefined' && process.env.NODE_ENV === 'test') {
     disconnect: vi.fn(),
     root: null,
     rootMargin: '',
-    thresholds: [],
+    thresholds: []
   }))
 
   // Mock für requestAnimationFrame
-  global.requestAnimationFrame = vi.fn().mockImplementation((cb) => {
+  global.requestAnimationFrame = vi.fn().mockImplementation(cb => {
     return setTimeout(cb, 16)
   })
 
-  global.cancelAnimationFrame = vi.fn().mockImplementation((id) => {
+  global.cancelAnimationFrame = vi.fn().mockImplementation(id => {
     clearTimeout(id)
   })
 }

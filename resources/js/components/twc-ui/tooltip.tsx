@@ -33,10 +33,13 @@ export function Tooltip({ children, ...props }: TooltipProps) {
       {...props}
       offset={8}
       className={composeRenderProps(props.className, (className, renderProps) =>
-        cn(tooltipVariants({
-          isEntering: renderProps.isEntering,
-          isExiting: renderProps.isExiting
-        }), className)
+        cn(
+          tooltipVariants({
+            isEntering: renderProps.isEntering,
+            isExiting: renderProps.isExiting
+          }),
+          className
+        )
       )}
     >
       <OverlayArrow>

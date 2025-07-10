@@ -1,4 +1,3 @@
-
 import { cva, type VariantProps } from 'class-variance-authority'
 import { LoaderCircleIcon } from 'lucide-react'
 import type { JSX } from 'react'
@@ -140,15 +139,12 @@ export const Button = ({
       {...props}
     >
       {composeRenderProps(children, children => (
-        <div aria-label={title || tooltip} className={cn('flex gap-2', size === 'icon' ? 'mx-auto' : '')}>
+        <div className={cn('flex gap-2', size === 'icon' ? 'mx-auto' : '')}>
           {!isLoading && icon && (
             <Icon
+              aria-label={title || tooltip}
               icon={icon}
-              className={cn(
-                disabled ? 'text-muted-foreground' : '',
-                iconSizeClass,
-                iconClassName
-              )}
+              className={cn(disabled ? 'text-muted-foreground' : '', iconSizeClass, iconClassName)}
             />
           )}
           {isLoading && (
