@@ -26,6 +26,7 @@
     "@types/node": "^24.0.10",
     "jsdom": "^26.1.0",
     "shiki": "^3.7.0",
+    "tailwind-scrollbar": "^4.0.2",
     "tailwindcss-react-aria-components": "^2.0.0",
     "tsx": "^4.20.3",
     "vite-plugin-run": "^0.6.1",

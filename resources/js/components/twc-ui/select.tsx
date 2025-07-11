@@ -36,6 +36,7 @@ const SelectValue = <T extends object>({ className, ...props }: AriaSelectValueP
     className={composeRenderProps(className, className =>
       cn(
         'line-clamp-1 data-[placeholder]:text-muted-foreground ',
+        'focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/20',
         /* Description */
         '[&>[slot=description]]:hidden',
         className
@@ -50,11 +51,11 @@ const SelectTrigger = ({ className, children, ...props }: AriaButtonProps) => (
     type="button"
     className={composeRenderProps(className, className =>
       cn(
-        'flex h-9 w-full items-center justify-between whitespace-nowrap rounded-sm border border-input bg-transparent px-3 py-2 font-medium text-sm shadow-none ring-offset-0',
+        'flex h-9 w-full items-center justify-between whitespace-nowrap rounded-sm border border-input bg-transparent px-3 py-2 font-medium text-sm shadow-none outline-0 ring-offset-0',
         /* Disabled */
         'data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50',
+        'focus-visible:border-primary focus-visible:ring-[3px] focus-visible:ring-primary/20',
         /* Focused */
-        'focus-visible:!ring-offset-0 focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/20',
         'data-[invalid]:border-destructive data-[invalid]:focus-visible:border-destructive data-[invalid]:focus-visible:ring-destructive/20',
         className
       )
@@ -151,7 +152,7 @@ function Select<T extends object>({
     >
       {label && <Label value={label} />}
       <SelectTrigger autoFocus={autoFocus}>
-        <SelectValue className="" />
+        <SelectValue  className="focus-within-0 border-transparent" />
       </SelectTrigger>
       {description && (
         <Text className="text-muted-foreground text-sm" slot="description">
