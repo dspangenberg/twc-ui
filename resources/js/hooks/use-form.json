@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "button",
+  "type": "registry:ui",
+  "title": "Button",
+  "description": "React aria component button",
+  "registryDependencies": [
+    "$REGURL/r/icon.json",
+    "$REGURL/r/tooltip.json"
+  ],
+  "files": [
+    {
+      "path": "resources/js/components/twc-ui/button.tsx",
+      "type": "registry:ui",
+      "target": "~/components/ui/twc-ui/button.tsx"
+    }
+  ]
+}
