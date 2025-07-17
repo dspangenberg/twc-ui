@@ -4,8 +4,9 @@ import { Button } from '@/components/twc-ui/button'
 import { Form, useForm } from '@/components/twc-ui/form'
 import { FormGroup } from '@/components/twc-ui/form-group'
 import { NumberField } from '@/components/twc-ui/number-field'
-import { Select } from '@/components/twc-ui/select'
+import { ComboBox } from '@/components/twc-ui/combo-box'
 import { TextField } from '@/components/twc-ui/text-field'
+
 
 interface Props {
   contact: App.Data.ContactData
@@ -35,7 +36,7 @@ export default function Dashboard({ contact, countries }: Props) {
             <TextField isRequired label="E-Mail" {...form.register('email')} />
           </div>
           <div className="col-span-12">
-            <Select label="Country" {...form.register('country_id')} items={countries} />
+            <ComboBox label="Country" {...form.register('country_id')} items={countries} />
           </div>
           <div className="col-span-12">
             <NumberField
