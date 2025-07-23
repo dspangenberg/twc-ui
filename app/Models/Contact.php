@@ -18,4 +18,11 @@ class Contact extends Model
         'hourly' => 0,
         'dob' => null
     ];
+
+    protected function casts(): array
+    {
+        return [
+            'dob' => 'date',
+        ];
+    }
 }

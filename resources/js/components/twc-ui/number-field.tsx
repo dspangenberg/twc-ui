@@ -1,21 +1,18 @@
 import { ChevronDown, ChevronUp } from 'lucide-react'
+import type * as React from 'react'
 import {
   type ButtonProps as AriaButtonProps,
-  composeRenderProps,
   Input as AriaInput,
   type InputProps as AriaInputProps,
   NumberField as AriaNumberField,
   type NumberFieldProps as AriaNumberFieldProps,
-  Text,
-  type ValidationResult as AriaValidationResult
+  composeRenderProps,
+  Text
 } from 'react-aria-components'
-
+import { useFormContext } from '@/components/twc-ui/form'
 import { cn } from '@/lib/utils'
-
 import { Button } from './button'
 import { FieldError, FieldGroup, Label } from './field'
-import { useFormContext } from '@/components/twc-ui/form'
-import * as React from 'react'
 
 const BaseNumberField = AriaNumberField
 
@@ -29,7 +26,7 @@ const NumberFieldInput = ({ className, ...props }: AriaInputProps) => {
     <AriaInput
       className={composeRenderProps(className, className =>
         cn(
-          'w-fit min-w-0 outline-0 flex-1 border-0 text-right text-base border-transparent bg-background pl-0 pr-4 mr-2 placeholder:text-muted-foreground [&::-webkit-search-cancel-button]:hidden ',
+          'mr-2 w-fit min-w-0 flex-1 border-0 border-transparent bg-background pr-4 pl-0 text-right text-sm outline-0 placeholder:text-muted-foreground [&::-webkit-search-cancel-button]:hidden ',
           className
         )
       )}
@@ -69,7 +66,6 @@ const NumberFieldStepper = ({ className, ...props }: AriaButtonProps) => {
 interface NumberFieldProps extends Omit<AriaNumberFieldProps, 'value' | 'onChange'> {
   label?: string
   description?: string
-  errorMessage?: string | ((validation: AriaValidationResult) => string)
   onChange?: ((value: number | null) => void) | ((value: number) => void)
   value?: number | null | undefined
   error?: string | undefined
@@ -79,7 +75,6 @@ interface NumberFieldProps extends Omit<AriaNumberFieldProps, 'value' | 'onChang
 const NumberField = ({
   label,
   description,
-  errorMessage,
   className,
   formatOptions,
   isRequired = false,
@@ -99,11 +94,11 @@ const NumberField = ({
   const handleChange = (val: number) => {
     if (onChange) {
       try {
-        // Wenn onChange null akzeptiert, verwende val direkt (kann NaN sein)
-        onChange(isNaN(val) ? 0 : val)
+        // If onChange accepts null, use val directly (can be NaN)
+        onChange(Number.isNaN(val) ? 0 : val)
       } catch {
-        // Falls onChange nur number akzeptiert, verwende 0 als Fallback
-        ;(onChange as (value: number) => void)(isNaN(val) ? 0 : val)
+        // If onChange only accepts number, use 0 as fallback
+        ;(onChange as (value: number) => void)(Number.isNaN(val) ? 0 : val)
       }
     }
   }
@@ -119,13 +114,13 @@ const NumberField = ({
       onChange={handleChange}
       {...props}
     >
-      <Label value={label} isRequired={isRequired} isInvalid={hasError} />
+      <Label value={label} isRequired={isRequired}  />
       <FieldGroup isInvalid={hasError}>
-        <NumberFieldInput className="focus:ring-0 outline:0" />
+        <NumberFieldInput className="outline:0 focus:ring-0" />
         <NumberFieldSteppers />
       </FieldGroup>
       {description && (
-        <Text className="text-sm text-muted-foreground" slot="description">
+        <Text className="text-muted-foreground text-sm" slot="description">
           {description}
         </Text>
       )}

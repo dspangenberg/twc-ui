@@ -19,10 +19,10 @@ class ContactCreateController extends Controller
     public function __invoke()
     {
 
-        $contact = new Contact();
+        $contact = Contact::query()->first();
 
         return Inertia::render('demos/form/default', [
-            'client' => ContactData::from($contact),
+            'contact' => ContactData::from($contact),
             'countries' => CountryData::collect(Country::query()->orderBy('name')->get())
         ]);
     }

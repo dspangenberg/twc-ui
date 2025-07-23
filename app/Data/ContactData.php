@@ -12,6 +12,7 @@ use Spatie\LaravelData\Attributes\WithTransformer;
 use Spatie\LaravelData\Data;
 use Spatie\LaravelData\Transformers\DateTimeInterfaceTransformer;
 use Spatie\TypeScriptTransformer\Attributes\TypeScript;
+use Illuminate\Support\Carbon;
 
 #[TypeScript]
 class ContactData extends Data
@@ -28,7 +29,8 @@ class ContactData extends Data
         public readonly ?int $country_id,
 
         #[WithTransformer(DateTimeInterfaceTransformer::class, format: 'Y-m-d')]
-        public readonly ?DateTime $dob,
+        public readonly ?Carbon
+        $dob,
     ) {
     }
 }

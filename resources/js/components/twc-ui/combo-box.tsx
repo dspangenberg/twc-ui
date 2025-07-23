@@ -32,19 +32,36 @@ const ComboBoxHeader = ListBoxHeader
 const ComboBoxSection = ListBoxSection
 const ComboBoxCollection = ListBoxCollection
 
-const ComboBoxInput = ({ className, ...props }: AriaInputProps) => (
-  <AriaInput
-    className={composeRenderProps(className, (className) =>
-      cn(
-        'flex h-9 w-full border-input bg-background px-3 py-2 text-sm outline-none file:border-0 file:bg-transparent file:font-medium file:text-sm placeholder:text-muted-foreground',
-        "data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50",
-        className
-      )
-    )}
-    onFocus={event => event.target.select()}
-    {...props}
-  />
-)
+const ComboBoxInput = ({ className, ...props }: AriaInputProps) => {
+  const [isReadOnly, setIsReadOnly] = useState(true)
+  const randomName = useMemo(() => `combo_${Math.random().toString(36).substring(2, 11)}`, [])
+
+  return (
+    <AriaInput
+      className={composeRenderProps(className, (className) =>
+        cn(
+          'flex h-9 w-full border-input bg-background px-3 py-2 text-sm outline-none file:border-0 file:bg-transparent file:font-medium file:text-sm placeholder:text-muted-foreground',
+          "data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50",
+          className
+        )
+      )}
+      onFocus={(event) => {
+        event.target.select()
+        setIsReadOnly(false)
+      }}
+      onBlur={() => setIsReadOnly(true)}
+      autoComplete="off"
+      autoCorrect="off"
+      autoCapitalize="off"
+      spellCheck="false"
+      data-form-type="other"
+      data-lpignore="true"
+      name={randomName}
+      readOnly={isReadOnly}
+      {...props}
+    />
+  )
+}
 
 const ComboBoxPopover = ({ className, ...props }: AriaPopoverProps) => (
   <Popover
@@ -151,7 +168,7 @@ const ComboBox = <T extends Record<string, unknown>>({
       name={name}
       {...props}
     >
-      <Label>{label}</Label>
+      <Label value={label}/>
       <FieldGroup className="p-0">
         <ComboBoxInput className="border-transparent focus:ring-0"/>
         <Button variant="ghost" size="icon" className="mr-1.5 size-6 p-1">
