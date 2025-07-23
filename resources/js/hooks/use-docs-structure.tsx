@@ -7,7 +7,7 @@ import {
   useMemo,
   useState
 } from 'react'
-import { z } from 'zod'
+import * as z from 'zod'
 
 export interface DocItem {
   title: string
@@ -26,12 +26,11 @@ const DocItemSchema: z.ZodType<DocItem> = z.lazy(() =>
     path: z.string(),
     route: z.string().optional(),
     children: z.array(DocItemSchema).optional(),
-    frontmatter: z.record(z.any()).optional()
+    frontmatter: z.record(z.string(), z.any()).optional() // Hier: ersten Parameter (Key-Typ) hinzufügen
   })
 )
 
 // Schema für das gesamte Array
-const DocsStructureSchema = z.array(DocItemSchema)
 
 interface DocsStructureContextType {
   structure: DocItem[]
@@ -120,21 +119,12 @@ export function DocsStructureProvider({ children }: DocsStructureProviderProps) 
       }
 
       const rawData = await response.json()
-      const validatedData = DocsStructureSchema.parse(rawData)
-      const sortedData = sortDocsItems(validatedData)
-
+      // Direkte Verwendung ohne Zod-Validierung
+      const sortedData = sortDocsItems(rawData as DocItem[])
       setStructure(sortedData)
     } catch (err) {
       console.error('Error loading docs structure:', err)
-
-      if (err instanceof z.ZodError) {
-        const errorMessage = `Invalid docs structure format: ${err.errors
-          .map(e => `${e.path.join('.')}: ${e.message}`)
-          .join(', ')}`
-        setError(errorMessage)
-      } else {
-        setError(err instanceof Error ? err.message : 'Unknown error')
-      }
+      setError(err instanceof Error ? err.message : 'Unknown error')
     } finally {
       setLoading(false)
     }
