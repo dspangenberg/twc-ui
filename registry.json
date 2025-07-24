@@ -2,58 +2,119 @@
   "$schema": "https://ui.shadcn.com/schema/registry.json",
   "name": "twc-ui",
   "homepage": "https://ui.twiceware.cloud",
-  "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>",
   "items": [
     {
-      "name": "tabs",
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "button",
       "type": "registry:ui",
-      "title": "Tabs",
-      "description": "React aria component tabs",
+      "title": "Button",
+      "description": "Button component",
+      "dependencies": [
+        "class-variance-authority",
+        "react-aria-components",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "https://twc-ui.test/r/icon.json",
+        "https://twc-ui.test/r/tooltip.json"
+      ],
       "files": [
         {
-          "path": "resources/js/components/twc-ui/tabs.tsx",
+          "path": "resources/js/components/twc-ui/tooltip.tsx",
           "type": "registry:ui",
-          "target": "components/ui/twc-ui/tabs.tsx"
+          "target": "components/ui/twc-ui/tooltip.tsx"
         }
-      ]
+      ],
+      "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
     },
     {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "form-errors",
+      "type": "registry:ui",
+      "title": "Error section",
+      "description": "Error section for forms",
+      "dependencies": [
+        "@hugeicons/core-free-icons"
+      ],
+      "registryDependencies": [
+        "https://twc-ui.test/r/icon.json"
+      ],
+      "files": [
+        {
+          "path": "resources/js/components/twc-ui/form-errors.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/twc-ui/form-errors.tsx"
+        }
+      ],
+      "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "name": "form",
       "type": "registry:ui",
       "title": "Form",
-      "description": "form component für inertia",
-      "dependencies": ["react-aria-components"],
+      "description": "Form component",
+      "dependencies": [
+        "@inertiajs/core",
+        "laravel-precognition"
+      ],
       "registryDependencies": [
-        "https://ui-api.test/r/form-errors.json",
-        "https://ui-api.test/r/use-form.json"
+        "https://twc-ui.test/r/form-errors.json",
+        "https://twc-ui.test/r/use-form.json"
       ],
       "files": [
         {
           "path": "resources/js/components/twc-ui/form.tsx",
           "type": "registry:ui",
-          "target": "components/twc-ui/form.tsx"
+          "target": "components/ui/twc-ui/form.tsx"
         }
-      ]
+      ],
+      "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
     },
     {
-      "name": "form-errors",
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "icon",
       "type": "registry:ui",
-      "title": "Form errors",
-      "description": "form errors component für inertia",
-      "dependencies": ["react-aria-components", "@hugeicons/react", "@hugeicons/core-free-icons"],
+      "title": "Tooltip",
+      "description": "React aria components tooltip",
+      "dependencies": [
+        "lucide-react",
+        "@hugeicons/react"
+      ],
       "files": [
         {
-          "path": "resources/js/components/twc-ui/form-errors.tsx",
+          "path": "resources/js/components/twc-ui/icon.tsx",
           "type": "registry:ui",
-          "target": "components/twc-ui/form-errors.tsx"
+          "target": "components/ui/twc-ui/icon.tsx"
         }
-      ]
+      ],
+      "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
     },
     {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "button",
+      "type": "registry:ui",
+      "title": "Button",
+      "description": "React aria component button",
+      "registryDependencies": [
+        "https://twc-ui.test/r/icon.json",
+        "https://twc-ui.test/r/tooltip.json"
+      ],
+      "files": [
+        {
+          "path": "resources/js/components/twc-ui/button.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/twc-ui/button.tsx"
+        }
+      ],
+      "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "name": "use-form",
       "type": "registry:hook",
-      "title": "use-form-Hook",
-      "description": "use-form-hook",
+      "title": "useForm-Hook",
+      "description": "useForm-Hook with Laravel Precognition",
       "dependencies": [
         "@inertiajs/core",
         "laravel-precognition",
@@ -66,7 +127,8 @@
           "type": "registry:hook",
           "target": "hooks/twc-ui/use-form.ts"
         }
-      ]
+      ],
+      "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
     }
   ]
 }

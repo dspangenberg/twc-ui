@@ -2,9 +2,9 @@ import type { FormDataConvertible } from '@inertiajs/core'
 import type { RequestMethod, SimpleValidationErrors, ValidationConfig } from 'laravel-precognition'
 import type React from 'react'
 import { createContext, type FormEvent, type HTMLAttributes, useContext } from 'react'
-import { FormErrors } from '@/components/twc-ui/form-errors'
 import { useForm as internalUseForm } from '@/hooks/use-form'
 import { cn } from '@/lib/utils'
+import { FormErrors } from './form-errors'
 
 export type FormSchema = Record<string, FormDataConvertible>
 

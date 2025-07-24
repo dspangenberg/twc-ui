@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "use-form",
+  "type": "registry:hook",
+  "title": "useForm-Hook",
+  "description": "useForm-Hook with Laravel Precognition",
+  "dependencies": [
+    "@inertiajs/core",
+    "laravel-precognition",
+    "laravel-precognition-react-inertia",
+    "moderndash"
+  ],
+  "files": [
+    {
+      "path": "resources/js/hooks/use-form.ts",
+      "type": "registry:hook",
+      "target": "hooks/twc-ui/use-form.ts"
+    }
+  ]
+}

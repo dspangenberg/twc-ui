@@ -1,18 +1,19 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
-  "name": "tooltip",
+  "name": "icon",
   "type": "registry:ui",
   "title": "Tooltip",
   "description": "React aria components tooltip",
   "dependencies": [
-    "class-variance-authority",
-    "react-aria-components"
+    "lucide-react",
+    "@hugeicons/react"
   ],
   "files": [
     {
-      "path": "resources/js/components/twc-ui/tooltip.tsx",
+      "path": "resources/js/components/twc-ui/icon.tsx",
       "type": "registry:ui",
-      "target": "~/components/ui/twc-ui/tooltip.tsx"
+      "target": "components/ui/twc-ui/icon.tsx"
     }
   ]
 }
+

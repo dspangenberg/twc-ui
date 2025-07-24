@@ -8,7 +8,7 @@ import {
   type TooltipProps
 } from 'react-aria-components'
 import { cn } from '@/lib/utils'
-import { Icon, type IconType } from '@/components/twc-ui/icon'
+import { Icon, type IconType } from './icon'
 import { Tooltip, TooltipTrigger } from './tooltip'
 
 const buttonVariants = cva(
@@ -140,15 +140,16 @@ export const Button = ({
     >
       {composeRenderProps(children, children => (
         <div className={cn('flex gap-2', size === 'icon' ? 'mx-auto' : '')}>
-          {!isLoading && icon && (
-            <Icon
-              aria-label={title || tooltip}
-              icon={icon}
-              className={cn(disabled ? 'text-muted-foreground' : '', iconSizeClass, iconClassName)}
-            />
-          )}
-          {isLoading && (
-            <LoaderCircleIcon className={cn('animate-spin', iconSizeClass)} aria-hidden="true" />
+          {!isLoading ? (
+            icon && (
+              <Icon
+                aria-label={title || tooltip}
+                icon={icon}
+                className={cn(disabled ? 'text-muted-foreground' : '', iconSizeClass, iconClassName)}
+              />
+            )
+          ) : (
+            <LoaderCircleIcon className={cn('animate-spin', iconSizeClass)}  />
           )}
           {(title || children) && variant !== 'toolbar' && (
             <div className={cn(isToolbar ? 'hidden md:flex' : '')}>{title || children}</div>
