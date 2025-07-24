@@ -3,7 +3,7 @@ import { DemoContainer } from '@/components/docs/DemoContainer'
 import { Button } from '@/components/twc-ui/button'
 import { Form, useForm } from '@/components/twc-ui/form'
 import { FormGroup } from '@/components/twc-ui/form-group'
-import { TextField } from '@/components/twc-ui/textfield'
+import { TextField } from '@/components/twc-ui/text-field'
 
 interface Props {
   contact: App.Data.ContactData

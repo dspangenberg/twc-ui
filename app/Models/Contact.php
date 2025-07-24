@@ -15,6 +15,14 @@ class Contact extends Model
         'email' => '',
         'gender' => 'f',
         'is_vip' => false,
+        'hourly' => 0,
         'dob' => null
     ];
+
+    protected function casts(): array
+    {
+        return [
+            'dob' => 'date',
+        ];
+    }
 }

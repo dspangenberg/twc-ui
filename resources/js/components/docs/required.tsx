@@ -1,5 +1,3 @@
 export const Required = () => {
-  return (
-    <span className="text-destructive">*</span>
-  )
+  return <span className="text-destructive">*</span>
 }

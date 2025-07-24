@@ -8,7 +8,12 @@
     }
   },
   "files": {
-    "includes": ["!**/*.generated/*", "!tsconfig.json", "resources/js/components/ui"]
+    "includes": [
+      "!**/*.generated/*",
+      "!tsconfig.json",
+      "!resources/js/components/ui",
+      "resources/js/**/*"
+    ]
   },
   "formatter": {
     "enabled": true,
@@ -60,7 +65,7 @@
         "useUniqueElementIds": "off",
         "useSortedClasses": {
           "level": "error",
-          "fix": "none",
+          "fix": "safe",
           "options": {
             "attributes": ["classList"],
             "functions": ["cn", "twJoin", "tv", "composeRenderProps", "composeTailwindRenderProps"]

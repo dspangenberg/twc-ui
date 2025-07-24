@@ -8,7 +8,7 @@ export const Demo = () => {
   return (
     <DemoContainer className="gap-4">
       <Icon icon={Rocket02Icon} className="size-10" />
-      <Icon icon={Moon} className="size-10"  />
+      <Icon icon={Moon} className="size-10" />
     </DemoContainer>
   )
 }

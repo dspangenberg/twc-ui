@@ -16,7 +16,7 @@ import { useFormContext } from '@/components/twc-ui/form'
 import { cn } from '@/lib/utils'
 
 const labelVariants = cva([
-  'text-base font-normal leading-none',
+  'text-sm font-normal leading-none',
   /* Disabled */
   'data-[disabled]:cursor-not-allowed data-[disabled]:opacity-70',
   /* Invalid */
@@ -42,7 +42,7 @@ const Label = ({ className, children, value, isRequired = false, ...props }: Lab
 function FormDescription({ className, ...props }: AriaTextProps) {
   return (
     <AriaText
-      className={cn('text-[0.8rem] text-muted-foreground', className)}
+      className={cn('text-xs text-muted-foreground', className)}
       {...props}
       slot="description"
     />
@@ -68,7 +68,7 @@ const fieldGroupVariants = cva('', {
       default: [
         'relative flex h-9 w-full items-center overflow-hidden rounded-sm border border-input bg-background px-3 py-1 text-base font-medium shadow-none transition-colors',
         /* Focus Within */
-        'data-[focus-within]:border-ring data-[focus-within]:ring-ring/20 data-[focus-within]:ring-[3px] ',
+        'focus:border-primary focus-visible:border-primary focus-visible:ring-[3px] focus-visible:ring-primary/20',
         'data-[invalid]:focus-within:ring-destructive/20  data-[invalid]:focus-within:border-destructive  data-[invalid]:border-destructive',
         /* Disabled */
         'data-[disabled]:opacity-50'

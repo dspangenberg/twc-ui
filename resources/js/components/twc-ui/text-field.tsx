@@ -1,4 +1,3 @@
-import * as React from 'react'
 import {
   Input as AriaInput,
   type InputProps as AriaInputProps,
@@ -15,12 +14,15 @@ import { FieldError, Label } from './field'
 
 const BaseTextField = AriaTextField
 
-const Input = ({ className, ...props }: AriaInputProps) => {
+const Input = ({
+  className,
+  ...props
+}: AriaInputProps) => {
   return (
     <AriaInput
       className={composeRenderProps(className, className =>
         cn(
-          'flex h-9 w-full rounded-sm border border-input bg-transparent px-3 py-1 font-medium text-base shadow-none outline-0 transition-colors file:border-0 file:bg-transparent file:font-medium file:text-sm placeholder:text-muted-foreground',
+          'flex h-9 w-full rounded-sm border border-input bg-transparent px-3 py-1 font-medium text-sm shadow-none outline-0 transition-colors file:border-0 file:bg-transparent file:font-medium file:text-sm placeholder:text-muted-foreground',
           /* Disabled */
           'data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50 ',
           /* Focused */
@@ -40,21 +42,23 @@ interface TextAreaProps extends AriaTextAreaProps {
   autoSize?: boolean
 }
 
-const TextArea = ({ className, autoSize=false, ...props }: TextAreaProps) => {
+const TextArea = ({
+  className,
+  autoSize = false,
+  ...props
+}: TextAreaProps) => {
   return (
     <AriaTextArea
       className={composeRenderProps(className, className =>
         cn(
-          'flex h-9 min-h-[80px] w-full rounded-sm border border-input bg-transparent px-3 py-1 font-medium text-base shadow-none outline-0 transition-colors file:border-0 file:bg-transparent file:font-medium file:text-sm placeholder:text-muted-foreground',
+          'flex h-9 min-h-[80px] w-full rounded-sm border border-input bg-transparent px-3 py-1 font-medium text-sm shadow-none outline-0 transition-colors file:border-0 file:bg-transparent file:font-medium file:text-sm placeholder:text-muted-foreground',
           /* Disabled */
           'data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50',
           /* Focused */
           /* Resets */
           'focus:border-primary focus-visible:border-primary focus-visible:ring-[3px] focus-visible:ring-primary/20',
           'data-[invalid]:border-destructive data-[invalid]:focus-visible:border-destructive data-[invalid]:focus-visible:ring-destructive/20',
-          autoSize
-            ? 'min-h-[80px] resize-none field-sizing-content'
-            : 'h-9 min-h-[80px]',
+          autoSize ? 'field-sizing-content min-h-[80px] resize-none' : 'h-9 min-h-[80px]',
           className
         )
       )}
@@ -63,7 +67,7 @@ const TextArea = ({ className, autoSize=false, ...props }: TextAreaProps) => {
   )
 }
 
-interface TextFieldProps extends Omit<AriaTextFieldProps, "value" | "onChange"> {
+interface TextFieldProps extends Omit<AriaTextFieldProps, 'value' | 'onChange'> {
   label?: string
   description?: string
   textArea?: boolean
@@ -74,9 +78,10 @@ interface TextFieldProps extends Omit<AriaTextFieldProps, "value" | "onChange"> 
   value?: string | null | undefined
   error?: string | undefined
   onBlur?: () => void
+  autoComplete?: string
 }
 
-function TextField({
+function TextField ({
   label,
   description,
   textArea,
@@ -84,6 +89,7 @@ function TextField({
   autoSize = false,
   rows = 3,
   className,
+  autoComplete = 'off',
   onChange,
   value,
   ...props
@@ -97,8 +103,8 @@ function TextField({
       try {
         onChange(val || '')
       } catch {
-        // Falls nicht, verwenden Sie den string direkt
-        (onChange as (value: string) => void)(val)
+        // If not, use the string directly
+        ;(onChange as (value: string) => void)(val)
       }
     }
   }
@@ -114,7 +120,8 @@ function TextField({
       {...props}
     >
       <Label isRequired={isRequired} value={label} />
-      {textArea ? <TextArea rows={rows} autoSize={autoSize} /> : <Input />}
+      {textArea ? <TextArea rows={rows} autoSize={autoSize} autoComplete={autoComplete} /> :
+        <Input autoComplete={autoComplete} />}
       {description && (
         <Text className="text-muted-foreground text-sm" slot="description">
           {description}

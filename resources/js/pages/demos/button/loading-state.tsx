@@ -13,9 +13,9 @@ export const LoadingStateDemo = () => {
 
   return (
     <DemoContainer className="gap-4">
-      <Button loading={isLoading} icon={PrinterIcon} onClick={showLoading} title="Print" />
+      <Button isLoading={isLoading} icon={PrinterIcon} onClick={showLoading} title="Print" />
       <Button
-        loading={isLoading}
+        isLoading={isLoading}
         icon={PrinterIcon}
         size="icon"
         variant="outline"

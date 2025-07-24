@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "form-errors",
+  "type": "registry:ui",
+  "title": "Error section",
+  "description": "Error section for forms",
+  "dependencies": [
+    "@hugeicons/core-free-icons"
+  ],
+  "registryDependencies": [
+    "$REGURL/r/icon.json"
+  ],
+  "files": [
+    {
+      "path": "resources/js/components/twc-ui/form-errors.tsx",
+      "type": "registry:ui",
+      "target": "components/ui/twc-ui/form-errors.tsx"
+    }
+  ]
+}

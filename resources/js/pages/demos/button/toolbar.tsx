@@ -8,13 +8,13 @@ export const ToolbarDemo = () => {
     <DemoContainer className="gap-4">
       <Toolbar>
         <Button variant="toolbar-default" icon={Pen01Icon} title="Edit" />
-        <Button variant="toolbar" icon={PrinterIcon}  title="Print" />
-        <Button variant="toolbar" icon={Delete02Icon}  title="Delete" />
+        <Button variant="toolbar" icon={PrinterIcon} title="Print" />
+        <Button variant="toolbar" icon={Delete02Icon} title="Delete" />
       </Toolbar>
       <Toolbar variant="secondary">
         <Button variant="toolbar-default" icon={Pen01Icon} title="Edit" />
-        <Button variant="toolbar" icon={PrinterIcon}  title="Print" />
-        <Button variant="toolbar" icon={Delete02Icon}  title="Delete" />
+        <Button variant="toolbar" icon={PrinterIcon} title="Print" />
+        <Button variant="toolbar" icon={Delete02Icon} title="Delete" />
       </Toolbar>
     </DemoContainer>
   )

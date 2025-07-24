@@ -8,9 +8,10 @@
 namespace App\Http\Controllers\Contact;
 
 use App\Data\ContactData;
-use App\Data\UserData;
+use App\Data\CountryData;
 use App\Http\Controllers\Controller;
 use App\Models\Contact;
+use App\Models\Country;
 use Inertia\Inertia;
 
 class ContactCreateController extends Controller
@@ -18,10 +19,11 @@ class ContactCreateController extends Controller
     public function __invoke()
     {
 
-        $contact = new Contact();
+        $contact = Contact::query()->first();
 
         return Inertia::render('demos/form/default', [
-            'client' => ContactData::from($contact),
+            'contact' => ContactData::from($contact),
+            'countries' => CountryData::collect(Country::query()->orderBy('name')->get())
         ]);
     }
 }

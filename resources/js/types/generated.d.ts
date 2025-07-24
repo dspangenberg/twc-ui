@@ -7,6 +7,13 @@ email: string;
 gender: string;
 note: string | null;
 is_vip: boolean;
+hourly: number;
+country_id: number | null;
 dob: any | null;
+};
+export type CountryData = {
+id: number | null;
+name: string;
+iso_code: string;
 };
 }

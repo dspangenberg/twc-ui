@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "form",
+  "type": "registry:ui",
+  "title": "Form",
+  "description": "Form component",
+  "dependencies": [
+    "@inertiajs/core",
+    "laravel-precognition"
+  ],
+  "registryDependencies": [
+    "$REGURL/r/form-errors.json",
+    "$REGURL/r/use-form.json"
+  ],
+  "files": [
+    {
+      "path": "resources/js/components/twc-ui/form.tsx",
+      "type": "registry:ui",
+      "target": "components/ui/twc-ui/form.tsx"
+    }
+  ]
+}

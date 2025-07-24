@@ -8,9 +8,14 @@ interface DemoContainerProps {
 
 export const DemoContainer = ({ children, className }: DemoContainerProps) => {
   return (
-    <div className={cn('flex relative h-screen w-screen  px-md flex-wrap items-center justify-center', className)}>
+    <div
+      className={cn(
+        'flex relative h-screen w-screen bg-transparent px-md flex-wrap items-center justify-center',
+        className
+      )}
+    >
       {children}
-      <div className="absolute bottom-0 right-0 z-50 p-1 bg-gray-100 text-xs text-black px-2 rounded font-mono">
+      <div className="fixed bottom-0 right-0 z-50 p-1 bg-gray-100 text-xs text-black px-2 rounded font-mono">
         <span className="sm:hidden">xs</span>
         <span className="hidden sm:inline md:hidden">sm</span>
         <span className="hidden md:inline lg:hidden">md</span>

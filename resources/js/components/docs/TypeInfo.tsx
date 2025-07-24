@@ -17,14 +17,16 @@ export const TypeInfo = ({ title, types }: CalloutProps) => {
       <span className="font-mono">{title}</span>
       <PopoverTrigger>
         <Pressable>
-          <HugeiconsIcon role="button" icon={InformationCircleIcon} className="size-4 cursor-help"/>
+          <HugeiconsIcon
+            role="button"
+            icon={InformationCircleIcon}
+            className="size-4 cursor-help"
+          />
         </Pressable>
         <Popover>
           <ul className="font-mono p-4 text-sm">
             {sortedTypes.map((type, index) => (
-              <li key={index}>
-                {type}
-              </li>
+              <li key={index}>{type}</li>
             ))}
           </ul>
         </Popover>

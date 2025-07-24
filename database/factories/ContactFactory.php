@@ -19,7 +19,9 @@ class ContactFactory extends Factory
             'is_vip' => $this->faker->boolean(),
             'dob' => $this->faker->date(),
             'gender' => $this->faker->randomElement(['m', 'f']),
+            'country_id' => $this->faker->numberBetween(1, 250),
             'note' => $this->faker->text(),
+            'hourly' => $this->faker->randomFloat(2, 0, 100),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ];

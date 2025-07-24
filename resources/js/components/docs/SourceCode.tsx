@@ -102,18 +102,22 @@ export const SourceCode: React.FC<DemoCodePreviewProps> = ({
       {title && <h3>{title}</h3>}
       <div className="max-w-full overflow-hidden rounded-md border bg-muted text-sm">
         {!hideHeader && (
-        <div className="flex items-center ">
-          {header ? (
-            header
-          ) : (
-            <div className="flex-1 py-2 pl-4 font-medium font-mono">{fileName}</div>
-          )}
-          <div className="pr-1">
-            <ClipboardButton code={code} />
+          <div className="flex items-center ">
+            {header ? (
+              header
+            ) : (
+              <div className="flex-1 py-2 pl-4 font-medium font-mono">{fileName}</div>
+            )}
+            <div className="pr-1">
+              <ClipboardButton code={code} />
+            </div>
           </div>
-        </div>
         )}
-        <div className={cn('w-full overflow-x-hidden rounded-md bg-muted p-1.5 pt-0', { 'pt-1.5': hideHeader })}>
+        <div
+          className={cn('w-full overflow-x-hidden rounded-md bg-muted p-1.5 pt-0', {
+            'pt-1.5': hideHeader
+          })}
+        >
           {isLoading ? (
             <div className=" absolute right-0 left-0">
               <LogoSpinner className="mx-auto" />

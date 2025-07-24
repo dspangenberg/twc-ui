@@ -1,17 +1,17 @@
-import { cn } from '@/lib/utils';
-import { type LucideProps } from 'lucide-react';
-import { type ComponentType } from 'react';
-import { HugeiconsIcon, type IconSvgElement } from '@hugeicons/react';
+import { cn } from '@/lib/utils'
+import { type LucideProps } from 'lucide-react'
+import { type ComponentType } from 'react'
+import { HugeiconsIcon, type IconSvgElement } from '@hugeicons/react'
 
-export type IconType = ComponentType<LucideProps> | IconSvgElement;
+export type IconType = ComponentType<LucideProps> | IconSvgElement
 
 interface IconProps extends Omit<LucideProps, 'ref'> {
-  icon: IconType;
+  icon: IconType
   strokeWidth?: number
 }
 
 function isHugeIcon(icon: IconType): icon is IconSvgElement {
-  return Array.isArray(icon) && Array.isArray(icon[0]);
+  return Array.isArray(icon) && Array.isArray(icon[0])
 }
 
 export function Icon({ icon, className, strokeWidth = 1.5, ...props }: IconProps) {
@@ -23,15 +23,9 @@ export function Icon({ icon, className, strokeWidth = 1.5, ...props }: IconProps
         {...props}
         className={cn('h-4 w-4', className)}
       />
-    );
+    )
   }
 
-  const IconComponent = icon as ComponentType<LucideProps>;
-  return (
-    <IconComponent
-      className={cn('h-4 w-4', className)}
-      strokeWidth={strokeWidth}
-      {...props}
-    />
-  );
+  const IconComponent = icon as ComponentType<LucideProps>
+  return <IconComponent className={cn('h-4 w-4', className)} strokeWidth={strokeWidth} {...props} />
 }
