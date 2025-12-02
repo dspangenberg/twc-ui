@@ -95,8 +95,8 @@
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "name": "form-grid",
       "type": "registry:ui",
-      "title": "Error section",
-      "description": "Error section for forms",
+      "title": "Form Grid",
+      "description": "Grid layout component for forms",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
