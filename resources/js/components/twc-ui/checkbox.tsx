@@ -21,6 +21,7 @@ interface CheckboxProps {
   hasError?: boolean
   isIndeterminate?: boolean
   isSelected?: boolean
+  isDisabled?: boolean
   onChange: (checked: boolean) => void
   onBlur?: () => void
   checked?: boolean

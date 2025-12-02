@@ -21,6 +21,7 @@ interface Frontmatter {
   title?: string
   author?: string
   soon?: string
+  wip?: boolean
   date?: string
   tags?: string[]
   order: number
@@ -52,6 +53,7 @@ const DocNavigationItem = ({ item, currentRoute, depth = 0 }: DocNavigationItemP
   const isActive = currentRoute === item.route
   const hasChildren = item.children && item.children.length > 0
   const showSoon = item.frontmatter?.soon === true
+  const showWip = item.frontmatter?.wip === true
 
   if (item.type === 'directory') {
     return (

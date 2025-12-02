@@ -72,6 +72,7 @@ interface TextFieldProps extends Omit<AriaTextFieldProps, 'value' | 'onChange'> 
   description?: string
   textArea?: boolean
   rows?: number
+  placeholder?: string
   autoSize?: boolean
   onChange?: ((value: string | null) => void) | ((value: string) => void)
   name?: string
@@ -90,6 +91,7 @@ function TextField ({
   rows = 3,
   className,
   autoComplete = 'off',
+  placeholder = '',
   onChange,
   value,
   ...props
@@ -121,7 +123,7 @@ function TextField ({
     >
       {label && <Label isRequired={isRequired} value={label} />}
       {textArea ? <TextArea rows={rows} autoSize={autoSize} autoComplete={autoComplete} /> :
-        <Input autoComplete={autoComplete} />}
+        <Input autoComplete={autoComplete} placeholder={placeholder}/>}
       {description && (
         <FieldDescription>
           {description}

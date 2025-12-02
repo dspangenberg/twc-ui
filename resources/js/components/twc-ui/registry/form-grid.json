@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "form-grid",
+  "type": "registry:ui",
+  "title": "Error section",
+  "description": "Error section for forms",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "resources/js/components/twc-ui/form-grid.tsx",
+      "type": "registry:ui",
+      "target": "components/ui/twc-ui/form-grid.tsx"
+    }
+  ]
+}
