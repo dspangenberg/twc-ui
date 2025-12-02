@@ -3,7 +3,7 @@
   "name": "number-field",
   "type": "registry:ui",
   "title": "NumberField",
-  "description": "TextField component",
+  "description": "NumberField component",
   "dependencies": [
     "react-aria-components",
     "lucide-react"
