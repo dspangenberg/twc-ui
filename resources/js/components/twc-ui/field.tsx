@@ -42,7 +42,7 @@ const Label = ({ className, children, value, isRequired = false, ...props }: Lab
 function FieldDescription({ className, ...props }: AriaTextProps) {
   return (
     <AriaText
-      className={cn('text-xs text-muted-foreground', className)}
+      className={cn('text-sm text-muted-foreground', className)}
       {...props}
       slot="description"
     />

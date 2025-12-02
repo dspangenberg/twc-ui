@@ -8,9 +8,9 @@ import {
   composeRenderProps,
   Text
 } from 'react-aria-components'
-import { useFormContext } from '@/components/twc-ui/form'
+import { useFormContext } from './form'
 import { cn } from '@/lib/utils'
-import { FieldError, Label } from './field'
+import { FieldError, Label, FieldDescription } from './field'
 
 const BaseTextField = AriaTextField
 
@@ -123,9 +123,9 @@ function TextField ({
       {textArea ? <TextArea rows={rows} autoSize={autoSize} autoComplete={autoComplete} /> :
         <Input autoComplete={autoComplete} />}
       {description && (
-        <Text className="text-muted-foreground text-sm" slot="description">
+        <FieldDescription>
           {description}
-        </Text>
+        </FieldDescription>
       )}
       <FieldError>{error}</FieldError>
     </AriaTextField>

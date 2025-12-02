@@ -114,7 +114,52 @@
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
-      "name": "button",
+      "name": "number-field",
+      "type": "registry:ui",
+      "title": "NumberField",
+      "description": "TextField component",
+      "dependencies": [
+        "react-aria-components",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "https://twc-ui.test/r/form.json",
+        "https://twc-ui.test/r/button.json",
+        "https://twc-ui.test/r/field.json"
+      ],
+      "files": [
+        {
+          "path": "resources/js/components/twc-ui/number-field.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/twc-ui/number-field.tsx"
+        }
+      ],
+      "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "text-field",
+      "type": "registry:ui",
+      "title": "TextField",
+      "description": "TextField component",
+      "dependencies": [
+        "react-aria-components"
+      ],
+      "registryDependencies": [
+        "https://twc-ui.test/r/form.json"
+      ],
+      "files": [
+        {
+          "path": "resources/js/components/twc-ui/text-field.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/twc-ui/text-field.tsx"
+        }
+      ],
+      "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "tooltip",
       "type": "registry:ui",
       "title": "Button",
       "description": "React aria component button",

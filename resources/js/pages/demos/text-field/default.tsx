@@ -19,20 +19,11 @@ export default function Dashboard({ contact }: Props) {
 
   return (
     <DemoContainer>
-      <Head title="Form Demo" />
+      <Head title="TextField Demo" />
       <Form form={form} className="mx-auto max-w-lg">
         <FormLayoutGroup>
-          <div className="col-span-12">
-            <TextField isRequired label="First name" {...form.register('first_name')} />
-          </div>
-          <div className="col-span-12">
-            <TextField label="Last name" {...form.register('last_name')} />
-          </div>
-          <div className="col-span-12">
-            <TextField label="E-Mail" {...form.register('email')} />
-          </div>
-          <div className="col-span-12">
-            <Button title="Save" type="submit" />
+          <div className="col-span-24">
+            <TextField isRequired description="Enter your first name" label="First name" {...form.register('first_name')} />
           </div>
         </FormLayoutGroup>
       </Form>
