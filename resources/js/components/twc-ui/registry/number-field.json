@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "number-field",
+  "type": "registry:ui",
+  "title": "NumberField",
+  "description": "TextField component",
+  "dependencies": [
+    "react-aria-components",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "$REGURL/r/form.json",
+    "$REGURL/r/button.json",
+    "$REGURL/r/field.json"
+  ],
+  "files": [
+    {
+      "path": "resources/js/components/twc-ui/number-field.tsx",
+      "type": "registry:ui",
+      "target": "components/ui/twc-ui/number-field.tsx"
+    }
+  ]
+}
