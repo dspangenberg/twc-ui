@@ -12,6 +12,7 @@ interface DocItem {
   type: 'directory' | 'file'
   path: string
   route?: string
+  soon?: boolean
   children?: DocItem[]
   frontmatter?: Record<string, any>
 }
@@ -19,6 +20,7 @@ interface DocItem {
 interface Frontmatter {
   title?: string
   author?: string
+  soon?: string
   date?: string
   tags?: string[]
   order: number
@@ -49,23 +51,45 @@ const DocNavigationItem = ({ item, currentRoute, depth = 0 }: DocNavigationItemP
   // WICHTIG: Vergleiche mit der ROUTE, nicht dem Pfad
   const isActive = currentRoute === item.route
   const hasChildren = item.children && item.children.length > 0
+  const showSoon = item.frontmatter?.soon === true
 
   if (item.type === 'directory') {
     return (
       <li className="mb-4">
         {item.route ? (
-          <Link
-            href={item.route}
-            className={`mb-2 block font-semibold text-sm transition-colors hover:text-blue-600 dark:hover:text-blue-400 ${
-              depth === 0
-                ? 'text-base text-foreground uppercase tracking-wide'
-                : depth === 1
-                  ? 'ml-0 text-gray-900 dark:text-gray-100'
-                  : 'ml-0 text-gray-800 dark:text-gray-200'
-            } ${isActive ? 'text-blue-600 dark:text-blue-400' : ''}`}
-          >
-            {item.title}
-          </Link>
+          <>
+          <div className="flex items-center justify-between gap-2">
+            {showSoon ? (
+              <span
+                className={`mb-2 block font-semibold text-sm ${
+                  depth === 0
+                    ? 'text-base text-foreground uppercase tracking-wide'
+                    : depth === 1
+                      ? 'ml-0 text-gray-900 dark:text-gray-100'
+                      : 'ml-0 text-gray-800 dark:text-gray-200'
+                }`}
+              >
+                {item.title}
+              </span>
+            ) : (
+              <Link
+                href={item.route}
+                className={`mb-2 block font-semibold text-sm transition-colors hover:text-blue-600 dark:hover:text-blue-400 ${
+                  depth === 0
+                    ? 'text-base text-foreground uppercase tracking-wide'
+                    : depth === 1
+                      ? 'ml-0 text-gray-900 dark:text-gray-100'
+                      : 'ml-0 text-gray-800 dark:text-gray-200'
+                } ${isActive ? 'text-blue-600 dark:text-blue-400' : ''}`}
+              >
+                {item.title}
+              </Link>
+            )}
+            {showSoon && (
+              <span className="rounded-md bg-yellow-400 px-2 py-0.5 text-xs font-medium text-yellow-900">Soon</span>
+            )}
+          </div>
+          </>
         ) : (
           <div
             className={`mb-2 font-semibold text-sm ${
@@ -98,18 +122,33 @@ const DocNavigationItem = ({ item, currentRoute, depth = 0 }: DocNavigationItemP
   // File item
   return (
     <li>
-      <Link
-        href={item.route || '#'}
-        className={`block rounded py-1 text-sm transition-colors ${
-          depth === 0 ? 'px-0 font-medium' : depth === 1 ? 'ml-0 px-3' : 'ml-0 px-3'
-        } ${
-          isActive
-            ? 'font-medium text-blue-600 dark:text-blue-400'
-            : 'text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100'
-        }`}
-      >
-        {item.title}
-      </Link>
+      <div className="flex items-center justify-between gap-2">
+        {showSoon ? (
+          <span
+            className={`block rounded py-1 text-sm ${
+              depth === 0 ? 'px-0 font-medium' : depth === 1 ? 'ml-0 px-3' : 'ml-0 px-3'
+            } text-gray-600 dark:text-gray-400`}
+          >
+            {item.title}
+          </span>
+        ) : (
+          <Link
+            href={item.route || '#'}
+            className={`block rounded py-1 text-sm transition-colors ${
+              depth === 0 ? 'px-0 font-medium' : depth === 1 ? 'ml-0 px-3' : 'ml-0 px-3'
+            } ${
+              isActive
+                ? 'font-medium text-blue-600 dark:text-blue-400'
+                : 'text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100'
+            }`}
+          >
+            {item.title}
+          </Link>
+        )}
+        {showSoon && (
+          <span className="rounded-md bg-muted px-2 py-0.5 text-xs text-foreground">Soon</span>
+        )}
+      </div>
       {hasChildren && (
         <ul className="mt-1 list-none space-y-1">
           {item.children!.map((child, index) => (

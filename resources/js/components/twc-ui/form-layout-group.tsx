@@ -13,7 +13,7 @@ interface FormGroupProps {
   children?: React.ReactNode
 }
 
-export const FormGroup: React.FC<FormGroupProps> = ({
+export const FormLayoutGroup: React.FC<FormGroupProps> = ({
   border = false,
   cols = 24,
   fullWidth = true,

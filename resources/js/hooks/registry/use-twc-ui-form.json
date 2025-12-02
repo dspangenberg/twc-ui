@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "use-twc-ui-form",
+  "type": "registry:hook",
+  "title": "use-twc-ui-form",
+  "description": "use-twc-ui-form-Hook",
+  "dependencies": [
+    "@react-types/shared",
+    "@inertiajs/core",
+    "date-fns",
+    "moderndash",
+    "laravel-precognition",
+    "laravel-precognition-react-inertia"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "resources/js/hooks/use-twc-ui-form.ts",
+      "type": "registry:hook"
+    }
+  ]
+}

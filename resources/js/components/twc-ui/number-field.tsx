@@ -116,7 +116,7 @@ const NumberField = ({
     >
       <Label value={label} isRequired={isRequired}  />
       <FieldGroup isInvalid={hasError}>
-        <NumberFieldInput className="outline:0 focus:ring-0" />
+        <NumberFieldInput  />
         <NumberFieldSteppers />
       </FieldGroup>
       {description && (

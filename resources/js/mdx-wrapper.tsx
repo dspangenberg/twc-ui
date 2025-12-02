@@ -5,6 +5,7 @@ import { sharedComponents } from '@/mdx-components'
 interface Frontmatter {
   title?: string
   author?: string
+  soon?: boolean
   date?: string
   tags?: string[]
   description?: string

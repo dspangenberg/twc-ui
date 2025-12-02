@@ -2,9 +2,8 @@ import { Head } from '@inertiajs/react'
 import { DemoContainer } from '@/components/docs/DemoContainer'
 import { Button } from '@/components/twc-ui/button'
 import { ComboBox } from '@/components/twc-ui/combo-box'
-import { DateField } from '@/components/twc-ui/date-field'
 import { Form, useForm } from '@/components/twc-ui/form'
-import { FormGroup } from '@/components/twc-ui/form-group'
+import { FormLayoutGroup } from '@/components/twc-ui/form-layout-group'
 import { NumberField } from '@/components/twc-ui/number-field'
 import { TextField } from '@/components/twc-ui/text-field'
 import { Checkbox } from '@/components/twc-ui/checkbox'
@@ -28,7 +27,7 @@ export default function Dashboard({ contact, countries }: Props) {
     <DemoContainer>
       <Head title="Form Demo" />
       <Form form={form} className="mx-auto my-24 max-w-lg p-12">
-        <FormGroup>
+        <FormLayoutGroup>
           <div className="col-span-12">
             <TextField autoFocus isRequired label="First name" {...form.register('first_name')} />
             <div className="pt-0.5">
@@ -66,7 +65,7 @@ export default function Dashboard({ contact, countries }: Props) {
           <div className="col-span-12">
             <Button title="Save" type="submit" />
           </div>
-        </FormGroup>
+        </FormLayoutGroup>
       </Form>
     </DemoContainer>
   )

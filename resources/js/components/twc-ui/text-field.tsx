@@ -27,8 +27,8 @@ const Input = ({
           'data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50 ',
           /* Focused */
           /* Resets */
-          'focus:border-primary focus-visible:border-primary focus-visible:ring-[3px] focus-visible:ring-primary/20',
-          'data-[invalid]:border-destructive data-[invalid]:focus-visible:border-destructive data-[invalid]:focus-visible:ring-destructive/20',
+          'focus:border-primary focus:ring-[3px] focus:ring-primary/20',
+          'data-[invalid]:border-destructive data-[invalid]:focus:border-destructive data-[invalid]:focus:ring-destructive/20',
           className
         )
       )}
@@ -56,8 +56,8 @@ const TextArea = ({
           'data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50',
           /* Focused */
           /* Resets */
-          'focus:border-primary focus-visible:border-primary focus-visible:ring-[3px] focus-visible:ring-primary/20',
-          'data-[invalid]:border-destructive data-[invalid]:focus-visible:border-destructive data-[invalid]:focus-visible:ring-destructive/20',
+          'focus:border-primary focus:ring-[3px] focus:ring-primary/20',
+          'data-[invalid]:border-destructive data-[invalid]:focus:border-destructive data-[invalid]:focus:ring-destructive/20',
           autoSize ? 'field-sizing-content min-h-[80px] resize-none' : 'h-9 min-h-[80px]',
           className
         )
@@ -119,7 +119,7 @@ function TextField ({
       onChange={handleChange}
       {...props}
     >
-      <Label isRequired={isRequired} value={label} />
+      {label && <Label isRequired={isRequired} value={label} />}
       {textArea ? <TextArea rows={rows} autoSize={autoSize} autoComplete={autoComplete} /> :
         <Input autoComplete={autoComplete} />}
       {description && (

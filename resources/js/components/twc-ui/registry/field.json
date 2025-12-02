@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "field",
+  "type": "registry:ui",
+  "title": "Field",
+  "description": "Field component",
+  "dependencies": [
+    "react-aria-components",
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "$REGURL/r/form.json"
+  ],
+  "files": [
+    {
+      "path": "resources/js/components/twc-ui/field.tsx",
+      "type": "registry:ui",
+      "target": "components/ui/twc-ui/field.tsx"
+    }
+  ]
+}

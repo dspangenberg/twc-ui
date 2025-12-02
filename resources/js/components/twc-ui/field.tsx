@@ -12,7 +12,7 @@ import {
   type TextProps as AriaTextProps,
   composeRenderProps
 } from 'react-aria-components'
-import { useFormContext } from '@/components/twc-ui/form'
+import { useFormContext } from './form'
 import { cn } from '@/lib/utils'
 
 const labelVariants = cva([
@@ -31,7 +31,7 @@ interface LabelProps extends AriaLabelProps {
 const Label = ({ className, children, value, isRequired = false, ...props }: LabelProps) => {
   const form = useFormContext()
 
-  const valueWithColon = value && !form.hideColonInLabels ? `${value}:` : value
+  const valueWithColon = value && !form?.hideColonInLabels ? `${value}:` : value
   return (
     <AriaLabel className={cn(labelVariants(), className)} {...props}>
       {valueWithColon ?? children} {isRequired && <span className="text-destructive">*</span>}
@@ -39,7 +39,7 @@ const Label = ({ className, children, value, isRequired = false, ...props }: Lab
   )
 }
 
-function FormDescription({ className, ...props }: AriaTextProps) {
+function FieldDescription({ className, ...props }: AriaTextProps) {
   return (
     <AriaText
       className={cn('text-xs text-muted-foreground', className)}
@@ -52,8 +52,17 @@ function FormDescription({ className, ...props }: AriaTextProps) {
 function FieldError({ className, ...props }: AriaFieldErrorProps) {
   const form = useFormContext()
 
-  if (form.errorVariant === 'form') return null
+  if (form?.errorVariant === 'form') return null
 
+  return (
+    <AriaFieldError
+      className={cn('font-medium text-[0.8rem] text-destructive', className)}
+      {...props}
+    />
+  )
+}
+
+function BaseFieldError({ className, ...props }: AriaFieldErrorProps) {
   return (
     <AriaFieldError
       className={cn('font-medium text-[0.8rem] text-destructive', className)}
@@ -68,7 +77,7 @@ const fieldGroupVariants = cva('', {
       default: [
         'relative flex h-9 w-full items-center overflow-hidden rounded-sm border border-input bg-background px-3 py-1 text-base font-medium shadow-none transition-colors',
         /* Focus Within */
-        'focus:border-primary focus-visible:border-primary focus-visible:ring-[3px] focus-visible:ring-primary/20',
+        'focus:border-primary focus-within:border-primary focus-within:ring-[3px] focus-within:ring-primary/20',
         'data-[invalid]:focus-within:ring-destructive/20  data-[invalid]:focus-within:border-destructive  data-[invalid]:border-destructive',
         /* Disabled */
         'data-[disabled]:opacity-50'
@@ -94,4 +103,4 @@ function FieldGroup({ className, variant, ...props }: GroupProps) {
   )
 }
 
-export { Label, labelVariants, FieldGroup, fieldGroupVariants, FieldError, FormDescription }
+export { Label, labelVariants, FieldGroup, fieldGroupVariants, BaseFieldError, FieldError, FieldDescription }

@@ -18,7 +18,7 @@ const addCommands: Record<PackageManager, string> = {
 
 const executeCommands: Record<PackageManager, string> = {
   npm: 'npx',
-  yarn: 'npx',
+  yarn: 'yarn',
   pnpm: 'pnpm dlx',
   bun: 'bunx --bun'
 }

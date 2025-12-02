@@ -10,7 +10,7 @@
   ],
   "registryDependencies": [
     "$REGURL/r/form-errors.json",
-    "$REGURL/r/use-form.json"
+    "$REGURL/r/use-twc-ui-form.json"
   ],
   "files": [
     {

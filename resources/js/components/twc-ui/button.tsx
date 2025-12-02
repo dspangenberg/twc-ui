@@ -13,12 +13,12 @@ import { Tooltip, TooltipTrigger } from './tooltip'
 
 const buttonVariants = cva(
   [
-    'inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors active:border-ring',
+    'inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors pressed:ring-offset-2 pressed:ring-1',
     /* Disabled */
     'data-[disabled]:pointer-events-none data-[disabled]:opacity-50 ',
     /* Focus Visible */
     'focus-visible:border-ring focus-visible:ring-ring/20 focus-visible:ring-[3px]',
-    'active:ring-[3px]',
+    'pressed:ring-[3px]',
     /* Resets */
     'focus-visible:outline-none ring-offset-1'
   ],
@@ -26,7 +26,7 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          'bg-primary text-primary-foreground data-[hovered]:bg-primary/90 pressed:ring-primary/50 active:ring-ring/50 focus-visible:ring-primary/20',
+          'bg-primary text-primary-foreground data-[hovered]:bg-primary/90 pressed:ring-primary/50 pressed:ring-primary/50 focus-visible:ring-primary/20',
         destructive:
           'bg-destructive text-destructive-foreground text-white data-[hovered]:bg-destructive/90 border pressed:ring-destructive/50 focus-visible:ring-destructive/20 focus-visible:border-destructive/20 ',
         outline:
@@ -34,8 +34,10 @@ const buttonVariants = cva(
         secondary:
           'bg-secondary/90 text-secondary-foreground border-transparent border focus-visible:border-input focus-visible:border data-[hovered]:bg-secondary/20 pressed:ring-ring/50',
         ghost:
-          'data-[hovered]:bg-accent data-[hovered]:text-accent-foreground focus-visible:border border border-transparent focus-visible:border-input focus-visible:ring-ring/20 pressed:ring-ring/50 text-sm',
+          'data-[hovered]:bg-accent data-[hovered]:text-accent-foreground focus-visible:border border border-transparent focus-visible:border-input focus-visible:ring-ring/20 pressed:ring/50 text-sm',
         link: 'text-primary underline-offset-4 data-[hovered]:underline',
+        'ghost-destructive':
+          'data-[hovered]:bg-accent data-[hovered]:text-destructive-foreground focus-visible:border border border-transparent focus-visible:border-input focus-visible:ring-ring/20 pressed:ring-ring/50 text-sm',
         toolbar:
           'data-[hovered]:bg-accent data-[hovered]:text-accent-foreground pressed:ring-ring/50 active:ring-ring/50 focus-visible:border focus-visible:border-primary focus-visible:ring-ring/20  text-sm',
         'toolbar-default':
@@ -145,11 +147,15 @@ export const Button = ({
               <Icon
                 aria-label={title || tooltip}
                 icon={icon}
-                className={cn(disabled ? 'text-muted-foreground' : '', iconSizeClass, iconClassName)}
+                className={cn(
+                  disabled ? 'text-muted-foreground' : '',
+                  iconSizeClass,
+                  iconClassName
+                )}
               />
             )
           ) : (
-            <LoaderCircleIcon className={cn('animate-spin', iconSizeClass)}  />
+            <LoaderCircleIcon className={cn('animate-spin', iconSizeClass)} />
           )}
           {(title || children) && variant !== 'toolbar' && (
             <div className={cn(isToolbar ? 'hidden md:flex' : '')}>{title || children}</div>

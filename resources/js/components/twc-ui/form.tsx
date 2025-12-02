@@ -2,7 +2,7 @@ import type { FormDataConvertible } from '@inertiajs/core'
 import type { RequestMethod, SimpleValidationErrors, ValidationConfig } from 'laravel-precognition'
 import type React from 'react'
 import { createContext, type FormEvent, type HTMLAttributes, useContext } from 'react'
-import { useForm as internalUseForm } from '@/hooks/use-form'
+import { useForm as internalUseForm } from '@/hooks/use-twc-ui-form'
 import { cn } from '@/lib/utils'
 import { FormErrors } from './form-errors'
 
@@ -19,8 +19,10 @@ type ExtendedForm<T extends FormSchema> = {
   action: string
   config: ValidationConfig
   isDirty: boolean
+  reset: UseFormReturn<T>['reset']
   register: UseFormReturn<T>['register']
   registerEvent: UseFormReturn<T>['registerEvent']
+  registerDateRange: UseFormReturn<T>['registerDateRange']
   registerCheckbox: UseFormReturn<T>['registerCheckbox']
   updateAndValidate: UseFormReturn<T>['updateAndValidate']
   updateAndValidateWithoutEvent: UseFormReturn<T>['updateAndValidateWithoutEvent']
@@ -32,6 +34,7 @@ type ExtendedForm<T extends FormSchema> = {
   setErrors: UseFormReturn<T>['setErrors']
   validate: UseFormReturn<T>['validate']
   touched: UseFormReturn<T>['touched']
+  transform: UseFormReturn<T>['transform']
   form: UseFormReturn<T> & { id: string }
 }
 
@@ -115,7 +118,7 @@ export const Form = <T extends FormSchema>({
 export const useFormContext = <T extends FormSchema = FormSchema>() => {
   const context = useContext(FormContext)
   if (context === null) {
-    throw new Error('useFormContext must be used within a Form component')
+    return null
   }
   return context as ExtendedForm<T> & {
     hideColonInLabels?: boolean
@@ -144,6 +147,7 @@ export const useForm = <T extends FormSchema>(
     register: internalForm.register,
     registerEvent: internalForm.registerEvent,
     registerCheckbox: internalForm.registerCheckbox,
+    registerDateRange: internalForm.registerDateRange,
     updateAndValidate: internalForm.updateAndValidate,
     updateAndValidateWithoutEvent: internalForm.updateAndValidateWithoutEvent,
     data: internalForm.data,
@@ -151,9 +155,11 @@ export const useForm = <T extends FormSchema>(
     processing: internalForm.processing,
     submit: internalForm.submit,
     setData: internalForm.setData,
+    reset: internalForm.reset,
     setErrors: internalForm.setErrors,
     validate: internalForm.validate,
     touched: internalForm.touched,
+    transform: internalForm.transform,
     form: {
       id,
       ...internalForm

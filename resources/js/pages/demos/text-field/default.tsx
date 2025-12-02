@@ -2,7 +2,7 @@ import { Head } from '@inertiajs/react'
 import { DemoContainer } from '@/components/docs/DemoContainer'
 import { Button } from '@/components/twc-ui/button'
 import { Form, useForm } from '@/components/twc-ui/form'
-import { FormGroup } from '@/components/twc-ui/form-group'
+import { FormLayoutGroup } from '@/components/twc-ui/form-layout-group'
 import { TextField } from '@/components/twc-ui/text-field'
 
 interface Props {
@@ -21,7 +21,7 @@ export default function Dashboard({ contact }: Props) {
     <DemoContainer>
       <Head title="Form Demo" />
       <Form form={form} className="mx-auto max-w-lg">
-        <FormGroup>
+        <FormLayoutGroup>
           <div className="col-span-12">
             <TextField isRequired label="First name" {...form.register('first_name')} />
           </div>
@@ -34,7 +34,7 @@ export default function Dashboard({ contact }: Props) {
           <div className="col-span-12">
             <Button title="Save" type="submit" />
           </div>
-        </FormGroup>
+        </FormLayoutGroup>
       </Form>
     </DemoContainer>
   )
