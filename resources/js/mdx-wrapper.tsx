@@ -6,6 +6,7 @@ interface Frontmatter {
   title?: string
   author?: string
   soon?: boolean
+  wip?: boolean
   date?: string
   tags?: string[]
   description?: string

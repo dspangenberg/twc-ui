@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "checkbox",
+  "type": "registry:ui",
+  "title": "Checkbox",
+  "description": "Checkbox component",
+  "dependencies": [
+    "react-aria-components"
+  ],
+  "registryDependencies": [
+    "$REGURL/r/field.json"
+  ],
+  "files": [
+    {
+      "path": "resources/js/components/twc-ui/checkbox.tsx",
+      "type": "registry:ui",
+      "target": "components/ui/twc-ui/checkbox.tsx"
+    }
+  ]
+}

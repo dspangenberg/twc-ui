@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "radio-group",
+  "type": "registry:ui",
+  "title": "Radio Group",
+  "description": "Radio Group",
+  "dependencies": [
+    "react-aria-components"
+  ],
+  "registryDependencies": [
+    "$REGURL/r/field.json",
+    "$REGURL/r/form.json"
+  ],
+  "files": [
+    {
+      "path": "resources/js/components/twc-ui/radio-group.tsx",
+      "type": "registry:ui",
+      "target": "components/ui/twc-ui/radio-group.tsx"
+    }
+  ]
+}

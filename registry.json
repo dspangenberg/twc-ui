@@ -29,6 +29,27 @@
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "checkbox",
+      "type": "registry:ui",
+      "title": "Checkbox",
+      "description": "Checkbox component",
+      "dependencies": [
+        "react-aria-components"
+      ],
+      "registryDependencies": [
+        "https://twc-ui.test/r/field.json"
+      ],
+      "files": [
+        {
+          "path": "resources/js/components/twc-ui/checkbox.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/twc-ui/checkbox.tsx"
+        }
+      ],
+      "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "name": "field",
       "type": "registry:ui",
       "title": "Field",
@@ -66,6 +87,23 @@
           "path": "resources/js/components/twc-ui/form-errors.tsx",
           "type": "registry:ui",
           "target": "components/ui/twc-ui/form-errors.tsx"
+        }
+      ],
+      "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "form-grid",
+      "type": "registry:ui",
+      "title": "Error section",
+      "description": "Error section for forms",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "resources/js/components/twc-ui/form-grid.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/twc-ui/form-grid.tsx"
         }
       ],
       "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
@@ -117,7 +155,7 @@
       "name": "number-field",
       "type": "registry:ui",
       "title": "NumberField",
-      "description": "TextField component",
+      "description": "NumberField component",
       "dependencies": [
         "react-aria-components",
         "lucide-react"
@@ -138,6 +176,28 @@
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "radio-group",
+      "type": "registry:ui",
+      "title": "Radio Group",
+      "description": "Radio Group",
+      "dependencies": [
+        "react-aria-components"
+      ],
+      "registryDependencies": [
+        "https://twc-ui.test/r/field.json",
+        "https://twc-ui.test/r/form.json"
+      ],
+      "files": [
+        {
+          "path": "resources/js/components/twc-ui/radio-group.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/twc-ui/radio-group.tsx"
+        }
+      ],
+      "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "name": "text-field",
       "type": "registry:ui",
       "title": "TextField",
@@ -146,7 +206,8 @@
         "react-aria-components"
       ],
       "registryDependencies": [
-        "https://twc-ui.test/r/form.json"
+        "https://twc-ui.test/r/form.json",
+        "https://twc-ui.test/r/field.json"
       ],
       "files": [
         {

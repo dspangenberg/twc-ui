@@ -70,7 +70,7 @@ export const DemoCodePreview: React.FC<DemoCodePreviewProps> = ({
                 )}
                 <iframe
                   src={demoUrl}
-                  className="m-0 h-screen w-screen p-0 bg-transparent roundedd-md absolute left-0 right-0 max-w-full top-0  w-screen "
+                  className="m-0 h-screen p-0 bg-transparent roundedd-md absolute left-0 right-0 max-w-full top-0 rounded-md w-screen "
                   loading="lazy"
                   style={{ height: '100%' }}
                   onLoad={() => setIsLoading(false)}

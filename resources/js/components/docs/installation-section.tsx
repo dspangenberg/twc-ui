@@ -29,7 +29,7 @@ export const InstallationSection: React.FC<DemoCodePreviewProps> = ({
         <TabPanel id="cli">{children}</TabPanel>
         <TabPanel id="copy">
           <div className="w-full space-y-3 overflow-x-hidden">
-            {dependencies && (
+            {dependencies.length > 0 && (
               <>
                 <h4>Install dependencies</h4>
                 <InstallationCommand command="add" params={`${dependencies?.join(' ')}`} />

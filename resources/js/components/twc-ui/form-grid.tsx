@@ -1,7 +1,7 @@
 import type React from 'react'
 import { cn } from '@/lib/utils'
 
-interface FormGroupProps {
+interface FormLayoutGroupProps {
   border?: boolean
   cols?: 6 | 12 | 24
   fullWidth?: boolean
@@ -13,7 +13,7 @@ interface FormGroupProps {
   children?: React.ReactNode
 }
 
-export const FormLayoutGroup: React.FC<FormGroupProps> = ({
+export const FormGrid: React.FC<FormLayoutGroupProps> = ({
   border = false,
   cols = 24,
   fullWidth = true,
@@ -36,7 +36,7 @@ export const FormLayoutGroup: React.FC<FormGroupProps> = ({
       <div
         className={cn(
           'mb-1 flex-1 px-4 last:mb-3',
-          border || title !== '' ? 'mx-0 border-accent border-t pt-4' : '',
+          border ? 'mx-0 border-accent border-t pt-4' : '',
           grid ? 'm-0 grid gap-x-3 gap-y-6 px-4 py-2' : '',
           margin ? 'mt-3' : 'not-first:mt-2',
           grid ? gridCols : '',

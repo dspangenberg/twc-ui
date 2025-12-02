@@ -15,7 +15,7 @@ interface Props {
   countries: App.Data.CountryData[]
 }
 
-export default function FormDemo({ contact, countries }: Props) {
+export default function Dashboard({ contact, countries }: Props) {
   const form = useForm<App.Data.ContactData>(
     'contact-form',
     'post',
@@ -25,25 +25,21 @@ export default function FormDemo({ contact, countries }: Props) {
 
   return (
     <DemoContainer>
-      <Head title="Form Demo" />
-      <Form form={form} className="mx-auto my-12 max-w-lg p-12">
-        <FormGrid>
+      <Head title="FormGrid Demo" />
+      <Form form={form} className="mx-auto my-24 max-w-lg p-12">
+        <FormGrid title="Name and contact details">
           <div className="col-span-12">
-            <TextField autoFocus isRequired label="First name" {...form.register('first_name')} />
-            <div className="pt-0.5">
-              <Checkbox label="VIP" {...form.registerCheckbox('is_vip')}  />
-            </div>
+            <TextField autoFocus isRequired label="First name"  />
           </div>
           <div className="col-span-12">
-            <TextField isRequired label="Last name" {...form.register('last_name')} />
+            <TextField isRequired label="Last name" />
           </div>
-          <div className="col-span-12">
-            <TextField isRequired label="E-Mail" {...form.register('email')} />
-          </div>
-          <div className="col-span-12">
-            <ComboBox label="Country" {...form.register('country_id')} items={countries} />
+          <div className="col-span-24">
+            <TextField isRequired label="E-Mail"  />
           </div>
 
+        </FormGrid>
+        <FormGrid title="Misc">
           <div className="col-span-12">
             <NumberField
               isRequired
