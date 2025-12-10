@@ -16,9 +16,10 @@ import {
   SearchAddIcon,
   SearchMinusIcon,
   SquareArrowDiagonal02Icon,
-  FourFinger03Icon,
-  TypeCursorIcon
+  FourFinger03Icon
 } from '@hugeicons/core-free-icons'
+import { TextCursor } from 'lucide-react';
+
 import { useFullscreen, useToggle } from 'react-use'
 import { DropdownButton, MenuItem } from './dropdown-button'
 import { Button } from './button'
@@ -36,20 +37,20 @@ pdfjs.GlobalWorkerOptions.workerSrc = new URL(
 ).toString()
 
 interface Props {
-  document: string
+  file: string
   filename?: string
-  showFileName?: boolean
+  hideFilename?: boolean
 }
 
 export const PdfContainer: React.FC<Props> = ({
-  document,
+  file,
   filename,
-  showFileName = true
+  hideFilename = false
 }) => {
   const defaultFilename = useMemo(() => {
     if (filename) return filename
     try {
-      const url = new URL(document, window.location.origin)
+      const url = new URL(file, window.location.origin)
       const pathname = url.pathname
       const parts = pathname.split('/')
       const lastPart = parts[parts.length - 1]
@@ -57,7 +58,7 @@ export const PdfContainer: React.FC<Props> = ({
     } catch {
       return 'unbekannt.pdf'
     }
-  }, [document, filename])
+  }, [file, filename])
   const divRef = useRef<HTMLDivElement>(null)
   const [show, toggle] = useToggle(false)
   const isFullscreen = useFullscreen(divRef as React.RefObject<Element>, show, {
@@ -146,11 +147,11 @@ export const PdfContainer: React.FC<Props> = ({
   }, [pageNumber])
 
   const handlePrint = useCallback(() => {
-    print(document)
-  }, [document])
+    print(file)
+  }, [file])
 
   const { handleDownload } = useFileDownload({
-    route: document,
+    route: file,
     filename: defaultFilename
   })
 
@@ -277,7 +278,7 @@ export const PdfContainer: React.FC<Props> = ({
             if (value) setCursorTool(value)
           }}
         >
-          <ToggleButtonGroupItem id="select" icon={TypeCursorIcon} aria-label="Textauswahl" />
+          <ToggleButtonGroupItem id="select" icon={TextCursor} aria-label="Textauswahl" />
           <ToggleButtonGroupItem id="grab" icon={FourFinger03Icon} aria-label="Hand-Werkzeug" />
         </ToggleButtonGroup>
         <Separator orientation="vertical" />
@@ -311,7 +312,7 @@ export const PdfContainer: React.FC<Props> = ({
           isFullscreen ? 'self-center' : 'w-full self-start bg-page-content px-4 border-b'
         )}
       >
-        {showFileName && (
+        {!hideFilename && (
           <div className="my-2 text-center font-medium text-base">
             {defaultFilename} &mdash; Seite {pageNumber}/{numPages}
           </div>
@@ -326,7 +327,7 @@ export const PdfContainer: React.FC<Props> = ({
           </div>
         )}
         <Document
-          file={document}
+          file={file}
           loading={
             <div className="mx-auto my-auto flex-1">
               <LogoSpinner />

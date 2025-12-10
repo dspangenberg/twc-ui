@@ -4,7 +4,7 @@ import { PdfContainer } from '@/components/twc-ui/pdf-container'
 export const Demo = () => {
   return (
     <DemoContainer className="w-max-lg gap-4">
-      <PdfContainer document="/compressed.tracemonkey-pldi-09.pdf" />
+      <PdfContainer file="/compressed.tracemonkey-pldi-09.pdf" />
     </DemoContainer>
   )
 }

@@ -9,6 +9,7 @@
     "react-pdf",
     "print-js",
     "@hugeicons/core-free-icons",
+    "lucide-react",
     "react-use"
   ],
   "registryDependencies": [

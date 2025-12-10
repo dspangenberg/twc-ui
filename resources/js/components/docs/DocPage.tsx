@@ -251,7 +251,7 @@ const DocPageContent = ({ children, frontmatter }: DocPageProps) => {
 
           {frontmatter && (
             <header className="mb-8 pb-6">
-              <h1 className="mb-4 font-bold text-4xl">{frontmatter?.title}</h1>
+              <h1 className="mt-10 scroll-m-16 pb-2 font-medium text-4xl">{frontmatter?.title}</h1>
 
               {frontmatter.description && (
                 <p className="mb-4 text-base text-muted-foreground">{frontmatter.description}</p>

@@ -1,41 +1,22 @@
 ---
-title: use-twc-ui-form
+title: useFileDownload
 order: 10
-soon: true
 ---
 
-
-
-
-<DemoCodePreview codePath="form/default.tsx" demoPath={route('contact.create')} className="h-[500px]" />
 
 ## Installation
 
 <InstallationSection
-  dependencies={['react-aria-components', '@inertiajs/core', 'laravel-precognition-react-inertia']}
-  components={['form']}
-  hooks={['use-form.ts']}
-  copyAndPaste={
-    <div>hi</div>
-  }
+  hooks={['use-file-download.ts']}
 >
-  <InstallationCommand command="execute" params="shadcn@latest add ~website/r/form.json" />
+  <InstallationCommand command="execute" params="shadcn@latest add ~website/r/use-file-download.json" />
 </InstallationSection>
 
 ## Documentation
 
-Lorem ipsum
-
 ### Props
 
-| Prop             | Type                                                                    | Default   |
-  |------------------|-------------------------------------------------------------------------|-----------|
-| errorVariant     | `form` \| `field`                                                       | `form`    |
-| hideColonInLabels             | boolean | `false`  |
-| errorTitle            | string                                                                  | Something went wrong       |
-
-### Events
-
-| Prop             | Type                                                                    | Default   |
-  |------------------|-------------------------------------------------------------------------|-----------|
-| onSubmitted     | `form` \| `field`                                                       | `form`    |
+| Prop             | Type           | Default   | Description |
+  |------------------|-------------------------------------------------------------------------|-----------|-----------|
+| route <Required />     | `string`                                                       |     |Route (URL) to file |
+| filename     | `string`                                                       |     |Filename of the downloaded file |
