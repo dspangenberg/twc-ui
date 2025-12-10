@@ -50,6 +50,33 @@
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "dropdown-button",
+      "type": "registry:ui",
+      "title": "DropdownButton",
+      "description": "DropdownButton component",
+      "dependencies": [
+        "class-variance-authority",
+        "react-aria-components",
+        "@radix-ui/react-icons",
+        "react-aria-components"
+      ],
+      "registryDependencies": [
+        "https://twc-ui.test/r/list-box.json",
+        "https://twc-ui.test/r/select.json",
+        "https://twc-ui.test/r/button.json",
+        "https://twc-ui.test/r/icon.json"
+      ],
+      "files": [
+        {
+          "path": "resources/js/components/twc-ui/dropdown-button.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/twc-ui/dropdown-button.tsx"
+        }
+      ],
+      "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "name": "field",
       "type": "registry:ui",
       "title": "Field",
@@ -95,8 +122,8 @@
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "name": "form-grid",
       "type": "registry:ui",
-      "title": "Form Grid",
-      "description": "Grid layout component for forms",
+      "title": "Error section",
+      "description": "Error section for forms",
       "dependencies": [],
       "registryDependencies": [],
       "files": [
@@ -152,6 +179,25 @@
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "list-box",
+      "type": "registry:ui",
+      "title": "ListBox",
+      "description": "React aria ListBox component",
+      "dependencies": [
+        "lucide-react",
+        "react-aria-components"
+      ],
+      "files": [
+        {
+          "path": "resources/js/components/twc-ui/list-box.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/twc-ui/list-box.tsx"
+        }
+      ],
+      "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "name": "number-field",
       "type": "registry:ui",
       "title": "NumberField",
@@ -170,6 +216,37 @@
           "path": "resources/js/components/twc-ui/number-field.tsx",
           "type": "registry:ui",
           "target": "components/ui/twc-ui/number-field.tsx"
+        }
+      ],
+      "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "pdf-container",
+      "type": "registry:ui",
+      "title": "PdfContainer",
+      "description": "PdfContainer component",
+      "dependencies": [
+        "pdfjs-dist@5.4.296",
+        "react-pdf",
+        "print-js",
+        "@hugeicons/core-free-icons",
+        "react-use"
+      ],
+      "registryDependencies": [
+        "https://twc-ui.test/r/separator.json",
+        "https://twc-ui.test/r/logo-spinner.json",
+        "https://twc-ui.test/r/dropdown-button.json",
+        "https://twc-ui.test/r/button.json",
+        "https://twc-ui.test/r/toolbar.json",
+        "https://twc-ui.test/r/toggle-button-group.json",
+        "https://twc-ui.test/r/use-file-download.json"
+      ],
+      "files": [
+        {
+          "path": "resources/js/components/twc-ui/pdf-container.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/twc-ui/pdf-container.tsx"
         }
       ],
       "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
@@ -220,6 +297,51 @@
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "toggle-button-group",
+      "type": "registry:ui",
+      "title": "ToggleButtonGroup",
+      "description": "ToggleButtonGroup component",
+      "dependencies": [
+        "react-aria-components",
+        "tailwind-variants"
+      ],
+      "registryDependencies": [
+        "https://twc-ui.test/r/toggle-button.json",
+        "https://twc-ui.test/r/tooltip.json"
+      ],
+      "files": [
+        {
+          "path": "resources/js/components/twc-ui/toggle-button-group.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/twc-ui/toggle-button-group.tsx"
+        }
+      ],
+      "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "toggle-button",
+      "type": "registry:ui",
+      "title": "ToggleButton",
+      "description": "ToggleButton component",
+      "dependencies": [
+        "react-aria-components",
+        "tailwind-variants"
+      ],
+      "registryDependencies": [
+        "https://twc-ui.test/r/icon.json"
+      ],
+      "files": [
+        {
+          "path": "resources/js/components/twc-ui/toggle-button.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/twc-ui/toggle-button.tsx"
+        }
+      ],
+      "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "name": "tooltip",
       "type": "registry:ui",
       "title": "Button",
@@ -233,6 +355,22 @@
           "path": "resources/js/components/twc-ui/button.tsx",
           "type": "registry:ui",
           "target": "components/ui/twc-ui/button.tsx"
+        }
+      ],
+      "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "use-file-download",
+      "type": "registry:hook",
+      "title": "use-file-download Hook",
+      "description": "use-file-download-Hook",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "resources/js/hooks/use-file-download.ts",
+          "type": "registry:hook"
         }
       ],
       "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"

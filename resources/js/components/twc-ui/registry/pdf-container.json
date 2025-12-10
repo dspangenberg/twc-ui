@@ -1,22 +1,30 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
-  "name": "form",
+  "name": "pdf-container",
   "type": "registry:ui",
-  "title": "Form",
-  "description": "Form component",
+  "title": "PdfContainer",
+  "description": "PdfContainer component",
   "dependencies": [
-    "@inertiajs/core",
-    "laravel-precognition"
+    "pdfjs-dist@5.4.296",
+    "react-pdf",
+    "print-js",
+    "@hugeicons/core-free-icons",
+    "react-use"
   ],
   "registryDependencies": [
-    "$REGURL/r/form-errors.json",
-    "$REGURL/r/use-twc-ui-form.json"
+    "$REGURL/r/separator.json",
+    "$REGURL/r/logo-spinner.json",
+    "$REGURL/r/dropdown-button.json",
+    "$REGURL/r/button.json",
+    "$REGURL/r/toolbar.json",
+    "$REGURL/r/toggle-button-group.json",
+    "$REGURL/r/use-file-download.json"
   ],
   "files": [
     {
-      "path": "resources/js/components/twc-ui/form.tsx",
+      "path": "resources/js/components/twc-ui/pdf-container.tsx",
       "type": "registry:ui",
-      "target": "components/ui/twc-ui/form.tsx"
+      "target": "components/ui/twc-ui/pdf-container.tsx"
     }
   ]
 }

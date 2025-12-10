@@ -1,22 +1,21 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
-  "name": "form",
+  "name": "toggle-button",
   "type": "registry:ui",
-  "title": "Form",
-  "description": "Form component",
+  "title": "ToggleButton",
+  "description": "ToggleButton component",
   "dependencies": [
-    "@inertiajs/core",
-    "laravel-precognition"
+    "react-aria-components",
+    "tailwind-variants"
   ],
   "registryDependencies": [
-    "$REGURL/r/form-errors.json",
-    "$REGURL/r/use-twc-ui-form.json"
+    "$REGURL/r/icon.json"
   ],
   "files": [
     {
-      "path": "resources/js/components/twc-ui/form.tsx",
+      "path": "resources/js/components/twc-ui/toggle-button.tsx",
       "type": "registry:ui",
-      "target": "components/ui/twc-ui/form.tsx"
+      "target": "components/ui/twc-ui/toggle-button.tsx"
     }
   ]
 }
