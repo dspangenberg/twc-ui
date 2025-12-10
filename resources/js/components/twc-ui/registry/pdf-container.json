@@ -12,12 +12,12 @@
     "react-use"
   ],
   "registryDependencies": [
-    "$REGURL/r/separator.json",
-    "$REGURL/r/logo-spinner.json",
-    "$REGURL/r/dropdown-button.json",
     "$REGURL/r/button.json",
-    "$REGURL/r/toolbar.json",
+    "$REGURL/r/dropdown-button.json",
+    "$REGURL/r/logo-spinner.json",
+    "$REGURL/r/separator.json",
     "$REGURL/r/toggle-button-group.json",
+    "$REGURL/r/toolbar.json",
     "$REGURL/r/use-file-download.json"
   ],
   "files": [

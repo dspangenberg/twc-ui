@@ -2,51 +2,48 @@
 
 import React from 'react'
 import {
-  ToggleButton as AriaToggleButton,
-  ToggleButtonProps as AriaToggleButtonProps,
   composeRenderProps,
   ToggleButtonGroup as AriaToggleButtonGroup,
   ToggleButtonGroupProps as AriaToggleButtonGroupProps, type TooltipProps
 } from 'react-aria-components'
 import { tv, type VariantProps } from 'tailwind-variants'
-import { Icon, type IconType } from './icon'
-import { toggleButtonVariants } from './toggle-button'
-import { Tooltip, TooltipTrigger } from './tooltip'
+import { ToggleButton, ToggleButtonProps } from './toggle-button'
+import { buttonVariants } from './button'
 
-const ToggleButtonGroupContext = React.createContext<
-  VariantProps<typeof toggleButtonVariants> & {
+const ToggleButtonGroupContext = React.createContext<{
+  variant?: 'ghost' | 'outline' | 'toolbar'
+  size?: VariantProps<typeof buttonVariants>['size']
   tooltipPlacement?: TooltipProps['placement']
-}
->({
-  size: 'default',
-  variant: 'default',
+}>({
+  size: 'icon',
+  variant: 'ghost',
   tooltipPlacement: 'bottom'
 })
 
 export interface ToggleButtonGroupProps extends AriaToggleButtonGroupProps {
-  variant?: 'default' | 'outline' | 'toolbar'
-  size?: 'default' | 'sm' | 'lg'
+  variant?: 'ghost' | 'outline' | 'toolbar'
+  size?: VariantProps<typeof buttonVariants>['size']
   tooltipPlacement?: TooltipProps['placement']
 }
 
 const toggleButtonGroupVariants = tv({
-  base: 'group/toggle-button-group flex w-fit items-center rounded-md gap-0.5',
+  base: 'group/toggle-button-group flex w-fit items-center rounded-md gap-1.5',
   variants: {
     variant: {
-      default: '',
+      ghost: '',
       outline: 'shadow-xs',
       toolbar: ''
     }
   },
   defaultVariants: {
-    variant: 'default'
+    variant: 'ghost'
   }
 })
 
 export const ToggleButtonGroup = ({
   className,
-  variant = 'default',
-  size = 'default',
+  variant = 'ghost',
+  size = 'icon',
   tooltipPlacement = 'bottom',
   children,
   ...props
@@ -76,67 +73,22 @@ export const ToggleButtonGroup = ({
   )
 }
 
-export interface ToggleButtonGroupItemProps extends AriaToggleButtonProps {
-  variant?: 'default' | 'outline'
-  size?: 'default' | 'sm' | 'lg'
-  icon: IconType
-  tooltip?: string
-}
-
-const toggleButtonGroupItemVariants = tv({
-  base: 'min-w-0 flex-1 shrink-0 rounded-md shadow-none  focus:z-10 focus-visible:z-10',
-  variants: {
-    variant: {
-      default: '',
-      outline: 'border-l-0 first:border-l'
-    }
-  }
-})
-
 export const ToggleButtonGroupItem = ({
-  className,
   variant,
   tooltip = '',
+  tooltipPlacement,
   size,
   ...props
-}: ToggleButtonGroupItemProps) => {
+}: ToggleButtonProps) => {
   const context = React.useContext(ToggleButtonGroupContext)
-  const finalVariant = context.variant || variant
-  const finalSize = context.size || size
-  const finalTooltipPlacement = context.tooltipPlacement || 'bottom'
-  const finalTooltip = tooltip || props['aria-label']
-
-  const iconSizeClass = {
-    default: 'size-5',
-    sm: 'size-5',
-    lg: 'size-5'
-  }[size || 'default']
 
   return (
-    <TooltipTrigger>
-      <AriaToggleButton
-        data-slot="toggle-button-group-item"
-        data-variant={finalVariant}
-        data-size={finalSize}
-        {...props}
-        className={composeRenderProps(className, (cls, renderProps) =>
-          toggleButtonVariants({
-            ...renderProps,
-            variant: finalVariant as 'default' | 'outline',
-            size: finalSize as 'default' | 'sm' | 'lg',
-            className: toggleButtonGroupItemVariants({
-              variant: finalVariant as 'default' | 'outline',
-              className: cls
-            })
-          })
-        )}
-      >
-
-        <Icon icon={props.icon} className={iconSizeClass} />
-
-
-      </AriaToggleButton>
-      <Tooltip placement={finalTooltipPlacement}>{finalTooltip}</Tooltip>
-    </TooltipTrigger>
+    <ToggleButton
+      variant={variant ?? context.variant}
+      size={size ?? context.size}
+      tooltip={tooltip}
+      tooltipPlacement={tooltipPlacement ?? context.tooltipPlacement}
+      {...props}
+    />
   )
 }
