@@ -11,16 +11,25 @@ import { Icon } from '@/components/twc-ui/icon'
 import { SourceCode } from '@/components/docs/SourceCode'
 
 const sharedComponents = {
+  h1: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
+    <h1
+      className={cn('mt-10 scroll-m-16 pb-2 font-medium text-4xl', className)}
+      {...props}
+    />
+  ),
   h2: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h2
-      className={cn('mt-10 scroll-m-16 pb-2 font-medium text-xl sm:text-2xl', className)}
+      className={cn('mt-10 scroll-m-16 pb-2 font-medium text-3xl', className)}
       {...props}
     />
   ),
   h3: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
-    <h3 className={cn('mt-8 scroll-m-16 font-medium text-xl', className)} {...props} />
+    <h3 className={cn('mt-8 scroll-m-16 font-medium text-2xl', className)} {...props} />
   ),
   h4: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
+    <h4 className={cn('mt-6 scroll-m-16 font-medium text-xl', className)} {...props} />
+  ),
+  h5: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h4 className={cn('mt-6 scroll-m-16 font-medium text-lg', className)} {...props} />
   ),
   code: ({ className, ...props }: React.HTMLAttributes<HTMLElement>) => (

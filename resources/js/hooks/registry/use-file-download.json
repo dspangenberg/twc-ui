@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "use-file-download",
+  "type": "registry:hook",
+  "title": "use-file-download Hook",
+  "description": "use-file-download-Hook",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "resources/js/hooks/use-file-download.ts",
+      "type": "registry:hook"
+    }
+  ]
+}

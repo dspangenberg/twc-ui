@@ -1,0 +1,31 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "pdf-container",
+  "type": "registry:ui",
+  "title": "PdfContainer",
+  "description": "PdfContainer component",
+  "dependencies": [
+    "pdfjs-dist@5.4.296",
+    "react-pdf",
+    "print-js",
+    "@hugeicons/core-free-icons",
+    "lucide-react",
+    "react-use"
+  ],
+  "registryDependencies": [
+    "$REGURL/r/button.json",
+    "$REGURL/r/dropdown-button.json",
+    "$REGURL/r/logo-spinner.json",
+    "$REGURL/r/separator.json",
+    "$REGURL/r/toggle-button-group.json",
+    "$REGURL/r/toolbar.json",
+    "$REGURL/r/use-file-download.json"
+  ],
+  "files": [
+    {
+      "path": "resources/js/components/twc-ui/pdf-container.tsx",
+      "type": "registry:ui",
+      "target": "components/ui/twc-ui/pdf-container.tsx"
+    }
+  ]
+}

@@ -13,7 +13,7 @@ export const DemoContainer = ({ children, className }: DemoContainerProps) => {
         'flex relative h-screen w-screen bg-transparent px-md flex-wrap items-center justify-center',
         className
       )}
-    > 
+    >
       {children}
       <div className="fixed bottom-0 right-0 z-50 p-1 bg-gray-100 text-xs text-black px-2 rounded font-mono">
         <span className="sm:hidden">xs</span>

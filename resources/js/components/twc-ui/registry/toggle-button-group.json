@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "toggle-button-group",
+  "type": "registry:ui",
+  "title": "ToggleButtonGroup",
+  "description": "ToggleButtonGroup component",
+  "dependencies": [
+    "react-aria-components",
+    "tailwind-variants"
+  ],
+  "registryDependencies": [
+    "$REGURL/r/toggle-button.json",
+    "$REGURL/r/tooltip.json"
+  ],
+  "files": [
+    {
+      "path": "resources/js/components/twc-ui/toggle-button-group.tsx",
+      "type": "registry:ui",
+      "target": "components/ui/twc-ui/toggle-button-group.tsx"
+    }
+  ]
+}

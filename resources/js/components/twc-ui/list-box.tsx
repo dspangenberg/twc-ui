@@ -12,12 +12,16 @@ import {
 } from 'react-aria-components'
 
 import { cn } from '@/lib/utils'
+import React from 'react'
 
 const ListBoxSection = AriaSection
 
 const ListBoxCollection = AriaCollection
 
-function ListBox<T extends object>({ className, ...props }: AriaListBoxProps<T>) {
+const ListBox = <T extends object> ({
+  className,
+  ...props
+}: AriaListBoxProps<T>) => {
   return (
     <AriaListBox
       className={composeRenderProps(className, className =>
@@ -25,7 +29,7 @@ function ListBox<T extends object>({ className, ...props }: AriaListBoxProps<T>)
           className,
           'group overflow-auto rounded-md border bg-popover p-1 text-popover-foreground shadow-md outline-none',
           /* Empty */
-          'data-[empty]:p-6 data-[empty]:text-center data-[empty]:text-sm'
+          'data-empty:p-6 data-empty:text-center data-empty:text-sm'
         )
       )}
       {...props}
@@ -33,7 +37,7 @@ function ListBox<T extends object>({ className, ...props }: AriaListBoxProps<T>)
   )
 }
 
-const ListBoxItem = <T extends object>({
+const ListBoxItem = <T extends object> ({
   className,
   children,
   id,
@@ -47,13 +51,13 @@ const ListBoxItem = <T extends object>({
         cn(
           'pointer-events-auto relative flex w-full cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none',
           /* Disabled */
-          'data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
+          'data-disabled:pointer-events-none data-disabled:opacity-50',
           /* Focused */
-          'data-[focused]:bg-accent data-[focused]:text-accent-foreground',
+          'data-focused:bg-accent data-focused:text-accent-foreground',
           /* Hovered */
-          'data-[hovered]:bg-accent data-[hovered]:text-accent-foreground',
+          'data-hovered:bg-accent data-hovered:text-accent-foreground',
           /* Selection */
-          'data-[selection-mode]:pl-8',
+          'data-selection-mode:pl-8',
           className
         )
       )}
@@ -73,7 +77,10 @@ const ListBoxItem = <T extends object>({
   )
 }
 
-function ListBoxHeader({ className, ...props }: React.ComponentProps<typeof AriaHeader>) {
+const ListBoxHeader = ({
+  className,
+  ...props
+}: React.ComponentProps<typeof AriaHeader>) => {
   return <AriaHeader className={cn('px-2 py-1.5 font-semibold text-sm', className)} {...props} />
 }
 
