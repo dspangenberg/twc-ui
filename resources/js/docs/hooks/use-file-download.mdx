@@ -1,0 +1,41 @@
+---
+title: use-twc-ui-form
+order: 10
+soon: true
+---
+
+
+
+
+<DemoCodePreview codePath="form/default.tsx" demoPath={route('contact.create')} className="h-[500px]" />
+
+## Installation
+
+<InstallationSection
+  dependencies={['react-aria-components', '@inertiajs/core', 'laravel-precognition-react-inertia']}
+  components={['form']}
+  hooks={['use-form.ts']}
+  copyAndPaste={
+    <div>hi</div>
+  }
+>
+  <InstallationCommand command="execute" params="shadcn@latest add ~website/r/form.json" />
+</InstallationSection>
+
+## Documentation
+
+Lorem ipsum
+
+### Props
+
+| Prop             | Type                                                                    | Default   |
+  |------------------|-------------------------------------------------------------------------|-----------|
+| errorVariant     | `form` \| `field`                                                       | `form`    |
+| hideColonInLabels             | boolean | `false`  |
+| errorTitle            | string                                                                  | Something went wrong       |
+
+### Events
+
+| Prop             | Type                                                                    | Default   |
+  |------------------|-------------------------------------------------------------------------|-----------|
+| onSubmitted     | `form` \| `field`                                                       | `form`    |
