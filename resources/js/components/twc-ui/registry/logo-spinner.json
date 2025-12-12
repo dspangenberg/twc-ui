@@ -5,7 +5,7 @@
   "title": "Tooltip",
   "description": "React aria components tooltip",
   "registryDependencies": [
-    "@twc-ui/logo.json"
+    "@twc-ui/logo"
   ],
   "files": [
     {
