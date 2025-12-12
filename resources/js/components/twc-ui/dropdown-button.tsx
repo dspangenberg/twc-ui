@@ -185,6 +185,8 @@ function DropdownButton<T extends object>({
   selectionMode = undefined,
   selectedKeys = undefined,
   isDisabled,
+  size,
+  icon,
   iconClassName = undefined,
   className = undefined,
   onSelectionChange,
@@ -195,10 +197,10 @@ function DropdownButton<T extends object>({
       <Button
         variant={variant}
         className={className}
-        size={props.size}
+        size={size}
         isDisabled={isDisabled}
         iconClassName={iconClassName}
-        icon={props.icon}
+        icon={icon}
         title={title}
       />
       <MenuPopover
@@ -209,7 +211,6 @@ function DropdownButton<T extends object>({
           selectionMode={selectionMode}
           selectedKeys={selectedKeys}
           onSelectionChange={onSelectionChange}
-          {...props}
         >
           {children}
         </Menu>

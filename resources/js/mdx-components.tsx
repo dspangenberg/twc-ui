@@ -30,7 +30,7 @@ const sharedComponents = {
     <h4 className={cn('mt-6 scroll-m-16 font-medium text-xl', className)} {...props} />
   ),
   h5: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
-    <h4 className={cn('mt-6 scroll-m-16 font-medium text-lg', className)} {...props} />
+    <h5 className={cn('mt-6 scroll-m-16 font-medium text-lg', className)} {...props} />
   ),
   code: ({ className, ...props }: React.HTMLAttributes<HTMLElement>) => (
     <code
