@@ -31,10 +31,7 @@ import {
   ToggleButtonGroupItem
 } from './toggle-button-group'
 
-pdfjs.GlobalWorkerOptions.workerSrc = new URL(
-  'pdfjs-dist/build/pdf.worker.min.mjs',
-  import.meta.url
-).toString()
+pdfjs.GlobalWorkerOptions.workerSrc = `//cdn.jsdelivr.net/npm/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`
 
 interface Props {
   file: string
@@ -96,7 +93,7 @@ export const PdfContainer: React.FC<Props> = ({
     }
   }
 
-  const onDocumentLoadSuccess = async (document: any): Promise<void> => {
+  const onDocumentLoadSuccess = async (document: PDFDocumentProxy): Promise<void> => {
     setNumPages(document.numPages)
     pdfRef.current = document
     setScale(1.25)
@@ -353,6 +350,8 @@ export const PdfContainer: React.FC<Props> = ({
               cursorTool === 'grab' && '**:cursor-grab!',
               isDragging && '**:cursor-grabbing!'
             )}
+            role="application"
+            aria-label="PDF viewer - use mouse to pan when grab tool is selected"
             onMouseDown={handleMouseDown}
             onMouseMove={handleMouseMove}
             onMouseUp={handleMouseUp}

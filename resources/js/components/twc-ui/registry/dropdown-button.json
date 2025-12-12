@@ -7,8 +7,7 @@
   "dependencies": [
     "class-variance-authority",
     "react-aria-components",
-    "@radix-ui/react-icons",
-    "react-aria-components"
+    "@radix-ui/react-icons"
   ],
   "registryDependencies": [
     "$REGURL/r/list-box.json",
