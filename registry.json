@@ -15,8 +15,8 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "https://twc-ui.test/r/icon.json",
-        "https://twc-ui.test/r/tooltip.json"
+        "@twc-ui/icon.json",
+        "@twc-ui/tooltip.json"
       ],
       "files": [
         {
@@ -37,7 +37,7 @@
         "react-aria-components"
       ],
       "registryDependencies": [
-        "https://twc-ui.test/r/field.json"
+        "@twc-ui/field.json"
       ],
       "files": [
         {
@@ -60,10 +60,10 @@
         "@radix-ui/react-icons"
       ],
       "registryDependencies": [
-        "https://twc-ui.test/r/list-box.json",
-        "https://twc-ui.test/r/select.json",
-        "https://twc-ui.test/r/button.json",
-        "https://twc-ui.test/r/icon.json"
+        "@twc-ui/list-box.json",
+        "@twc-ui/select.json",
+        "@twc-ui/button.json",
+        "@twc-ui/icon.json"
       ],
       "files": [
         {
@@ -85,7 +85,7 @@
         "class-variance-authority"
       ],
       "registryDependencies": [
-        "@twc/form"
+        "@twc-ui/form"
       ],
       "files": [
         {
@@ -106,7 +106,7 @@
         "@hugeicons/core-free-icons"
       ],
       "registryDependencies": [
-        "@twc/icon"
+        "@twc-ui/icon"
       ],
       "files": [
         {
@@ -145,8 +145,8 @@
         "laravel-precognition"
       ],
       "registryDependencies": [
-        "@twc/form-errors",
-        "@twc/use-twc-ui-form"
+        "@twc-ui/form-errors",
+        "@twc-ui/use-twc-ui-form"
       ],
       "files": [
         {
@@ -202,7 +202,7 @@
       "title": "Tooltip",
       "description": "React aria components tooltip",
       "registryDependencies": [
-        "https://twc-ui.test/r/logo.json"
+        "@twc-ui/logo.json"
       ],
       "files": [
         {
@@ -239,9 +239,9 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "https://twc-ui.test/r/form.json",
-        "https://twc-ui.test/r/button.json",
-        "https://twc-ui.test/r/field.json"
+        "@twc-ui/form.json",
+        "@twc-ui/button.json",
+        "@twc-ui/field.json"
       ],
       "files": [
         {
@@ -267,13 +267,13 @@
         "react-use"
       ],
       "registryDependencies": [
-        "https://twc-ui.test/r/button.json",
-        "https://twc-ui.test/r/dropdown-button.json",
-        "https://twc-ui.test/r/logo-spinner.json",
-        "https://twc-ui.test/r/separator.json",
-        "https://twc-ui.test/r/toggle-button-group.json",
-        "https://twc-ui.test/r/toolbar.json",
-        "https://twc-ui.test/r/use-file-download.json"
+        "@twc-ui/button.json",
+        "@twc-ui/dropdown-button.json",
+        "@twc-ui/logo-spinner.json",
+        "@twc-ui/separator.json",
+        "@twc-ui/toggle-button-group.json",
+        "@twc-ui/toolbar.json",
+        "@twc-ui/use-file-download.json"
       ],
       "files": [
         {
@@ -312,8 +312,8 @@
         "react-aria-components"
       ],
       "registryDependencies": [
-        "https://twc-ui.test/r/field.json",
-        "https://twc-ui.test/r/form.json"
+        "@twc-ui/field.json",
+        "@twc-ui/form.json"
       ],
       "files": [
         {
@@ -335,10 +335,10 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "https://twc-ui.test/r/form.json",
-        "https://twc-ui.test/r/field.json",
-        "https://twc-ui.test/r/list-box.json",
-        "https://twc-ui.test/r/popover.json"
+        "@twc-ui/form.json",
+        "@twc-ui/field.json",
+        "@twc-ui/list-box.json",
+        "@twc-ui/popover.json"
       ],
       "files": [
         {
@@ -377,8 +377,8 @@
         "react-aria-components"
       ],
       "registryDependencies": [
-        "@twc/form",
-        "@twc/field"
+        "@twc-ui/form",
+        "@twc-ui/field"
       ],
       "files": [
         {
@@ -400,8 +400,8 @@
         "tailwind-variants"
       ],
       "registryDependencies": [
-        "https://twc-ui.test/r/toggle-button.json",
-        "https://twc-ui.test/r/tooltip.json"
+        "@twc-ui/toggle-button.json",
+        "@twc-ui/tooltip.json"
       ],
       "files": [
         {
@@ -423,7 +423,7 @@
         "tailwind-variants"
       ],
       "registryDependencies": [
-        "https://twc-ui.test/r/icon.json"
+        "@twc-ui/icon.json"
       ],
       "files": [
         {
@@ -445,7 +445,7 @@
         "class-variance-authority"
       ],
       "registryDependencies": [
-        "https://twc-ui.test/r/button.json"
+        "@twc-ui/button.json"
       ],
       "files": [
         {
@@ -463,8 +463,8 @@
       "title": "Button",
       "description": "React aria component button",
       "registryDependencies": [
-        "https://twc-ui.test/r/icon.json",
-        "https://twc-ui.test/r/tooltip.json"
+        "@twc-ui/icon.json",
+        "@twc-ui/tooltip.json"
       ],
       "files": [
         {

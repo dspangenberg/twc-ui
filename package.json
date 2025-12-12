@@ -92,7 +92,7 @@
     "remark-gfm": "^4.0.1",
     "remark-mdx-frontmatter": "^5.2.0",
     "remark-toc": "^9.0.0",
-    "shadcn": "3.5.1",
+    "shadcn": "3.6.0",
     "tailwind-merge": "^3.4.0",
     "tailwind-variants": "^3.2.2",
     "tailwindcss": "^4.1.18",
