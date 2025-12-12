@@ -5,8 +5,8 @@
   "title": "Button",
   "description": "React aria component button",
   "registryDependencies": [
-    "@twc-ui/icon.json",
-    "@twc-ui/tooltip.json"
+    "@twc-ui/icon",
+    "@twc-ui/tooltip"
   ],
   "files": [
     {

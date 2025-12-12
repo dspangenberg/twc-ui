@@ -13,13 +13,13 @@
     "react-use"
   ],
   "registryDependencies": [
-    "@twc-ui/button.json",
-    "@twc-ui/dropdown-button.json",
-    "@twc-ui/logo-spinner.json",
-    "@twc-ui/separator.json",
-    "@twc-ui/toggle-button-group.json",
-    "@twc-ui/toolbar.json",
-    "@twc-ui/use-file-download.json"
+    "@twc-ui/button",
+    "@twc-ui/dropdown-button",
+    "@twc-ui/logo-spinner",
+    "@twc-ui/separator",
+    "@twc-ui/toggle-button-group",
+    "@twc-ui/toolbar",
+    "@twc-ui/use-file-download"
   ],
   "files": [
     {
