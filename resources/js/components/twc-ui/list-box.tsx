@@ -1,5 +1,4 @@
-import { Check } from 'lucide-react'
-
+import { CheckIcon } from '@radix-ui/react-icons'
 import {
   Collection as AriaCollection,
   Header as AriaHeader,
@@ -12,16 +11,12 @@ import {
 } from 'react-aria-components'
 
 import { cn } from '@/lib/utils'
-import React from 'react'
 
 const ListBoxSection = AriaSection
 
 const ListBoxCollection = AriaCollection
 
-const ListBox = <T extends object> ({
-  className,
-  ...props
-}: AriaListBoxProps<T>) => {
+function ListBox<T extends object>({ className, ...props }: AriaListBoxProps<T>) {
   return (
     <AriaListBox
       className={composeRenderProps(className, className =>
@@ -37,15 +32,15 @@ const ListBox = <T extends object> ({
   )
 }
 
-const ListBoxItem = <T extends object> ({
+const ListBoxItem = <T extends object>({
   className,
   children,
   id,
   ...props
-}: Omit<AriaListBoxItemProps<T>, 'id'> & { id?: number }) => {
+}: Omit<AriaListBoxItemProps<T>, 'id'> & { id?: string | number }) => {
   return (
     <AriaListBoxItem
-      textValue={props.textValue || (typeof children === 'string' ? children : undefined)}
+      textValue={props.textValue}
       id={id}
       className={composeRenderProps(className, className =>
         cn(
@@ -67,7 +62,7 @@ const ListBoxItem = <T extends object> ({
         <>
           {renderProps.isSelected && (
             <span className="absolute left-2 flex size-4 items-center justify-center">
-              <Check className="size-4 text-primary" />
+              <CheckIcon className="size-4 text-primary" />
             </span>
           )}
           {children}
@@ -77,10 +72,7 @@ const ListBoxItem = <T extends object> ({
   )
 }
 
-const ListBoxHeader = ({
-  className,
-  ...props
-}: React.ComponentProps<typeof AriaHeader>) => {
+function ListBoxHeader({ className, ...props }: React.ComponentProps<typeof AriaHeader>) {
   return <AriaHeader className={cn('px-2 py-1.5 font-semibold text-sm', className)} {...props} />
 }
 

@@ -36,7 +36,7 @@ const BaseCheckbox = ({ className, children, ...props }: AriaCheckboxProps) => (
       cn(
         "group/checkbox flex items-center gap-x-2",
         /* Disabled */
-        'items-center data-[disabled]:cursor-not-allowed data-[disabled]:opacity-70',
+        'items-center data-disabled:cursor-not-allowed data-disabled:opacity-70',
         labelVariants,
         className
       )
@@ -49,13 +49,13 @@ const BaseCheckbox = ({ className, children, ...props }: AriaCheckboxProps) => (
           className={cn(
             'flex size-4 shrink-0 items-center justify-center rounded-sm border border-input text-base text-current',
             /* Focus Visible */
-            "group-data-[focus-visible]/checkbox:outline-none group-data-[focus-visible]/checkbox:ring-1 group-data-[focus-visible]/checkbox:ring-ring",
+            "group-data-focus-visible/checkbox:outline-none group-data-focus-visible/checkbox:ring-1 group-data-focus-visible/checkbox:ring-ring",
             /* Selected */
-            'group-data-[indeterminate]/checkbox:bg-primary group-data-[selected]/checkbox:bg-primary group-data-[indeterminate]/checkbox:text-primary-foreground group-data-[selected]/checkbox:text-primary-foreground',
+            'group-data-indeterminate/checkbox:bg-primary group-selected/checkbox:bg-primary group-data-indeterminate/checkbox:text-primary-foreground group-selected/checkbox:text-primary-foreground',
             /* Disabled */
-            "group-data-[disabled]/checkbox:cursor-not-allowed group-data-[disabled]/checkbox:opacity-50",
+            "group-data-disabled/checkbox:cursor-not-allowed group-data-disabled/checkbox:opacity-50",
             /* Invalid */
-            'group-data-[invalid]/checkbox:group-data-[selected]/checkbox:bg-destructive group-data-[invalid]/checkbox:group-data-[selected]/checkbox:text-destructive-foreground group-data-[invalid]/checkbox:border-destructive',
+            'group-data-invalid/checkbox:group-selected/checkbox:bg-destructive group-data-invalid/checkbox:group-selected/checkbox:text-destructive-foreground group-data-invalid/checkbox:border-destructive',
             /* Resets */
             "focus-visible:outline-none"
           )}
@@ -160,7 +160,7 @@ const Checkbox = ({
       className={composeRenderProps(className, (className) =>
         cn(
           "group/checkbox flex items-center gap-x-2",
-          'items-center data-[disabled]:cursor-not-allowed data-[disabled]:opacity-70',
+          'items-center data-disabled:cursor-not-allowed data-disabled:opacity-70',
           labelVariants,
           className
         )
@@ -173,13 +173,13 @@ const Checkbox = ({
             className={cn(
               'flex size-4 shrink-0 items-center justify-center rounded-sm border border-input text-base text-current',
               /* Focus Visible */
-              "group-data-[focus-visible]/checkbox:outline-none group-data-[focus-visible]/checkbox:ring-1 group-data-[focus-visible]/checkbox:ring-ring",
+              "group-data-focus-visible/checkbox:outline-none group-data-focus-visible/checkbox:ring-1 group-data-focus-visible/checkbox:ring-ring",
               /* Selected */
-              'group-data-[indeterminate]/checkbox:bg-primary group-data-[selected]/checkbox:bg-primary group-data-[indeterminate]/checkbox:text-primary-foreground group-data-[selected]/checkbox:text-primary-foreground',
+              'group-data-indeterminate/checkbox:bg-primary group-selected/checkbox:bg-primary group-data-indeterminate/checkbox:text-primary-foreground group-selected/checkbox:text-primary-foreground',
               /* Disabled */
-              "group-data-[disabled]/checkbox:cursor-not-allowed group-data-[disabled]/checkbox:opacity-50",
+              "group-data-disabled/checkbox:cursor-not-allowed group-data-disabled/checkbox:opacity-50",
               /* Invalid */
-              'group-data-[invalid]/checkbox:group-data-[selected]/checkbox:bg-destructive group-data-[invalid]/checkbox:group-data-[selected]/checkbox:text-destructive-foreground group-data-[invalid]/checkbox:border-destructive',
+              'group-data-invalid/checkbox:group-selected/checkbox:bg-destructive group-data-invalid/checkbox:group-selected/checkbox:text-destructive-foreground group-data-invalid/checkbox:border-destructive',
               /* Resets */
               "focus-visible:outline-none"
             )}

@@ -9,8 +9,8 @@
     "tailwind-variants"
   ],
   "registryDependencies": [
-    "$REGURL/r/toggle-button.json",
-    "$REGURL/r/tooltip.json"
+    "@twc-ui/toggle-button.json",
+    "@twc-ui/tooltip.json"
   ],
   "files": [
     {

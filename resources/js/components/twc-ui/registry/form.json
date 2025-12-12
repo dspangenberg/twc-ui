@@ -9,8 +9,8 @@
     "laravel-precognition"
   ],
   "registryDependencies": [
-    "$REGURL/r/form-errors.json",
-    "$REGURL/r/use-twc-ui-form.json"
+    "@twc-ui/form-errors",
+    "@twc-ui/use-twc-ui-form"
   ],
   "files": [
     {

@@ -10,10 +10,10 @@
     "@radix-ui/react-icons"
   ],
   "registryDependencies": [
-    "$REGURL/r/list-box.json",
-    "$REGURL/r/select.json",
-    "$REGURL/r/button.json",
-    "$REGURL/r/icon.json"
+    "@twc-ui/list-box.json",
+    "@twc-ui/select.json",
+    "@twc-ui/button.json",
+    "@twc-ui/icon.json"
   ],
   "files": [
     {

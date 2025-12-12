@@ -14,7 +14,7 @@ export default function AppHeaderLayout({
       <AppHeader breadcrumbs={breadcrumbs} />
       <AppContent>{children}</AppContent>
       <div className="w-full border-t">
-        <div className="mx-auto flex w-full max-w-7xl flex-1 p-2 text-center text-sm">
+        <div className="mx-auto flex w-full max-w-8xl flex-1 p-2 text-center text-sm">
           Made in the European Union.
           <Link href={route('imprint')} className="ml-1 underline">
             Imprint

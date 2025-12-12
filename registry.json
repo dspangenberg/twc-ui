@@ -57,8 +57,7 @@
       "dependencies": [
         "class-variance-authority",
         "react-aria-components",
-        "@radix-ui/react-icons",
-        "react-aria-components"
+        "@radix-ui/react-icons"
       ],
       "registryDependencies": [
         "https://twc-ui.test/r/list-box.json",
@@ -86,7 +85,7 @@
         "class-variance-authority"
       ],
       "registryDependencies": [
-        "https://twc-ui.test/r/form.json"
+        "@twc/form"
       ],
       "files": [
         {
@@ -107,7 +106,7 @@
         "@hugeicons/core-free-icons"
       ],
       "registryDependencies": [
-        "https://twc-ui.test/r/icon.json"
+        "@twc/icon"
       ],
       "files": [
         {
@@ -146,8 +145,8 @@
         "laravel-precognition"
       ],
       "registryDependencies": [
-        "https://twc-ui.test/r/form-errors.json",
-        "https://twc-ui.test/r/use-twc-ui-form.json"
+        "@twc/form-errors",
+        "@twc/use-twc-ui-form"
       ],
       "files": [
         {
@@ -198,6 +197,39 @@
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "logo-spinner",
+      "type": "registry:ui",
+      "title": "Tooltip",
+      "description": "React aria components tooltip",
+      "registryDependencies": [
+        "https://twc-ui.test/r/logo.json"
+      ],
+      "files": [
+        {
+          "path": "resources/js/components/twc-ui/logo-spinner.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/twc-ui/logo-spinner.tsx"
+        }
+      ],
+      "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "logo",
+      "type": "registry:ui",
+      "title": "Logo",
+      "description": "twiceware-Logo",
+      "files": [
+        {
+          "path": "resources/js/components/twc-ui/logo.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/twc-ui/logo.tsx"
+        }
+      ],
+      "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "name": "number-field",
       "type": "registry:ui",
       "title": "NumberField",
@@ -231,15 +263,16 @@
         "react-pdf",
         "print-js",
         "@hugeicons/core-free-icons",
+        "lucide-react",
         "react-use"
       ],
       "registryDependencies": [
-        "https://twc-ui.test/r/separator.json",
-        "https://twc-ui.test/r/logo-spinner.json",
-        "https://twc-ui.test/r/dropdown-button.json",
         "https://twc-ui.test/r/button.json",
-        "https://twc-ui.test/r/toolbar.json",
+        "https://twc-ui.test/r/dropdown-button.json",
+        "https://twc-ui.test/r/logo-spinner.json",
+        "https://twc-ui.test/r/separator.json",
         "https://twc-ui.test/r/toggle-button-group.json",
+        "https://twc-ui.test/r/toolbar.json",
         "https://twc-ui.test/r/use-file-download.json"
       ],
       "files": [
@@ -247,6 +280,24 @@
           "path": "resources/js/components/twc-ui/pdf-container.tsx",
           "type": "registry:ui",
           "target": "components/ui/twc-ui/pdf-container.tsx"
+        }
+      ],
+      "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "popover",
+      "type": "registry:ui",
+      "title": "popover",
+      "description": "React aria components popover",
+      "dependencies": [
+        "react-aria-components"
+      ],
+      "files": [
+        {
+          "path": "resources/js/components/twc-ui/popover.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/twc-ui/popover.tsx"
         }
       ],
       "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
@@ -275,6 +326,49 @@
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "select",
+      "type": "registry:ui",
+      "title": "select",
+      "description": "React aria components select",
+      "dependencies": [
+        "react-aria-components",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "https://twc-ui.test/r/form.json",
+        "https://twc-ui.test/r/field.json",
+        "https://twc-ui.test/r/list-box.json",
+        "https://twc-ui.test/r/popover.json"
+      ],
+      "files": [
+        {
+          "path": "resources/js/components/twc-ui/select.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/twc-ui/select.tsx"
+        }
+      ],
+      "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "separator",
+      "type": "registry:ui",
+      "title": "Separator",
+      "description": "React aria components separator",
+      "dependencies": [
+        "react-aria-components"
+      ],
+      "files": [
+        {
+          "path": "resources/js/components/twc-ui/separator.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/twc-ui/separator.tsx"
+        }
+      ],
+      "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "name": "text-field",
       "type": "registry:ui",
       "title": "TextField",
@@ -283,8 +377,8 @@
         "react-aria-components"
       ],
       "registryDependencies": [
-        "https://twc-ui.test/r/form.json",
-        "https://twc-ui.test/r/field.json"
+        "@twc/form",
+        "@twc/field"
       ],
       "files": [
         {
@@ -336,6 +430,28 @@
           "path": "resources/js/components/twc-ui/toggle-button.tsx",
           "type": "registry:ui",
           "target": "components/ui/twc-ui/toggle-button.tsx"
+        }
+      ],
+      "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "toolbar",
+      "type": "registry:ui",
+      "title": "toolbar",
+      "description": "React aria components toolbar",
+      "dependencies": [
+        "react-aria-components",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "https://twc-ui.test/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "resources/js/components/twc-ui/toolbar.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/twc-ui/toolbar.tsx"
         }
       ],
       "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"

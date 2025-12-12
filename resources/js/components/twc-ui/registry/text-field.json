@@ -8,8 +8,8 @@
     "react-aria-components"
   ],
   "registryDependencies": [
-    "$REGURL/r/form.json",
-    "$REGURL/r/field.json"
+    "@twc-ui/form",
+    "@twc-ui/field"
   ],
   "files": [
     {
