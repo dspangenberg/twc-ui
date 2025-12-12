@@ -1,7 +1,7 @@
 import { Head } from '@inertiajs/react'
 import { DemoContainer } from '@/components/docs/DemoContainer'
 import { Button } from '@/components/twc-ui/button'
-import { ComboBox } from '@/components/twc-ui/combo-box'
+import { FormComboBox } from '@/components/twc-ui/combo-box'
 import { Form, useForm } from '@/components/twc-ui/form'
 import { FormGrid } from '@/components/twc-ui/form-grid'
 import { FormNumberField } from '@/components/twc-ui/number-field'
@@ -41,7 +41,7 @@ export default function FormDemo({ contact, countries }: Props) {
             <FormTextField isRequired label="E-Mail" {...form.register('email')} />
           </div>
           <div className="col-span-12">
-            <ComboBox label="Country" {...form.register('country_id')} items={countries} />
+            <FormComboBox label="Country" {...form.register('country_id')} items={countries} />
           </div>
 
           <div className="col-span-12">
