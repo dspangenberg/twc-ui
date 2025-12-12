@@ -14,9 +14,9 @@ import {
   type Key,
   Text
 } from 'react-aria-components'
-import { useFormContext } from './form'
 import { cn } from '@/lib/utils'
 import { FieldError, FormFieldError, Label } from './field'
+import { useFormContext } from './form'
 import { ListBoxCollection, ListBoxHeader, ListBoxItem, ListBoxSection } from './list-box'
 import { Popover } from './popover'
 
@@ -34,7 +34,7 @@ const SelectValue = <T extends object>({ className, ...props }: AriaSelectValueP
   <AriaSelectValue
     className={composeRenderProps(className, className =>
       cn(
-        'line-clamp-1 data-placeholder:text-muted-foreground ',
+        'line-clamp-1 data-placeholder:text-muted-foreground',
         'focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/20',
         /* Description */
         '*:[[slot=description]]:hidden',
@@ -88,21 +88,21 @@ const SelectListBox = <T extends object>({ className, ...props }: AriaListBoxPro
     {...props}
   />
 )
-
-interface SelectProps<T extends object> extends Omit<AriaSelectProps<T>, 'children' | 'onSelectionChange'> {
+interface SelectProps<T extends object>
+  extends Omit<AriaSelectProps<T>, 'children' | 'onSelectionChange' | 'onChange'> {
   label?: string
   description?: string
   error?: string
   children?: React.ReactNode | ((item: T) => React.ReactNode)
-  onChange?: (value: Key | null) => void
+  onChange?: (value: string | number | null) => void
   isOptional?: boolean
   optionalValue?: string
-  value: number | null
+  value: string | number | null
   items: Iterable<T>
   itemName?: keyof T & string
   itemValue?: keyof T & string
   name?: string
-  errorComponent?: React.ComponentType<{ children?: React.ReactNode }>,
+  errorComponent?: React.ComponentType<{ children?: React.ReactNode }>
 }
 
 const Select = <T extends object>({
@@ -124,18 +124,28 @@ const Select = <T extends object>({
 }: SelectProps<T>) => {
   const hasError = !!error
 
+  // Determine the type of itemValue from the first item
+  const firstItem = Array.from(items)[0]
+  const isStringValue = firstItem && typeof firstItem[itemValue] === 'string'
+
   const itemsWithNothing = isOptional
     ? [
-        {
-          [itemValue]: 0,
-          [itemName]: optionalValue
-        } as T,
-        ...Array.from(items)
-      ]
+      {
+        [itemValue]: isStringValue ? '' : 0,
+        [itemName]: optionalValue
+      } as T,
+      ...Array.from(items)
+    ]
     : Array.from(items)
 
   const handleSelectionChange = (key: Key | null) => {
-    onChange?.(key)
+    if (key === null) {
+      onChange?.(null)
+    } else if (isStringValue) {
+      onChange?.(String(key))
+    } else {
+      onChange?.(Number(key))
+    }
   }
 
   return (
@@ -150,7 +160,7 @@ const Select = <T extends object>({
     >
       {label && <Label value={label} />}
       <SelectTrigger autoFocus={autoFocus}>
-        <SelectValue  className="focus-within-0 border-transparent" />
+        <SelectValue className="focus-within-0 border-transparent" />
       </SelectTrigger>
       {description && (
         <Text className="text-muted-foreground text-sm" slot="description">
@@ -162,9 +172,11 @@ const Select = <T extends object>({
         <SelectListBox items={itemsWithNothing}>
           {children ||
             (item => {
-              const textValue = typeof item[itemName] === 'string' ? item[itemName] : String(item[itemName])
+              const textValue =
+                typeof item[itemName] === 'string' ? item[itemName] : String(item[itemName])
+              const idValue = isStringValue ? String(item[itemValue]) : Number(item[itemValue])
               return (
-                <SelectItem id={Number(item[itemValue])} textValue={textValue}>
+                <SelectItem id={idValue} textValue={textValue}>
                   {textValue}
                 </SelectItem>
               )
@@ -175,15 +187,10 @@ const Select = <T extends object>({
   )
 }
 
-const FormSelect = <T extends object>({
-  name,
-  ...props
-}: SelectProps<T>) => {
+const FormSelect = <T extends object>({ name, ...props }: SelectProps<T>) => {
   const form = useFormContext()
   const realError = form?.errors?.[name as string]
-  return (
-    <Select error={realError} {...props} errorComponent={FormFieldError} />
-  )
+  return <Select<T> error={realError} {...props} errorComponent={FormFieldError} />
 }
 
 export {
