@@ -9,9 +9,9 @@
     "lucide-react"
   ],
   "registryDependencies": [
-    "@twc-ui/form.json",
-    "@twc-ui/button.json",
-    "@twc-ui/field.json"
+    "@twc-ui/form",
+    "@twc-ui/button",
+    "@twc-ui/field"
   ],
   "files": [
     {

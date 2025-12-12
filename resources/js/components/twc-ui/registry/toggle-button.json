@@ -9,7 +9,7 @@
     "tailwind-variants"
   ],
   "registryDependencies": [
-    "@twc-ui/icon.json"
+    "@twc-ui/icon"
   ],
   "files": [
     {
