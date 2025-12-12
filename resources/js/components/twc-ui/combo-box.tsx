@@ -194,7 +194,7 @@ const FormComboBox = <T extends Record<string, unknown>>({
   ...props
 }: ComboBoxProps<T>) => {
   const form = useFormContext()
-  const realError = form?.errors?.[props.name as string]
+  const realError = form?.errors?.[props.name]
   return (
     <ComboBox error={realError} {...props} errorComponent={FormFieldError} />
   )
