@@ -15,8 +15,8 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "@twc-ui/icon.json",
-        "@twc-ui/tooltip.json"
+        "@twc-ui/icon",
+        "@twc-ui/tooltip"
       ],
       "files": [
         {
@@ -37,13 +37,40 @@
         "react-aria-components"
       ],
       "registryDependencies": [
-        "@twc-ui/field.json"
+        "@twc-ui/field"
       ],
       "files": [
         {
           "path": "resources/js/components/twc-ui/checkbox.tsx",
           "type": "registry:ui",
           "target": "components/ui/twc-ui/checkbox.tsx"
+        }
+      ],
+      "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "combo-box",
+      "type": "registry:ui",
+      "title": "ComboBox",
+      "description": "TextField ComboBox",
+      "dependencies": [
+        "react-aria-components",
+        "react-aria",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@twc-ui/form",
+        "@twc-ui/field",
+        "@twc-ui/button",
+        "@twc-ui/list-box",
+        "@twc-ui/popover"
+      ],
+      "files": [
+        {
+          "path": "resources/js/components/twc-ui/combo-box.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/twc-ui/combo-box.tsx"
         }
       ],
       "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
@@ -60,10 +87,10 @@
         "@radix-ui/react-icons"
       ],
       "registryDependencies": [
-        "@twc-ui/list-box.json",
-        "@twc-ui/select.json",
-        "@twc-ui/button.json",
-        "@twc-ui/icon.json"
+        "@twc-ui/list-box",
+        "@twc-ui/select",
+        "@twc-ui/button",
+        "@twc-ui/icon"
       ],
       "files": [
         {
@@ -202,7 +229,7 @@
       "title": "Tooltip",
       "description": "React aria components tooltip",
       "registryDependencies": [
-        "@twc-ui/logo.json"
+        "@twc-ui/logo"
       ],
       "files": [
         {
@@ -239,9 +266,9 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "@twc-ui/form.json",
-        "@twc-ui/button.json",
-        "@twc-ui/field.json"
+        "@twc-ui/form",
+        "@twc-ui/button",
+        "@twc-ui/field"
       ],
       "files": [
         {
@@ -267,13 +294,13 @@
         "react-use"
       ],
       "registryDependencies": [
-        "@twc-ui/button.json",
-        "@twc-ui/dropdown-button.json",
-        "@twc-ui/logo-spinner.json",
-        "@twc-ui/separator.json",
-        "@twc-ui/toggle-button-group.json",
-        "@twc-ui/toolbar.json",
-        "@twc-ui/use-file-download.json"
+        "@twc-ui/button",
+        "@twc-ui/dropdown-button",
+        "@twc-ui/logo-spinner",
+        "@twc-ui/separator",
+        "@twc-ui/toggle-button-group",
+        "@twc-ui/toolbar",
+        "@twc-ui/use-file-download"
       ],
       "files": [
         {
@@ -312,8 +339,8 @@
         "react-aria-components"
       ],
       "registryDependencies": [
-        "@twc-ui/field.json",
-        "@twc-ui/form.json"
+        "@twc-ui/field",
+        "@twc-ui/form"
       ],
       "files": [
         {
@@ -335,10 +362,10 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "@twc-ui/form.json",
-        "@twc-ui/field.json",
-        "@twc-ui/list-box.json",
-        "@twc-ui/popover.json"
+        "@twc-ui/form",
+        "@twc-ui/field",
+        "@twc-ui/list-box",
+        "@twc-ui/popover"
       ],
       "files": [
         {
@@ -400,8 +427,8 @@
         "tailwind-variants"
       ],
       "registryDependencies": [
-        "@twc-ui/toggle-button.json",
-        "@twc-ui/tooltip.json"
+        "@twc-ui/toggle-button",
+        "@twc-ui/tooltip"
       ],
       "files": [
         {
@@ -423,7 +450,7 @@
         "tailwind-variants"
       ],
       "registryDependencies": [
-        "@twc-ui/icon.json"
+        "@twc-ui/icon"
       ],
       "files": [
         {
@@ -445,7 +472,7 @@
         "class-variance-authority"
       ],
       "registryDependencies": [
-        "@twc-ui/button.json"
+        "@twc-ui/button"
       ],
       "files": [
         {
@@ -463,8 +490,8 @@
       "title": "Button",
       "description": "React aria component button",
       "registryDependencies": [
-        "@twc-ui/icon.json",
-        "@twc-ui/tooltip.json"
+        "@twc-ui/icon",
+        "@twc-ui/tooltip"
       ],
       "files": [
         {
