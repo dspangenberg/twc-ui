@@ -4,8 +4,8 @@ import { Button } from '@/components/twc-ui/button'
 import { ComboBox } from '@/components/twc-ui/combo-box'
 import { Form, useForm } from '@/components/twc-ui/form'
 import { FormGrid } from '@/components/twc-ui/form-grid'
-import { NumberField } from '@/components/twc-ui/number-field'
-import { TextField } from '@/components/twc-ui/text-field'
+import { FormNumberField } from '@/components/twc-ui/number-field'
+import { FormTextField, FormTextAreaField } from '@/components/twc-ui/text-field'
 import { Checkbox } from '@/components/twc-ui/checkbox'
 import { DatePicker } from '@/components/twc-ui/date-picker'
 
@@ -29,23 +29,23 @@ export default function FormDemo({ contact, countries }: Props) {
       <Form form={form} className="mx-auto my-12 max-w-lg p-12">
         <FormGrid>
           <div className="col-span-12">
-            <TextField autoFocus isRequired label="First name" {...form.register('first_name')} />
+            <FormTextField autoFocus isRequired label="First name" {...form.register('first_name')} />
             <div className="pt-0.5">
               <Checkbox label="VIP" {...form.registerCheckbox('is_vip')}  />
             </div>
           </div>
           <div className="col-span-12">
-            <TextField isRequired label="Last name" {...form.register('last_name')} />
+            <FormTextField isRequired label="Last name" {...form.register('last_name')} />
           </div>
           <div className="col-span-12">
-            <TextField isRequired label="E-Mail" {...form.register('email')} />
+            <FormTextField isRequired label="E-Mail" {...form.register('email')} />
           </div>
           <div className="col-span-12">
             <ComboBox label="Country" {...form.register('country_id')} items={countries} />
           </div>
 
           <div className="col-span-12">
-            <NumberField
+            <FormNumberField
               isRequired
               label="Hourly rate"
               {...form.register('hourly')}
@@ -60,7 +60,7 @@ export default function FormDemo({ contact, countries }: Props) {
             />
           </div>
           <div className="col-span-24">
-            <TextField textArea autoSize label="Note" {...form.register('note')} />
+            <FormTextAreaField autoSize label="Note" {...form.register('note')} />
           </div>
           <div className="col-span-12">
             <Button title="Save" type="submit" />

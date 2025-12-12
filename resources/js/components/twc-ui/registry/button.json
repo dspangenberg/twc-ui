@@ -10,8 +10,8 @@
     "lucide-react"
   ],
   "registryDependencies": [
-    "$REGURL/r/icon.json",
-    "$REGURL/r/tooltip.json"
+    "@twc-ui/icon.json",
+    "@twc-ui/tooltip.json"
   ],
   "files": [
     {

@@ -15,7 +15,7 @@ import {
   type Key,
   Text
 } from 'react-aria-components'
-import { useFormContext } from '@/components/twc-ui/form'
+import { useFormContext } from './form'
 import { cn } from '@/lib/utils'
 import { FieldError, Label } from './field'
 import { ListBoxCollection, ListBoxHeader, ListBoxItem, ListBoxSection } from './list-box'
@@ -90,12 +90,12 @@ const SelectListBox = <T extends object>({ className, ...props }: AriaListBoxPro
   />
 )
 
-interface SelectProps<T extends object> extends Omit<AriaSelectProps<T>, 'children'> {
+interface SelectProps<T extends object> extends Omit<AriaSelectProps<T>, 'children' | 'onSelectionChange'> {
   label?: string
   description?: string
   error?: string | ((validation: AriaValidationResult) => string)
   children?: React.ReactNode | ((item: T) => React.ReactNode)
-  onChange: (value: number | null) => void // Geändert von ChangeEvent zu direktem Wert
+  onChange?: (value: Key | null) => void
   isOptional?: boolean
   optionalValue?: string
   value: number | null
@@ -136,8 +136,7 @@ function Select<T extends object>({
     : Array.from(items)
 
   const handleSelectionChange = (key: Key | null) => {
-    const numericValue = key ? Number(key) : null
-    onChange(numericValue)
+    onChange?.(key)
   }
 
   return (

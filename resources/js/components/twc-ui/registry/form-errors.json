@@ -8,7 +8,7 @@
     "@hugeicons/core-free-icons"
   ],
   "registryDependencies": [
-    "$REGURL/r/icon.json"
+    "@twc-ui/icon"
   ],
   "files": [
     {

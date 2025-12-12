@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "logo",
+  "type": "registry:ui",
+  "title": "Logo",
+  "description": "twiceware-Logo",
+  "files": [
+    {
+      "path": "resources/js/components/twc-ui/logo.tsx",
+      "type": "registry:ui",
+      "target": "components/ui/twc-ui/logo.tsx"
+    }
+  ]
+}
+
