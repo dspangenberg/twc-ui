@@ -10,14 +10,13 @@ import {
   ListBox as AriaListBox,
   type ListBoxProps as AriaListBoxProps,
   type PopoverProps as AriaPopoverProps,
-  type ValidationResult as AriaValidationResult,
   composeRenderProps,
   Text,
 } from "react-aria-components"
-import { useFormContext } from '@/components/twc-ui/form'
+import { useFormContext } from './form'
 import { cn } from "@/lib/utils"
 import { Button } from "./button"
-import { FieldError, FieldGroup, Label } from "./field"
+import { FieldError, FormFieldError, FieldGroup, Label } from "./field"
 import {
   ListBoxCollection,
   ListBoxHeader,
@@ -41,7 +40,7 @@ const ComboBoxInput = ({ className, ...props }: AriaInputProps) => {
       className={composeRenderProps(className, (className) =>
         cn(
           'flex h-9 w-full border-input bg-background px-3 py-2 text-sm outline-none file:border-0 file:bg-transparent file:font-medium file:text-sm placeholder:text-muted-foreground',
-          "data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50",
+          "data-disabled:cursor-not-allowed data-disabled:opacity-50",
           className
         )
       )}
@@ -98,13 +97,13 @@ interface ComboBoxProps<T extends Record<string, unknown>> {
   itemName?: keyof T & string
   itemValue?: keyof T & string
   hasError?: boolean
-  errors?: Partial<Record<keyof T, string>>
   onChange: (value: number | null) => void
   onBlur?: () => void
   isOptional?: boolean
   optionalValue?: string
-  errorMessage?: string | ((validation: AriaValidationResult) => string)
+  error?: string
   children?: React.ReactNode | ((item: T) => React.ReactNode)
+  errorComponent?: React.ComponentType<{ children?: React.ReactNode }>,
 }
 
 const ComboBox = <T extends Record<string, unknown>>({
@@ -118,18 +117,15 @@ const ComboBox = <T extends Record<string, unknown>>({
   className = '',
   description,
   autoFocus = false,
-  hasError = false,
   items,
-  errors,
-  errorMessage,
+  error = '',
+  errorComponent: ErrorComponent = FieldError,
   onChange,
   onBlur,
   children,
   ...props
 }: ComboBoxProps<T>) => {
-  const form = useFormContext()
-  const realError = form?.errors?.[name as string] || errorMessage
-  const realHasError = !!realError
+  const hasError = !!error
 
   const handleSelectionChange = useCallback((key: Key | null) => {
     const numericValue = key ? Number(key) : null
@@ -164,7 +160,7 @@ const ComboBox = <T extends Record<string, unknown>>({
       className={composeRenderProps(className, (className) =>
         cn("group flex flex-col gap-2", className)
       )}
-      isInvalid={realHasError}
+      isInvalid={hasError}
       name={name}
       {...props}
     >
@@ -180,17 +176,27 @@ const ComboBox = <T extends Record<string, unknown>>({
           {description}
         </Text>
       )}
-      <FieldError>{realError}</FieldError>
+      <ErrorComponent>{error}</ErrorComponent>
       <ComboBoxPopover>
         <ComboBoxListBox>
           {children || ((item: T) => (
-            <ComboBoxItem id={Number(item[itemValue])}>
+            <ComboBoxItem id={Number(item[itemValue])} textValue={String(item[itemName])}>
               {String(item[itemName])}
             </ComboBoxItem>
           ))}
         </ComboBoxListBox>
       </ComboBoxPopover>
     </BaseComboBox>
+  )
+}
+
+const FormComboBox = <T extends Record<string, unknown>>({
+  ...props
+}: ComboBoxProps<T>) => {
+  const form = useFormContext()
+  const realError = form?.errors?.[props.name]
+  return (
+    <ComboBox error={realError} {...props} errorComponent={FormFieldError} />
   )
 }
 
@@ -203,5 +209,6 @@ export {
   ComboBoxHeader,
   ComboBoxPopover,
   ComboBox,
+  FormComboBox
 }
 export type { ComboBoxProps }

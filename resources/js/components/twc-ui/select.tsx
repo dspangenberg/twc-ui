@@ -10,14 +10,13 @@ import {
   type SelectProps as AriaSelectProps,
   SelectValue as AriaSelectValue,
   type SelectValueProps as AriaSelectValueProps,
-  type ValidationResult as AriaValidationResult,
   composeRenderProps,
   type Key,
   Text
 } from 'react-aria-components'
 import { useFormContext } from './form'
 import { cn } from '@/lib/utils'
-import { FieldError, Label } from './field'
+import { FieldError, FormFieldError, Label } from './field'
 import { ListBoxCollection, ListBoxHeader, ListBoxItem, ListBoxSection } from './list-box'
 import { Popover } from './popover'
 
@@ -35,10 +34,10 @@ const SelectValue = <T extends object>({ className, ...props }: AriaSelectValueP
   <AriaSelectValue
     className={composeRenderProps(className, className =>
       cn(
-        'line-clamp-1 data-[placeholder]:text-muted-foreground ',
+        'line-clamp-1 data-placeholder:text-muted-foreground ',
         'focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/20',
         /* Description */
-        '[&>[slot=description]]:hidden',
+        '*:[[slot=description]]:hidden',
         className
       )
     )}
@@ -53,10 +52,10 @@ const SelectTrigger = ({ className, children, ...props }: AriaButtonProps) => (
       cn(
         'flex h-9 w-full items-center justify-between whitespace-nowrap rounded-sm border border-input bg-transparent px-3 py-2 font-medium text-sm shadow-none outline-0 ring-offset-0',
         /* Disabled */
-        'data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50',
+        'data-disabled:cursor-not-allowed data-disabled:opacity-50',
         'focus-visible:border-primary focus-visible:ring-[3px] focus-visible:ring-primary/20',
         /* Focused */
-        'data-[invalid]:border-destructive data-[invalid]:focus-visible:border-destructive data-[invalid]:focus-visible:ring-destructive/20',
+        'data-invalid:border-destructive data-invalid:focus-visible:border-destructive data-invalid:focus-visible:ring-destructive/20',
         className
       )
     )}
@@ -93,7 +92,7 @@ const SelectListBox = <T extends object>({ className, ...props }: AriaListBoxPro
 interface SelectProps<T extends object> extends Omit<AriaSelectProps<T>, 'children' | 'onSelectionChange'> {
   label?: string
   description?: string
-  error?: string | ((validation: AriaValidationResult) => string)
+  error?: string
   children?: React.ReactNode | ((item: T) => React.ReactNode)
   onChange?: (value: Key | null) => void
   isOptional?: boolean
@@ -103,9 +102,10 @@ interface SelectProps<T extends object> extends Omit<AriaSelectProps<T>, 'childr
   itemName?: keyof T & string
   itemValue?: keyof T & string
   name?: string
+  errorComponent?: React.ComponentType<{ children?: React.ReactNode }>,
 }
 
-function Select<T extends object>({
+const Select = <T extends object>({
   label,
   description,
   error,
@@ -115,15 +115,14 @@ function Select<T extends object>({
   items,
   itemName = 'name' as keyof T & string,
   itemValue = 'id' as keyof T & string,
+  errorComponent: ErrorComponent = FieldError,
   isOptional = false,
   optionalValue = '(leer)',
   onChange,
   name,
   ...props
-}: SelectProps<T>) {
-  const form = useFormContext()
-  const realError = form?.errors?.[name as string] || error
-  const hasError = !!realError
+}: SelectProps<T>) => {
+  const hasError = !!error
 
   const itemsWithNothing = isOptional
     ? [
@@ -158,24 +157,39 @@ function Select<T extends object>({
           {description}
         </Text>
       )}
-      <FieldError>{realError}</FieldError>
+      <ErrorComponent>{error}</ErrorComponent>
       <SelectPopover>
         <SelectListBox items={itemsWithNothing}>
           {children ||
-            (item => (
-              <SelectItem id={Number(item[itemValue])}>
-                {typeof item[itemName] === 'string' ? item[itemName] : String(item[itemName])}
-              </SelectItem>
-            ))}
+            (item => {
+              const textValue = typeof item[itemName] === 'string' ? item[itemName] : String(item[itemName])
+              return (
+                <SelectItem id={Number(item[itemValue])} textValue={textValue}>
+                  {textValue}
+                </SelectItem>
+              )
+            })}
         </SelectListBox>
       </SelectPopover>
     </BaseSelect>
   )
 }
 
+const FormSelect = <T extends object>({
+  name,
+  ...props
+}: SelectProps<T>) => {
+  const form = useFormContext()
+  const realError = form?.errors?.[name as string]
+  return (
+    <Select error={realError} {...props} errorComponent={FormFieldError} />
+  )
+}
+
 export {
   Select,
   BaseSelect,
+  FormSelect,
   SelectValue,
   SelectTrigger,
   SelectItem,
