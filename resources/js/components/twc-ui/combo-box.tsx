@@ -123,14 +123,19 @@ const ComboBox = <T extends Record<string, unknown>>({
   const firstItem = items[0]
   const isStringValue = firstItem && typeof firstItem[itemValue] === 'string'
 
+  const NULL_SENTINEL = '__NULL__'
+  const NUMERIC_NULL_SENTINEL = -1
+
   const handleSelectionChange = useCallback(
     (key: Key | null) => {
       if (key === null) {
         onChange(null)
       } else if (isStringValue) {
-        onChange(String(key))
+        const stringKey = String(key)
+        onChange(stringKey === NULL_SENTINEL ? null : stringKey)
       } else {
-        onChange(Number(key))
+        const numericKey = Number(key)
+        onChange(numericKey === NUMERIC_NULL_SENTINEL ? null : numericKey)
       }
     },
     [onChange, isStringValue]
@@ -142,7 +147,7 @@ const ComboBox = <T extends Record<string, unknown>>({
         ? [
           ...Array.from(items),
           {
-            [itemValue]: isStringValue ? '' : -1,
+            [itemValue]: isStringValue ? NULL_SENTINEL : NUMERIC_NULL_SENTINEL,
             [itemName]: optionalValue
           } as T
         ]

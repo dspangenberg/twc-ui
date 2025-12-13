@@ -124,27 +124,33 @@ const Select = <T extends object>({
 }: SelectProps<T>) => {
   const hasError = !!error
 
-  // Determine the type of itemValue from the first item
-  const firstItem = Array.from(items)[0]
+  // Materialize items once to avoid exhausting one-shot iterables
+  const itemsArray = Array.from(items)
+  const firstItem = itemsArray[0]
   const isStringValue = firstItem && typeof firstItem[itemValue] === 'string'
+
+  const NULL_SENTINEL = '__NULL__'
+  const NUMERIC_NULL_SENTINEL = -1
 
   const itemsWithNothing = isOptional
     ? [
       {
-        [itemValue]: isStringValue ? '' : 0,
+        [itemValue]: isStringValue ? NULL_SENTINEL : NUMERIC_NULL_SENTINEL,
         [itemName]: optionalValue
       } as T,
-      ...Array.from(items)
+      ...itemsArray
     ]
-    : Array.from(items)
+    : itemsArray
 
   const handleSelectionChange = (key: Key | null) => {
     if (key === null) {
       onChange?.(null)
     } else if (isStringValue) {
-      onChange?.(String(key))
+      const stringKey = String(key)
+      onChange?.(stringKey === NULL_SENTINEL ? null : stringKey)
     } else {
-      onChange?.(Number(key))
+      const numericKey = Number(key)
+      onChange?.(numericKey === NUMERIC_NULL_SENTINEL ? null : numericKey)
     }
   }
 
