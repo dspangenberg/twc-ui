@@ -190,7 +190,7 @@ const Select = <T extends object>({
 const FormSelect = <T extends object>({ name, ...props }: SelectProps<T>) => {
   const form = useFormContext()
   const realError = form?.errors?.[name as string]
-  return <Select<T> error={realError} {...props} errorComponent={FormFieldError} />
+  return <Select<T> error={realError} name={name} {...props} errorComponent={FormFieldError} />
 }
 
 export {
