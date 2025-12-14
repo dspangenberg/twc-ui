@@ -125,7 +125,7 @@ export const SourceCode: React.FC<DemoCodePreviewProps> = ({
           ) : (
             <div
               className={cn(
-                'text-sm [&>.shiki]:max-h-80 [&>.shiki]:w-full [&>.shiki]:overflow-scroll [&>.shiki]:text-balance [&>.shiki]:rounded-b-md [&>.shiki]:bg-muted [&>.shiki]:p-4',
+                'text-sm relative [&>.shiki]:max-h-80 [&>.shiki]:w-full [&>.shiki]:overflow-scroll [&>.shiki]:text-balance [&>.shiki]:rounded-b-md [&>.shiki]:bg-muted [&>.shiki]:p-4',
                 {
                   '[&>.shiki]:max-h-[700px]': expand || !collapsible
                 }

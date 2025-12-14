@@ -15,4 +15,17 @@ order: 10
   <InstallationCommand command="execute" params="shadcn@latest add ~website/r/pdf-container.json" />
 </InstallationSection>
 
+## Usage
+<SourceCode hideHeader={true} code={`
+  <PdfContainer file="/compressed.tracemonkey-pldi-09.pdf" />
+`} />
+
+### Documentation
+
+#### Props
+| Prop             | Type      | Default         | Descriptions                       |
+  |------------------|-----------|-----------------|------------------------------------|
+| file <Required/> | `string`\|`object`   | ``                                 | s. Document https://github.com/wojtekmaj/react-pdf?tab=readme-ov-file#document|
+| filename         | `string`  | `unbekannt.pdf` | filename for the title or download |
+| hideFilename     | `boolean` | `false`         | Hides the filename from title      |
 

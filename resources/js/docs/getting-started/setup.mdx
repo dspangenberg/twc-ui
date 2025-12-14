@@ -2,4 +2,47 @@
 title: Setup
 order: 20
 ---
+# Installation
+
+## Add dependencies
+<InstallationCommand command="add" params="-D tailwindcss-react-aria-components" />
+
+## Modify your app.css
+
+<SourceCode hideHeader={true} code={`
+@import "tailwindcss";
+
+@plugin "tailwindcss-react-aria-components";
+`} />
+
+
+## Add the registry to your components.json
+
+<SourceCode hideHeader={true} code={`
+{
+  "$schema": "https://ui.shadcn.com/schema.json",
+  "style": "new-york",
+  "rsc": false,
+  "tsx": true,
+  "tailwind": {
+    "config": "",
+    "css": "resources/css/app.css",
+    "baseColor": "slate",
+    "cssVariables": true,
+    "prefix": ""
+  },
+  "aliases": {
+    "components": "@/components",
+    "utils": "@/lib/utils",
+    "ui": "@/components/ui",
+    "lib": "@/lib",
+    "hooks": "@/hooks"
+  },
+  "registries": {
+    "@twc-ui": "https://ui.twiceware.cloud/r/{name}.json"
+  },
+  "iconLibrary": "lucide"
+}
+
+`} />
 

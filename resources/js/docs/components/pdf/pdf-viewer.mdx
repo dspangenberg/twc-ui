@@ -1,0 +1,30 @@
+---
+title: PdfViewer (Promise)
+order: 10
+---
+<DemoCodePreview codePath="pdf/pdf-viewer.tsx" demoPath="demos/pdf/pdf-viewer" />
+## Installation
+<InstallationSection
+  dependencies={['react-aria-components']}
+  components={['dialog.tsx', 'alert-dialog.tsx']}
+>
+  <InstallationCommand command="execute" params="shadcn@latest add ~website/r/pdf-viewer.json" />
+</InstallationSection>
+## Usage
+<SourceCode hideHeader={true} code={`
+import { PdfViewer } from '@/components/twc-ui/pdf-viewer'
+const doSomething = async () => {
+      await PdfViewer.call({
+        file: '/compressed.tracemonkey-pldi-09.pdf'
+    })
+}
+`} />
+## Documentation
+### Props
+
+
+| Prop              | Type                                                                    | Default       | Descriptions                                    |
+  |-------------------|-------------------------------------------------------------------------|---------------|-------------------------------------------------|
+| file <Required/> | `string`\|`object`   | ``                                 | s. Document https://github.com/wojtekmaj/react-pdf?tab=readme-ov-file#document|
+| filename         | `string`  | `unbekannt.pdf` | filename for the title or download |
+

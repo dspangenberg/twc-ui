@@ -1,8 +1,8 @@
 @import "tailwindcss";
 @import "./docs.css";
 
-@plugin 'tailwindcss-animate';
 @plugin "tailwindcss-react-aria-components";
+@plugin 'tailwindcss-animate';
 @plugin 'tailwind-scrollbar';
 
 @source '../views';
