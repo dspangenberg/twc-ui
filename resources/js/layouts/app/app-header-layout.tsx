@@ -12,7 +12,7 @@ export default function AppHeaderLayout({
   return (
     <AppShell>
       <AppHeader breadcrumbs={breadcrumbs} />
-      <AppContent>{children}</AppContent>
+      <AppContent className="w-full mx-auto max-w-8xl">{children}</AppContent>
       <div className="w-full border-t">
         <div className="mx-auto flex w-full max-w-8xl flex-1 p-2 text-center text-sm">
           Made in the European Union.

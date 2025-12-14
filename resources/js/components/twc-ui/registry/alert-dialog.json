@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "alert-dialog",
+  "type": "registry:ui",
+  "title": "AlertDialog",
+  "description": "AlertDialog component",
+  "dependencies": [
+    "class-variance-authority",
+    "react-aria-components",
+    "@hugeicons/core-free-icons"
+  ],
+  "registryDependencies": [
+    "@twc-ui/dialog",
+    "@twc-ui/button",
+    "@twc-ui/icon"
+  ],
+  "files": [
+    {
+      "path": "resources/js/components/twc-ui/alert-dialog.tsx",
+      "type": "registry:ui",
+      "target": "components/ui/twc-ui/alert-dialog.tsx"
+    }
+  ]
+}
