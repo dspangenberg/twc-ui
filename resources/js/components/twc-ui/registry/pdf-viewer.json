@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "pdf-viewer",
+  "type": "registry:ui",
+  "title": "PdfViewer",
+  "description": "PdfViewer component",
+  "dependencies": [],
+  "registryDependencies": [
+    "@twc-ui/dialog",
+    "@twc-ui/pdf-container"
+  ],
+  "files": [
+    {
+      "path": "resources/js/components/twc-ui/pdf-viewer.tsx",
+      "type": "registry:ui",
+      "target": "components/ui/twc-ui/pdf-viewer.tsx"
+    }
+  ]
+}

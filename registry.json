@@ -5,6 +5,31 @@
   "items": [
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "alert-dialog",
+      "type": "registry:ui",
+      "title": "AlertDialog",
+      "description": "AlertDialog component",
+      "dependencies": [
+        "class-variance-authority",
+        "react-aria-components",
+        "@hugeicons/core-free-icons"
+      ],
+      "registryDependencies": [
+        "@twc-ui/dialog",
+        "@twc-ui/button",
+        "@twc-ui/icon"
+      ],
+      "files": [
+        {
+          "path": "resources/js/components/twc-ui/alert-dialog.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/twc-ui/alert-dialog.tsx"
+        }
+      ],
+      "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "name": "button",
       "type": "registry:ui",
       "title": "Button",
@@ -71,6 +96,30 @@
           "path": "resources/js/components/twc-ui/combo-box.tsx",
           "type": "registry:ui",
           "target": "components/ui/twc-ui/combo-box.tsx"
+        }
+      ],
+      "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "dialog",
+      "type": "registry:ui",
+      "title": "Dialog",
+      "description": "Dialog component",
+      "dependencies": [
+        "class-variance-authority",
+        "react-aria-components",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@twc-ui/alert-dialog",
+        "@twc-ui/button"
+      ],
+      "files": [
+        {
+          "path": "resources/js/components/twc-ui/dialog.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/twc-ui/dialog.tsx"
         }
       ],
       "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
@@ -313,6 +362,26 @@
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "pdf-viewer",
+      "type": "registry:ui",
+      "title": "PdfViewer",
+      "description": "PdfViewer component",
+      "dependencies": [],
+      "registryDependencies": [
+        "@twc-ui/dialog",
+        "@twc-ui/pdf-container"
+      ],
+      "files": [
+        {
+          "path": "resources/js/components/twc-ui/pdf-viewer.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/twc-ui/pdf-viewer.tsx"
+        }
+      ],
+      "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "name": "popover",
       "type": "registry:ui",
       "title": "popover",
@@ -490,8 +559,7 @@
       "title": "Button",
       "description": "React aria component button",
       "registryDependencies": [
-        "@twc-ui/icon",
-        "@twc-ui/tooltip"
+        "@twc-ui/icon"
       ],
       "files": [
         {
