@@ -17,7 +17,19 @@ description: A tooltip displays a description of an element on hover or focus.
 </InstallationSection>
 
 ## Usage
-<SourceCode code={`import { Tooltip } from '@/components/twc-ui/tooltip'`} />
+<SourceCode hideHeader  code={`
+import { Tooltip } from '@/components/twc-ui/tooltip'
+import { Tooltip, TooltipTrigger } from '@/components/twc-ui/tooltip'
+import { Focusable } from 'react-aria-components'
+
+  <TooltipTrigger>
+    <Focusable>
+      <Icon icon={Rocket02Icon} className="size-6" />
+    </Focusable>
+    <Tooltip>This a rocket icon tooltip</Tooltip>
+</TooltipTrigger>
+
+`} />
 
 ## Documentation
 ### Props

@@ -14,7 +14,6 @@ import {
   type ModalOverlayProps as AriaModalOverlayProps,
   composeRenderProps
 } from 'react-aria-components'
-import { useIsMobile } from '@/hooks/use-mobile'
 import { cn } from '@/lib/utils'
 
 import { AlertDialog } from './alert-dialog'
@@ -55,11 +54,11 @@ export const DialogOverlay = ({
     isDismissable={isDismissable}
     className={composeRenderProps(className, className =>
       cn(
-        'fixed inset-0 z-50 bg-black/80 ',
+        'fixed inset-0 z-50 bg-black/80',
         /* Exiting */
-        'data-[exiting]:fade-out-0 data-[exiting]:animate-out data-[exiting]:duration-300',
+        'exiting:fade-out-0 exiting:animate-out exiting:duration-300',
         /* Entering */
-        'data-[entering]:fade-in-0 data-[entering]:animate-in',
+        'entering:fade-in-0 entering:animate-in',
         className
       )
     )}
@@ -88,23 +87,23 @@ export const DialogContent = ({
       cn(
         side
           ? sheetVariants({
-              side,
-              className: 'h-full'
-            })
-          : '-translate-x-1/2 -translate-y-1/2 data-[entering]:fade-in-0 data-[exiting]:fade-out-0 data-[entering]:zoom-in-95 data-[exiting]:zoom-out-95 fixed top-[50%] left-[50vw] z-50 max-h-screen w-full max-w-lg border bg-background shadow-lg duration-200 data-[entering]:animate-in data-[exiting]:animate-out data-[exiting]:duration-300 sm:rounded-lg md:w-full',
+            side,
+            className: 'h-full'
+          })
+          : '-translate-x-1/2 -translate-y-1/2 entering:fade-in-0 exiting:fade-out-0 entering:zoom-in-95 exiting:zoom-out-95 fixed top-[50%] left-[50vw] z-50 max-h-screen w-full max-w-lg entering:animate-in exiting:animate-out border bg-background shadow-lg duration-200 exiting:duration-300 sm:rounded-lg md:w-full',
         className
       )
     )}
     {...props}
   >
-    <AriaDialog role={role} className={cn(!side && 'grid h-full ', 'h-full outline-none')}>
+    <AriaDialog role={role} className={cn(!side && 'grid h-full', 'h-full outline-none')}>
       {composeRenderProps(children, (children, renderProps) => (
         <>
           {children}
           {closeButton && (
             <AriaButton
               onPress={renderProps.close}
-              className="absolute top-3 right-4 rounded-sm opacity-70 ring-offset-background backdrop-blur-lg transition-opacity data-[disabled]:pointer-events-none data-[entering]:bg-accent data-[entering]:text-muted-foreground data-[hovered]:opacity-100 data-[focused]:outline-none data-[focused]:ring-2 data-[focused]:ring-ring data-[focused]:ring-offset-2"
+              className="absolute top-3 right-4 rounded-sm entering:bg-accent entering:text-muted-foreground opacity-70 ring-offset-background backdrop-blur-lg transition-opacity data-disabled:pointer-events-none data-hovered:opacity-100 data-focused:outline-none data-focused:ring-2 data-focused:ring-ring data-focused:ring-offset-2"
             >
               <X className="size-4" />
               <span className="sr-only">Close</span>
@@ -119,7 +118,7 @@ export const DialogContent = ({
 export const DialogHeader = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => (
   <div
     className={cn(
-      'flex flex-col items-center justify-center gap-0 space-y-1.5 rounded-t-lg bg-sidebar px-4 py-1 text-center sm:text-left',
+      'flex flex-col items-center justify-center gap-0 rounded-t-lg bg-muted/80! px-4 text-center sm:text-left',
       className
     )}
     {...props}
@@ -129,7 +128,7 @@ export const DialogHeader = ({ className, ...props }: React.HTMLAttributes<HTMLD
 export const DialogFooter = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => (
   <div
     className={cn(
-      'flex flex-col-reverse rounded-b-lg bg-sidebar px-4 py-3 sm:flex-row sm:justify-end sm:space-x-2',
+      'flex flex-col-reverse rounded-b-lg bg-muted/40! px-4 py-4 sm:flex-row sm:justify-end sm:space-x-2',
       className
     )}
     {...props}
@@ -144,21 +143,14 @@ export const DialogBody = ({ className, ...props }: React.HTMLAttributes<HTMLDiv
 )
 
 export const DialogTitle = ({ className, ...props }: AriaHeadingProps) => (
-  <AriaHeading
-    slot="title"
-    className={cn(
-      'w-full py-0 text-center font-medium text-base leading-none tracking-tight ',
-      className
-    )}
-    {...props}
-  />
+  <AriaHeading slot="title" className={cn('py-3 font-medium', className)} {...props} />
 )
 
 export const DialogDescription = ({
   className,
   ...props
 }: React.HTMLAttributes<HTMLParagraphElement>) => (
-  <p className={cn('flex flex-col space-y-1.5 text-center sm:text-left', className)} {...props} />
+  <p className={cn('flex flex-col border text-center sm:text-left', className)} {...props} />
 )
 
 export interface DialogRenderProps {
@@ -186,7 +178,7 @@ interface DialogProps {
   footerClassName?: string
   className?: string
   bodyPadding?: boolean
-  width?: 'default' | '4xl' | '5xl' | '6xl'
+  width?: 'default' | '2xl' | '3xl' | '4xl' | '5xl' | '6xl' | 'md' | 'lg'
   hideHeader?: boolean
   background?: 'accent' | 'sidebar' | 'background' | 'page'
   onOpenChange?: (open: boolean) => void
@@ -201,7 +193,7 @@ export const Dialog: React.FC<DialogProps> = ({
   isOpen = false,
   confirmClose = false,
   showDescription = false,
-  isDismissible = false,
+  isDismissible = true,
   confirmationTitle = 'Änderungen verwerfen',
   confirmationVariant = 'default',
   confirmationButtonTitle = 'Verwerfen',
@@ -210,9 +202,6 @@ export const Dialog: React.FC<DialogProps> = ({
   role = 'dialog',
   description,
   bodyPadding = false,
-  tabs,
-  dismissible = false,
-  toolbar = null,
   className,
   onClose,
   width = 'default',
@@ -220,7 +209,7 @@ export const Dialog: React.FC<DialogProps> = ({
   hideHeader = false,
   background = 'page',
   onOpenChange,
-  ...props
+  onClosed
 }) => {
   const bgClass = {
     accent: 'bg-accent/50',
@@ -229,12 +218,14 @@ export const Dialog: React.FC<DialogProps> = ({
     page: 'bg-page-content'
   }[background]
 
-  const bodyClass = bodyPadding ? 'px-6' : ''
-
-  const isMobile = useIsMobile()
+  const bodyClass = bodyPadding ? 'px-4' : ''
 
   const widthClass = {
     default: 'max-w-xl',
+    md: 'max-w-md',
+    lg: 'max-w-lg',
+    '2xl': 'max-w-2xl',
+    '3xl': 'max-w-3xl',
     '4xl': 'max-w-4xl',
     '5xl': 'max-w-6xl',
     '6xl': 'max-w-5xl'
@@ -247,14 +238,10 @@ export const Dialog: React.FC<DialogProps> = ({
   }, [isOpen])
 
   const handleClose = async () => {
-    // Return a promise that resolves when the dialog should be closed
     return new Promise<boolean>(resolve => {
       if (confirmClose) {
-        // First, make sure the main dialog is not closed immediately
-        // by delaying the confirmation dialog slightly
         setTimeout(async () => {
           try {
-            // Use the utility function to show the confirmation dialog
             const result = await AlertDialog.call({
               title: confirmationTitle,
               message: confirmationMessage,
@@ -262,26 +249,27 @@ export const Dialog: React.FC<DialogProps> = ({
               variant: confirmationVariant
             })
 
-            // Only close the dialog if the user confirmed
             if (result) {
               setIsDialogOpen(false)
-              onOpenChange?.(false) // Notify parent component that dialog is closed
+              onOpenChange?.(false)
               onClose?.()
-              resolve(true) // Resolve the promise with true to indicate the dialog was closed
+              onClosed?.()
+              resolve(true)
             } else {
               setIsDialogOpen(true)
-              resolve(false) // Resolve the promise with false to indicate the dialog was not closed
+              resolve(false)
             }
           } catch (error) {
             console.error('Error in confirmation dialog:', error)
-            resolve(false) // Resolve the promise with false in case of error
+            resolve(false)
           }
-        }, 100) // Small delay to ensure the main dialog doesn't close immediately
+        }, 100)
       } else {
         setIsDialogOpen(false)
         onClose?.()
-        onOpenChange?.(false) // Notify parent component that dialog is closed
-        resolve(true) // Resolve the promise with true to indicate the dialog was closed
+        onClosed?.()
+        onOpenChange?.(false)
+        resolve(true)
       }
     })
   }
@@ -290,8 +278,6 @@ export const Dialog: React.FC<DialogProps> = ({
     if (!open) {
       const shouldClose = await handleClose()
       if (shouldClose) {
-        props.onClosed?.()
-        // No need to call onOpenChange(false) here as it's already called in handleClose
       } else {
         setIsDialogOpen(true)
       }
@@ -304,23 +290,23 @@ export const Dialog: React.FC<DialogProps> = ({
   return (
     <DialogOverlay
       isOpen={isDialogOpen}
-      isDismissable={true}
+      isDismissable={isDismissible}
       isKeyboardDismissDisabled={false}
       onOpenChange={handleOpenChange}
     >
       <DialogContent
         closeButton={false}
-        className={cn('relative gap-0 space-y-0 rounded-lg', widthClass, className)}
-        onOpenChange={handleOpenChange}
-        side={isMobile ? 'bottom' : null}
+        className={cn(
+          'relative flex w-full flex-col gap-0 space-y-0 rounded-lg',
+          widthClass,
+          className
+        )}
         role={role}
       >
         {composeRenderProps(children, (children, _providedRenderProps) => {
           const renderProps: DialogRenderProps = {
             close: () => {
-              // Use handleClose to show confirmation if needed
               void handleClose()
-              // The dialog will be closed by handleClose if confirmation is successful
             }
           }
 
@@ -328,37 +314,31 @@ export const Dialog: React.FC<DialogProps> = ({
             <>
               {!hideHeader && (
                 <DialogHeader
-                  className={cn('my-0 flex flex-col items-center gap-0 px-3 py-1', bgClass)}
+                  className={cn(
+                    'relative my-0 flex w-full flex-1 flex-col justify-stretch gap-0 px-0 py-0'
+                  )}
                 >
-                  <DialogTitle className="flex w-full items-center justify-between py-1 text-lg">
-                    <span className="flex-1">{title}</span>
-                    <Button
-                      variant="ghost"
-                      size="icon-xs"
-                      className="flex-none"
-                      onClick={() => renderProps.close()}
-                    >
-                      <X className="size-3.5" />
-                      <span className="sr-only">Close</span>
-                    </Button>
+                  <Button
+                    variant="ghost"
+                    size="icon-sm"
+                    className="absolute top-0.5 right-1.5 flex-1"
+                    icon={X}
+                    aria-label="Close"
+                    onClick={() => renderProps.close()}
+                  />
+                  <DialogTitle className="flex flex-1 items-center justify-between py-1.5! text-left text-base leading-0! md:text-center">
+                    <span className="text-base">{title}</span>
                   </DialogTitle>
-
                   <DialogDescription className={cn('', !showDescription ? 'sr-only py-0' : '')}>
                     {description}
                   </DialogDescription>
-
-                  {!!toolbar && (
-                    <div className="flex-1 items-start justify-start self-start py-2">
-                      {toolbar}
-                    </div>
-                  )}
                 </DialogHeader>
               )}
 
               <DialogBody
                 className={cn(
-                  'mx-0 my-0 flex w-full flex-col px-0',
-                  'bg-background',
+                  'mx-0 my-0 flex max-h-[calc(100vh-10rem)] flex-1 flex-col px-0',
+                  'overflow-y-auto bg-background',
                   hideHeader ? 'rounded-lg' : '',
                   bodyClass
                 )}
@@ -368,7 +348,7 @@ export const Dialog: React.FC<DialogProps> = ({
               {!!footer && (
                 <DialogFooter
                   className={cn(
-                    'flex items-center justify-end space-x-2 px-6 py-3',
+                    'flex flex-justify-end flex-none items-center space-x-2 px-4 py-3',
                     footerClassName,
                     bgClass
                   )}
