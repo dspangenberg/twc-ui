@@ -9,7 +9,7 @@ import { TypeInfo } from '@/components/docs/TypeInfo'
 import { Required } from '@/components/docs/required'
 import { Icon } from '@/components/twc-ui/icon'
 import { SourceCode } from '@/components/docs/SourceCode'
-
+import {CombiDemoCodePreview} from '@/components/docs/CombiDemoCodePreview'
 const sharedComponents = {
   h1: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h1
@@ -92,6 +92,7 @@ const sharedComponents = {
   ),
   // Deine benutzerdefinierten Komponenten
   DemoCodePreview,
+  CombiDemoCodePreview,
   InstallationCommand,
   InstallationSection,
   Icon,

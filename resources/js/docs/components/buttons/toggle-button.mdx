@@ -6,7 +6,7 @@ description: "A toggle button allows a user to toggle a selection on or off, for
 
 
 
-<DemoCodePreview codePath="button/default.tsx" demoPath="demos/button/default" />
+<DemoCodePreview codePath="toggle-button/default.tsx" demoPath="demos/toggle-button/default" />
 
 
 ## Installation
@@ -15,5 +15,19 @@ description: "A toggle button allows a user to toggle a selection on or off, for
   dependencies={['react-aria-components', '@hugeicons/react', 'tailwind-variants']}
   components={['tooltip.tsx', 'button.tsx']}
 >
-  <InstallationCommand command="execute" params="shadcn@latest add ~website/r/button.json" />
+  <InstallationCommand command="execute" params="shadcn@latest add ~website/r/toggle-button.json" />
 </InstallationSection>
+
+## Documentation
+### Props
+
+[React Aria Components ToggleButton Props](https://react-spectrum.adobe.com/react-aria/ToggleButton.html#props)
+
+| Prop             | Type                                                                                                         | Default   |
+  |------------------|--------------------------------------------------------------------------------------------------------------|-----------|
+| variant          |<TypeInfo title="variant" types={['ghost', 'outline','toolbar',]} />| `ghost` |
+| size          |<TypeInfo title="size" types={['default', 'sm', 'lg', 'icon', 'icon-sm', 'icon-xs', 'auto']} />| `icon` |
+| title            | string                                                                                                       | ''        |
+| icon             | HugeIcons or Lucide icon                                            | ''        |
+| tooltip          | string                                                                                                       | ``        |
+| tooltipPlacement | Placement                                                                                                    | `bottom`  |

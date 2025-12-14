@@ -15,8 +15,9 @@ import { buttonVariants } from './button'
 export interface ToggleButtonProps extends AriaToggleButtonProps {
   variant?: 'ghost' | 'outline' | 'toolbar'
   size?: VariantProps<typeof buttonVariants>['size']
-  icon: IconType
+  icon?: IconType
   tooltip?: string
+  title?: string
   tooltipPlacement?: TooltipProps['placement']
 }
 
@@ -25,6 +26,7 @@ export const ToggleButton = ({
   tooltipPlacement = 'bottom',
   variant = 'ghost',
   size = 'icon',
+  title = '',
   icon,
   ...props
 }: ToggleButtonProps) => {
@@ -45,6 +47,7 @@ export const ToggleButton = ({
         {...props}
         className={composeRenderProps(props.className, (className, renderProps) =>
         cn(
+          'gap-2',
           buttonVariants({
             ...renderProps,
             variant,
@@ -54,11 +57,11 @@ export const ToggleButton = ({
         )
       )}
         >
-        <Icon icon={icon} className={iconSizeClass} />
-
+        {icon && <Icon icon={icon} className={iconSizeClass} />}
+        {title && <span>{title}</span>}
 
       </AriaToggleButton>
-      <Tooltip placement={tooltipPlacement}>{finalTooltip}</Tooltip>
+      {tooltip && <Tooltip placement={tooltipPlacement}>{finalTooltip}</Tooltip>}
     </TooltipTrigger>
   )
 }
