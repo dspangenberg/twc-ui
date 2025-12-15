@@ -1,6 +1,6 @@
 import { Home13Icon } from '@hugeicons/core-free-icons'
 import { HugeiconsIcon } from '@hugeicons/react'
-import { Link, usePage } from '@inertiajs/react'
+import { Head, Link, usePage } from '@inertiajs/react'
 import { ChevronRight } from 'lucide-react'
 import type { ReactNode } from 'react'
 import { TableOfContents } from '@/components/docs/TableOfContents'
@@ -59,41 +59,39 @@ const DocNavigationItem = ({ item, currentRoute, depth = 0 }: DocNavigationItemP
     return (
       <li className="mb-4">
         {item.route ? (
-          <>
-            <div className="flex items-center justify-between gap-2">
-              {showSoon ? (
-                <span
-                  className={`mb-2 block font-semibold text-sm ${
-                    depth === 0
-                      ? 'text-base text-foreground uppercase tracking-wide'
-                      : depth === 1
-                        ? 'ml-0 text-gray-900 dark:text-gray-100'
-                        : 'ml-0 text-gray-800 dark:text-gray-200'
-                  }`}
-                >
-                  {item.title}
-                </span>
-              ) : (
-                <Link
-                  href={item.route}
-                  className={`mb-2 block font-semibold text-sm transition-colors hover:text-blue-600 dark:hover:text-blue-400 ${
-                    depth === 0
-                      ? 'text-base text-foreground uppercase tracking-wide'
-                      : depth === 1
-                        ? 'ml-0 text-gray-900 dark:text-gray-100'
-                        : 'ml-0 text-gray-800 dark:text-gray-200'
-                  } ${isActive ? 'text-blue-600 dark:text-blue-400' : ''}`}
-                >
-                  {item.title}
-                </Link>
-              )}
-              {showSoon && (
-                <span className="rounded-md bg-yellow-400 px-2 py-0.5 text-xs font-medium text-yellow-900">
-                  Soon
-                </span>
-              )}
-            </div>
-          </>
+          <div className="flex items-center justify-between gap-2">
+            {showSoon ? (
+              <span
+                className={`mb-2 block font-semibold text-sm ${
+                  depth === 0
+                    ? 'text-base text-foreground uppercase tracking-wide'
+                    : depth === 1
+                      ? 'ml-0 text-gray-900 dark:text-gray-100'
+                      : 'ml-0 text-gray-800 dark:text-gray-200'
+                }`}
+              >
+                {item.title}
+              </span>
+            ) : (
+              <Link
+                href={item.route}
+                className={`mb-2 block font-semibold text-sm transition-colors hover:text-blue-600 dark:hover:text-blue-400 ${
+                  depth === 0
+                    ? 'text-base text-foreground uppercase tracking-wide'
+                    : depth === 1
+                      ? 'ml-0 text-gray-900 dark:text-gray-100'
+                      : 'ml-0 text-gray-800 dark:text-gray-200'
+                } ${isActive ? 'text-blue-600 dark:text-blue-400' : ''}`}
+              >
+                {item.title}
+              </Link>
+            )}
+            {showSoon && (
+              <span className="rounded-md bg-yellow-400 px-2 py-0.5 font-medium text-xs text-yellow-900">
+                Soon
+              </span>
+            )}
+          </div>
         ) : (
           <div
             className={`mb-2 font-semibold text-sm ${
@@ -109,7 +107,7 @@ const DocNavigationItem = ({ item, currentRoute, depth = 0 }: DocNavigationItemP
         )}
         {hasChildren && (
           <ul className={`list-none list-image-none ${depth === 0 ? 'mb-4' : 'mb-2'}`}>
-            {item.children!.map((child, index) => (
+            {item.children?.map((child, index) => (
               <DocNavigationItem
                 key={`${child.path}-${index}`}
                 item={child}
@@ -150,7 +148,7 @@ const DocNavigationItem = ({ item, currentRoute, depth = 0 }: DocNavigationItemP
           </Link>
         )}
         {showSoon && (
-          <span className="rounded-md bg-muted px-2 py-0.5 text-xs text-foreground">Soon</span>
+          <span className="rounded-md bg-muted px-2 py-0.5 text-foreground text-xs">Soon</span>
         )}
       </div>
       {hasChildren && (
@@ -243,6 +241,10 @@ const DocPageContent = ({ children, frontmatter }: DocPageProps) => {
 
   return (
     <>
+      <Head>
+        <title>{frontmatter?.title ? `${frontmatter.title}` : 'Documentation'}</title>
+        {frontmatter?.description && <meta name="description" content={frontmatter.description} />}
+      </Head>
       <div className="mx-auto mt-12 flex w-screen max-w-7xl gap-4">
         <aside className="sticky top-0 hidden h-screen w-64 flex-none space-y-4 overflow-y-auto p-4 lg:flex">
           <DocsNavigation />

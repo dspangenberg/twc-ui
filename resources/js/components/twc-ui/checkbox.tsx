@@ -92,7 +92,7 @@ const BaseCheckbox = ({ className, children, ...props }: AriaCheckboxProps) => (
             </svg>
           ) : null}
         </div>
-        <Label htmlFor="props.name" className="font-medium">
+        <Label htmlFor={props.name} className="font-medium">
           {children}
         </Label>
       </>

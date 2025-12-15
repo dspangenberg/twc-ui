@@ -16,11 +16,11 @@ import {
   composeRenderProps,
   type PopoverProps
 } from 'react-aria-components'
+import { cn } from '@/lib/utils'
+import { Button, type buttonVariants } from './button'
+import { Icon, type IconType } from './icon'
 import { ListBoxCollection, ListBoxSection } from './list-box'
 import { SelectPopover } from './select'
-import { Button, type buttonVariants } from './button'
-import { cn } from '@/lib/utils'
-import { Icon, type IconType } from './icon'
 
 const MenuTrigger = AriaMenuTrigger
 
@@ -171,6 +171,7 @@ interface DropdownMenuProps<T>
   icon?: IconType
   className?: string
   iconClassName?: string
+  triggerElement?: React.ReactNode
   isDisabled?: boolean
   placement?: PopoverProps['placement']
   selectionMode?: AriaMenuProps<T>['selectionMode']
@@ -184,6 +185,7 @@ function DropdownButton<T extends object>({
   placement = 'bottom right',
   selectionMode = undefined,
   selectedKeys = undefined,
+  triggerElement = undefined,
   isDisabled,
   size,
   icon,
@@ -194,15 +196,19 @@ function DropdownButton<T extends object>({
 }: DropdownMenuProps<T>) {
   return (
     <MenuTrigger {...props}>
-      <Button
-        variant={variant}
-        className={className}
-        size={size}
-        isDisabled={isDisabled}
-        iconClassName={iconClassName}
-        icon={icon}
-        title={title}
-      />
+      {triggerElement ? (
+        triggerElement
+      ) : (
+        <Button
+          variant={variant}
+          className={className}
+          size={size}
+          isDisabled={isDisabled}
+          iconClassName={iconClassName}
+          icon={icon}
+          title={title}
+        />
+      )}
       <MenuPopover className="min-w-[--trigger-width]" placement={placement}>
         <Menu
           selectionMode={selectionMode}
