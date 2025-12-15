@@ -1,4 +1,4 @@
-  import { cva, type VariantProps } from 'class-variance-authority'
+import { cva, type VariantProps } from 'class-variance-authority'
 import { X } from 'lucide-react'
 import type React from 'react'
 import { type ReactNode, useEffect, useState } from 'react'
@@ -87,9 +87,9 @@ export const DialogContent = ({
       cn(
         side
           ? sheetVariants({
-            side,
-            className: 'h-full'
-          })
+              side,
+              className: 'h-full'
+            })
           : '-translate-x-1/2 -translate-y-1/2 entering:fade-in-0 exiting:fade-out-0 entering:zoom-in-95 exiting:zoom-out-95 fixed top-[50%] left-[50vw] z-50 max-h-screen w-full max-w-lg entering:animate-in exiting:animate-out border bg-background shadow-lg duration-200 exiting:duration-300 sm:rounded-lg md:w-full',
         className
       )
@@ -150,7 +150,7 @@ export const DialogDescription = ({
   className,
   ...props
 }: React.HTMLAttributes<HTMLParagraphElement>) => (
-  <p className={cn('flex flex-col text-sm text-center sm:text-left', className)} {...props} />
+  <p className={cn('flex flex-col text-center text-sm sm:text-left', className)} {...props} />
 )
 
 export interface DialogRenderProps {
@@ -217,7 +217,7 @@ export const Dialog: React.FC<DialogProps> = ({
     page: 'bg-page-content'
   }[background]
 
-    const widthClass = {
+  const widthClass = {
     default: 'max-w-xl',
     md: 'max-w-md',
     lg: 'max-w-lg',
@@ -323,7 +323,6 @@ export const Dialog: React.FC<DialogProps> = ({
             if (isControlled) {
               void handleClose()
             } else {
-              // In uncontrolled mode, use React Aria's close function
               providedRenderProps.close()
             }
           }
@@ -337,14 +336,16 @@ export const Dialog: React.FC<DialogProps> = ({
                   'relative my-0 flex w-full flex-1 flex-col justify-stretch gap-0 px-0 py-0'
                 )}
               >
-                {isDismissible && <Button
-                  variant="ghost"
-                  size="icon-sm"
-                  className="absolute top-0.5 right-1.5 flex-1"
-                  icon={X}
-                  aria-label="Close"
-                  onClick={() => renderProps.close()}
-                />}
+                {isDismissible && (
+                  <Button
+                    variant="ghost"
+                    size="icon-sm"
+                    className="absolute top-0.5 right-1.5 flex-1"
+                    icon={X}
+                    aria-label="Close"
+                    onClick={() => renderProps.close()}
+                  />
+                )}
                 <DialogTitle className="flex flex-1 items-center justify-between py-1.5! text-left text-base leading-0! md:text-center">
                   <span className="text-base">{title}</span>
                 </DialogTitle>
@@ -403,4 +404,4 @@ export const Dialog: React.FC<DialogProps> = ({
   )
 }
 
-export { DialogTrigger}
+export { DialogTrigger }

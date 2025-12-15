@@ -4,10 +4,7 @@
   "type": "registry:ui",
   "title": "ListBox",
   "description": "React aria ListBox component",
-  "dependencies": [
-    "lucide-react",
-    "react-aria-components"
-  ],
+  "dependencies": ["lucide-react", "react-aria-components"],
   "files": [
     {
       "path": "resources/js/components/twc-ui/list-box.tsx",
@@ -16,4 +13,3 @@
     }
   ]
 }
-

@@ -4,15 +4,8 @@
   "type": "registry:ui",
   "title": "Button",
   "description": "Button component",
-  "dependencies": [
-    "class-variance-authority",
-    "react-aria-components",
-    "lucide-react"
-  ],
-  "registryDependencies": [
-    "@twc-ui/icon",
-    "@twc-ui/tooltip"
-  ],
+  "dependencies": ["class-variance-authority", "react-aria-components", "lucide-react"],
+  "registryDependencies": ["@twc-ui/icon", "@twc-ui/tooltip"],
   "files": [
     {
       "path": "resources/js/components/twc-ui/tooltip.tsx",

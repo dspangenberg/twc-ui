@@ -49,7 +49,6 @@ const AlertDialogComponent: React.FC<AlertDialogProps> = ({
       role="alertdialog"
       bodyPadding
       hideHeader={true}
-      dismissible={true}
       title={title}
       footer={
         <div className="flex items-center justify-end space-x-2">
@@ -98,7 +97,7 @@ const AlertDialogComponent: React.FC<AlertDialogProps> = ({
           <div className="my-3 text-left sm:mt-0 sm:ml-4">
             <Heading
               slot="title"
-              className="!text-lg !pt-2 text-left font-semibold text-foreground"
+              className="pt-2! text-left font-semibold text-foreground text-lg!"
             >
               {title}
             </Heading>

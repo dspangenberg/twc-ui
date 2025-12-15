@@ -4,9 +4,7 @@
   "type": "registry:ui",
   "title": "Button",
   "description": "React aria component button",
-  "registryDependencies": [
-    "@twc-ui/icon"
-  ],
+  "registryDependencies": ["@twc-ui/icon"],
   "files": [
     {
       "path": "resources/js/components/twc-ui/button.tsx",

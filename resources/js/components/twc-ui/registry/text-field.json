@@ -4,13 +4,8 @@
   "type": "registry:ui",
   "title": "TextField",
   "description": "TextField component",
-  "dependencies": [
-    "react-aria-components"
-  ],
-  "registryDependencies": [
-    "@twc-ui/form",
-    "@twc-ui/field"
-  ],
+  "dependencies": ["react-aria-components"],
+  "registryDependencies": ["@twc-ui/form", "@twc-ui/field"],
   "files": [
     {
       "path": "resources/js/components/twc-ui/text-field.tsx",

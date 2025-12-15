@@ -4,12 +4,8 @@
   "type": "registry:ui",
   "title": "Checkbox",
   "description": "Checkbox component",
-  "dependencies": [
-    "react-aria-components"
-  ],
-  "registryDependencies": [
-    "@twc-ui/field"
-  ],
+  "dependencies": ["react-aria-components"],
+  "registryDependencies": ["@twc-ui/field"],
   "files": [
     {
       "path": "resources/js/components/twc-ui/checkbox.tsx",

@@ -4,17 +4,8 @@
   "type": "registry:ui",
   "title": "DropdownButton",
   "description": "DropdownButton component",
-  "dependencies": [
-    "class-variance-authority",
-    "react-aria-components",
-    "@radix-ui/react-icons"
-  ],
-  "registryDependencies": [
-    "@twc-ui/list-box",
-    "@twc-ui/select",
-    "@twc-ui/button",
-    "@twc-ui/icon"
-  ],
+  "dependencies": ["class-variance-authority", "react-aria-components", "@radix-ui/react-icons"],
+  "registryDependencies": ["@twc-ui/list-box", "@twc-ui/select", "@twc-ui/button", "@twc-ui/icon"],
   "files": [
     {
       "path": "resources/js/components/twc-ui/dropdown-button.tsx",

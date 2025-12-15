@@ -12,8 +12,8 @@ import {
   type TextProps as AriaTextProps,
   composeRenderProps
 } from 'react-aria-components'
-import { useFormContext } from './form'
 import { cn } from '@/lib/utils'
+import { useFormContext } from './form'
 
 const labelVariants = cva([
   'text-sm font-normal leading-none',
@@ -42,7 +42,7 @@ const Label = ({ className, children, value, isRequired = false, ...props }: Lab
 function FieldDescription({ className, ...props }: AriaTextProps) {
   return (
     <AriaText
-      className={cn('text-sm text-muted-foreground', className)}
+      className={cn('text-muted-foreground text-sm', className)}
       {...props}
       slot="description"
     />
@@ -103,4 +103,12 @@ function FieldGroup({ className, variant, ...props }: GroupProps) {
   )
 }
 
-export { Label, labelVariants, FieldGroup, fieldGroupVariants, FormFieldError, FieldError, FieldDescription }
+export {
+  Label,
+  labelVariants,
+  FieldGroup,
+  fieldGroupVariants,
+  FormFieldError,
+  FieldError,
+  FieldDescription
+}

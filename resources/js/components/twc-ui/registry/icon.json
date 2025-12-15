@@ -4,10 +4,7 @@
   "type": "registry:ui",
   "title": "Tooltip",
   "description": "React aria components tooltip",
-  "dependencies": [
-    "lucide-react",
-    "@hugeicons/react"
-  ],
+  "dependencies": ["lucide-react", "@hugeicons/react"],
   "files": [
     {
       "path": "resources/js/components/twc-ui/icon.tsx",
@@ -16,4 +13,3 @@
     }
   ]
 }
-

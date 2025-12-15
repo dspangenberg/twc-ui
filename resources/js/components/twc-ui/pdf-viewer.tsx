@@ -1,21 +1,16 @@
 import type * as React from 'react'
+import { useState } from 'react'
 import { createRoot } from 'react-dom/client'
 import { Dialog } from './dialog'
 import { PdfContainer } from './pdf-container'
-import { useState } from 'react'
 
 interface PdfViewerComponentProps {
   file: string
-  filename?: string,
+  filename?: string
   onCancel: () => void
 }
 
-const PdfViewerComponent: React.FC<PdfViewerComponentProps> = ({
-  file,
-  filename,
-  onCancel
-}) => {
-
+const PdfViewerComponent: React.FC<PdfViewerComponentProps> = ({ file, filename, onCancel }) => {
   const [title, setTitle] = useState<string | undefined>(filename)
 
   return (
@@ -32,22 +27,22 @@ const PdfViewerComponent: React.FC<PdfViewerComponentProps> = ({
       confirmClose={false}
       role="dialog"
       background="accent"
-      dismissible={true}
       title={title}
     >
       <PdfContainer
-        className="rounded-none! h-full"
+        className="h-full rounded-none!"
         file={file}
         filename={filename}
         hideFilename
-        onFilenameChange={value => setTitle(value)}/>
+        onFilenameChange={value => setTitle(value)}
+      />
     </Dialog>
   )
 }
 
 interface PdfViewerCallParams {
   file: string
-  filename?: string,
+  filename?: string
 }
 
 export const PdfViewer = {

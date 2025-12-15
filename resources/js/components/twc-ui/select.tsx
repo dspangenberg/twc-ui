@@ -134,12 +134,12 @@ const Select = <T extends object>({
 
   const itemsWithNothing = isOptional
     ? [
-      {
-        [itemValue]: isStringValue ? NULL_SENTINEL : NUMERIC_NULL_SENTINEL,
-        [itemName]: optionalValue
-      } as T,
-      ...itemsArray
-    ]
+        {
+          [itemValue]: isStringValue ? NULL_SENTINEL : NUMERIC_NULL_SENTINEL,
+          [itemName]: optionalValue
+        } as T,
+        ...itemsArray
+      ]
     : itemsArray
 
   const handleSelectionChange = (key: Key | null) => {

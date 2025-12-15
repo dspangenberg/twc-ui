@@ -203,10 +203,7 @@ function DropdownButton<T extends object>({
         icon={icon}
         title={title}
       />
-      <MenuPopover
-        className="min-w-[--trigger-width]"
-        placement={placement}
-      >
+      <MenuPopover className="min-w-[--trigger-width]" placement={placement}>
         <Menu
           selectionMode={selectionMode}
           selectedKeys={selectedKeys}

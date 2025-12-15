@@ -9,10 +9,10 @@ import {
   composeRenderProps,
   Text
 } from 'react-aria-components'
-import { useFormContext } from './form'
 import { cn } from '@/lib/utils'
 import { Button } from './button'
-import { FormFieldError, FieldError, FieldGroup, Label } from './field'
+import { FieldError, FieldGroup, FormFieldError, Label } from './field'
+import { useFormContext } from './form'
 
 const BaseNumberField = AriaNumberField
 
@@ -26,7 +26,7 @@ const NumberFieldInput = ({ className, ...props }: AriaInputProps) => {
     <AriaInput
       className={composeRenderProps(className, className =>
         cn(
-          'mr-2 w-fit min-w-0 flex-1 border-0 border-transparent bg-background pr-4 pl-0 text-right text-sm outline-0 placeholder:text-muted-foreground [&::-webkit-search-cancel-button]:hidden ',
+          'mr-2 w-fit min-w-0 flex-1 border-0 border-transparent bg-background pr-4 pl-0 text-right text-sm outline-0 placeholder:text-muted-foreground [&::-webkit-search-cancel-button]:hidden',
           className
         )
       )}
@@ -117,7 +117,7 @@ const NumberField = ({
     >
       {label && <Label value={label} isRequired={isRequired} />}
       <FieldGroup isInvalid={hasError}>
-        <NumberFieldInput  />
+        <NumberFieldInput />
         <NumberFieldSteppers />
       </FieldGroup>
       {description && (
@@ -130,13 +130,18 @@ const NumberField = ({
   )
 }
 
-const FormNumberField = ({ ...props}: NumberFieldProps) => {
+const FormNumberField = ({ ...props }: NumberFieldProps) => {
   const form = useFormContext()
   const error = form?.errors?.[props.name as string]
 
-  return (
-    <NumberField errorComponent={FormFieldError} error={error} {...props} />
-  )
+  return <NumberField errorComponent={FormFieldError} error={error} {...props} />
 }
 
-export { BaseNumberField, NumberFieldInput, NumberFieldSteppers, NumberFieldStepper, NumberField, FormNumberField }
+export {
+  BaseNumberField,
+  NumberFieldInput,
+  NumberFieldSteppers,
+  NumberFieldStepper,
+  NumberField,
+  FormNumberField
+}

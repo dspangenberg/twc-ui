@@ -4,13 +4,8 @@
   "type": "registry:ui",
   "title": "toolbar",
   "description": "React aria components toolbar",
-  "dependencies": [
-    "react-aria-components",
-    "class-variance-authority"
-  ],
-  "registryDependencies": [
-    "@twc-ui/button"
-  ],
+  "dependencies": ["react-aria-components", "class-variance-authority"],
+  "registryDependencies": ["@twc-ui/button"],
   "files": [
     {
       "path": "resources/js/components/twc-ui/toolbar.tsx",
@@ -19,4 +14,3 @@
     }
   ]
 }
-

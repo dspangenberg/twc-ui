@@ -3,7 +3,6 @@ import { DemoContainer } from '@/components/docs/DemoContainer'
 import { Toolbar, ToolbarButton } from '@/components/twc-ui/toolbar'
 export const ToolbarDemo = () => {
   return (
-
     <DemoContainer className="gap-4 flex-col">
       <h5>Default Sidebar</h5>
       <Toolbar>

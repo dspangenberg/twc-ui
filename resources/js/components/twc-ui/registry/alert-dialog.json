@@ -9,11 +9,7 @@
     "react-aria-components",
     "@hugeicons/core-free-icons"
   ],
-  "registryDependencies": [
-    "@twc-ui/dialog",
-    "@twc-ui/button",
-    "@twc-ui/icon"
-  ],
+  "registryDependencies": ["@twc-ui/dialog", "@twc-ui/button", "@twc-ui/icon"],
   "files": [
     {
       "path": "resources/js/components/twc-ui/alert-dialog.tsx",
