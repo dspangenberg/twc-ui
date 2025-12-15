@@ -57,6 +57,9 @@ export const SourceCode: React.FC<DemoCodePreviewProps> = ({
         case 'hook':
           routeName = 'hook-source'
           break
+        case 'lib':
+          routeName = 'lib-source'
+          break
         default:
           routeName = 'source'
       }
@@ -102,7 +105,7 @@ export const SourceCode: React.FC<DemoCodePreviewProps> = ({
       {title && <h3>{title}</h3>}
       <div className="max-w-full overflow-hidden rounded-md border bg-muted text-sm">
         {!hideHeader && (
-          <div className="flex items-center ">
+          <div className="flex items-center">
             {header ? (
               header
             ) : (
@@ -119,13 +122,13 @@ export const SourceCode: React.FC<DemoCodePreviewProps> = ({
           })}
         >
           {isLoading ? (
-            <div className=" absolute right-0 left-0">
+            <div className="absolute right-0 left-0">
               <LogoSpinner className="mx-auto" />
             </div>
           ) : (
             <div
               className={cn(
-                'text-sm relative [&>.shiki]:max-h-80 [&>.shiki]:w-full [&>.shiki]:overflow-scroll [&>.shiki]:text-balance [&>.shiki]:rounded-b-md [&>.shiki]:bg-muted [&>.shiki]:p-4',
+                'relative text-sm [&>.shiki]:max-h-80 [&>.shiki]:w-full [&>.shiki]:overflow-scroll [&>.shiki]:text-balance [&>.shiki]:rounded-b-md [&>.shiki]:bg-muted [&>.shiki]:p-4',
                 {
                   '[&>.shiki]:max-h-[700px]': expand || !collapsible
                 }

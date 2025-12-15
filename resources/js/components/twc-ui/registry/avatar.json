@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "avatar",
+  "type": "registry:ui",
+  "title": "Avatar",
+  "description": "Avatar component",
+  "dependencies": ["@radix-ui/react-avatar"],
+  "files": [
+    {
+      "path": "resources/js/components/twc-ui/avatar.tsx",
+      "type": "registry:ui",
+      "target": "components/ui/twc-ui/avatar.tsx"
+    },
+    {
+      "path": "resources/js/lib/color-utils.ts",
+      "type": "registry:lib"
+    }
+  ]
+}
