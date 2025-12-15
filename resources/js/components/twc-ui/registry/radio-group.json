@@ -4,13 +4,8 @@
   "type": "registry:ui",
   "title": "Radio Group",
   "description": "Radio Group",
-  "dependencies": [
-    "react-aria-components"
-  ],
-  "registryDependencies": [
-    "@twc-ui/field",
-    "@twc-ui/form"
-  ],
+  "dependencies": ["react-aria-components"],
+  "registryDependencies": ["@twc-ui/field", "@twc-ui/form"],
   "files": [
     {
       "path": "resources/js/components/twc-ui/radio-group.tsx",

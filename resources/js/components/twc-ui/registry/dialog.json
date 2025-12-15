@@ -4,15 +4,8 @@
   "type": "registry:ui",
   "title": "Dialog",
   "description": "Dialog component",
-  "dependencies": [
-    "class-variance-authority",
-    "react-aria-components",
-    "lucide-react"
-  ],
-  "registryDependencies": [
-    "@twc-ui/alert-dialog",
-    "@twc-ui/button"
-  ],
+  "dependencies": ["class-variance-authority", "react-aria-components", "lucide-react"],
+  "registryDependencies": ["@twc-ui/alert-dialog", "@twc-ui/button"],
   "files": [
     {
       "path": "resources/js/components/twc-ui/dialog.tsx",

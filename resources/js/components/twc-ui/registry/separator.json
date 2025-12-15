@@ -4,9 +4,7 @@
   "type": "registry:ui",
   "title": "Separator",
   "description": "React aria components separator",
-  "dependencies": [
-    "react-aria-components"
-  ],
+  "dependencies": ["react-aria-components"],
   "files": [
     {
       "path": "resources/js/components/twc-ui/separator.tsx",
@@ -15,4 +13,3 @@
     }
   ]
 }
-

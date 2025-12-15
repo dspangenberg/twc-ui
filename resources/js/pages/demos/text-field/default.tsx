@@ -9,14 +9,9 @@ interface Contact extends Record<string, any> {
 }
 
 export default function Dashboard() {
-  const form = useForm<Contact>(
-    'contact-form',
-    'post',
-    route('contact.store'),
-    {
-      first_name: ''
-    }
-  )
+  const form = useForm<Contact>('contact-form', 'post', route('contact.store'), {
+    first_name: ''
+  })
 
   return (
     <DemoContainer>
@@ -28,7 +23,9 @@ export default function Dashboard() {
               isRequired
               description="Enter your first name"
               placeholder="Danny"
-              label="First name" {...form.register('first_name')} />
+              label="First name"
+              {...form.register('first_name')}
+            />
           </div>
         </FormGrid>
       </Form>

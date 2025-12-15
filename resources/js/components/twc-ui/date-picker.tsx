@@ -1,4 +1,4 @@
-"use client"
+'use client'
 
 import { Calendar04Icon, MultiplicationSignIcon } from '@hugeicons/core-free-icons'
 import { HugeiconsIcon } from '@hugeicons/react'
@@ -22,7 +22,7 @@ import {
 } from 'react-aria-components'
 import { useFormContext } from '@/components/twc-ui/form'
 import { cn } from '@/lib/utils'
-import { Button } from "./button"
+import { Button } from './button'
 import {
   Calendar,
   CalendarCell,
@@ -40,10 +40,8 @@ import { Popover } from './popover'
 const BaseDatePicker = AriaDatePicker
 const BaseDateRangePicker = AriaDateRangePicker
 
-// Constants from date-field.tsx for consistency
 const DATE_FORMAT = import.meta.env.VITE_DATE_FORMAT || 'yyyy-MM-dd'
 
-// Helper function to convert DateValue avaScript Date (same as in date-field.tsx)
 const dateValueToDate = (dateValue: DateValue): Date => {
   return new Date(dateValue.year, dateValue.month - 1, dateValue.day)
 }
@@ -58,7 +56,7 @@ const DatePickerContent = ({
   >
     <AriaDialog
       className={cn(
-        'pointer-events-auto z-[100] flex w-full flex-col space-y-4 outline-none sm:flex-row sm:space-x-4 sm:space-y-0',
+        'pointer-events-auto z-100 flex w-full flex-col space-y-4 outline-none sm:flex-row sm:space-x-4 sm:space-y-0',
         className
       )}
       {...props}
@@ -74,7 +72,7 @@ const DatePickerClearButton = () => {
       slot={null}
       variant="ghost"
       size="icon"
-      className="size-6 flex-none data-[focus-visible]:ring-offset-0"
+      className="size-6 flex-none data-focus-visible:ring-offset-0"
       onPress={() => state.setValue(null)}
     >
       <HugeiconsIcon icon={MultiplicationSignIcon} className="size-4" />
@@ -91,7 +89,7 @@ const DateRangePickerClearButton = () => {
       variant="ghost"
       aria-label="Clear"
       size="icon"
-      className="size-6 flex-none data-[focus-visible]:ring-offset-0"
+      className="size-6 flex-none data-focus-visible:ring-offset-0"
       onPress={() => state?.setValue(null)}
     >
       <HugeiconsIcon icon={MultiplicationSignIcon} className="size-4" />
@@ -134,22 +132,25 @@ const DatePicker = ({
   }, [value])
 
   // Convert DateValue to string (same logic as DateField)
-  const handleChange = React.useCallback((newValue: DateValue | null) => {
-    if (!onChange) return
+  const handleChange = React.useCallback(
+    (newValue: DateValue | null) => {
+      if (!onChange) return
 
-    if (!newValue) {
-      onChange(null)
-      return
-    }
+      if (!newValue) {
+        onChange(null)
+        return
+      }
 
-    try {
-      const jsDate = dateValueToDate(newValue)
-      const formattedDate = format(jsDate, DATE_FORMAT)
-      onChange(formattedDate)
-    } catch {
-      onChange(null)
-    }
-  }, [onChange])
+      try {
+        const jsDate = dateValueToDate(newValue)
+        const formattedDate = format(jsDate, DATE_FORMAT)
+        onChange(formattedDate)
+      } catch {
+        onChange(null)
+      }
+    },
+    [onChange]
+  )
 
   return (
     <BaseDatePicker
@@ -163,15 +164,13 @@ const DatePicker = ({
       {...props}
     >
       <Label value={label} />
-      <FieldGroup
-        className="!pr-1 gap-0 px-3 data-[invalid]:focus-visible:border-destructive data-[invalid]:focus-visible:ring-destructive/20"
-      >
+      <FieldGroup className="gap-0 px-3 pr-1! data-invalid:focus-visible:border-destructive data-invalid:focus-visible:ring-destructive/20">
         <DateInput variant="ghost" className="flex-1" />
         <DatePickerClearButton />
         <Button
           variant="ghost"
           size="icon"
-          className="mr-1 size-6 data-[focus-visible]:ring-offset-0"
+          className="mr-1 size-6 data-focus-visible:ring-offset-0"
         >
           <HugeiconsIcon icon={Calendar04Icon} className="size-4" />
         </Button>
@@ -197,8 +196,8 @@ const DatePicker = ({
   )
 }
 
-// DateRangePicker - vereinfacht
-interface DateRangePickerProps extends Omit<AriaDateRangePickerProps<DateValue>, 'value' | 'onChange'> {
+interface DateRangePickerProps
+  extends Omit<AriaDateRangePickerProps<DateValue>, 'value' | 'onChange'> {
   label?: string
   description?: string
   value?: RangeValue<string> | null
@@ -230,7 +229,11 @@ const DateRangePicker = ({
       if (Number.isNaN(startDate.getTime()) || Number.isNaN(endDate.getTime())) return null
 
       return {
-        start: new CalendarDate(startDate.getFullYear(), startDate.getMonth() + 1, startDate.getDate()),
+        start: new CalendarDate(
+          startDate.getFullYear(),
+          startDate.getMonth() + 1,
+          startDate.getDate()
+        ),
         end: new CalendarDate(endDate.getFullYear(), endDate.getMonth() + 1, endDate.getDate())
       }
     } catch {
@@ -238,27 +241,29 @@ const DateRangePicker = ({
     }
   }, [value?.start, value?.end])
 
-  // Convert RangeValue<DateValue> to RangeValue<string>
-  const handleChange = React.useCallback((newValue: RangeValue<DateValue> | null) => {
-    if (!onChange) return
+  const handleChange = React.useCallback(
+    (newValue: RangeValue<DateValue> | null) => {
+      if (!onChange) return
 
-    if (!newValue?.start || !newValue.end) {
-      onChange(null)
-      return
-    }
-
-    try {
-      const startDate = dateValueToDate(newValue.start)
-      const endDate = dateValueToDate(newValue.end)
-      const formattedRange = {
-        start: format(startDate, DATE_FORMAT),
-        end: format(endDate, DATE_FORMAT)
+      if (!newValue?.start || !newValue.end) {
+        onChange(null)
+        return
       }
-      onChange(formattedRange)
-    } catch {
-      onChange(null)
-    }
-  }, [onChange])
+
+      try {
+        const startDate = dateValueToDate(newValue.start)
+        const endDate = dateValueToDate(newValue.end)
+        const formattedRange = {
+          start: format(startDate, DATE_FORMAT),
+          end: format(endDate, DATE_FORMAT)
+        }
+        onChange(formattedRange)
+      } catch {
+        onChange(null)
+      }
+    },
+    [onChange]
+  )
 
   return (
     <BaseDateRangePicker
@@ -283,11 +288,7 @@ const DateRangePicker = ({
 
         <div className="flex flex-none items-center justify-end gap-1">
           <DateRangePickerClearButton />
-          <Button
-            variant="ghost"
-            size="icon"
-            className="size-6 data-[focus-visible]:ring-offset-0"
-          >
+          <Button variant="ghost" size="icon" className="size-6 data-focus-visible:ring-offset-0">
             <HugeiconsIcon icon={Calendar04Icon} className="size-4" />
           </Button>
         </div>
@@ -313,10 +314,5 @@ const DateRangePicker = ({
   )
 }
 
-export {
-  DatePicker,
-  DateRangePicker,
-  BaseDatePicker,
-  BaseDateRangePicker,
-}
+export { DatePicker, DateRangePicker, BaseDatePicker, BaseDateRangePicker }
 export type { DatePickerProps, DateRangePickerProps }

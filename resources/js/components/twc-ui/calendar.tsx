@@ -74,10 +74,7 @@ const CalendarHeading = (props: React.HTMLAttributes<HTMLElement>) => {
   )
 }
 
-const CalendarGrid = ({
-  className,
-  ...props
-}: AriaCalendarGridProps) => (
+const CalendarGrid = ({ className, ...props }: AriaCalendarGridProps) => (
   <AriaCalendarGrid
     className={cn(' border-separate border-spacing-x-0 border-spacing-y-1 ', className)}
     {...props}
@@ -88,27 +85,18 @@ const CalendarGridHeader = ({ ...props }: AriaCalendarGridHeaderProps) => (
   <AriaCalendarGridHeader {...props} />
 )
 
-const CalendarHeaderCell = ({
-  className,
-  ...props
-}: AriaCalendarHeaderCellProps) => (
+const CalendarHeaderCell = ({ className, ...props }: AriaCalendarHeaderCellProps) => (
   <AriaCalendarHeaderCell
     className={cn('w-8 rounded-md font-normal text-[0.8rem] text-muted-foreground', className)}
     {...props}
   />
 )
 
-const CalendarGridBody = ({
-  className,
-  ...props
-}: AriaCalendarGridBodyProps) => (
+const CalendarGridBody = ({ className, ...props }: AriaCalendarGridBodyProps) => (
   <AriaCalendarGridBody className={cn('[&>tr>td]:p-0', className)} {...props} />
 )
 
-const CalendarCell = ({
-  className,
-  ...props
-}: AriaCalendarCellProps) => {
+const CalendarCell = ({ className, ...props }: AriaCalendarCellProps) => {
   const isRange = Boolean(React.useContext(AriaRangeCalendarStateContext))
   return (
     <AriaCalendarCell
@@ -120,29 +108,29 @@ const CalendarCell = ({
           renderProps.isDisabled && 'text-muted-foreground opacity-50',
           /* Selected */
           renderProps.isSelected &&
-          'bg-primary text-primary-foreground data-[focused]:bg-primary data-[focused]:text-primary-foreground',
+            'bg-primary text-primary-foreground data-[focused]:bg-primary data-[focused]:text-primary-foreground',
           /* Hover */
           renderProps.isHovered &&
-          renderProps.isSelected &&
-          (renderProps.isSelectionStart || renderProps.isSelectionEnd || !isRange) &&
-          'data-[hovered]:bg-primary data-[hovered]:text-primary-foreground',
+            renderProps.isSelected &&
+            (renderProps.isSelectionStart || renderProps.isSelectionEnd || !isRange) &&
+            'data-[hovered]:bg-primary data-[hovered]:text-primary-foreground',
           /* Selection Start/End */
           renderProps.isSelected &&
-          isRange &&
-          !renderProps.isSelectionStart &&
-          !renderProps.isSelectionEnd &&
-          'rounded-none bg-accent text-accent-foreground',
+            isRange &&
+            !renderProps.isSelectionStart &&
+            !renderProps.isSelectionEnd &&
+            'rounded-none bg-accent text-accent-foreground',
           /* Outside Month */
           renderProps.isOutsideMonth &&
-          'text-muted-foreground opacity-50 data-[selected]:bg-accent/50 data-[selected]:text-muted-foreground data-[selected]:opacity-30',
+            'text-muted-foreground opacity-50 data-[selected]:bg-accent/50 data-[selected]:text-muted-foreground data-[selected]:opacity-30',
           /* Current Date */
           renderProps.date.compare(today(getLocalTimeZone())) === 0 &&
-          !renderProps.isSelected &&
-          'bg-accent text-accent-foreground',
+            !renderProps.isSelected &&
+            'bg-accent text-accent-foreground',
           /* Unavailable Date */
           renderProps.isUnavailable && 'cursor-default text-destructive ',
           renderProps.isInvalid &&
-          'bg-destructive text-destructive-foreground data-[focused]:bg-destructive data-[hovered]:bg-destructive data-[focused]:text-destructive-foreground data-[hovered]:text-destructive-foreground',
+            'bg-destructive text-destructive-foreground data-[focused]:bg-destructive data-[hovered]:bg-destructive data-[focused]:text-destructive-foreground data-[hovered]:text-destructive-foreground',
           className
         )
       )}
@@ -155,7 +143,7 @@ interface JollyCalendarProps<T extends AriaDateValue> extends AriaCalendarProps<
   errorMessage?: string
 }
 
-function JollyCalendar<T extends AriaDateValue> ({
+function JollyCalendar<T extends AriaDateValue>({
   errorMessage,
   className,
   ...props
@@ -185,7 +173,7 @@ interface JollyRangeCalendarProps<T extends AriaDateValue> extends AriaRangeCale
   errorMessage?: string
 }
 
-function JollyRangeCalendar<T extends AriaDateValue> ({
+function JollyRangeCalendar<T extends AriaDateValue>({
   errorMessage,
   className,
   ...props

@@ -4,12 +4,8 @@
   "type": "registry:ui",
   "title": "Error section",
   "description": "Error section for forms",
-  "dependencies": [
-    "@hugeicons/core-free-icons"
-  ],
-  "registryDependencies": [
-    "@twc-ui/icon"
-  ],
+  "dependencies": ["@hugeicons/core-free-icons"],
+  "registryDependencies": ["@twc-ui/icon"],
   "files": [
     {
       "path": "resources/js/components/twc-ui/form-errors.tsx",

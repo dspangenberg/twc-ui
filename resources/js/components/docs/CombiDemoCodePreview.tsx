@@ -41,35 +41,33 @@ export const CombiDemoCodePreview: React.FC<DemoCodePreviewProps> = ({
   return (
     <div className="space-y-3">
       <div className="relative">
+        <div
+          className={cn(
+            'relative mb-6 min-h-80 overflow-hidden rounded-md bg-transparent',
+            className
+          )}
+        >
+          <div className="absolute inset-0 bg-[length:800px_300px] bg-[url(/dots-bg.png)] bg-repeat opacity-4 dark:opacity-6 rounded-md" />
 
-
-            <div
-              className={cn(
-                'relative mb-6 min-h-80 overflow-hidden rounded-md bg-transparent',
-                className
-              )}
-            >
-              <div className="absolute inset-0 bg-[length:800px_300px] bg-[url(/dots-bg.png)] bg-repeat opacity-4 dark:opacity-6 rounded-md" />
-
-              <div
-                className={cn(
-                  'absolute top-0 bottom-0 flex h-full min-h-80 w-full flex-1 grow items-center justify-center rounded-md border p-6 lg:p-12'
-                )}
-              >
-                {isLoading && (
-                  <div className=" absolute right-0 left-0">
-                    <LogoSpinner className="mx-auto" />
-                  </div>
-                )}
-                <iframe
-                  src={demoUrl}
-                  className="m-0 h-screen p-0 bg-transparent roundedd-md absolute left-0 right-0 max-w-full top-0 rounded-md w-screen "
-                  loading="lazy"
-                  style={{ height: '100%' }}
-                  onLoad={() => setIsLoading(false)}
-                />
+          <div
+            className={cn(
+              'absolute top-0 bottom-0 flex h-full min-h-80 w-full flex-1 grow items-center justify-center rounded-md border p-6 lg:p-12'
+            )}
+          >
+            {isLoading && (
+              <div className=" absolute right-0 left-0">
+                <LogoSpinner className="mx-auto" />
               </div>
-            </div>
+            )}
+            <iframe
+              src={demoUrl}
+              className="m-0 h-screen p-0 bg-transparent roundedd-md absolute left-0 right-0 max-w-full top-0 rounded-md w-screen "
+              loading="lazy"
+              style={{ height: '100%' }}
+              onLoad={() => setIsLoading(false)}
+            />
+          </div>
+        </div>
         <div>{codeView()}</div>
 
         <div className="absolute top-1 right-0">

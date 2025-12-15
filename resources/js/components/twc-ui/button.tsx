@@ -45,6 +45,7 @@ const buttonVariants = cva(
       },
       size: {
         default: 'h-9 px-4 py-2',
+        full: 'h-9 w-full px-4 py-2',
         sm: 'h-8 rounded-md px-3 text-xs',
         lg: 'h-10 rounded-md px-8',
         icon: 'size-9',
@@ -111,6 +112,7 @@ export const Button = ({
   const iconSizeClass = {
     auto: 'size-5',
     default: 'size-5',
+    full: 'size-5',
     sm: 'size-5',
     lg: 'size-5',
     icon: 'size-5',

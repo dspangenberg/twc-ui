@@ -1,6 +1,6 @@
-"use client"
+'use client'
 
-import type { VariantProps } from "class-variance-authority"
+import type { VariantProps } from 'class-variance-authority'
 import {
   DateField as AriaDateField,
   type DateFieldProps as AriaDateFieldProps,
@@ -13,13 +13,13 @@ import {
   type TimeValue as AriaTimeValue,
   type ValidationResult as AriaValidationResult,
   composeRenderProps,
-  Text,
-} from "react-aria-components"
+  Text
+} from 'react-aria-components'
 import { CalendarDate, type DateValue } from '@internationalized/date'
-import { cn } from "@/lib/utils"
-import { FieldError, fieldGroupVariants, Label } from "./field"
+import { cn } from '@/lib/utils'
+import { FieldError, fieldGroupVariants, Label } from './field'
 import { useFormContext } from '@/components/twc-ui/form'
-import React, { useCallback, useMemo } from "react"
+import React, { useCallback, useMemo } from 'react'
 import { format, parse } from 'date-fns'
 
 const BaseDateField = AriaDateField
@@ -27,15 +27,15 @@ const BaseTimeField = AriaTimeField
 
 const DateSegment = ({ className, ...props }: AriaDateSegmentProps) => (
   <AriaDateSegment
-    className={composeRenderProps(className, (className) =>
+    className={composeRenderProps(className, className =>
       cn(
         'inline rounded p-0.5 type-literal:px-0 caret-transparent outline-0',
         /* Placeholder */
-        "data-[placeholder]:text-muted-foreground ",
+        'data-[placeholder]:text-muted-foreground ',
         /* Disabled */
-        "data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50",
+        'data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50',
         /* Focused */
-        "data-[focused]:bg-accent data-[focused]:text-accent-foreground",
+        'data-[focused]:bg-accent data-[focused]:text-accent-foreground',
         className
       )
     )}
@@ -43,9 +43,7 @@ const DateSegment = ({ className, ...props }: AriaDateSegmentProps) => (
   />
 )
 
-interface DateInputProps
-  extends AriaDateInputProps,
-    VariantProps<typeof fieldGroupVariants> {
+interface DateInputProps extends AriaDateInputProps, VariantProps<typeof fieldGroupVariants> {
   isInvalid?: boolean
 }
 
@@ -57,14 +55,14 @@ const DateInput = ({
   isInvalid,
   variant,
   ...props
-}: Omit<DateInputProps, "children">) => (
+}: Omit<DateInputProps, 'children'>) => (
   <AriaDateInput
-    className={composeRenderProps(className, (className) =>
-      cn(fieldGroupVariants({ variant }), "text-sm", className)
+    className={composeRenderProps(className, className =>
+      cn(fieldGroupVariants({ variant }), 'text-sm', className)
     )}
     {...props}
   >
-    {(segment) => <DateSegment segment={segment} />}
+    {segment => <DateSegment segment={segment} />}
   </AriaDateInput>
 )
 
@@ -107,26 +105,29 @@ const DateField = ({
   }, [value])
 
   // Convert DateValue to string
-  const handleChange = useCallback((newValue: DateValue | null) => {
-    if (!onChange) return
+  const handleChange = useCallback(
+    (newValue: DateValue | null) => {
+      if (!onChange) return
 
-    if (!newValue) {
-      onChange(null)
-      return
-    }
+      if (!newValue) {
+        onChange(null)
+        return
+      }
 
-    try {
-      const jsDate = dateValueToDate(newValue)
-      const formattedDate = format(jsDate, DATE_FORMAT)
-      onChange(formattedDate)
-    } catch {
-      onChange(null)
-    }
-  }, [onChange])
+      try {
+        const jsDate = dateValueToDate(newValue)
+        const formattedDate = format(jsDate, DATE_FORMAT)
+        onChange(formattedDate)
+      } catch {
+        onChange(null)
+      }
+    },
+    [onChange]
+  )
 
   return (
     <BaseDateField
-      className={composeRenderProps(className, (className) =>
+      className={composeRenderProps(className, className =>
         cn('group flex flex-col gap-2 data-[invalid]:border-destructive', className)
       )}
       isInvalid={hasError}
@@ -147,8 +148,7 @@ const DateField = ({
   )
 }
 
-interface TimeFieldProps<T extends AriaTimeValue>
-  extends AriaTimeFieldProps<T> {
+interface TimeFieldProps<T extends AriaTimeValue> extends AriaTimeFieldProps<T> {
   label?: string
   description?: string
   error?: string | ((validation: AriaValidationResult) => string)
@@ -168,8 +168,8 @@ const TimeField = <T extends AriaTimeValue>({
   return (
     <BaseTimeField
       isInvalid={hasError}
-      className={composeRenderProps(className, (className) =>
-        cn("group flex flex-col gap-2", className)
+      className={composeRenderProps(className, className =>
+        cn('group flex flex-col gap-2', className)
       )}
       {...props}
     >
@@ -181,12 +181,5 @@ const TimeField = <T extends AriaTimeValue>({
   )
 }
 
-export {
-  DateField,
-  DateSegment,
-  DateInput,
-  BaseTimeField,
-  BaseDateField,
-  TimeField,
-}
+export { DateField, DateSegment, DateInput, BaseTimeField, BaseDateField, TimeField }
 export type { DateInputProps, DateFieldProps, TimeFieldProps }

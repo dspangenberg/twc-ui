@@ -4,13 +4,8 @@
   "type": "registry:ui",
   "title": "ToggleButton",
   "description": "ToggleButton component",
-  "dependencies": [
-    "react-aria-components",
-    "tailwind-variants"
-  ],
-  "registryDependencies": [
-    "@twc-ui/icon"
-  ],
+  "dependencies": ["react-aria-components", "tailwind-variants"],
+  "registryDependencies": ["@twc-ui/icon"],
   "files": [
     {
       "path": "resources/js/components/twc-ui/toggle-button.tsx",

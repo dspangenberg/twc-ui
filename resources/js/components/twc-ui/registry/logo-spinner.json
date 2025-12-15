@@ -4,9 +4,7 @@
   "type": "registry:ui",
   "title": "Tooltip",
   "description": "React aria components tooltip",
-  "registryDependencies": [
-    "@twc-ui/logo"
-  ],
+  "registryDependencies": ["@twc-ui/logo"],
   "files": [
     {
       "path": "resources/js/components/twc-ui/logo-spinner.tsx",
@@ -15,4 +13,3 @@
     }
   ]
 }
-

@@ -9,19 +9,13 @@ import { TypeInfo } from '@/components/docs/TypeInfo'
 import { Required } from '@/components/docs/required'
 import { Icon } from '@/components/twc-ui/icon'
 import { SourceCode } from '@/components/docs/SourceCode'
-import {CombiDemoCodePreview} from '@/components/docs/CombiDemoCodePreview'
+import { CombiDemoCodePreview } from '@/components/docs/CombiDemoCodePreview'
 const sharedComponents = {
   h1: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
-    <h1
-      className={cn('mt-10 scroll-m-16 pb-2 font-medium text-4xl', className)}
-      {...props}
-    />
+    <h1 className={cn('mt-10 scroll-m-16 pb-2 font-medium text-4xl', className)} {...props} />
   ),
   h2: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
-    <h2
-      className={cn('mt-10 scroll-m-16 pb-2 font-medium text-3xl', className)}
-      {...props}
-    />
+    <h2 className={cn('mt-10 scroll-m-16 pb-2 font-medium text-3xl', className)} {...props} />
   ),
   h3: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h3 className={cn('mt-8 scroll-m-16 font-medium text-2xl', className)} {...props} />

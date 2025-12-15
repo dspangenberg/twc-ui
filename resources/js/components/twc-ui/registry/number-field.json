@@ -4,15 +4,8 @@
   "type": "registry:ui",
   "title": "NumberField",
   "description": "NumberField component",
-  "dependencies": [
-    "react-aria-components",
-    "lucide-react"
-  ],
-  "registryDependencies": [
-    "@twc-ui/form",
-    "@twc-ui/button",
-    "@twc-ui/field"
-  ],
+  "dependencies": ["react-aria-components", "lucide-react"],
+  "registryDependencies": ["@twc-ui/form", "@twc-ui/button", "@twc-ui/field"],
   "files": [
     {
       "path": "resources/js/components/twc-ui/number-field.tsx",

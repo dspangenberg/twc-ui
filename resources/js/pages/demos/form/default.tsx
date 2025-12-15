@@ -1,14 +1,13 @@
 import { Head } from '@inertiajs/react'
 import { DemoContainer } from '@/components/docs/DemoContainer'
 import { Button } from '@/components/twc-ui/button'
+import { Checkbox } from '@/components/twc-ui/checkbox'
 import { FormComboBox } from '@/components/twc-ui/combo-box'
+import { DatePicker } from '@/components/twc-ui/date-picker'
 import { Form, useForm } from '@/components/twc-ui/form'
 import { FormGrid } from '@/components/twc-ui/form-grid'
 import { FormNumberField } from '@/components/twc-ui/number-field'
-import { FormTextField, FormTextAreaField } from '@/components/twc-ui/text-field'
-import { Checkbox } from '@/components/twc-ui/checkbox'
-import { DatePicker } from '@/components/twc-ui/date-picker'
-
+import { FormTextAreaField, FormTextField } from '@/components/twc-ui/text-field'
 
 interface Props {
   contact: App.Data.ContactData
@@ -29,9 +28,14 @@ export default function FormDemo({ contact, countries }: Props) {
       <Form form={form} className="mx-auto my-12 max-w-lg p-12">
         <FormGrid>
           <div className="col-span-12">
-            <FormTextField autoFocus isRequired label="First name" {...form.register('first_name')} />
+            <FormTextField
+              autoFocus
+              isRequired
+              label="First name"
+              {...form.register('first_name')}
+            />
             <div className="pt-0.5">
-              <Checkbox label="VIP" {...form.registerCheckbox('is_vip')}  />
+              <Checkbox label="VIP" {...form.registerCheckbox('is_vip')} />
             </div>
           </div>
           <div className="col-span-12">
@@ -53,11 +57,7 @@ export default function FormDemo({ contact, countries }: Props) {
             />
           </div>
           <div className="col-span-12">
-            <DatePicker
-              isRequired
-              label="DOB"
-              {...form.register('dob')}
-            />
+            <DatePicker isRequired label="DOB" {...form.register('dob')} />
           </div>
           <div className="col-span-24">
             <FormTextAreaField autoSize label="Note" {...form.register('note')} />

@@ -60,37 +60,39 @@ const DocNavigationItem = ({ item, currentRoute, depth = 0 }: DocNavigationItemP
       <li className="mb-4">
         {item.route ? (
           <>
-          <div className="flex items-center justify-between gap-2">
-            {showSoon ? (
-              <span
-                className={`mb-2 block font-semibold text-sm ${
-                  depth === 0
-                    ? 'text-base text-foreground uppercase tracking-wide'
-                    : depth === 1
-                      ? 'ml-0 text-gray-900 dark:text-gray-100'
-                      : 'ml-0 text-gray-800 dark:text-gray-200'
-                }`}
-              >
-                {item.title}
-              </span>
-            ) : (
-              <Link
-                href={item.route}
-                className={`mb-2 block font-semibold text-sm transition-colors hover:text-blue-600 dark:hover:text-blue-400 ${
-                  depth === 0
-                    ? 'text-base text-foreground uppercase tracking-wide'
-                    : depth === 1
-                      ? 'ml-0 text-gray-900 dark:text-gray-100'
-                      : 'ml-0 text-gray-800 dark:text-gray-200'
-                } ${isActive ? 'text-blue-600 dark:text-blue-400' : ''}`}
-              >
-                {item.title}
-              </Link>
-            )}
-            {showSoon && (
-              <span className="rounded-md bg-yellow-400 px-2 py-0.5 text-xs font-medium text-yellow-900">Soon</span>
-            )}
-          </div>
+            <div className="flex items-center justify-between gap-2">
+              {showSoon ? (
+                <span
+                  className={`mb-2 block font-semibold text-sm ${
+                    depth === 0
+                      ? 'text-base text-foreground uppercase tracking-wide'
+                      : depth === 1
+                        ? 'ml-0 text-gray-900 dark:text-gray-100'
+                        : 'ml-0 text-gray-800 dark:text-gray-200'
+                  }`}
+                >
+                  {item.title}
+                </span>
+              ) : (
+                <Link
+                  href={item.route}
+                  className={`mb-2 block font-semibold text-sm transition-colors hover:text-blue-600 dark:hover:text-blue-400 ${
+                    depth === 0
+                      ? 'text-base text-foreground uppercase tracking-wide'
+                      : depth === 1
+                        ? 'ml-0 text-gray-900 dark:text-gray-100'
+                        : 'ml-0 text-gray-800 dark:text-gray-200'
+                  } ${isActive ? 'text-blue-600 dark:text-blue-400' : ''}`}
+                >
+                  {item.title}
+                </Link>
+              )}
+              {showSoon && (
+                <span className="rounded-md bg-yellow-400 px-2 py-0.5 text-xs font-medium text-yellow-900">
+                  Soon
+                </span>
+              )}
+            </div>
           </>
         ) : (
           <div

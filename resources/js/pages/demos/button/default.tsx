@@ -1,6 +1,6 @@
 import { DemoContainer } from '@/components/docs/DemoContainer'
 import { Button } from '@/components/twc-ui/button'
-// NODE_TLS_REJECT_UNAUTHORIZED=0
+
 export const Demo = () => {
   return (
     <DemoContainer className="w-max-lg gap-4">
