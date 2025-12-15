@@ -86,7 +86,7 @@ const Avatar = ({
       setBackgroundColor(bgColor)
       setTextColor(getIdealTextColor(bgColor))
     }
-  }, [fullname])
+  }, [fullname, src])
 
   return (
     <div className="rounded-full border border-border" data-testid="avatar-container">
