@@ -79,14 +79,14 @@ interface MenuItemProps extends AriaMenuItemProps, VariantProps<typeof menuItemV
   title?: string
   ellipsis?: boolean
   shortcut?: string
-  disabled?: boolean
+  isDisabled?: boolean
 }
 
 const MenuItem = ({
   children,
   className,
   icon,
-  disabled,
+  isDisabled,
   separator = false,
   shortcut = '',
   title,
@@ -98,7 +98,7 @@ const MenuItem = ({
     <AriaMenuItem
       id={props.id}
       textValue={props.textValue || (typeof children === 'string' ? children : undefined)}
-      isDisabled={disabled}
+      isDisabled={isDisabled}
       className={composeRenderProps(className, className =>
         cn(menuItemVariants({ variant }), className)
       )}
@@ -173,6 +173,7 @@ interface DropdownMenuProps<T>
   iconClassName?: string
   triggerElement?: React.ReactNode
   isDisabled?: boolean
+  menuClassName?: string
   placement?: PopoverProps['placement']
   selectionMode?: AriaMenuProps<T>['selectionMode']
   selectedKeys?: AriaMenuProps<T>['selectedKeys']
@@ -187,7 +188,8 @@ function DropdownButton<T extends object>({
   selectedKeys = undefined,
   triggerElement = undefined,
   isDisabled,
-  size,
+  menuClassName = undefined,
+  size = 'icon',
   icon,
   iconClassName = undefined,
   className = undefined,
@@ -209,7 +211,7 @@ function DropdownButton<T extends object>({
           title={title}
         />
       )}
-      <MenuPopover className="min-w-[--trigger-width]" placement={placement}>
+      <MenuPopover className={cn(menuClassName, 'min-w-[--trigger-width')} placement={placement}>
         <Menu
           selectionMode={selectionMode}
           selectedKeys={selectedKeys}

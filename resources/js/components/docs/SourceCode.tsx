@@ -35,8 +35,9 @@ export const SourceCode: React.FC<DemoCodePreviewProps> = ({
   const [code, setCode] = useState<string>('')
 
   const fileName =
-    '@/' + type + 's/' + (propFileName || (codePath ? codePath.split('/').pop() : ''))
-
+    type === 'lib'
+      ? `@/${type}/${propFileName || (codePath ? codePath.split('/').pop() : '')}`
+      : `@/${type}s/${propFileName || (codePath ? codePath.split('/').pop() : '')}`
   const { appearance } = useAppearance()
 
   const [isLoading, setIsLoading] = useState(true)
@@ -130,7 +131,7 @@ export const SourceCode: React.FC<DemoCodePreviewProps> = ({
               className={cn(
                 'relative text-sm [&>.shiki]:max-h-80 [&>.shiki]:w-full [&>.shiki]:overflow-scroll [&>.shiki]:text-balance [&>.shiki]:rounded-b-md [&>.shiki]:bg-muted [&>.shiki]:p-4',
                 {
-                  '[&>.shiki]:max-h-[700px]': expand || !collapsible
+                  '[&>.shiki]:max-h-175': expand || !collapsible
                 }
               )}
               dangerouslySetInnerHTML={{ __html: html }}
