@@ -1,12 +1,12 @@
+import { MaximizeScreenIcon } from '@hugeicons/core-free-icons'
 import type React from 'react'
 import { useState } from 'react'
 import { LogoSpinner } from '@/components/twc-ui/logo-spinner'
 import { Tab, TabList, TabPanel, Tabs } from '@/components/twc-ui/tabs'
 import { cn } from '@/lib/utils'
-import { SourceCode } from './SourceCode'
 import { Button } from '../twc-ui/button'
-import { MaximizeScreenIcon } from '@hugeicons/core-free-icons'
-export type DemoCodeComponentType = 'component' | 'hook' | 'demo'
+import { SourceCode } from './SourceCode'
+export type DemoCodeComponentType = 'component' | 'hook' | 'demo' | 'lib'
 
 interface DemoCodePreviewProps {
   codePath: string
@@ -56,7 +56,7 @@ export const DemoCodePreview: React.FC<DemoCodePreviewProps> = ({
                 className
               )}
             >
-              <div className="absolute inset-0 bg-[length:800px_300px] bg-[url(/dots-bg.png)] bg-repeat opacity-4 dark:opacity-6 rounded-md" />
+              <div className="absolute inset-0 rounded-md bg-[length:800px_300px] bg-[url(/dots-bg.png)] bg-repeat opacity-4 dark:opacity-6" />
 
               <div
                 className={cn(
@@ -64,13 +64,13 @@ export const DemoCodePreview: React.FC<DemoCodePreviewProps> = ({
                 )}
               >
                 {isLoading && (
-                  <div className=" absolute right-0 left-0">
+                  <div className="absolute right-0 left-0">
                     <LogoSpinner className="mx-auto" />
                   </div>
                 )}
                 <iframe
                   src={demoUrl}
-                  className="m-0 h-screen p-0 bg-transparent roundedd-md absolute left-0 right-0 max-w-full top-0 rounded-md w-screen "
+                  className="roundedd-md absolute top-0 right-0 left-0 m-0 h-screen w-screen max-w-full rounded-md bg-transparent p-0"
                   loading="lazy"
                   style={{ height: '100%' }}
                   onLoad={() => setIsLoading(false)}

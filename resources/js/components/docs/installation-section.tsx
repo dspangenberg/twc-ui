@@ -8,6 +8,7 @@ interface DemoCodePreviewProps {
   copyAndPaste?: React.ReactNode
   dependencies?: string[]
   devDependencies?: string[]
+  libs?: string[]
   hooks: string[]
   components: string[]
 }
@@ -16,12 +17,13 @@ export const InstallationSection: React.FC<DemoCodePreviewProps> = ({
   children,
   components = [],
   dependencies = [],
+  libs = [],
   devDependencies = [],
   hooks = []
 }) => {
   return (
     <Tabs defaultSelectedKey="cli" className="mt-6 gap-4">
-      <TabList className=" text-sm">
+      <TabList className="text-sm">
         <Tab id="cli">CLI</Tab>
         <Tab id="copy">Copy + Paste</Tab>
       </TabList>
@@ -59,6 +61,26 @@ export const InstallationSection: React.FC<DemoCodePreviewProps> = ({
                 <div className="w-full space-y-3">
                   {hooks.map(hook => (
                     <DemoCodePreview key={hook} codePath={`${hook}`} type="hook" />
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {libs.length > 0 && (
+              <div>
+                <h5>{libs.length === 1 ? 'Lib' : 'Libs'}</h5>
+
+                <p>Copy and paste the code of the {libs.length === 1 ? 'lib' : 'libs'}</p>
+                <ul className="my-3 ml-6 list-inside list-disc">
+                  {libs.map(lib => (
+                    <li key={lib}>{lib}</li>
+                  ))}
+                </ul>
+                <p>into your project.</p>
+
+                <div className="w-full space-y-3">
+                  {libs.map(lib => (
+                    <DemoCodePreview key={lib} codePath={`${lib}`} type="lib" />
                   ))}
                 </div>
               </div>

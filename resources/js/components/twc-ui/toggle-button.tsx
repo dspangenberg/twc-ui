@@ -54,7 +54,6 @@ export const ToggleButton = ({
               variant,
               size
             }),
-            'cursor-pointer',
             className
           )
         )}
