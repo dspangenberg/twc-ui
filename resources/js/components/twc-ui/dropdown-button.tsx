@@ -173,7 +173,7 @@ interface DropdownMenuProps<T>
   iconClassName?: string
   triggerElement?: React.ReactNode
   isDisabled?: boolean
-  menuClass?: string
+  menuClassName?: string
   placement?: PopoverProps['placement']
   selectionMode?: AriaMenuProps<T>['selectionMode']
   selectedKeys?: AriaMenuProps<T>['selectedKeys']
@@ -188,7 +188,7 @@ function DropdownButton<T extends object>({
   selectedKeys = undefined,
   triggerElement = undefined,
   isDisabled,
-  menuClass = undefined,
+  menuClassName = undefined,
   size = 'icon',
   icon,
   iconClassName = undefined,
@@ -211,7 +211,7 @@ function DropdownButton<T extends object>({
           title={title}
         />
       )}
-      <MenuPopover className={cn(menuClass, 'min-w-[--trigger-width')} placement={placement}>
+      <MenuPopover className={cn(menuClassName, 'min-w-[--trigger-width')} placement={placement}>
         <Menu
           selectionMode={selectionMode}
           selectedKeys={selectedKeys}
