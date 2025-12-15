@@ -22,8 +22,15 @@ Route::get('/hook-source/{path}', function (string $path) {
 })->where('path', '.*')->name('hook-source');
 
 Route::get('/lib-source/{path}', function (string $path) {
-    $path = resource_path('js/lib/'.$path);
-    return file_get_contents($path);
+    $basePath = resource_path('js/lib/');
+    $fullPath = realpath($basePath . $path);
+    dump($fullPath);
+
+    if (!$fullPath || !str_starts_with($fullPath, $basePath)) {
+        abort(403);
+    }
+
+    return file_get_contents($fullPath);
 })->where('path', '.*')->name('lib-source');
 
 Route::get('/md/{path}', function (string $path) {

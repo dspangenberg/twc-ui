@@ -1,0 +1,51 @@
+---
+title: "DropdownButton"
+description: "A button with an attached menu"
+---
+
+<DemoCodePreview codePath="dropdown-button/default.tsx" demoPath="demos/dropdown-button/default" />
+
+
+## Installation
+
+<InstallationSection
+  dependencies={['react-aria-components', '@hugeicons/react', 'tailwind-variants']}
+  components={['tooltip.tsx', 'button.tsx']}
+>
+  <InstallationCommand command="execute" params="shadcn@latest add ~website/r/dropdown-button.json" />
+</InstallationSection>
+
+## Examples
+
+### With avatar instead of a button.
+
+<DemoCodePreview codePath="dropdown-button/avatar.tsx" demoPath="demos/dropdown-button/avatar" />
+
+## DropdownButton
+### Documentation
+#### Props
+
+| Prop           | Type                                                                                                                                   | Default     | Description                                            |
+  |----------------|----------------------------------------------------------------------------------------------------------------------------------------|-------------|--------------------------------------------------------|
+| icon           | HugeIcons or Lucide icon                                                                                                               | ``          | Icon                                                   |
+| iconClassName  | `string`                                                                                                                               | ``          | Classes for the icon                                   |
+| menuClassName  | `string`                                                                                                                               | ``          | Classes for the menu container                         |
+| size           | <TypeInfo title="size" types={['default', 'sm', 'lg', 'icon', 'icon-sm', 'icon-xs', 'auto']} />                                        | `icon`      | Size of the button                                     |
+| title          | `string`                                                                                                                               | ``          | Title of the button                                    |
+| triggerElement | `ReactNode`                                                                                                                            | `undefined` | The element that triggers the menu instead of a button |
+| variant        | <TypeInfo title="variant" types={['default', 'secondary', 'outline', 'ghost', 'destructive', 'link', 'toolbar', 'toolbar-default']} /> | `default`   | Variant of the button                                  |
+
+## MenuItem
+### Documentation
+#### Props
+
+[React Aria MenuItem props](https://react-spectrum.adobe.com/react-aria/Menu.html#menuitem)
+
+| Prop      | Type                                                            | Default   | Description                                          |
+|-----------|-----------------------------------------------------------------|-----------|------------------------------------------------------|
+| ellipsis  | `boolean`                                                       | `false`   | if true a ellipsis is displayed after the item title |
+| icon      | HugeIcons or Lucide icon                                        | ``        | Icon                                                 |
+| separator | `boolean`                                                       | `false`   | if true a seperator is displayed after the item      |
+| shortcut  | `string`                                                        | ``        | Shortcut of the item                                 |
+| title     | `string`                                                        | ``        | Title of the button                                  |
+| variant   | <TypeInfo title="variant" types={['default', 'destructive']} /> | `default` | Variant of the menu item                             |
