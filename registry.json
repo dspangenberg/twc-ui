@@ -30,10 +30,10 @@
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
-      "name": "button",
+      "name": "avatar",
       "type": "registry:ui",
-      "title": "Button",
-      "description": "Button component",
+      "title": "Avatar",
+      "description": "Avatar component",
       "dependencies": [
         "@radix-ui/react-avatar"
       ],
