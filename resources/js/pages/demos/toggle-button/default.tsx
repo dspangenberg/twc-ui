@@ -1,14 +1,14 @@
-import { Rocket02Icon } from '@hugeicons/core-free-icons'
+import { TextBoldIcon } from '@hugeicons/core-free-icons'
 import { DemoContainer } from '@/components/docs/DemoContainer'
 import { ToggleButton } from '@/components/twc-ui/toggle-button'
 export const Demo = () => {
   return (
-    <DemoContainer className="w-max-lg gap-4">
-      <ToggleButton icon={Rocket02Icon} tooltip="Get started" />
-      <ToggleButton variant="outline" icon={Rocket02Icon} tooltip="Get started" />
-      <ToggleButton variant="toolbar" icon={Rocket02Icon} tooltip="Get started" />
-      <ToggleButton size="default" icon={Rocket02Icon} title="Get started" />
-      <ToggleButton size="default" title="Get started" />
+    <DemoContainer className="w-max-lg gap-2">
+      <ToggleButton icon={TextBoldIcon} tooltip="Bold" />
+      <ToggleButton variant="outline" icon={TextBoldIcon} tooltip="Bold" />
+      <ToggleButton variant="toolbar" icon={TextBoldIcon} tooltip="Bold" />
+      <ToggleButton size="default" icon={TextBoldIcon} title="Bold" />
+      <ToggleButton size="default" title="Bold" />
     </DemoContainer>
   )
 }
