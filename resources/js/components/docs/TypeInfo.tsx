@@ -1,5 +1,5 @@
-import { HugeiconsIcon } from '@hugeicons/react'
 import { InformationCircleIcon } from '@hugeicons/core-free-icons'
+import { HugeiconsIcon } from '@hugeicons/react'
 import { Pressable } from 'react-aria-components'
 import { Popover, PopoverTrigger } from '../twc-ui/popover'
 
@@ -14,7 +14,7 @@ export const TypeInfo = ({ title, types }: CalloutProps) => {
 
   return (
     <div className="flex items-center gap-1">
-      <span className="font-mono">{title}</span>
+      <span className="bg-muted px-1 font-mono">{title}</span>
       <PopoverTrigger>
         <Pressable>
           <HugeiconsIcon
@@ -24,7 +24,7 @@ export const TypeInfo = ({ title, types }: CalloutProps) => {
           />
         </Pressable>
         <Popover>
-          <ul className="font-mono p-4 text-sm">
+          <ul className="p-4 font-mono text-sm">
             {sortedTypes.map((type, index) => (
               <li key={index}>{type}</li>
             ))}

@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "calendar",
+  "type": "registry:ui",
+  "title": "Calendar",
+  "description": "Calendar component",
+  "dependencies": [
+    "@internationalized/date",
+    "react-aria-components",
+    "lucide-react",
+    "react-aria",
+    "tailwind-variants"
+  ],
+  "registryDependencies": ["@twc-ui/button", "@twc-ui/select"],
+  "files": [
+    {
+      "path": "resources/js/components/twc-ui/calendar.tsx",
+      "type": "registry:ui",
+      "target": "components/ui/twc-ui/calendar.tsx"
+    }
+  ]
+}
