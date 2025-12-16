@@ -4,7 +4,6 @@ import { useAppShell } from './app-shell-provider'
 
 interface Props<T extends ElementType = 'div'> {
   as?: T
-  containerClassName?: string[] | string
   children: ReactNode
   className?: string
 }
@@ -12,7 +11,6 @@ interface Props<T extends ElementType = 'div'> {
 export const AppShellContainer = <T extends ElementType = 'div'>({
   as,
   children,
-  containerClassName = '',
   className,
   ...rest
 }: Props<T> & Omit<ComponentPropsWithoutRef<T>, keyof Props<T>>) => {

@@ -1,7 +1,7 @@
-import { HugeiconsIcon, type HugeiconsProps, type IconSvgElement } from '@hugeicons/react'
+import type { IconSvgElement } from '@hugeicons/react'
 import { Link } from '@inertiajs/react'
 import type { LucideIcon } from 'lucide-react'
-import type * as React from 'react'
+import { Icon } from '@/components/twc-ui/icon'
 import { usePathActive } from '@/hooks/use-path-active'
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from './collapsible'
 import {
@@ -14,12 +14,12 @@ import {
   SidebarMenuSubButton,
   SidebarMenuSubItem
 } from './sidebar'
-export type CombinedIcon = LucideIcon | React.FC<HugeiconsProps>
+export type CombinedIcon = LucideIcon | IconSvgElement
 
 export interface NavMainItem {
   title: string
   url: string
-  icon: IconSvgElement
+  icon: CombinedIcon
   hasSep?: boolean
   activePath?: string
   isActive?: boolean
@@ -45,7 +45,6 @@ export function NavMain({ items, ...props }: { items: NavMainItem[] }) {
       <SidebarGroupContent>
         <SidebarMenu>
           {items.map(item => {
-            // Für Collapsible: Hauptelement oder eines seiner Sub-Items ist aktiv
             const isItemOrChildActive = isPathActive(item, false, item.items)
 
             return (
@@ -54,7 +53,7 @@ export function NavMain({ items, ...props }: { items: NavMainItem[] }) {
                   <CollapsibleTrigger asChild>
                     <SidebarMenuButton asChild tooltip={item.title} isActive={isPathActive(item)}>
                       <Link href={item.url}>
-                        <HugeiconsIcon
+                        <Icon
                           icon={item.icon}
                           size={24}
                           color="currentColor"

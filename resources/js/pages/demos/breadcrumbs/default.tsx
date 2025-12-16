@@ -12,12 +12,12 @@ export const Demo = () => {
       <nav aria-label="Breadcrumbs">
         <Breadcrumbs>
           <BreadcrumbItem>
-            <BreadcrumbLink href="/">Home</BreadcrumbLink>
+            <BreadcrumbLink href="#">Home</BreadcrumbLink>
             <BreadcrumbSeparator />
           </BreadcrumbItem>
 
           <BreadcrumbItem>
-            <BreadcrumbLink href="/react-aria/">React Aria</BreadcrumbLink>
+            <BreadcrumbLink href="#">React Aria</BreadcrumbLink>
             <BreadcrumbSeparator />
           </BreadcrumbItem>
           <BreadcrumbItem>
