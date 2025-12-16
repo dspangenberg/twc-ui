@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "breadcrumbs",
+  "type": "registry:ui",
+  "title": "Breadcrumbs",
+  "description": "React aria components breadcrumbs",
+  "dependencies": ["lucide-react", "react-aria-components"],
+  "files": [
+    {
+      "path": "resources/js/components/twc-ui/breadcrumbs.tsx",
+      "type": "registry:ui",
+      "target": "components/ui/twc-ui/breadcrumbs.tsx"
+    }
+  ]
+}

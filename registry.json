@@ -52,6 +52,25 @@
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "breadcrumbs",
+      "type": "registry:ui",
+      "title": "Breadcrumbs",
+      "description": "React aria components breadcrumbs",
+      "dependencies": [
+        "lucide-react",
+        "react-aria-components"
+      ],
+      "files": [
+        {
+          "path": "resources/js/components/twc-ui/breadcrumbs.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/twc-ui/breadcrumbs.tsx"
+        }
+      ],
+      "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "name": "button",
       "type": "registry:ui",
       "title": "Button",
@@ -481,6 +500,25 @@
           "path": "resources/js/components/twc-ui/separator.tsx",
           "type": "registry:ui",
           "target": "components/ui/twc-ui/separator.tsx"
+        }
+      ],
+      "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "tabs",
+      "type": "registry:ui",
+      "title": "Tabs",
+      "description": "React aria components tabs",
+      "dependencies": [
+        "class-variance-authority",
+        "react-aria-components"
+      ],
+      "files": [
+        {
+          "path": "resources/js/components/twc-ui/tabs.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/twc-ui/tabs.tsx"
         }
       ],
       "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
