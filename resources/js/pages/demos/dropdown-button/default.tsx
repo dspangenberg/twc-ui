@@ -43,13 +43,7 @@ export const Demo = () => {
               <MenuItem icon={RepeatIcon} title="Wiederkehrende Rechnung" separator ellipsis />
               <MenuItem icon={FileEditIcon} title="Rechnung korrigieren" />
               <MenuItem icon={FileRemoveIcon} title="Rechnung stornieren" separator />
-              <MenuItem
-                icon={Delete02Icon}
-                title="Rechnung löschen"
-                separator
-                variant="destructive"
-              />
-              <MenuItem title="Rechnung buchen" />
+              <MenuItem icon={Delete02Icon} title="Rechnung löschen" variant="destructive" />
             </Menu>
           </MenuPopover>
         </MenuSubTrigger>
