@@ -22,12 +22,11 @@ import {
   useLocale
 } from 'react-aria-components'
 import { tv } from 'tailwind-variants'
-import { cn, focusRing } from '@/lib/utils'
+import { cn } from '@/lib/utils'
 import { Button } from './button'
 import { Select } from './select'
 
 export const cellStyles = tv({
-  extend: focusRing,
   base: 'relative mt-1 flex size-8 cursor-default items-center justify-center rounded-md p-0 font-normal text-sm transition-[box-shadow] forced-color-adjust-none',
   variants: {
     isSelected: {
@@ -53,21 +52,24 @@ export const cellStyles = tv({
 })
 
 export type FooterButtons = 'reset' | 'today' | 'both' | 'none'
+export type HeaderSelects = 'year' | 'month' | 'both' | 'none'
 
 export interface CalendarProps<T extends DateValue>
   extends Omit<AriaCalendarProps<T>, 'visibleDuration'> {
-  error?: string
+  errorMessage?: string
   className?: string
   maxYears?: number
   footerButtons?: FooterButtons
+  headerSelects?: HeaderSelects
   onChange?: (value: DateValue | null) => void
 }
 
 export const Calendar = <T extends DateValue>({
-  error,
+  errorMessage,
   className,
   maxYears = 100,
   footerButtons = 'both',
+  headerSelects = 'both',
   onChange,
   ...props
 }: CalendarProps<T>) => {
@@ -79,16 +81,16 @@ export const Calendar = <T extends DateValue>({
       className={cn('flex w-fit select-none flex-col bg-card p-3', className)}
       {...props}
     >
-      <CalendarHeader minYear={minYear} maxYear={maxYear} />
+      <CalendarHeader minYear={minYear} maxYear={maxYear} headerSelects={headerSelects} />
       <CalendarGrid className="mt-1 w-full border-collapse">
         <CalendarGridHeader />
         <CalendarGridBody>
           {date => <CalendarCell date={date} className={cellStyles} />}
         </CalendarGridBody>
       </CalendarGrid>
-      {error && (
-        <Text slot="errorMessage" className="text-destructive text-sm">
-          {error}
+      {errorMessage && (
+        <Text slot="errorMessage" className="py-2 text-destructive text-sm">
+          {errorMessage}
         </Text>
       )}
       <CalendarFooter onChange={onChange} footerButtons={footerButtons} />
@@ -99,6 +101,7 @@ export const Calendar = <T extends DateValue>({
 const CalendarHeader = ({
   isRange,
   className,
+  headerSelects = 'both',
   minYear,
   maxYear,
   onChange,
@@ -107,10 +110,13 @@ const CalendarHeader = ({
   isRange?: boolean
   minYear: number
   maxYear: number
+  headerSelects?: HeaderSelects
   onChange?: (value: DateValue | null) => void
 }) => {
   const { direction } = useLocale()
   const state = use(CalendarStateContext)
+
+  // TODO: HeaderSelects
 
   if (!state) return null
 
@@ -198,7 +204,10 @@ const CalendarFooter = ({
           variant="outline"
           size="full"
           title={resetButtonText}
-          onClick={() => onChange?.(null)}
+          onClick={() => {
+            state.setValue(null)
+            onChange?.(null)
+          }}
           slot={null}
         />
       )}
@@ -210,7 +219,9 @@ export const CalendarGridHeader = () => {
   return (
     <AriaCalendarGridHeader>
       {day => (
-        <CalendarHeaderCell className="text-muted-foreground text-xs">{day}</CalendarHeaderCell>
+        <CalendarHeaderCell className="font-medium text-foreground text-sm">
+          {day}
+        </CalendarHeaderCell>
       )}
     </AriaCalendarGridHeader>
   )
@@ -235,7 +246,7 @@ const SelectMonth = ({ state }: { state: CalendarState }) => {
   return (
     <Select
       aria-label="Select month"
-      className="w-20"
+      className="w-22"
       value={state.focusedDate.month.toString() ?? (new Date().getMonth() + 1).toString()}
       items={months}
       onChange={value => {
@@ -272,7 +283,7 @@ const SelectYear = ({
   return (
     <Select
       aria-label="Select year"
-      className="w-20"
+      className="w-22"
       value={state.focusedDate.year}
       items={years}
       onChange={value => {
