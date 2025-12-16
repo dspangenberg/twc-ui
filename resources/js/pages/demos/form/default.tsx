@@ -1,4 +1,5 @@
 import { Head } from '@inertiajs/react'
+import { getLocalTimeZone, today } from '@internationalized/date'
 import { DemoContainer } from '@/components/docs/DemoContainer'
 import { Button } from '@/components/twc-ui/button'
 import { Checkbox } from '@/components/twc-ui/checkbox'
@@ -57,7 +58,7 @@ export default function FormDemo({ contact, countries }: Props) {
             />
           </div>
           <div className="col-span-12">
-            <DatePicker isRequired label="DOB" {...form.register('dob')} />
+            <DatePicker isRequired maxYears={100} label="DOB" {...form.register('dob')} />
           </div>
           <div className="col-span-24">
             <FormTextAreaField autoSize label="Note" {...form.register('note')} />

@@ -28,7 +28,7 @@ import { Select } from './select'
 
 export const cellStyles = tv({
   extend: focusRing,
-  base: 'mt-1 flex size-8 cursor-default items-center justify-center rounded-md p-0 font-normal text-sm transition-[box-shadow] forced-color-adjust-none',
+  base: 'relative mt-1 flex size-8 cursor-default items-center justify-center rounded-md p-0 font-normal text-sm transition-[box-shadow] forced-color-adjust-none',
   variants: {
     isSelected: {
       false: 'hover:bg-accent hover:text-accent-foreground',
@@ -45,25 +45,35 @@ export const cellStyles = tv({
     },
     isUnavailable: {
       true: 'text-muted-foreground opacity-50'
+    },
+    isToday: {
+      true: 'after:pointer-events-none after:absolute after:start-1/2 after:bottom-1 after:z-10 after:size-[4px] after:-translate-x-1/2 after:rounded-full after:bg-primary selected:after:bg-primary-fg focus-visible:after:bg-primary-fg'
     }
   }
 })
+
+export type FooterButtons = 'reset' | 'today' | 'both' | 'none'
 
 export interface CalendarProps<T extends DateValue>
   extends Omit<AriaCalendarProps<T>, 'visibleDuration'> {
   error?: string
   className?: string
-  minYear?: number
-  maxYear?: number
+  maxYears?: number
+  footerButtons?: FooterButtons
+  onChange?: (value: DateValue | null) => void
 }
 
 export const Calendar = <T extends DateValue>({
   error,
   className,
-  minYear,
-  maxYear,
+  maxYears = 100,
+  footerButtons = 'both',
+  onChange,
   ...props
 }: CalendarProps<T>) => {
+  const minYear = props.minValue?.year ?? today(getLocalTimeZone()).year - maxYears
+  const maxYear = props.maxValue?.year ?? today(getLocalTimeZone()).year
+
   return (
     <AriaCalendar
       className={cn('flex w-fit select-none flex-col bg-card p-3', className)}
@@ -81,6 +91,7 @@ export const Calendar = <T extends DateValue>({
           {error}
         </Text>
       )}
+      <CalendarFooter onChange={onChange} footerButtons={footerButtons} />
     </AriaCalendar>
   )
 }
@@ -90,12 +101,30 @@ const CalendarHeader = ({
   className,
   minYear,
   maxYear,
+  onChange,
   ...props
-}: React.ComponentProps<'header'> & { isRange?: boolean; minYear?: number; maxYear?: number }) => {
+}: React.ComponentProps<'header'> & {
+  isRange?: boolean
+  minYear: number
+  maxYear: number
+  onChange?: (value: DateValue | null) => void
+}) => {
   const { direction } = useLocale()
   const state = use(CalendarStateContext)
 
   if (!state) return null
+
+  const currentDate = state.focusedDate
+  const currentYear = currentDate.year
+  const currentMonth = currentDate.month
+
+  const isAtMin =
+    minYear !== undefined &&
+    (currentYear < minYear || (currentYear === minYear && currentMonth === 1))
+
+  const isAtMax =
+    maxYear !== undefined &&
+    (currentYear > maxYear || (currentYear === maxYear && currentMonth === 12))
 
   return (
     <header
@@ -118,7 +147,7 @@ const CalendarHeader = ({
         )}
       />
       <div className="flex items-center gap-1">
-        <Button variant="ghost" size="icon-sm" slot="previous">
+        <Button variant="ghost" size="icon-sm" slot="previous" isDisabled={isAtMin}>
           {direction === 'rtl' ? (
             <ChevronRight aria-hidden className="size-4" />
           ) : (
@@ -126,7 +155,7 @@ const CalendarHeader = ({
           )}
         </Button>
 
-        <Button variant="ghost" size="icon-sm" slot="next">
+        <Button variant="ghost" size="icon-sm" slot="next" isDisabled={isAtMax}>
           {direction === 'rtl' ? (
             <ChevronLeft aria-hidden className="size-4" />
           ) : (
@@ -135,6 +164,45 @@ const CalendarHeader = ({
         </Button>
       </div>
     </header>
+  )
+}
+
+const CalendarFooter = ({
+  footerButtons = 'both',
+  onChange
+}: {
+  footerButtons?: FooterButtons
+  onChange?: (value: DateValue | null) => void
+}) => {
+  const state = use(CalendarStateContext)
+  const { locale } = useLocale()
+  if (!state) return null
+
+  const todayButtonText = locale.startsWith('de') ? 'Heute' : 'Today'
+  const resetButtonText = locale.startsWith('de') ? 'Zurücksetzen' : 'Clear'
+
+  if (footerButtons === 'none') return null
+  return (
+    <footer className="flex items-center justify-between gap-2 pt-3">
+      {['today', 'both'].includes(footerButtons) && (
+        <Button
+          variant="outline"
+          size="full"
+          title={todayButtonText}
+          onClick={() => state.setFocusedDate(today(getLocalTimeZone()))}
+          slot={null}
+        />
+      )}
+      {['reset', 'both'].includes(footerButtons) && (
+        <Button
+          variant="outline"
+          size="full"
+          title={resetButtonText}
+          onClick={() => onChange?.(null)}
+          slot={null}
+        />
+      )}
+    </footer>
   )
 }
 
@@ -183,18 +251,9 @@ const SelectYear = ({
   state
 }: {
   state: CalendarState
-  minYear?: number
-  maxYear?: number
+  minYear: number
+  maxYear: number
 }) => {
-  const now = today(getLocalTimeZone())
-
-  if (!minYear) {
-    minYear = now.year - 50
-  }
-
-  if (!maxYear) {
-    maxYear = now.year
-  }
   const years: { id: number; name: string; date: CalendarDate }[] = []
   const formatter = useDateFormatter({
     year: 'numeric',

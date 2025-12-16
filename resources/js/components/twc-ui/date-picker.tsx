@@ -31,6 +31,7 @@ import {
   CalendarGridHeader,
   CalendarHeaderCell,
   CalendarHeading,
+  type FooterButtons,
   RangeCalendar
 } from './calendar'
 import { DateInput } from './date-field'
@@ -64,22 +65,6 @@ const DatePickerContent = ({
   </Popover>
 )
 
-const DatePickerClearButton = () => {
-  const state = React.useContext(DatePickerStateContext)
-  if (!state || !state.value) return null
-  return (
-    <Button
-      slot={null}
-      variant="ghost"
-      size="icon"
-      className="size-6 flex-none data-focus-visible:ring-offset-0"
-      onPress={() => state.setValue(null)}
-    >
-      <HugeiconsIcon icon={MultiplicationSignIcon} className="size-4" />
-    </Button>
-  )
-}
-
 const DateRangePickerClearButton = () => {
   const state = React.useContext(DateRangePickerStateContext)
 
@@ -103,7 +88,9 @@ interface DatePickerProps extends Omit<AriaDatePickerProps<DateValue>, 'value' |
   description?: string
   value?: string | null
   onChange?: (value: string | null) => void
-  error?: string | ((validation: AriaValidationResult) => string)
+  maxYears?: number
+  errorMessage?: string | ((validation: AriaValidationResult) => string)
+  footerButtons?: FooterButtons
 }
 
 const DatePicker = ({
@@ -111,6 +98,9 @@ const DatePicker = ({
   description,
   className,
   value,
+  maxYears = 100,
+  footerButtons,
+  errorMessage,
   onChange,
   isRequired = false,
   ...props
@@ -151,7 +141,7 @@ const DatePicker = ({
     },
     [onChange]
   )
-
+  const state = React.useContext(DateRangePickerStateContext)
   return (
     <BaseDatePicker
       className={composeRenderProps(className, className =>
@@ -166,23 +156,28 @@ const DatePicker = ({
       <Label value={label} />
       <FieldGroup className="gap-0 px-3 pr-1! data-invalid:focus-visible:border-destructive data-invalid:focus-visible:ring-destructive/20">
         <DateInput variant="ghost" className="flex-1" />
-        <DatePickerClearButton />
         <Button
           variant="ghost"
-          size="icon"
+          size="icon-sm"
+          icon={Calendar04Icon}
           className="mr-1 size-6 data-focus-visible:ring-offset-0"
-        >
-          <HugeiconsIcon icon={Calendar04Icon} className="size-4" />
-        </Button>
+        />
       </FieldGroup>
       {description && (
         <Text className="text-muted-foreground text-sm" slot="description">
           {description}
         </Text>
       )}
-      <FieldError>{error}</FieldError>
+      <FieldError>{errorMessage}</FieldError>
       <DatePickerContent popoverClassName="min-h-fit" slot="dialog">
-        <Calendar className="p-0" />
+        <Calendar
+          className="p-0"
+          minValue={props.minValue}
+          maxValue={props.maxValue}
+          maxYears={maxYears}
+          footerButtons={footerButtons}
+          onChange={handleChange}
+        />
       </DatePickerContent>
     </BaseDatePicker>
   )
