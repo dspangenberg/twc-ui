@@ -1,3 +1,4 @@
+import type React from 'react'
 import {
   Input as AriaInput,
   type InputProps as AriaInputProps,
@@ -7,10 +8,9 @@ import {
   type TextFieldProps as AriaTextFieldProps,
   composeRenderProps
 } from 'react-aria-components'
-import { useFormContext } from './form'
 import { cn } from '@/lib/utils'
-import { FieldError, FormFieldError, Label, FieldDescription } from './field'
-import React from 'react'
+import { FieldDescription, FieldError, FormFieldError, Label } from './field'
+import { useFormContext } from './form'
 
 const BaseTextField = AriaTextField
 
@@ -21,7 +21,7 @@ const Input = ({ className, ...props }: AriaInputProps) => {
         cn(
           'flex h-9 w-full rounded-sm border border-input bg-transparent px-3 py-1 font-medium shadow-none outline-0 transition-colors file:border-0 file:bg-transparent file:font-medium file:text-sm placeholder:text-muted-foreground',
           /* Disabled */
-          'data-disabled:cursor-not-allowed data-disabled:opacity-50 ',
+          'data-disabled:cursor-not-allowed data-disabled:opacity-50',
           /* Focused */
           /* Resets */
           'focus:border-primary focus:ring-[3px] focus:ring-primary/20',
@@ -52,7 +52,7 @@ const RACTextarea = ({ className, autoSize = true, rows = 2, ...props }: RACText
           /* Resets */
           'focus:border-primary focus:ring-[3px] focus:ring-primary/20',
           'data-invalid:border-destructive data-invalid:focus:border-destructive data-invalid:focus:ring-destructive/20',
-          autoSize ? 'field-sizing-content min-h-20 ' : 'h-9 min-h-20 resize-none',
+          autoSize ? 'field-sizing-content min-h-20' : 'h-9 min-h-20 resize-none',
           className
         )
       )}
@@ -107,7 +107,7 @@ const TextField = ({
   return (
     <AriaTextField
       className={composeRenderProps(className, className =>
-        cn('group flex flex-col gap-1.5  text-sm ', className)
+        cn('group flex flex-col gap-1.5 text-sm', className)
       )}
       isInvalid={hasError}
       value={value ?? undefined}
@@ -168,7 +168,7 @@ const TextAreaField = ({
   return (
     <AriaTextField
       className={composeRenderProps(className, className =>
-        cn('group flex flex-col gap-1.5  text-sm ', className)
+        cn('group flex flex-col gap-1.5 text-sm', className)
       )}
       isInvalid={hasError}
       value={value ?? undefined}

@@ -3,8 +3,8 @@ import { Calendar } from '@/components/twc-ui/calendar'
 
 export default function Dashboard() {
   return (
-    <DemoContainer>
-      <Calendar />
+    <DemoContainer className="items-start">
+      <Calendar autoFocus />
     </DemoContainer>
   )
 }

@@ -1,6 +1,9 @@
 'use client'
 
+import { CalendarDate, type DateValue } from '@internationalized/date'
 import type { VariantProps } from 'class-variance-authority'
+import { format, parse } from 'date-fns'
+import { useCallback, useMemo } from 'react'
 import {
   DateField as AriaDateField,
   type DateFieldProps as AriaDateFieldProps,
@@ -15,12 +18,9 @@ import {
   composeRenderProps,
   Text
 } from 'react-aria-components'
-import { CalendarDate, type DateValue } from '@internationalized/date'
+import { useFormContext } from '@/components/twc-ui/form'
 import { cn } from '@/lib/utils'
 import { FieldError, fieldGroupVariants, Label } from './field'
-import { useFormContext } from '@/components/twc-ui/form'
-import React, { useCallback, useMemo } from 'react'
-import { format, parse } from 'date-fns'
 
 const BaseDateField = AriaDateField
 const BaseTimeField = AriaTimeField
@@ -31,11 +31,11 @@ const DateSegment = ({ className, ...props }: AriaDateSegmentProps) => (
       cn(
         'inline rounded p-0.5 type-literal:px-0 caret-transparent outline-0',
         /* Placeholder */
-        'data-[placeholder]:text-muted-foreground ',
+        'data-placeholder:text-muted-foreground',
         /* Disabled */
-        'data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50',
+        'data-disabled:cursor-not-allowed data-disabled:opacity-50',
         /* Focused */
-        'data-[focused]:bg-accent data-[focused]:text-accent-foreground',
+        'data-focused:bg-accent data-focused:text-accent-foreground',
         className
       )
     )}
@@ -48,7 +48,6 @@ interface DateInputProps extends AriaDateInputProps, VariantProps<typeof fieldGr
 }
 
 const DATE_FORMAT = import.meta.env.VITE_DATE_FORMAT || 'yyyy-MM-dd'
-const TIMEZONE = import.meta.env.VITE_TIMEZONE || 'UTC'
 
 const DateInput = ({
   className,
@@ -128,7 +127,7 @@ const DateField = ({
   return (
     <BaseDateField
       className={composeRenderProps(className, className =>
-        cn('group flex flex-col gap-2 data-[invalid]:border-destructive', className)
+        cn('group flex flex-col gap-2 data-invalid:border-destructive', className)
       )}
       isInvalid={hasError}
       value={parsedDate}

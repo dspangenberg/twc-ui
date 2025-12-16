@@ -1,0 +1,38 @@
+---
+title: "Menu"
+order: 30
+description: "A menu displays a list of actions or options that a user can choose."
+---
+
+<CombiDemoCodePreview codePath="dropdown-button/default.tsx" demoPath="demos/dropdown-button/default" />
+
+
+## Installation
+
+<InstallationSection
+  dependencies={['react-aria-components', '@hugeicons/react', 'tailwind-variants']}
+  components={['tooltip.tsx', 'button.tsx']}
+>
+  <InstallationCommand command="execute" params="shadcn@latest add @twc-ui/menu" />
+</InstallationSection>
+
+## Examples
+
+### With avatar instead of a button.
+
+<CombiDemoCodePreview codePath="dropdown-button/avatar.tsx" demoPath="demos/dropdown-button/avatar" />
+
+## MenuItem
+### Documentation
+#### Props
+
+[React Aria MenuItem props](https://react-spectrum.adobe.com/react-aria/Menu.html#menuitem)
+
+| Prop      | Type                                                            | Default   | Description                                          |
+|-----------|-----------------------------------------------------------------|-----------|------------------------------------------------------|
+| ellipsis  | `boolean`                                                       | `false`   | if true a ellipsis is displayed after the item title |
+| icon      | HugeIcons or Lucide icon                                        | ``        | Icon                                                 |
+| separator | `boolean`                                                       | `false`   | if true a seperator is displayed after the item      |
+| shortcut  | `string`                                                        | ``        | Shortcut of the item                                 |
+| title     | `string`                                                        | ``        | Title of the button                                  |
+| variant   | <TypeInfo title="variant" types={['default', 'destructive']} /> | `default` | Variant of the menu item                             |

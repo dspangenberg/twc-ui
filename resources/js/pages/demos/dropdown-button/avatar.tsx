@@ -1,14 +1,15 @@
 import {
   CreditCardIcon,
   Logout02Icon,
-  PrinterIcon,
+  NotificationSquareIcon,
   UserCircleIcon
 } from '@hugeicons/core-free-icons'
 import { Pressable } from 'react-aria-components'
 import { DemoContainer } from '@/components/docs/DemoContainer'
 
 import { Avatar } from '@/components/twc-ui/avatar'
-import { DropdownButton, MenuHeader, MenuItem } from '@/components/twc-ui/dropdown-button'
+import { DropdownButton } from '@/components/twc-ui/dropdown-button'
+import { MenuHeader, MenuItem } from '@/components/twc-ui/menu'
 export const Demo = () => {
   return (
     <DemoContainer className="w-max-lg items-start gap-4 py-12">
@@ -31,7 +32,7 @@ export const Demo = () => {
         </MenuHeader>
         <MenuItem icon={UserCircleIcon} title="Account" ellipsis />
         <MenuItem icon={CreditCardIcon} title="Billing" ellipsis />
-        <MenuItem icon={PrinterIcon} title="Notifications" ellipsis separator />
+        <MenuItem icon={NotificationSquareIcon} title="Notifications" ellipsis separator />
         <MenuItem icon={Logout02Icon} title="Logout" />
       </DropdownButton>
     </DemoContainer>
