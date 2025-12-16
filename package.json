@@ -79,6 +79,7 @@
     "moderndash": "^4.0.0",
     "pdfjs-dist": "5.4.449",
     "print-js": "^1.6.0",
+    "radix-ui": "^1.4.3",
     "react": "^19.2.3",
     "react-aria": "^3.44.0",
     "react-aria-components": "^1.13.0",
