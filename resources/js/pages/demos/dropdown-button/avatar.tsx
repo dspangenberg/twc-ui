@@ -11,18 +11,18 @@ import { Avatar } from '@/components/twc-ui/avatar'
 import { DropdownButton, MenuHeader, MenuItem } from '@/components/twc-ui/dropdown-button'
 export const Demo = () => {
   return (
-    <DemoContainer className="my-12 w-max-lg items-start gap-2">
+    <DemoContainer className="w-max-lg items-start gap-4 py-12">
       <DropdownButton
-        menuClass="min-w-64"
+        menuClassName="min-w-64"
         triggerElement={
           <Pressable>
-            <Avatar src="/ds.png" initials="DS" size="lg" />
+            <Avatar src="https://github.com/shadcn.png" initials="DS" size="lg" role="button" />
           </Pressable>
         }
       >
         <MenuHeader>
           <div className="flex items-center gap-2">
-            <Avatar src="/ds.png" initials="DS" size="lg" />
+            <Avatar src="https://github.com/shadcn.png" initials="DS" size="lg" />
             <div className="text-base">
               Danny
               <div className="font-normal text-sm">danny@example.com</div>

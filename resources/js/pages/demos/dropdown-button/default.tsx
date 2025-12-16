@@ -25,12 +25,12 @@ import {
 
 export const Demo = () => {
   return (
-    <DemoContainer className="my-12 w-max-lg items-start gap-2 overflow-hidden">
+    <DemoContainer className="w-max-lg items-start gap-4 py-12">
       <DropdownButton
         variant="outline"
         size="icon"
         icon={MoreVerticalCircle01Icon}
-        menuClass="min-w-64"
+        menuClassName="min-w-64"
       >
         <MenuItem icon={Pdf02Icon} title="PDF-Vorschau" ellipsis />
         <MenuItem icon={PrinterIcon} title="Rechnung drucken" ellipsis separator />
