@@ -34,7 +34,7 @@ const SelectValue = <T extends object>({ className, ...props }: AriaSelectValueP
   <AriaSelectValue
     className={composeRenderProps(className, className =>
       cn(
-        'line-clamp-1 data-placeholder:text-muted-foreground',
+        'line-clamp-1 truncate data-placeholder:text-muted-foreground',
         'focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/20',
         /* Description */
         '*:[[slot=description]]:hidden',
@@ -98,7 +98,7 @@ interface SelectProps<T extends object>
   isOptional?: boolean
   optionalValue?: string
   value: string | number | null
-  items: Iterable<T>
+  items?: Iterable<T>
   itemName?: keyof T & string
   itemValue?: keyof T & string
   name?: string
@@ -112,12 +112,12 @@ const Select = <T extends object>({
   children,
   autoFocus,
   className,
-  items,
   itemName = 'name' as keyof T & string,
   itemValue = 'id' as keyof T & string,
   errorComponent: ErrorComponent = FieldError,
   isOptional = false,
   optionalValue = '(leer)',
+  items = [],
   onChange,
   name,
   ...props

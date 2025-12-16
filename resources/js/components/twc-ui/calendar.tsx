@@ -1,215 +1,236 @@
+'use client'
+
 import { type CalendarDate, getLocalTimeZone, today } from '@internationalized/date'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
-import * as React from 'react'
+import type React from 'react'
+import { use } from 'react'
+import { useDateFormatter } from 'react-aria'
 import {
-  Button as AriaButton,
   Calendar as AriaCalendar,
-  CalendarCell as AriaCalendarCell,
-  type CalendarCellProps as AriaCalendarCellProps,
-  CalendarGrid as AriaCalendarGrid,
-  CalendarGridBody as AriaCalendarGridBody,
-  type CalendarGridBodyProps as AriaCalendarGridBodyProps,
   CalendarGridHeader as AriaCalendarGridHeader,
-  type CalendarGridHeaderProps as AriaCalendarGridHeaderProps,
-  type CalendarGridProps as AriaCalendarGridProps,
-  CalendarHeaderCell as AriaCalendarHeaderCell,
-  type CalendarHeaderCellProps as AriaCalendarHeaderCellProps,
   type CalendarProps as AriaCalendarProps,
-  type DateValue as AriaDateValue,
-  Heading as AriaHeading,
-  RangeCalendar as AriaRangeCalendar,
-  type RangeCalendarProps as AriaRangeCalendarProps,
-  RangeCalendarStateContext as AriaRangeCalendarStateContext,
-  composeRenderProps,
+  CalendarCell,
+  CalendarGrid,
+  CalendarGridBody,
+  CalendarHeaderCell,
+  type CalendarState,
+  CalendarStateContext,
+  type DateValue,
+  Heading,
+  RangeCalendar,
   Text,
   useLocale
 } from 'react-aria-components'
+import { tv } from 'tailwind-variants'
+import { cn, focusRing } from '@/lib/utils'
+import { Button } from './button'
+import { Select } from './select'
 
-import { cn } from '@/lib/utils'
-import { buttonVariants } from './button'
+export const cellStyles = tv({
+  extend: focusRing,
+  base: 'mt-1 flex size-8 cursor-default items-center justify-center rounded-md p-0 font-normal text-sm transition-[box-shadow] forced-color-adjust-none',
+  variants: {
+    isSelected: {
+      false: 'hover:bg-accent hover:text-accent-foreground',
+      true: 'bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground focus:bg-primary focus:text-primary-foreground'
+    },
+    isDisabled: {
+      true: 'text-muted-foreground opacity-50'
+    },
+    isOutsideMonth: {
+      true: 'text-muted-foreground opacity-50'
+    },
+    isPressed: {
+      true: 'border-ring ring-[3px] ring-ring/50'
+    },
+    isUnavailable: {
+      true: 'text-muted-foreground opacity-50'
+    }
+  }
+})
 
-const Calendar = AriaCalendar
+export interface CalendarProps<T extends DateValue>
+  extends Omit<AriaCalendarProps<T>, 'visibleDuration'> {
+  error?: string
+  className?: string
+  minYear?: number
+  maxYear?: number
+}
 
-const RangeCalendar = AriaRangeCalendar
+export const Calendar = <T extends DateValue>({
+  error,
+  className,
+  minYear,
+  maxYear,
+  ...props
+}: CalendarProps<T>) => {
+  return (
+    <AriaCalendar
+      className={cn('flex w-fit select-none flex-col bg-card p-3', className)}
+      {...props}
+    >
+      <CalendarHeader minYear={minYear} maxYear={maxYear} />
+      <CalendarGrid className="mt-1 w-full border-collapse">
+        <CalendarGridHeader />
+        <CalendarGridBody>
+          {date => <CalendarCell date={date} className={cellStyles} />}
+        </CalendarGridBody>
+      </CalendarGrid>
+      {error && (
+        <Text slot="errorMessage" className="text-destructive text-sm">
+          {error}
+        </Text>
+      )}
+    </AriaCalendar>
+  )
+}
 
-const CalendarHeading = (props: React.HTMLAttributes<HTMLElement>) => {
+const CalendarHeader = ({
+  isRange,
+  className,
+  minYear,
+  maxYear,
+  ...props
+}: React.ComponentProps<'header'> & { isRange?: boolean; minYear?: number; maxYear?: number }) => {
   const { direction } = useLocale()
+  const state = use(CalendarStateContext)
+
+  if (!state) return null
 
   return (
-    <header className="flex w-full items-center justify-center gap-1 px-1 py-2 " {...props}>
-      <AriaButton
-        slot="previous"
-        type="button"
+    <header
+      data-slot="calendar-header"
+      className={cn('flex w-full justify-between gap-1.5 pt-1 pr-1 pb-5 pl-1.5 sm:pb-4', className)}
+      {...props}
+    >
+      {!isRange && (
+        <div className="flex items-center gap-1.5">
+          <SelectMonth state={state} />
+          <SelectYear state={state} minYear={minYear} maxYear={maxYear} />
+        </div>
+      )}
+
+      <Heading
         className={cn(
-          buttonVariants({ variant: 'outline' }),
-          'size-7 bg-transparent p-0 opacity-50',
-          /* Hover */
-          'data-[hovered]:opacity-100'
+          'h-7 flex-1 items-center justify-center font-medium text-base',
+          !isRange && 'sr-only',
+          className
         )}
-      >
-        {direction === 'rtl' ? (
-          <ChevronRight aria-hidden className="size-4" />
-        ) : (
-          <ChevronLeft aria-hidden className="size-4" />
-        )}
-      </AriaButton>
-      <AriaHeading className="!text-base h-7 flex-1 items-center justify-center text-center font-medium" />
-      <AriaButton
-        slot="next"
-        type="button"
-        className={cn(
-          buttonVariants({ variant: 'outline' }),
-          'size-7 bg-transparent p-0 opacity-50',
-          /* Hover */
-          'data-[hovered]:opacity-100'
-        )}
-      >
-        {direction === 'rtl' ? (
-          <ChevronLeft aria-hidden className="size-4" />
-        ) : (
-          <ChevronRight aria-hidden className="size-4" />
-        )}
-      </AriaButton>
+      />
+      <div className="flex items-center gap-1">
+        <Button variant="ghost" size="icon-sm" slot="previous">
+          {direction === 'rtl' ? (
+            <ChevronRight aria-hidden className="size-4" />
+          ) : (
+            <ChevronLeft aria-hidden className="size-4" />
+          )}
+        </Button>
+
+        <Button variant="ghost" size="icon-sm" slot="next">
+          {direction === 'rtl' ? (
+            <ChevronLeft aria-hidden className="size-4" />
+          ) : (
+            <ChevronRight aria-hidden className="size-4" />
+          )}
+        </Button>
+      </div>
     </header>
   )
 }
 
-const CalendarGrid = ({ className, ...props }: AriaCalendarGridProps) => (
-  <AriaCalendarGrid
-    className={cn(' border-separate border-spacing-x-0 border-spacing-y-1 ', className)}
-    {...props}
-  />
-)
-
-const CalendarGridHeader = ({ ...props }: AriaCalendarGridHeaderProps) => (
-  <AriaCalendarGridHeader {...props} />
-)
-
-const CalendarHeaderCell = ({ className, ...props }: AriaCalendarHeaderCellProps) => (
-  <AriaCalendarHeaderCell
-    className={cn('w-8 rounded-md font-normal text-[0.8rem] text-muted-foreground', className)}
-    {...props}
-  />
-)
-
-const CalendarGridBody = ({ className, ...props }: AriaCalendarGridBodyProps) => (
-  <AriaCalendarGridBody className={cn('[&>tr>td]:p-0', className)} {...props} />
-)
-
-const CalendarCell = ({ className, ...props }: AriaCalendarCellProps) => {
-  const isRange = Boolean(React.useContext(AriaRangeCalendarStateContext))
+export const CalendarGridHeader = () => {
   return (
-    <AriaCalendarCell
-      className={composeRenderProps(className, (className, renderProps) =>
-        cn(
-          buttonVariants({ variant: 'ghost' }),
-          'relative z-[60] flex size-8 cursor-pointer items-center justify-center p-0 font-normal text-sm',
-          /* Disabled */
-          renderProps.isDisabled && 'text-muted-foreground opacity-50',
-          /* Selected */
-          renderProps.isSelected &&
-            'bg-primary text-primary-foreground data-[focused]:bg-primary data-[focused]:text-primary-foreground',
-          /* Hover */
-          renderProps.isHovered &&
-            renderProps.isSelected &&
-            (renderProps.isSelectionStart || renderProps.isSelectionEnd || !isRange) &&
-            'data-[hovered]:bg-primary data-[hovered]:text-primary-foreground',
-          /* Selection Start/End */
-          renderProps.isSelected &&
-            isRange &&
-            !renderProps.isSelectionStart &&
-            !renderProps.isSelectionEnd &&
-            'rounded-none bg-accent text-accent-foreground',
-          /* Outside Month */
-          renderProps.isOutsideMonth &&
-            'text-muted-foreground opacity-50 data-[selected]:bg-accent/50 data-[selected]:text-muted-foreground data-[selected]:opacity-30',
-          /* Current Date */
-          renderProps.date.compare(today(getLocalTimeZone())) === 0 &&
-            !renderProps.isSelected &&
-            'bg-accent text-accent-foreground',
-          /* Unavailable Date */
-          renderProps.isUnavailable && 'cursor-default text-destructive ',
-          renderProps.isInvalid &&
-            'bg-destructive text-destructive-foreground data-[focused]:bg-destructive data-[hovered]:bg-destructive data-[focused]:text-destructive-foreground data-[hovered]:text-destructive-foreground',
-          className
-        )
+    <AriaCalendarGridHeader>
+      {day => (
+        <CalendarHeaderCell className="text-muted-foreground text-xs">{day}</CalendarHeaderCell>
       )}
-      {...props}
+    </AriaCalendarGridHeader>
+  )
+}
+
+const SelectMonth = ({ state }: { state: CalendarState }) => {
+  const months: { id: string; name: string }[] = []
+
+  const formatter = useDateFormatter({
+    month: 'short',
+    timeZone: state.timeZone
+  })
+
+  const numMonths = state.focusedDate.calendar.getMonthsInYear(state.focusedDate)
+  for (let i = 1; i <= numMonths; i++) {
+    const date = state.focusedDate.set({ month: i })
+    months.push({
+      id: i.toString(),
+      name: formatter.format(date.toDate(state.timeZone))
+    })
+  }
+  return (
+    <Select
+      aria-label="Select month"
+      className="w-20"
+      value={state.focusedDate.month.toString() ?? (new Date().getMonth() + 1).toString()}
+      items={months}
+      onChange={value => {
+        state.setFocusedDate(state.focusedDate.set({ month: Number(value) }))
+      }}
     />
   )
 }
 
-interface JollyCalendarProps<T extends AriaDateValue> extends AriaCalendarProps<T> {
-  errorMessage?: string
-}
+const SelectYear = ({
+  minYear,
+  maxYear,
+  state
+}: {
+  state: CalendarState
+  minYear?: number
+  maxYear?: number
+}) => {
+  const now = today(getLocalTimeZone())
 
-function JollyCalendar<T extends AriaDateValue>({
-  errorMessage,
-  className,
-  ...props
-}: JollyCalendarProps<T>) {
+  if (!minYear) {
+    minYear = now.year - 50
+  }
+
+  if (!maxYear) {
+    maxYear = now.year
+  }
+  const years: { id: number; name: string; date: CalendarDate }[] = []
+  const formatter = useDateFormatter({
+    year: 'numeric',
+    timeZone: state.timeZone
+  })
+
+  for (let i = minYear; i <= maxYear; i++) {
+    const date = state.focusedDate.set({ year: i })
+    years.push({
+      id: i,
+      name: formatter.format(date.toDate(state.timeZone)),
+      date: date
+    })
+  }
+
   return (
-    <Calendar
-      className={composeRenderProps(className, className => cn('w-fit', className))}
-      {...props}
-    >
-      <CalendarHeading />
-      <CalendarGrid>
-        <CalendarGridHeader>
-          {day => <CalendarHeaderCell>{day}</CalendarHeaderCell>}
-        </CalendarGridHeader>
-        <CalendarGridBody>{date => <CalendarCell date={date} />}</CalendarGridBody>
-      </CalendarGrid>
-      {errorMessage && (
-        <Text className="text-destructive text-sm" slot="errorMessage">
-          {errorMessage}
-        </Text>
-      )}
-    </Calendar>
-  )
-}
-
-interface JollyRangeCalendarProps<T extends AriaDateValue> extends AriaRangeCalendarProps<T> {
-  errorMessage?: string
-}
-
-function JollyRangeCalendar<T extends AriaDateValue>({
-  errorMessage,
-  className,
-  ...props
-}: JollyRangeCalendarProps<T>) {
-  return (
-    <RangeCalendar
-      className={composeRenderProps(className, className => cn('w-fit', className))}
-      {...props}
-    >
-      <CalendarHeading />
-      <CalendarGrid>
-        <CalendarGridHeader>
-          {day => <CalendarHeaderCell>{day}</CalendarHeaderCell>}
-        </CalendarGridHeader>
-        <CalendarGridBody>{date => <CalendarCell date={date} />}</CalendarGridBody>
-      </CalendarGrid>
-      {errorMessage && (
-        <Text slot="errorMessage" className="text-destructive text-sm">
-          {errorMessage}
-        </Text>
-      )}
-    </RangeCalendar>
+    <Select
+      aria-label="Select year"
+      className="w-20"
+      value={state.focusedDate.year}
+      items={years}
+      onChange={value => {
+        const selectedYear = years.find(y => y.id === Number(value))
+        if (selectedYear) {
+          state.setFocusedDate(selectedYear.date)
+        }
+      }}
+    />
   )
 }
 
 export {
-  Calendar,
   CalendarCell,
   CalendarGrid,
   CalendarGridBody,
-  CalendarGridHeader,
   CalendarHeaderCell,
-  CalendarHeading,
-  RangeCalendar,
-  JollyCalendar,
-  JollyRangeCalendar
+  CalendarHeader as CalendarHeading,
+  RangeCalendar
 }
-
-export type { JollyCalendarProps, JollyRangeCalendarProps }

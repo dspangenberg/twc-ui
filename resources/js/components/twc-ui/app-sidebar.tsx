@@ -1,0 +1,204 @@
+import {
+  AbacusIcon,
+  ContactBookIcon,
+  DashboardSpeed02Icon,
+  FileEuroIcon,
+  FolderFileStorageIcon,
+  KanbanIcon,
+  TimeScheduleIcon
+} from '@hugeicons/core-free-icons'
+import type * as React from 'react'
+import { Sidebar, SidebarContent, SidebarHeader } from '../ui/sidebar'
+import { NavMain } from './nav-main'
+import { NavSecondary } from './nav-secondary'
+
+const data = {
+  navGlobalTop: [],
+  navMain: [
+    {
+      title: 'Dashboard',
+      url: route('app.dashboard', {}, false),
+      icon: DashboardSpeed02Icon,
+      activePath: '/app',
+      exact: true,
+      hasSep: true
+    },
+    {
+      title: 'Kontakte',
+      url: route('app.contact.index', { view: 'all' }, false),
+      icon: ContactBookIcon,
+      activePath: '/app/contacts',
+      items: [
+        {
+          title: 'Alle',
+          url: route('app.contact.index', { view: 'all' }, false),
+          activePath: '/app/contacts?view=all'
+        },
+        {
+          title: 'Favoriten',
+          url: route('app.contact.index', { view: 'favorites' }, false),
+          activePath: '/app/contacts?view=favorites'
+        },
+        {
+          title: 'Debitoren',
+          url: route('app.contact.index', { view: 'debtors' }, false),
+          activePath: '/app/contacts?view=debtors'
+        },
+        {
+          title: 'Kreditoren',
+          url: route('app.contact.index', { view: 'creditors' }, false),
+          activePath: '/app/contacts?view=creditors'
+        },
+        {
+          title: 'Archiviert',
+          url: route('app.contact.index', { view: 'archived' }, false),
+          activePath: '/app/contacts?view=archived'
+        }
+      ]
+    },
+    {
+      title: 'Dokumente',
+      url: route('app.dashboard', {}, false),
+      icon: FolderFileStorageIcon,
+      activePath: '/appsi'
+    },
+    {
+      title: 'Projekte',
+      url: route('app.dashboard', {}, false),
+      icon: KanbanIcon,
+      activePath: '/appsi',
+      hasSep: true
+    },
+    {
+      title: 'Zeiterfassung',
+      url: route('app.time.my-week', { _query: { view: 'my-week' } }, false),
+      icon: TimeScheduleIcon,
+      activePath: '/app/times',
+      hasSep: false,
+      items: [
+        {
+          title: 'Meine Woche',
+          url: route('app.time.my-week', { _query: { view: 'my-week' } }, false),
+          activePath: '/app/times/my-week?view=my-week'
+        },
+        {
+          title: 'Alle Zeiten',
+          url: route('app.time.index', {}, false),
+          activePath: '/app/times/all'
+        },
+        {
+          title: 'Abrechnung',
+          url: route('app.time.billable', {}, false),
+          activePath: '/app/times/billable'
+        }
+      ]
+    },
+    {
+      title: 'Fakturierung',
+      url: route('app.invoice.index', { _query: { view: 'all' } }, false),
+      icon: FileEuroIcon,
+      activePath: '/app/invoicing/invoices',
+      hasSep: true,
+      items: [
+        {
+          title: 'Rechnungen',
+          url: route('app.invoice.index', { _query: { view: 'all' } }, false),
+          activePath: '/app/invoicing/invoices',
+          items: [
+            {
+              title: 'Alle Rechnungen',
+              url: route('app.invoice.index', { _query: { view: 'all' } }, false),
+              activePath: '/app/invoicing/invoices?view=all'
+            },
+            {
+              title: 'Offene Posten',
+              url: route('app.invoice.index', { _query: { view: 'unpaid' } }, false),
+              activePath: '/app/invoicing/invoices?view=unpaid'
+            },
+            {
+              title: 'Entwürfe',
+              url: route('app.invoice.index', { _query: { view: 'drafts' } }, false),
+              activePath: '/app/invoicing/invoices?view=drafts'
+            }
+          ]
+        },
+        {
+          title: 'Angebote',
+          url: route('app.invoice.index', {}, false)
+        }
+      ]
+    },
+    {
+      title: 'Buchhaltung',
+      url: route('app.bookkeeping.bookings.index', {}, false),
+      icon: AbacusIcon,
+      activePath: '/app/bookkeeping',
+      items: [
+        {
+          title: 'Buchungen',
+          url: route('app.bookkeeping.bookings.index', {}, false),
+          activePath: '/app/bookkeeping/bookings'
+        },
+        {
+          title: 'Transaktionen',
+          url: route('app.bookkeeping.transactions.index', {}, false),
+          activePath: '/app/bookkeeping/transactions'
+        },
+        {
+          title: 'Belege',
+          url: route('app.bookkeeping.receipts.index', {}, false),
+          activePath: '/app/bookkeeping/receipts',
+          items: [
+            {
+              title: 'Upload',
+              url: route('app.bookkeeping.receipts.upload-form', {}, false),
+              activePath: '/app/bookkeeping/receipts/upload'
+            },
+            {
+              title: 'Belege bestätigen',
+              url: route('app.bookkeeping.receipts.confirm-first', {}, false),
+              activePath: '/app/bookkeeping/receipts/confirm'
+            }
+          ]
+        },
+        {
+          title: 'Vorgaben',
+          url: route('app.bookkeeping.cost-centers.index', {}, false),
+          activePath: '/app/bookkeeping/preferences',
+          items: [
+            {
+              title: 'Buchhaltungskonten',
+              url: route('app.bookkeeping.accounts.index', {}, false),
+              activePath: '/app/bookkeeping/preferences/accounts'
+            },
+            {
+              title: 'Kostenstellen',
+              url: route('app.bookkeeping.cost-centers.index', {}, false),
+              activePath: '/app/bookkeeping/preferences/cost-centers'
+            },
+            {
+              title: 'Regeln',
+              url: route('app.bookkeeping.rules.index', {}, false),
+              activePath: '/app/bookkeeping/preferences/rules'
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  navSecondary: []
+}
+
+export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  return (
+    <Sidebar variant="inset" collapsible="icon" {...props}>
+      <SidebarHeader className="h-auto flex-none">
+        <img src={logo} className="mx-auto mt-6 mb-6 w-10 rounded-md object-cover" alt="Logo" />
+      </SidebarHeader>
+      <SidebarContent className="-mt-3 flex-1">
+        <NavMain items={data.navMain} />
+        <NavSecondary items={data.navSecondary} className="mt-auto" />
+      </SidebarContent>
+    </Sidebar>
+  )
+}

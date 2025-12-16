@@ -11,13 +11,13 @@ import {
   type DatePickerProps as AriaDatePickerProps,
   DateRangePicker as AriaDateRangePicker,
   type DateRangePickerProps as AriaDateRangePickerProps,
-  Dialog as AriaDialog,
   type DialogProps as AriaDialogProps,
   type PopoverProps as AriaPopoverProps,
   type ValidationResult as AriaValidationResult,
   composeRenderProps,
   DatePickerStateContext,
   DateRangePickerStateContext,
+  Dialog,
   Text
 } from 'react-aria-components'
 import { useFormContext } from '@/components/twc-ui/form'
@@ -54,9 +54,9 @@ const DatePickerContent = ({
   <Popover
     className={composeRenderProps(popoverClassName, className => cn('w-auto p-3', className))}
   >
-    <AriaDialog
+    <Dialog
       className={cn(
-        'pointer-events-auto z-100 flex w-full flex-col space-y-4 outline-none sm:flex-row sm:space-x-4 sm:space-y-0',
+        'pointer-events-auto z-100 flex h-auto w-full flex-col space-y-2 outline-none sm:flex-row sm:space-x-4 sm:space-y-0',
         className
       )}
       {...props}
@@ -181,16 +181,8 @@ const DatePicker = ({
         </Text>
       )}
       <FieldError>{error}</FieldError>
-      <DatePickerContent>
-        <Calendar>
-          <CalendarHeading />
-          <CalendarGrid>
-            <CalendarGridHeader>
-              {day => <CalendarHeaderCell>{day}</CalendarHeaderCell>}
-            </CalendarGridHeader>
-            <CalendarGridBody>{date => <CalendarCell date={date} />}</CalendarGridBody>
-          </CalendarGrid>
-        </Calendar>
+      <DatePickerContent popoverClassName="min-h-fit" slot="dialog">
+        <Calendar className="p-0" />
       </DatePickerContent>
     </BaseDatePicker>
   )
