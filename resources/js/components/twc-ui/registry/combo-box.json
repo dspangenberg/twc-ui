@@ -16,7 +16,7 @@
     {
       "path": "resources/js/components/twc-ui/combo-box.tsx",
       "type": "registry:ui",
-      "target": "components/ui/twc-ui/combo-box.tsx"
+      "target": "components/twc-ui/combo-box.tsx"
     }
   ]
 }

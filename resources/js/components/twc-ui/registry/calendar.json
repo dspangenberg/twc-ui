@@ -16,7 +16,7 @@
     {
       "path": "resources/js/components/twc-ui/calendar.tsx",
       "type": "registry:ui",
-      "target": "components/ui/twc-ui/calendar.tsx"
+      "target": "components/twc-ui/calendar.tsx"
     }
   ]
 }

@@ -10,7 +10,7 @@
     {
       "path": "resources/js/components/twc-ui/form-errors.tsx",
       "type": "registry:ui",
-      "target": "components/ui/twc-ui/form-errors.tsx"
+      "target": "components/twc-ui/form-errors.tsx"
     }
   ]
 }

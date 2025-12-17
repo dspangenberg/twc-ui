@@ -14,7 +14,7 @@
     {
       "path": "resources/js/components/twc-ui/alert-dialog.tsx",
       "type": "registry:ui",
-      "target": "components/ui/twc-ui/alert-dialog.tsx"
+      "target": "components/twc-ui/alert-dialog.tsx"
     }
   ]
 }

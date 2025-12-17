@@ -10,7 +10,7 @@
     {
       "path": "resources/js/components/twc-ui/menu.tsx",
       "type": "registry:ui",
-      "target": "components/ui/twc-ui/menu.tsx"
+      "target": "components/twc-ui/menu.tsx"
     }
   ]
 }

@@ -9,7 +9,7 @@
     {
       "path": "resources/js/components/twc-ui/button.tsx",
       "type": "registry:ui",
-      "target": "components/ui/twc-ui/button.tsx"
+      "target": "components/twc-ui/button.tsx"
     }
   ]
 }

@@ -9,7 +9,7 @@
     {
       "path": "resources/js/components/twc-ui/list-box.tsx",
       "type": "registry:ui",
-      "target": "components/ui/twc-ui/list-box.tsx"
+      "target": "components/twc-ui/list-box.tsx"
     }
   ]
 }

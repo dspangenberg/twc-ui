@@ -9,7 +9,7 @@
     {
       "path": "resources/js/components/twc-ui/separator.tsx",
       "type": "registry:ui",
-      "target": "components/ui/twc-ui/separator.tsx"
+      "target": "components/twc-ui/separator.tsx"
     }
   ]
 }
