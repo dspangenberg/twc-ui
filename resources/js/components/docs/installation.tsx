@@ -22,9 +22,17 @@ export const Installation: React.FC<DemoCodePreviewProps> = ({
   devDependencies = [],
   hooks = []
 }) => {
-  useEffect(async () => {
-    await fetch(`https://twc-ui.text/r/${registry}.json`)
-  }, [])
+  useEffect(() => {
+    const fetchRegistry = async () => {
+      try {
+        const response = await fetch(`https://twc-ui.example/r/${registry}.json`)
+        // TODO: handle response data
+      } catch (error) {
+        console.error('Failed to fetch registry:', error)
+      }
+    }
+    fetchRegistry()
+  }, [registry])
 
   return (
     <Tabs defaultSelectedKey="cli" className="mt-6 gap-4">
