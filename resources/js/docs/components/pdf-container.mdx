@@ -1,0 +1,30 @@
+---
+title: PdfContainer
+---
+
+<CombiDemoCodePreview codePath="pdf/default.tsx" demoPath="demos/pdf/default" />
+
+## Installation
+
+<InstallationSection
+  dependencies={['pdfjs-dist@5.4.296', 'react-pdf', 'print-js', '@hugeicons/core-free-icons', 'react-use']}
+  components={['button.tsx', 'dropdown-button.tsx', 'logo-spinner.tsx', 'separator.tsx', 'toggle-button-group.tsx', 'toolbar.tsx']}
+  hooks={['use-file-download.ts']}
+>
+  <InstallationCommand command="execute" params="shadcn@latest add ~website/r/pdf-container.json" />
+</InstallationSection>
+
+## Usage
+<SourceCode hideHeader={true} code={`
+  <PdfContainer file="/compressed.tracemonkey-pldi-09.pdf" />
+`} />
+
+### Documentation
+
+#### Props
+| Prop             | Type      | Default         | Descriptions                       |
+  |------------------|-----------|-----------------|------------------------------------|
+| file <Required/> | `string`\|`object`   | ``                                 | s. Document https://github.com/wojtekmaj/react-pdf?tab=readme-ov-file#document|
+| filename         | `string`  | `unbekannt.pdf` | filename for the title or download |
+| hideFilename     | `boolean` | `false`         | Hides the filename from title      |
+

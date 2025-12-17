@@ -37,7 +37,7 @@ export const cellStyles = tv({
       true: 'text-muted-foreground opacity-50'
     },
     isOutsideMonth: {
-      true: 'text-muted-foreground opacity-50'
+      true: 'text-muted-foreground opacity-70'
     },
     isPressed: {
       true: 'border-ring ring-[3px] ring-ring/50'
@@ -195,7 +195,11 @@ const CalendarFooter = ({
           variant="outline"
           size="full"
           title={todayButtonText}
-          onClick={() => state.setFocusedDate(today(getLocalTimeZone()))}
+          onClick={() => {
+            state.setValue(today(getLocalTimeZone()))
+            onChange?.(today(getLocalTimeZone()))
+            state.setFocusedDate(today(getLocalTimeZone()))
+          }}
           slot={null}
         />
       )}
@@ -231,7 +235,7 @@ const SelectMonth = ({ state }: { state: CalendarState }) => {
   const months: { id: string; name: string }[] = []
 
   const formatter = useDateFormatter({
-    month: 'short',
+    month: 'long',
     timeZone: state.timeZone
   })
 

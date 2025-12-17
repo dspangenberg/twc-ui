@@ -1,6 +1,6 @@
 import { InformationCircleIcon } from '@hugeicons/core-free-icons'
-import { HugeiconsIcon } from '@hugeicons/react'
 import { Pressable } from 'react-aria-components'
+import { Icon } from '../twc-ui/icon'
 import { Popover, PopoverTrigger } from '../twc-ui/popover'
 
 type CalloutProps = {
@@ -17,11 +17,7 @@ export const TypeInfo = ({ title, types }: CalloutProps) => {
       <span className="bg-muted px-1 font-mono">{title}</span>
       <PopoverTrigger>
         <Pressable>
-          <HugeiconsIcon
-            role="button"
-            icon={InformationCircleIcon}
-            className="size-4 cursor-help"
-          />
+          <Icon role="button" icon={InformationCircleIcon} className="size-4 cursor-help" />
         </Pressable>
         <Popover>
           <ul className="p-4 font-mono text-sm">

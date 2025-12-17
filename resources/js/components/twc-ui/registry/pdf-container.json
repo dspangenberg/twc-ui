@@ -25,7 +25,7 @@
     {
       "path": "resources/js/components/twc-ui/pdf-container.tsx",
       "type": "registry:ui",
-      "target": "components/ui/twc-ui/pdf-container.tsx"
+      "target": "components/twc-ui/pdf-container.tsx"
     }
   ]
 }

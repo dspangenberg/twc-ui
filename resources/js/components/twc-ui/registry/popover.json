@@ -9,7 +9,7 @@
     {
       "path": "resources/js/components/twc-ui/popover.tsx",
       "type": "registry:ui",
-      "target": "components/ui/twc-ui/popover.tsx"
+      "target": "components/twc-ui/popover.tsx"
     }
   ]
 }

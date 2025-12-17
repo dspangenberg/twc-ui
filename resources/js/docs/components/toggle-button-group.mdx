@@ -1,0 +1,41 @@
+---
+title: "ToggleButtonGroup"
+description: "A toggle button group allows a user to toggle multiple options, with single or multiple selection."
+---
+
+<CombiDemoCodePreview codePath="toggle-button-group/default.tsx" demoPath="demos/toggle-button-group/default" />
+
+## Installation
+
+<InstallationSection
+  dependencies={['react-aria-components', '@hugeicons/react', 'tailwind-variants']}
+  components={['tooltip.tsx', 'button.tsx']}
+>
+  <InstallationCommand command="execute" params="shadcn@latest add @twc-ui/toggle-button-group" />
+</InstallationSection>
+
+## ToggleButtonGroup
+
+### Documentation
+
+#### Props
+
+[React ToggleButtonGroup props](https://react-spectrum.adobe.com/react-aria/ToggleButtonGroup.html#togglebuttongroup-1)
+
+| Prop             | Type                                                                                            | Default  |
+  |------------------|-------------------------------------------------------------------------------------------------|----------|
+| variant          | <TypeInfo title="variant" types={['ghost', 'outline', 'toolbar']} />                            | `ghost`  |
+| size             | <TypeInfo title="size" types={['default', 'sm', 'lg', 'icon', 'icon-sm', 'icon-xs', 'auto']} /> | `icon`   |
+| tooltipPlacement | Placement                                                                                       | `bottom` |
+
+## ToggleButtonGroupItem
+
+### Documentation
+
+#### Props
+
+[twc-ui ToggleButton Props](https://twc-ui.test/docs/components/buttons/toggle-button)
+
+Inherits variant, size and tooltipPlacement from the ToggleButtonGroup.
+
+

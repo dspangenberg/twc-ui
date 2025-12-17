@@ -10,7 +10,7 @@
     {
       "path": "resources/js/components/twc-ui/toolbar.tsx",
       "type": "registry:ui",
-      "target": "components/ui/twc-ui/toolbar.tsx"
+      "target": "components/twc-ui/toolbar.tsx"
     }
   ]
 }

@@ -15,7 +15,7 @@ export const DemoContainer = ({ children, className }: DemoContainerProps) => {
       )}
     >
       {children}
-      <div className="fixed right-0 bottom-0 z-50 rounded bg-gray-100 p-1 px-2 font-mono text-black text-xs">
+      <div className="fixed right-1.5 bottom-1.5 z-50 rounded bg-blue-50 p-1 px-2 font-mono text-black text-xs">
         <span className="sm:hidden">xs</span>
         <span className="hidden sm:inline md:hidden">sm</span>
         <span className="hidden md:inline lg:hidden">md</span>

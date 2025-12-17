@@ -10,7 +10,7 @@
     {
       "path": "resources/js/components/twc-ui/pdf-viewer.tsx",
       "type": "registry:ui",
-      "target": "components/ui/twc-ui/pdf-viewer.tsx"
+      "target": "components/twc-ui/pdf-viewer.tsx"
     }
   ]
 }

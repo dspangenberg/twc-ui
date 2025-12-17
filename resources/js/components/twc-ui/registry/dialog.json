@@ -10,7 +10,7 @@
     {
       "path": "resources/js/components/twc-ui/dialog.tsx",
       "type": "registry:ui",
-      "target": "components/ui/twc-ui/dialog.tsx"
+      "target": "components/twc-ui/dialog.tsx"
     }
   ]
 }

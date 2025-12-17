@@ -1,0 +1,36 @@
+---
+title: Tooltip
+description: A tooltip displays a description of an element on hover or focus.
+---
+<CombiDemoCodePreview
+  codePath="tooltip/default.tsx"
+  demoPath="demos/tooltip/default"
+/>
+
+## Installation
+<InstallationSection
+  dependencies={['react-aria-components']}
+  components={['tooltip.tsx']}
+>
+  <InstallationCommand command="execute" params="shadcn@latest add ~website/r/tooltip.json" />
+</InstallationSection>
+
+## Usage
+<SourceCode hideHeader  code={`
+import { Tooltip } from '@/components/twc-ui/tooltip'
+import { Tooltip, TooltipTrigger } from '@/components/twc-ui/tooltip'
+import { Focusable } from 'react-aria-components'
+
+  <TooltipTrigger>
+    <Focusable>
+      <Icon icon={Rocket02Icon} className="size-6" />
+    </Focusable>
+    <Tooltip>This a rocket icon tooltip</Tooltip>
+</TooltipTrigger>
+
+`} />
+
+## Documentation
+### Props
+
+[see React Aria Tooltip props](https://react-spectrum.adobe.com/react-aria/Tooltip.html#props)

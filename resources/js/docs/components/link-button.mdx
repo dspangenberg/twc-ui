@@ -1,0 +1,46 @@
+---
+title: "LinkButton"
+description: "A link allows a user to navigate to another page or resource within a web page or application."
+---
+
+
+
+
+<CombiDemoCodePreview codePath="link-button/default.tsx" demoPath="demos/link-button/default" />
+
+
+## Installation
+
+<InstallationSection
+  dependencies={['react-aria-components', '@hugeicons/react', 'tailwind-variants']}
+  components={['tooltip.tsx', 'button.tsx']}
+>
+  <InstallationCommand command="execute" params="shadcn@latest add @twc-ui/button" />
+</InstallationSection>
+
+## Examples
+
+### LinkButton with Icon
+
+<CombiDemoCodePreview
+  codePath="link-button/with-icon.tsx"
+  demoPath="demos/link-button/with-icon"
+  title="With Icon"
+/>
+
+## Documentation
+
+### Props
+
+[React Aria Link props](https://react-spectrum.adobe.com/react-aria/Link.html)
+
+| Prop             | Type                                                                                                         | Default   |
+  |------------------|--------------------------------------------------------------------------------------------------------------|-----------|
+| variant          |<TypeInfo title="variant" types={['default', 'secondary', 'outline', 'ghost', 'destructive', 'link', 'toolbar', 'toolbar-default']} />| `default` |
+| size          |<TypeInfo title="size" types={['default', 'sm', 'lg', 'icon', 'icon-sm', 'icon-xs', 'auto', 'full']} />| `default` |
+| title            | string                                                                                                       | ''        |
+| icon             | HugeIcons or Lucide icon                                            | ''        |
+| isLoading          |  `boolean`                                                                                                     |  `false`     |
+| iconClassName    | string                                                                                                       | ''        |
+| tooltip          | string                                                                                                       | ``        |
+| tooltipPlacement | Placement                                                                                                    | `bottom`  |

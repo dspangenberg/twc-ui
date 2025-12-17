@@ -10,7 +10,7 @@
     {
       "path": "resources/js/components/twc-ui/radio-group.tsx",
       "type": "registry:ui",
-      "target": "components/ui/twc-ui/radio-group.tsx"
+      "target": "components/twc-ui/radio-group.tsx"
     }
   ]
 }

@@ -1,10 +1,5 @@
 import {
   Delete02Icon,
-  DocumentValidationIcon,
-  Edit03Icon,
-  EditTableIcon,
-  EuroReceiveIcon,
-  FileDownloadIcon,
   FileEditIcon,
   FileRemoveIcon,
   Files02Icon,
@@ -15,13 +10,8 @@ import {
   Sent02Icon
 } from '@hugeicons/core-free-icons'
 import { DemoContainer } from '@/components/docs/DemoContainer'
-import {
-  DropdownButton,
-  Menu,
-  MenuItem,
-  MenuPopover,
-  MenuSubTrigger
-} from '@/components/twc-ui/dropdown-button'
+import { DropdownButton } from '@/components/twc-ui/dropdown-button'
+import { Menu, MenuItem, MenuPopover, MenuSubTrigger } from '@/components/twc-ui/menu'
 
 export const Demo = () => {
   return (

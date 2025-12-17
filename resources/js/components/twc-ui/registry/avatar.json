@@ -9,7 +9,7 @@
     {
       "path": "resources/js/components/twc-ui/avatar.tsx",
       "type": "registry:ui",
-      "target": "components/ui/twc-ui/avatar.tsx"
+      "target": "components/twc-ui/avatar.tsx"
     },
     {
       "path": "resources/js/lib/color-utils.ts",

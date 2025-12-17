@@ -10,7 +10,7 @@
     {
       "path": "resources/js/components/twc-ui/toggle-button-group.tsx",
       "type": "registry:ui",
-      "target": "components/ui/twc-ui/toggle-button-group.tsx"
+      "target": "components/twc-ui/toggle-button-group.tsx"
     }
   ]
 }

@@ -8,7 +8,7 @@
     {
       "path": "resources/js/components/twc-ui/logo.tsx",
       "type": "registry:ui",
-      "target": "components/ui/twc-ui/logo.tsx"
+      "target": "components/twc-ui/logo.tsx"
     }
   ]
 }
