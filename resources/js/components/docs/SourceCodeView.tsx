@@ -25,7 +25,7 @@ export const SourceCodeView: React.FC<DemoCodePreviewProps> = ({
   language = 'tsx',
   type = 'demo',
   code: rawCode,
-  hideHeader = false,
+  hideHeader = true,
   isComponent = false,
   title,
   header,

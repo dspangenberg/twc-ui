@@ -44,3 +44,14 @@
   }
 }
 
+h2 {
+  @apply mt-10 scroll-m-16 pb-2 font-medium text-3xl;
+}
+
+h3 {
+  @apply mt-8 scroll-m-16 font-medium text-2xl;
+}
+
+h4 {
+  @apply mt-8 scroll-m-16 font-medium text-xl;
+}

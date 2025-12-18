@@ -86,9 +86,9 @@
       ],
       "files": [
         {
-          "path": "resources/js/components/twc-ui/tooltip.tsx",
+          "path": "resources/js/components/twc-ui/button.tsx",
           "type": "registry:ui",
-          "target": "components/twc-ui/tooltip.tsx"
+          "target": "components/twc-ui/button.tsx"
         }
       ],
       "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
@@ -247,9 +247,9 @@
       ],
       "files": [
         {
-          "path": "resources/js/components/twc-ui/date-picker.tsx",
+          "path": "resources/js/components/twc-ui/date-range-picker.tsx",
           "type": "registry:ui",
-          "target": "components/twc-ui/date-picker.tsx"
+          "target": "components/twc-ui/date-range-picker.tsx"
         }
       ],
       "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
@@ -400,6 +400,31 @@
           "path": "resources/js/components/twc-ui/icon.tsx",
           "type": "registry:ui",
           "target": "components/twc-ui/icon.tsx"
+        }
+      ],
+      "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "link-button",
+      "type": "registry:ui",
+      "title": "LinkButton",
+      "description": "LinkButton component",
+      "dependencies": [
+        "class-variance-authority",
+        "react-aria-components",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@twc-ui/button",
+        "@twc-ui/icon",
+        "@twc-ui/tooltip"
+      ],
+      "files": [
+        {
+          "path": "resources/js/components/twc-ui/link-button.tsx",
+          "type": "registry:ui",
+          "target": "components/twc-ui/link-button.tsx"
         }
       ],
       "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
@@ -715,7 +740,7 @@
       ],
       "registryDependencies": [
         "@twc-ui/toggle-button",
-        "@twc-ui/tooltip"
+        "@twc-ui/button"
       ],
       "files": [
         {
@@ -737,7 +762,9 @@
         "tailwind-variants"
       ],
       "registryDependencies": [
-        "@twc-ui/icon"
+        "@twc-ui/button",
+        "@twc-ui/icon",
+        "@twc-ui/tooltip"
       ],
       "files": [
         {
@@ -774,16 +801,14 @@
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "name": "tooltip",
       "type": "registry:ui",
-      "title": "Button",
-      "description": "React aria component button",
-      "registryDependencies": [
-        "@twc-ui/icon"
-      ],
+      "title": "Tooltip",
+      "description": "React aria component tooltip",
+      "registryDependencies": [],
       "files": [
         {
-          "path": "resources/js/components/twc-ui/button.tsx",
+          "path": "resources/js/components/twc-ui/tooltip.tsx",
           "type": "registry:ui",
-          "target": "components/twc-ui/button.tsx"
+          "target": "components/twc-ui/tooltip.tsx"
         }
       ],
       "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"

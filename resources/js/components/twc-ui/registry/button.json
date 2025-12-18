@@ -8,9 +8,9 @@
   "registryDependencies": ["@twc-ui/icon", "@twc-ui/tooltip"],
   "files": [
     {
-      "path": "resources/js/components/twc-ui/tooltip.tsx",
+      "path": "resources/js/components/twc-ui/button.tsx",
       "type": "registry:ui",
-      "target": "components/twc-ui/tooltip.tsx"
+      "target": "components/twc-ui/button.tsx"
     }
   ]
 }

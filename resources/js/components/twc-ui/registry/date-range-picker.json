@@ -21,9 +21,9 @@
   ],
   "files": [
     {
-      "path": "resources/js/components/twc-ui/date-picker.tsx",
+      "path": "resources/js/components/twc-ui/date-range-picker.tsx",
       "type": "registry:ui",
-      "target": "components/twc-ui/date-picker.tsx"
+      "target": "components/twc-ui/date-range-picker.tsx"
     }
   ]
 }
