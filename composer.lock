@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ca8f33ac027d151927d5c6324bfd2728",
+    "content-hash": "def265eb213d777b417f9ad2032588e3",
     "packages": [
         {
             "name": "brick/math",
@@ -10156,6 +10156,71 @@
             "time": "2024-10-20T05:08:20+00:00"
         },
         {
+            "name": "stefanzweifel/laravel-stats-phploc",
+            "version": "8.0.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/stefanzweifel/phploc.git",
+                "reference": "576c967f46293d97d74d3dafac36b80cd84e8429"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/stefanzweifel/phploc/zipball/576c967f46293d97d74d3dafac36b80cd84e8429",
+                "reference": "576c967f46293d97d74d3dafac36b80cd84e8429",
+                "shasum": ""
+            },
+            "require": {
+                "ext-dom": "*",
+                "ext-json": "*",
+                "php": "^8.0",
+                "phpunit/php-file-iterator": "^3.0 || ^4.0 || ^5.0 || ^6.0",
+                "sebastian/cli-parser": "^1.0 || ^2.0 || ^3.0 || ^4.0",
+                "sebastian/version": "^2.0 || ^3.0 || ^4.0 || ^5.0 || ^6.0"
+            },
+            "bin": [
+                "phploc"
+            ],
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-main": "7.0-dev"
+                }
+            },
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Sebastian Bergmann",
+                    "email": "sebastian@phpunit.de",
+                    "role": "lead"
+                },
+                {
+                    "name": "Stefan Zweifel",
+                    "email": "stefan@stefanzweifel.dev"
+                }
+            ],
+            "description": "A tool for quickly measuring the size of a PHP project. (Don't use this fork in your production apps)",
+            "homepage": "https://github.com/stefanzweifel/phploc",
+            "support": {
+                "issues": "https://github.com/stefanzweifel/phploc/issues",
+                "source": "https://github.com/stefanzweifel/phploc/tree/8.0.6"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/sebastianbergmann",
+                    "type": "github"
+                }
+            ],
+            "time": "2025-10-12T16:07:39+00:00"
+        },
+        {
             "name": "symfony/yaml",
             "version": "v7.4.0",
             "source": {
@@ -10339,6 +10404,88 @@
                 }
             ],
             "time": "2025-11-17T20:03:58+00:00"
+        },
+        {
+            "name": "wnx/laravel-stats",
+            "version": "v2.18.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/stefanzweifel/laravel-stats.git",
+                "reference": "c02e2409be254f83bcea3680908aca51ad676ddb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/stefanzweifel/laravel-stats/zipball/c02e2409be254f83bcea3680908aca51ad676ddb",
+                "reference": "c02e2409be254f83bcea3680908aca51ad676ddb",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "illuminate/console": "^12.0",
+                "illuminate/support": "^12.0",
+                "php": "^8.4",
+                "stefanzweifel/laravel-stats-phploc": "^7.0 | ^8.0",
+                "symfony/finder": "^7.0",
+                "symfony/process": " ^7.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.2",
+                "laravel/browser-kit-testing": "^7.1 | ^8.0",
+                "laravel/dusk": "^8.0",
+                "livewire/livewire": "^3.0",
+                "orchestra/testbench": "^10",
+                "pestphp/pest": "^3 | ^4",
+                "phpunit/phpunit": "^11.0 | ^12.0",
+                "rector/rector": "^2.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Wnx\\LaravelStats\\StatsServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Wnx\\LaravelStats\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Stefan Zweifel",
+                    "email": "stefan@stefanzweifel.dev",
+                    "homepage": "https://stefanzweifel.dev",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Get insights about your Laravel Project",
+            "homepage": "https://github.com/stefanzweifel/laravel-stats",
+            "keywords": [
+                "laravel",
+                "statistics",
+                "stats",
+                "wnx"
+            ],
+            "support": {
+                "issues": "https://github.com/stefanzweifel/laravel-stats/issues",
+                "source": "https://github.com/stefanzweifel/laravel-stats/tree/v2.18.0"
+            },
+            "funding": [
+                {
+                    "url": "https://buymeacoff.ee/3oQ64YW",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/stefanzweifel",
+                    "type": "github"
+                }
+            ],
+            "time": "2025-11-24T19:15:11+00:00"
         }
     ],
     "aliases": [],

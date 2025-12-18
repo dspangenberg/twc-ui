@@ -3,6 +3,7 @@ import { HugeiconsIcon } from '@hugeicons/react'
 import { Head, Link, usePage } from '@inertiajs/react'
 import { ChevronRight } from 'lucide-react'
 import type { ReactNode } from 'react'
+import { ExtLink } from '@/components/docs/ExtLink'
 import { TableOfContents } from '@/components/docs/TableOfContents'
 import { useBreadcrumb, useDocsNavigation } from '@/hooks/use-docs-structure'
 import DocLayout from '@/layouts/docs-layout'
@@ -17,6 +18,11 @@ interface DocItem {
   frontmatter?: Record<string, any>
 }
 
+interface Credits {
+  title: string
+  url: string
+}
+
 interface Frontmatter {
   title?: string
   author?: string
@@ -27,6 +33,8 @@ interface Frontmatter {
   order: number
   description?: string
   published?: boolean
+  credits?: Credits[]
+  docUrl: string
 }
 
 interface DocPageProps {
@@ -273,6 +281,17 @@ const DocPageContent = ({ children, frontmatter }: DocPageProps) => {
                   ))}
                 </div>
               )}
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <ExtLink title="API/Docs" href={frontmatter.docUrl} />
+                {frontmatter.credits && frontmatter.credits.length > 0 && (
+                  <div className="flex items-center gap-2 text-sm">
+                    <span>Credits</span>
+                    {frontmatter.credits.map((credit, index) => (
+                      <ExtLink title={credit.title} href={credit.url} key={index} />
+                    ))}
+                  </div>
+                )}
+              </div>
             </header>
           )}
 

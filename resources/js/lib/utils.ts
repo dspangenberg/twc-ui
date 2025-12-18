@@ -11,7 +11,7 @@ export const focusRing = tv({
   variants: {
     isFocusVisible: {
       false: 'outline-0',
-      true: 'ring-ring/50 ring-[3px] border-ring'
+      true: 'border-ring ring-[3px] ring-ring/50'
     }
   }
 })

@@ -17,7 +17,6 @@ import {
   CalendarStateContext,
   type DateValue,
   Heading,
-  RangeCalendar,
   Text,
   useLocale
 } from 'react-aria-components'
@@ -67,14 +66,14 @@ export interface CalendarProps<T extends DateValue>
 export const Calendar = <T extends DateValue>({
   errorMessage,
   className,
-  maxYears = 100,
+  maxYears = 50,
   footerButtons = 'both',
   headerSelects = 'both',
   onChange,
   ...props
 }: CalendarProps<T>) => {
   const minYear = props.minValue?.year ?? today(getLocalTimeZone()).year - maxYears
-  const maxYear = props.maxValue?.year ?? today(getLocalTimeZone()).year
+  const maxYear = props.maxValue?.year ?? today(getLocalTimeZone()).year + maxYears
 
   return (
     <AriaCalendar
@@ -82,7 +81,7 @@ export const Calendar = <T extends DateValue>({
       {...props}
     >
       <CalendarHeader minYear={minYear} maxYear={maxYear} headerSelects={headerSelects} />
-      <CalendarGrid className="mt-1 w-full border-collapse">
+      <CalendarGrid className="mt-1 w-full border-collapse" weekdayStyle="short">
         <CalendarGridHeader />
         <CalendarGridBody>
           {date => <CalendarCell date={date} className={cellStyles} />}
@@ -102,14 +101,14 @@ const CalendarHeader = ({
   isRange,
   className,
   headerSelects = 'both',
-  minYear,
-  maxYear,
+  minYear = today(getLocalTimeZone()).year - 50,
+  maxYear = today(getLocalTimeZone()).year + 50,
   onChange,
   ...props
 }: React.ComponentProps<'header'> & {
   isRange?: boolean
-  minYear: number
-  maxYear: number
+  minYear?: number
+  maxYear?: number
   headerSelects?: HeaderSelects
   onChange?: (value: DateValue | null) => void
 }) => {
@@ -223,7 +222,7 @@ export const CalendarGridHeader = () => {
   return (
     <AriaCalendarGridHeader>
       {day => (
-        <CalendarHeaderCell className="font-medium text-foreground text-sm">
+        <CalendarHeaderCell className="text-center font-medium text-foreground text-sm">
           {day}
         </CalendarHeaderCell>
       )}
@@ -300,11 +299,4 @@ const SelectYear = ({
   )
 }
 
-export {
-  CalendarCell,
-  CalendarGrid,
-  CalendarGridBody,
-  CalendarHeaderCell,
-  CalendarHeader as CalendarHeading,
-  RangeCalendar
-}
+export { CalendarCell, CalendarGrid, CalendarGridBody, CalendarHeaderCell, CalendarHeader }
