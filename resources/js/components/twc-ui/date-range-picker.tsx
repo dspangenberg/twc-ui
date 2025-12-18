@@ -56,6 +56,7 @@ interface DateRangePickerProps
   onChange?: (value: RangeValue<string> | null) => void
   errorMessage?: string | ((validation: AriaValidationResult) => string)
   name: string
+  maxYears?: number
   footerButtons?: FooterButtons
 }
 const DatePickerContent = ({
@@ -81,6 +82,7 @@ const DateRangePicker = ({
   className,
   errorMessage,
   value,
+  maxYears = 50,
   onChange,
   isRequired = false,
   ...props
@@ -170,9 +172,8 @@ const DateRangePicker = ({
       <DatePickerContent popoverClassName="min-h-[360px]">
         <RangeCalendar
           className="p-0"
-          minValue={props.minValue}
-          maxValue={props.maxValue}
           footerButtons={props.footerButtons}
+          maxYears={maxYears}
           onChange={handleChange}
         />
       </DatePickerContent>
