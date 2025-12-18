@@ -282,7 +282,7 @@ const DocPageContent = ({ children, frontmatter }: DocPageProps) => {
                 </div>
               )}
               <div className="flex items-center justify-between gap-2 text-sm">
-                <ExtLink title="API/Docs" href={frontmatter.docUrl} />
+                {frontmatter.docUrl && <ExtLink title="API/Docs" href={frontmatter.docUrl} />}
                 {frontmatter.credits && frontmatter.credits.length > 0 && (
                   <div className="flex items-center gap-2 text-sm">
                     <span>Credits</span>
