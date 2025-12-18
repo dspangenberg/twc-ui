@@ -226,6 +226,36 @@
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "date-range-picker",
+      "type": "registry:ui",
+      "title": "Date Range Picker",
+      "description": "Date range picker component",
+      "dependencies": [
+        "@internationalized/date",
+        "react-aria-components",
+        "@hugeicons/core-free-icons",
+        "date-fns",
+        "react-aria",
+        "tailwind-variants"
+      ],
+      "registryDependencies": [
+        "@twc-ui/button",
+        "@twc-ui/range-calendar",
+        "@twc-ui/date-field",
+        "@twc-ui/field",
+        "@twc-ui/popover"
+      ],
+      "files": [
+        {
+          "path": "resources/js/components/twc-ui/date-picker.tsx",
+          "type": "registry:ui",
+          "target": "components/twc-ui/date-picker.tsx"
+        }
+      ],
+      "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "name": "dialog",
       "type": "registry:ui",
       "title": "Dialog",
@@ -563,6 +593,28 @@
           "path": "resources/js/components/twc-ui/radio-group.tsx",
           "type": "registry:ui",
           "target": "components/twc-ui/radio-group.tsx"
+        }
+      ],
+      "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "range-calendar",
+      "type": "registry:ui",
+      "title": "RangeCalendar",
+      "description": "Range Calendar component",
+      "dependencies": [
+        "react-aria-components",
+        "tailwind-variants"
+      ],
+      "registryDependencies": [
+        "@twc-ui/calendar"
+      ],
+      "files": [
+        {
+          "path": "resources/js/components/twc-ui/range-calendar.tsx",
+          "type": "registry:ui",
+          "target": "components/twc-ui/range-calendar.tsx"
         }
       ],
       "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"

@@ -1,0 +1,29 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "date-range-picker",
+  "type": "registry:ui",
+  "title": "Date Range Picker",
+  "description": "Date range picker component",
+  "dependencies": [
+    "@internationalized/date",
+    "react-aria-components",
+    "@hugeicons/core-free-icons",
+    "date-fns",
+    "react-aria",
+    "tailwind-variants"
+  ],
+  "registryDependencies": [
+    "@twc-ui/button",
+    "@twc-ui/range-calendar",
+    "@twc-ui/date-field",
+    "@twc-ui/field",
+    "@twc-ui/popover"
+  ],
+  "files": [
+    {
+      "path": "resources/js/components/twc-ui/date-picker.tsx",
+      "type": "registry:ui",
+      "target": "components/twc-ui/date-picker.tsx"
+    }
+  ]
+}

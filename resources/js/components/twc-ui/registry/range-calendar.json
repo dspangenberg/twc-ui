@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "range-calendar",
+  "type": "registry:ui",
+  "title": "RangeCalendar",
+  "description": "Range Calendar component",
+  "dependencies": ["react-aria-components", "tailwind-variants"],
+  "registryDependencies": ["@twc-ui/calendar"],
+  "files": [
+    {
+      "path": "resources/js/components/twc-ui/range-calendar.tsx",
+      "type": "registry:ui",
+      "target": "components/twc-ui/range-calendar.tsx"
+    }
+  ]
+}

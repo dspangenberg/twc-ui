@@ -1,7 +1,6 @@
 'use client'
 
-import { Calendar04Icon, MultiplicationSignIcon } from '@hugeicons/core-free-icons'
-import { HugeiconsIcon } from '@hugeicons/react'
+import { Calendar04Icon } from '@hugeicons/core-free-icons'
 import { CalendarDate, type DateValue } from '@internationalized/date'
 import type { RangeValue } from '@react-types/shared'
 import { format, parse } from 'date-fns'
@@ -13,7 +12,6 @@ import {
   type PopoverProps as AriaPopoverProps,
   type ValidationResult as AriaValidationResult,
   composeRenderProps,
-  DateRangePickerStateContext,
   Dialog,
   Text
 } from 'react-aria-components'
@@ -30,23 +28,6 @@ const DATE_FORMAT = import.meta.env.VITE_DATE_FORMAT || 'yyyy-MM-dd'
 
 const dateValueToDate = (dateValue: DateValue): Date => {
   return new Date(dateValue.year, dateValue.month - 1, dateValue.day)
-}
-
-const DateRangePickerClearButton = () => {
-  const state = React.useContext(DateRangePickerStateContext)
-
-  return (
-    <Button
-      slot={null}
-      variant="ghost"
-      aria-label="Clear"
-      size="icon"
-      className="size-6 flex-none data-focus-visible:ring-offset-0"
-      onPress={() => state?.setValue(null)}
-    >
-      <HugeiconsIcon icon={MultiplicationSignIcon} className="size-4" />
-    </Button>
-  )
 }
 interface DateRangePickerProps
   extends Omit<AriaDateRangePickerProps<DateValue>, 'value' | 'onChange'> {
@@ -157,10 +138,12 @@ const DateRangePicker = ({
         </div>
 
         <div className="flex flex-none items-center justify-end gap-1">
-          <DateRangePickerClearButton />
-          <Button variant="ghost" size="icon" className="size-6 data-focus-visible:ring-offset-0">
-            <HugeiconsIcon icon={Calendar04Icon} className="size-4" />
-          </Button>
+          <Button
+            icon={Calendar04Icon}
+            variant="ghost"
+            size="icon-sm"
+            className="data-focus-visible:ring-offset-0"
+          />
         </div>
       </FieldGroup>
       {description && (
