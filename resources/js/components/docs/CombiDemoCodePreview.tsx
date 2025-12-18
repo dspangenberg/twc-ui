@@ -1,4 +1,4 @@
-import { MaximizeScreenIcon } from '@hugeicons/core-free-icons'
+import { FullScreenIcon } from '@hugeicons/core-free-icons'
 import type React from 'react'
 import { useState } from 'react'
 import { LogoSpinner } from '@/components/twc-ui/logo-spinner'
@@ -72,7 +72,7 @@ export const CombiDemoCodePreview: React.FC<DemoCodePreviewProps> = ({
           <Button
             variant="ghost"
             size="icon"
-            icon={MaximizeScreenIcon}
+            icon={FullScreenIcon}
             title="Open in new tab"
             onClick={() => window.open(demoUrl, '_blank')}
           />

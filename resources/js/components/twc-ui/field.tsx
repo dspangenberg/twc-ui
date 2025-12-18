@@ -29,12 +29,15 @@ interface LabelProps extends AriaLabelProps {
 }
 
 const Label = ({ className, children, value, isRequired = false, ...props }: LabelProps) => {
-  const form = useFormContext()
-
-  const valueWithColon = value && !form?.hideColonInLabels ? `${value}:` : value
   return (
     <AriaLabel className={cn(labelVariants(), className)} {...props}>
-      {valueWithColon ?? children} {isRequired && <span className="text-destructive">*</span>}
+      {children ? (
+        children
+      ) : (
+        <span>
+          {value ?? ''}: {isRequired && <span className="text-destructive">*</span>}
+        </span>
+      )}
     </AriaLabel>
   )
 }

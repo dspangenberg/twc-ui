@@ -23,7 +23,7 @@ import { Popover } from './popover'
 
 const BaseDatePicker = AriaDatePicker
 
-const DATE_FORMAT = import.meta.env.VITE_DATE_FORMAT || 'yyyy-MM-dd'
+const DATE_FORMAT = import.meta.env.VITE_APP_DATE_FORMAT || 'yyyy-MM-dd'
 
 const dateValueToDate = (dateValue: DateValue): Date => {
   return new Date(dateValue.year, dateValue.month - 1, dateValue.day)
@@ -135,8 +135,6 @@ const DatePicker = ({
       <DatePickerContent popoverClassName="min-h-fit" slot="dialog">
         <Calendar
           className="p-0"
-          minValue={props.minValue}
-          maxValue={props.maxValue}
           maxYears={maxYears}
           footerButtons={footerButtons}
           onChange={handleChange}

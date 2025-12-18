@@ -1,0 +1,36 @@
+---
+title: "RangeCalendar"
+description: "A range calendar displays one or more date grids and allows users to select a contiguous range of dates."
+docUrl: https://react-aria.adobe.com/RangeCalendar#rangecalendar
+credits:
+  - url: https://taki-ui.com/docs/components/calendar
+    title: Taki UI
+  - url: https://intentui.com/docs/components/date-and-time/calendar
+    title: Intent UI
+---
+
+
+<CombiDemoCodePreview codePath="range-calendar/default.tsx" demoPath="demos/range-calendar/default" className="h-100" />
+
+
+## Installation
+
+<InstallationSection
+  dependencies={['react-aria-components', '@internationalized/date', 'react-aria', 'tailwind-variants']}
+  components={['button.tsx', 'select.tsx']}
+>
+  <InstallationCommand command="execute" params="shadcn@latest add @twc-ui/range-calendar" />
+</InstallationSection>
+
+
+## Documentation
+
+### Props
+
+[React Aria RangeCalendar props](https://react-aria.adobe.com/RangeCalendar#rangecalendar)
+
+| Prop          | Type                                                                          | Default | Description                                                                |
+|---------------|-------------------------------------------------------------------------------|---------|----------------------------------------------------------------------------|
+| footerButtons | <TypeInfo title="FooterButtons" types={['both', 'none', 'reset', 'today']} /> | `both`  | Display footer buttons                                                     |
+| maxYears      | `number`                                                                      | `50`    | If minValue and maxValue are not set, max years (+/-) for the years select |
+| errorMessage  | `string`                                                                      | ``      | Error message for validation                                               |

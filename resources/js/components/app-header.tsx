@@ -40,7 +40,7 @@ const mainNavItems: NavItem[] = [
   },
   {
     title: 'Components',
-    href: '/docs/components/buttons/button',
+    href: '/docs/components/alert-dialog',
     icon: GeometricShapes01Icon
   },
   {
@@ -84,7 +84,7 @@ export function AppHeader({ breadcrumbs = [] }: AppHeaderProps) {
 
   return (
     <>
-      <div className="border-sidebar-border/80 border-b ">
+      <div className="border-sidebar-border/80 border-b">
         <div className="mx-auto flex h-16 items-center px-4 md:max-w-7xl">
           {/* Mobile Menu */}
           <div className="lg:hidden">

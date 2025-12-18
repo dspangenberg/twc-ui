@@ -40,7 +40,6 @@ type ExtendedForm<T extends FormSchema> = {
 
 // Typisierter Context mit zusätzlichen UI-Properties
 type FormContextValue = {
-  hideColonInLabels?: boolean
   errorTitle?: string
   errorVariant?: 'form' | 'field'
   [key: string]: any // Erlaubt alle ExtendedForm Properties
@@ -51,7 +50,6 @@ const FormContext = createContext<FormContextValue | null>(null)
 interface FormProps<T extends FormSchema> extends BaseFormProps {
   form: ExtendedForm<T>
   children: React.ReactNode
-  hideColonInLabels?: boolean
   onSubmitted?: () => void
   errorTitle?: string
   className?: string
@@ -62,7 +60,6 @@ export const Form = <T extends FormSchema>({
   form,
   children,
   errorVariant = 'form',
-  hideColonInLabels = false,
   errorTitle = 'Something went wrong',
   onSubmitted,
   className,
@@ -95,7 +92,6 @@ export const Form = <T extends FormSchema>({
     <FormContext.Provider
       value={{
         ...form,
-        hideColonInLabels,
         errorTitle,
         errorVariant
       }}
@@ -121,7 +117,6 @@ export const useFormContext = <T extends FormSchema = FormSchema>() => {
     return null
   }
   return context as ExtendedForm<T> & {
-    hideColonInLabels?: boolean
     errorTitle?: string
     errorVariant?: 'form' | 'field'
   }

@@ -23,7 +23,7 @@
         {
           "path": "resources/js/components/twc-ui/alert-dialog.tsx",
           "type": "registry:ui",
-          "target": "components/ui/twc-ui/alert-dialog.tsx"
+          "target": "components/twc-ui/alert-dialog.tsx"
         }
       ],
       "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
@@ -41,7 +41,7 @@
         {
           "path": "resources/js/components/twc-ui/avatar.tsx",
           "type": "registry:ui",
-          "target": "components/ui/twc-ui/avatar.tsx"
+          "target": "components/twc-ui/avatar.tsx"
         },
         {
           "path": "resources/js/lib/color-utils.ts",
@@ -64,7 +64,7 @@
         {
           "path": "resources/js/components/twc-ui/breadcrumbs.tsx",
           "type": "registry:ui",
-          "target": "components/ui/twc-ui/breadcrumbs.tsx"
+          "target": "components/twc-ui/breadcrumbs.tsx"
         }
       ],
       "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
@@ -88,7 +88,7 @@
         {
           "path": "resources/js/components/twc-ui/tooltip.tsx",
           "type": "registry:ui",
-          "target": "components/ui/twc-ui/tooltip.tsx"
+          "target": "components/twc-ui/tooltip.tsx"
         }
       ],
       "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
@@ -114,7 +114,7 @@
         {
           "path": "resources/js/components/twc-ui/calendar.tsx",
           "type": "registry:ui",
-          "target": "components/ui/twc-ui/calendar.tsx"
+          "target": "components/twc-ui/calendar.tsx"
         }
       ],
       "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
@@ -135,7 +135,7 @@
         {
           "path": "resources/js/components/twc-ui/checkbox.tsx",
           "type": "registry:ui",
-          "target": "components/ui/twc-ui/checkbox.tsx"
+          "target": "components/twc-ui/checkbox.tsx"
         }
       ],
       "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
@@ -162,7 +162,94 @@
         {
           "path": "resources/js/components/twc-ui/combo-box.tsx",
           "type": "registry:ui",
-          "target": "components/ui/twc-ui/combo-box.tsx"
+          "target": "components/twc-ui/combo-box.tsx"
+        }
+      ],
+      "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "date-field",
+      "type": "registry:ui",
+      "title": "Date Field",
+      "description": "Date Field component",
+      "dependencies": [
+        "@internationalized/date",
+        "react-aria-components",
+        "class-variance-authority",
+        "date-fns",
+        "react-aria",
+        "tailwind-variants"
+      ],
+      "registryDependencies": [
+        "@twc-ui/field",
+        "@twc-ui/form"
+      ],
+      "files": [
+        {
+          "path": "resources/js/components/twc-ui/date-field.tsx",
+          "type": "registry:ui",
+          "target": "components/twc-ui/date-field.tsx"
+        }
+      ],
+      "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "date-picker",
+      "type": "registry:ui",
+      "title": "Date Picker",
+      "description": "Date picker component",
+      "dependencies": [
+        "@internationalized/date",
+        "react-aria-components",
+        "@hugeicons/core-free-icons",
+        "date-fns",
+        "react-aria",
+        "tailwind-variants"
+      ],
+      "registryDependencies": [
+        "@twc-ui/button",
+        "@twc-ui/calendar",
+        "@twc-ui/date-field",
+        "@twc-ui/field",
+        "@twc-ui/popover"
+      ],
+      "files": [
+        {
+          "path": "resources/js/components/twc-ui/date-picker.tsx",
+          "type": "registry:ui",
+          "target": "components/twc-ui/date-picker.tsx"
+        }
+      ],
+      "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "date-range-picker",
+      "type": "registry:ui",
+      "title": "Date Range Picker",
+      "description": "Date range picker component",
+      "dependencies": [
+        "@internationalized/date",
+        "react-aria-components",
+        "@hugeicons/core-free-icons",
+        "date-fns",
+        "react-aria",
+        "tailwind-variants"
+      ],
+      "registryDependencies": [
+        "@twc-ui/button",
+        "@twc-ui/range-calendar",
+        "@twc-ui/date-field",
+        "@twc-ui/field",
+        "@twc-ui/popover"
+      ],
+      "files": [
+        {
+          "path": "resources/js/components/twc-ui/date-picker.tsx",
+          "type": "registry:ui",
+          "target": "components/twc-ui/date-picker.tsx"
         }
       ],
       "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
@@ -186,7 +273,7 @@
         {
           "path": "resources/js/components/twc-ui/dialog.tsx",
           "type": "registry:ui",
-          "target": "components/ui/twc-ui/dialog.tsx"
+          "target": "components/twc-ui/dialog.tsx"
         }
       ],
       "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
@@ -199,12 +286,10 @@
       "description": "DropdownButton component",
       "dependencies": [
         "class-variance-authority",
-        "react-aria-components",
-        "@radix-ui/react-icons"
+        "react-aria-components"
       ],
       "registryDependencies": [
-        "@twc-ui/list-box",
-        "@twc-ui/select",
+        "@twc-ui/menu",
         "@twc-ui/button",
         "@twc-ui/icon"
       ],
@@ -212,7 +297,7 @@
         {
           "path": "resources/js/components/twc-ui/dropdown-button.tsx",
           "type": "registry:ui",
-          "target": "components/ui/twc-ui/dropdown-button.tsx"
+          "target": "components/twc-ui/dropdown-button.tsx"
         }
       ],
       "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
@@ -234,7 +319,7 @@
         {
           "path": "resources/js/components/twc-ui/field.tsx",
           "type": "registry:ui",
-          "target": "components/ui/twc-ui/field.tsx"
+          "target": "components/twc-ui/field.tsx"
         }
       ],
       "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
@@ -255,7 +340,7 @@
         {
           "path": "resources/js/components/twc-ui/form-errors.tsx",
           "type": "registry:ui",
-          "target": "components/ui/twc-ui/form-errors.tsx"
+          "target": "components/twc-ui/form-errors.tsx"
         }
       ],
       "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
@@ -272,7 +357,7 @@
         {
           "path": "resources/js/components/twc-ui/form-grid.tsx",
           "type": "registry:ui",
-          "target": "components/ui/twc-ui/form-grid.tsx"
+          "target": "components/twc-ui/form-grid.tsx"
         }
       ],
       "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
@@ -295,7 +380,7 @@
         {
           "path": "resources/js/components/twc-ui/form.tsx",
           "type": "registry:ui",
-          "target": "components/ui/twc-ui/form.tsx"
+          "target": "components/twc-ui/form.tsx"
         }
       ],
       "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
@@ -314,7 +399,7 @@
         {
           "path": "resources/js/components/twc-ui/icon.tsx",
           "type": "registry:ui",
-          "target": "components/ui/twc-ui/icon.tsx"
+          "target": "components/twc-ui/icon.tsx"
         }
       ],
       "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
@@ -333,7 +418,7 @@
         {
           "path": "resources/js/components/twc-ui/list-box.tsx",
           "type": "registry:ui",
-          "target": "components/ui/twc-ui/list-box.tsx"
+          "target": "components/twc-ui/list-box.tsx"
         }
       ],
       "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
@@ -351,7 +436,7 @@
         {
           "path": "resources/js/components/twc-ui/logo-spinner.tsx",
           "type": "registry:ui",
-          "target": "components/ui/twc-ui/logo-spinner.tsx"
+          "target": "components/twc-ui/logo-spinner.tsx"
         }
       ],
       "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
@@ -366,7 +451,32 @@
         {
           "path": "resources/js/components/twc-ui/logo.tsx",
           "type": "registry:ui",
-          "target": "components/ui/twc-ui/logo.tsx"
+          "target": "components/twc-ui/logo.tsx"
+        }
+      ],
+      "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "menu",
+      "type": "registry:ui",
+      "title": "DropdownButton",
+      "description": "DropdownButton component",
+      "dependencies": [
+        "class-variance-authority",
+        "react-aria-components",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@twc-ui/list-box",
+        "@twc-ui/select",
+        "@twc-ui/icon"
+      ],
+      "files": [
+        {
+          "path": "resources/js/components/twc-ui/menu.tsx",
+          "type": "registry:ui",
+          "target": "components/twc-ui/menu.tsx"
         }
       ],
       "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
@@ -390,7 +500,7 @@
         {
           "path": "resources/js/components/twc-ui/number-field.tsx",
           "type": "registry:ui",
-          "target": "components/ui/twc-ui/number-field.tsx"
+          "target": "components/twc-ui/number-field.tsx"
         }
       ],
       "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
@@ -422,7 +532,7 @@
         {
           "path": "resources/js/components/twc-ui/pdf-container.tsx",
           "type": "registry:ui",
-          "target": "components/ui/twc-ui/pdf-container.tsx"
+          "target": "components/twc-ui/pdf-container.tsx"
         }
       ],
       "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
@@ -442,7 +552,7 @@
         {
           "path": "resources/js/components/twc-ui/pdf-viewer.tsx",
           "type": "registry:ui",
-          "target": "components/ui/twc-ui/pdf-viewer.tsx"
+          "target": "components/twc-ui/pdf-viewer.tsx"
         }
       ],
       "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
@@ -460,7 +570,7 @@
         {
           "path": "resources/js/components/twc-ui/popover.tsx",
           "type": "registry:ui",
-          "target": "components/ui/twc-ui/popover.tsx"
+          "target": "components/twc-ui/popover.tsx"
         }
       ],
       "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
@@ -482,7 +592,29 @@
         {
           "path": "resources/js/components/twc-ui/radio-group.tsx",
           "type": "registry:ui",
-          "target": "components/ui/twc-ui/radio-group.tsx"
+          "target": "components/twc-ui/radio-group.tsx"
+        }
+      ],
+      "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "range-calendar",
+      "type": "registry:ui",
+      "title": "RangeCalendar",
+      "description": "Range Calendar component",
+      "dependencies": [
+        "react-aria-components",
+        "tailwind-variants"
+      ],
+      "registryDependencies": [
+        "@twc-ui/calendar"
+      ],
+      "files": [
+        {
+          "path": "resources/js/components/twc-ui/range-calendar.tsx",
+          "type": "registry:ui",
+          "target": "components/twc-ui/range-calendar.tsx"
         }
       ],
       "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
@@ -507,7 +639,7 @@
         {
           "path": "resources/js/components/twc-ui/select.tsx",
           "type": "registry:ui",
-          "target": "components/ui/twc-ui/select.tsx"
+          "target": "components/twc-ui/select.tsx"
         }
       ],
       "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
@@ -525,7 +657,7 @@
         {
           "path": "resources/js/components/twc-ui/separator.tsx",
           "type": "registry:ui",
-          "target": "components/ui/twc-ui/separator.tsx"
+          "target": "components/twc-ui/separator.tsx"
         }
       ],
       "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
@@ -544,7 +676,7 @@
         {
           "path": "resources/js/components/twc-ui/tabs.tsx",
           "type": "registry:ui",
-          "target": "components/ui/twc-ui/tabs.tsx"
+          "target": "components/twc-ui/tabs.tsx"
         }
       ],
       "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
@@ -566,7 +698,7 @@
         {
           "path": "resources/js/components/twc-ui/text-field.tsx",
           "type": "registry:ui",
-          "target": "components/ui/twc-ui/text-field.tsx"
+          "target": "components/twc-ui/text-field.tsx"
         }
       ],
       "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
@@ -589,7 +721,7 @@
         {
           "path": "resources/js/components/twc-ui/toggle-button-group.tsx",
           "type": "registry:ui",
-          "target": "components/ui/twc-ui/toggle-button-group.tsx"
+          "target": "components/twc-ui/toggle-button-group.tsx"
         }
       ],
       "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
@@ -611,7 +743,7 @@
         {
           "path": "resources/js/components/twc-ui/toggle-button.tsx",
           "type": "registry:ui",
-          "target": "components/ui/twc-ui/toggle-button.tsx"
+          "target": "components/twc-ui/toggle-button.tsx"
         }
       ],
       "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
@@ -633,7 +765,7 @@
         {
           "path": "resources/js/components/twc-ui/toolbar.tsx",
           "type": "registry:ui",
-          "target": "components/ui/twc-ui/toolbar.tsx"
+          "target": "components/twc-ui/toolbar.tsx"
         }
       ],
       "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
@@ -651,7 +783,7 @@
         {
           "path": "resources/js/components/twc-ui/button.tsx",
           "type": "registry:ui",
-          "target": "components/ui/twc-ui/button.tsx"
+          "target": "components/twc-ui/button.tsx"
         }
       ],
       "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"

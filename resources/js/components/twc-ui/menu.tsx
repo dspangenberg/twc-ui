@@ -80,6 +80,18 @@ interface MenuItemProps extends AriaMenuItemProps, VariantProps<typeof menuItemV
   isDisabled?: boolean
 }
 
+interface BaseMenuItemProps extends AriaMenuItemProps, VariantProps<typeof menuItemVariants> {}
+
+const BaseMenuItem = ({ children, variant, ...props }: BaseMenuItemProps) => (
+  <AriaMenuItem
+    className={composeRenderProps(props.className, className =>
+      cn(menuItemVariants({ variant }), className)
+    )}
+    {...props}
+  >
+    {children}
+  </AriaMenuItem>
+)
 const MenuItem = ({
   children,
   className,
@@ -173,6 +185,7 @@ export {
   MenuKeyboard,
   MenuSection,
   MenuSubTrigger,
-  MenuCollection
+  MenuCollection,
+  BaseMenuItem
 }
 export type { MenuHeaderProps, MenuItemProps, AriaMenuProps }
