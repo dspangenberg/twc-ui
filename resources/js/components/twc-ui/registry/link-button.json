@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "link-button",
+  "type": "registry:ui",
+  "title": "LinkButton",
+  "description": "LinkButton component",
+  "dependencies": ["class-variance-authority", "react-aria-components", "lucide-react"],
+  "registryDependencies": ["@twc-ui/button", "@twc-ui/icon", "@twc-ui/tooltip"],
+  "files": [
+    {
+      "path": "resources/js/components/twc-ui/link-button.tsx",
+      "type": "registry:ui",
+      "target": "components/twc-ui/link-button.tsx"
+    }
+  ]
+}

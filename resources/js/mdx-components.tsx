@@ -1,15 +1,17 @@
 import type React from 'react'
 import * as runtime from 'react/jsx-runtime'
+import { CombiDemoCodePreview } from '@/components/docs/CombiDemoCodePreview'
+import { Callout } from '@/components/docs/callout'
 import { DemoCodePreview } from '@/components/docs/DemoCodePreview'
 import { InstallationCommand } from '@/components/docs/install-command'
+import { Installation } from '@/components/docs/installation'
 import { InstallationSection } from '@/components/docs/installation-section'
-import { cn } from '@/lib/utils'
-import { Callout } from '@/components/docs/callout'
-import { TypeInfo } from '@/components/docs/TypeInfo'
 import { Required } from '@/components/docs/required'
-import { Icon } from '@/components/twc-ui/icon'
 import { SourceCode } from '@/components/docs/SourceCode'
-import { CombiDemoCodePreview } from '@/components/docs/CombiDemoCodePreview'
+import { TypeInfo } from '@/components/docs/TypeInfo'
+import { Icon } from '@/components/twc-ui/icon'
+import { cn } from '@/lib/utils'
+
 const sharedComponents = {
   h1: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h1 className={cn('mt-10 scroll-m-16 pb-2 font-medium text-4xl', className)} {...props} />
@@ -89,6 +91,7 @@ const sharedComponents = {
   CombiDemoCodePreview,
   InstallationCommand,
   InstallationSection,
+  Installation,
   Icon,
   Required,
   SourceCode,

@@ -2,14 +2,14 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "tooltip",
   "type": "registry:ui",
-  "title": "Button",
-  "description": "React aria component button",
-  "registryDependencies": ["@twc-ui/icon"],
+  "title": "Tooltip",
+  "description": "React aria component tooltip",
+  "registryDependencies": [],
   "files": [
     {
-      "path": "resources/js/components/twc-ui/button.tsx",
+      "path": "resources/js/components/twc-ui/tooltip.tsx",
       "type": "registry:ui",
-      "target": "components/twc-ui/button.tsx"
+      "target": "components/twc-ui/tooltip.tsx"
     }
   ]
 }

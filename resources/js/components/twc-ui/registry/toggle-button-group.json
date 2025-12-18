@@ -5,7 +5,7 @@
   "title": "ToggleButtonGroup",
   "description": "ToggleButtonGroup component",
   "dependencies": ["react-aria-components", "tailwind-variants"],
-  "registryDependencies": ["@twc-ui/toggle-button", "@twc-ui/tooltip"],
+  "registryDependencies": ["@twc-ui/toggle-button", "@twc-ui/button"],
   "files": [
     {
       "path": "resources/js/components/twc-ui/toggle-button-group.tsx",
