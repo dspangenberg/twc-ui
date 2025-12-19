@@ -1,0 +1,14 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "use-field-change",
+  "type": "registry:hook",
+  "title": "use-field-change",
+  "description": "use-field-change Hook",
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "resources/js/hooks/use-field-change.ts",
+      "type": "registry:hook"
+    }
+  ]
+}

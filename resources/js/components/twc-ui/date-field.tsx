@@ -60,11 +60,9 @@ const DateInput = ({
   </AriaDateInput>
 )
 
-interface DateFieldProps extends Omit<AriaDateFieldProps<DateValue>, 'value' | 'onChange'> {
+interface DateFieldProps extends AriaDateFieldProps<DateValue> {
   label?: string
   description?: string
-  value?: string | null
-  onChange?: (value: string | null) => void
   errorMessage?: string | ((validation: AriaValidationResult) => string)
   errorComponent?: React.ComponentType<{
     children?: React.ReactNode | ((validation: ValidationResult) => React.ReactNode)
@@ -84,16 +82,14 @@ const DateField = ({
 }: DateFieldProps) => {
   const hasError = !!errorMessage
 
-  const { parsedDate, handleChange } = useDateConversion(value, onChange)
-
   return (
     <BaseDateField
       className={composeRenderProps(className, className =>
         cn('group flex flex-col gap-2 data-invalid:border-destructive', className)
       )}
       isInvalid={hasError}
-      value={parsedDate}
-      onChange={handleChange}
+      value={value}
+      onChange={onChange}
       validationBehavior="native"
       {...props}
     >
@@ -109,12 +105,18 @@ const DateField = ({
   )
 }
 
-const FormDateField = ({ ...props }: DateFieldProps) => {
+interface FormDateFieldProps extends Omit<DateFieldProps, 'value' | 'onChange'> {
+  value?: string | null
+  onChange?: (value: string | null) => void
+}
+
+const FormDateField = ({ value, onChange, ...props }: FormDateFieldProps) => {
   const form = useFormContext()
   const error = form?.errors?.[props.name as string]
+  const { parsedDate, handleChange } = useDateConversion(value, onChange)
 
-  return <DateField errorComponent={FormFieldError} errorMessage={error} {...props} />
+  return <DateField errorComponent={FormFieldError} errorMessage={error} value={parsedDate} onChange={handleChange} {...props} />
 }
 
 export { DateField, FormDateField, DateSegment, DateInput, BaseDateField }
-export type { DateInputProps, DateFieldProps }
+export type { DateInputProps, DateFieldProps, FormDateFieldProps }

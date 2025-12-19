@@ -7,7 +7,8 @@ import {
   NumberField as AriaNumberField,
   type NumberFieldProps as AriaNumberFieldProps,
   composeRenderProps,
-  Text
+  Text,
+  type ValidationResult
 } from 'react-aria-components'
 import { cn } from '@/lib/utils'
 import { Button } from './button'
@@ -68,9 +69,11 @@ interface NumberFieldProps extends Omit<AriaNumberFieldProps, 'value' | 'onChang
   description?: string
   onChange?: ((value: number | null) => void) | ((value: number) => void)
   value?: number | null | undefined
-  error?: string | undefined
+  errorMessage?: string | undefined
   name?: string
-  errorComponent?: React.ComponentType<{ children?: React.ReactNode }>
+  errorComponent?: React.ComponentType<{
+    children?: React.ReactNode | ((validation: ValidationResult) => React.ReactNode)
+  }>
 }
 
 const NumberField = ({
@@ -81,12 +84,12 @@ const NumberField = ({
   isRequired = false,
   isInvalid = false,
   onChange,
-  error = '',
+  errorMessage = '',
   errorComponent: ErrorComponent = FieldError,
   value,
   ...props
 }: NumberFieldProps) => {
-  const hasError = !!error
+  const hasError = !!errorMessage
 
   if (formatOptions === undefined) {
     formatOptions = defaultFormatOptions
@@ -95,10 +98,8 @@ const NumberField = ({
   const handleChange = (val: number) => {
     if (onChange) {
       try {
-        // If onChange accepts null, use val directly (can be NaN)
         onChange(Number.isNaN(val) ? 0 : val)
       } catch {
-        // If onChange only accepts number, use 0 as fallback
         ;(onChange as (value: number) => void)(Number.isNaN(val) ? 0 : val)
       }
     }
@@ -125,7 +126,7 @@ const NumberField = ({
           {description}
         </Text>
       )}
-      <ErrorComponent>{error}</ErrorComponent>
+      <ErrorComponent>{errorMessage}</ErrorComponent>
     </BaseNumberField>
   )
 }
@@ -134,7 +135,7 @@ const FormNumberField = ({ ...props }: NumberFieldProps) => {
   const form = useFormContext()
   const error = form?.errors?.[props.name as string]
 
-  return <NumberField errorComponent={FormFieldError} error={error} {...props} />
+  return <NumberField errorComponent={FormFieldError} errorMessage={error} {...props} />
 }
 
 export {

@@ -176,14 +176,12 @@
       "dependencies": [
         "@internationalized/date",
         "react-aria-components",
-        "class-variance-authority",
-        "date-fns",
-        "react-aria",
-        "tailwind-variants"
+        "class-variance-authority"
       ],
       "registryDependencies": [
         "@twc-ui/field",
-        "@twc-ui/form"
+        "@twc-ui/form",
+        "@twc-ui/use-date-conversion"
       ],
       "files": [
         {
@@ -201,9 +199,9 @@
       "title": "Date Picker",
       "description": "Date picker component",
       "dependencies": [
+        "@hugeicons/core-free-icons",
         "@internationalized/date",
         "react-aria-components",
-        "@hugeicons/core-free-icons",
         "date-fns",
         "react-aria",
         "tailwind-variants"
@@ -213,7 +211,9 @@
         "@twc-ui/calendar",
         "@twc-ui/date-field",
         "@twc-ui/field",
-        "@twc-ui/popover"
+        "@twc-ui/form",
+        "@twc-ui/popover",
+        "@twc-ui/use-date-conversion"
       ],
       "files": [
         {
@@ -231,19 +231,20 @@
       "title": "Date Range Picker",
       "description": "Date range picker component",
       "dependencies": [
-        "@internationalized/date",
-        "react-aria-components",
         "@hugeicons/core-free-icons",
-        "date-fns",
-        "react-aria",
-        "tailwind-variants"
+        "@internationalized/date",
+        "react-aria-components"
+      ],
+      "devDependencies": [
+        "@react-types/shared"
       ],
       "registryDependencies": [
         "@twc-ui/button",
-        "@twc-ui/range-calendar",
         "@twc-ui/date-field",
         "@twc-ui/field",
-        "@twc-ui/popover"
+        "@twc-ui/form",
+        "@twc-ui/popover",
+        "@twc-ui/use-date-conversion"
       ],
       "files": [
         {
@@ -708,6 +709,29 @@
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "text-area",
+      "type": "registry:ui",
+      "title": "TextArea",
+      "description": "TextArea component",
+      "dependencies": [
+        "react-aria-components"
+      ],
+      "registryDependencies": [
+        "@twc-ui/field",
+        "@twc-ui/form",
+        "@twc-ui/use-field-change"
+      ],
+      "files": [
+        {
+          "path": "resources/js/components/twc-ui/text-area.tsx",
+          "type": "registry:ui",
+          "target": "components/twc-ui/text-area.tsx"
+        }
+      ],
+      "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "name": "text-field",
       "type": "registry:ui",
       "title": "TextField",
@@ -716,14 +740,39 @@
         "react-aria-components"
       ],
       "registryDependencies": [
+        "@twc-ui/field",
         "@twc-ui/form",
-        "@twc-ui/field"
+        "@twc-ui/use-field-change"
       ],
       "files": [
         {
           "path": "resources/js/components/twc-ui/text-field.tsx",
           "type": "registry:ui",
           "target": "components/twc-ui/text-field.tsx"
+        }
+      ],
+      "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "time-field",
+      "type": "registry:ui",
+      "title": "Time Field",
+      "description": "Time Field component",
+      "dependencies": [
+        "react-aria-components"
+      ],
+      "registryDependencies": [
+        "@twc-ui/field",
+        "@twc-ui/date-field",
+        "@twc-ui/form",
+        "@twc-ui/use-date-conversion"
+      ],
+      "files": [
+        {
+          "path": "resources/js/components/twc-ui/time-field.tsx",
+          "type": "registry:ui",
+          "target": "components/twc-ui/time-field.tsx"
         }
       ],
       "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
@@ -830,6 +879,21 @@
       "files": [
         {
           "path": "resources/js/hooks/use-date-conversion.ts",
+          "type": "registry:hook"
+        }
+      ],
+      "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "use-field-change",
+      "type": "registry:hook",
+      "title": "use-field-change",
+      "description": "use-field-change Hook",
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "resources/js/hooks/use-field-change.ts",
           "type": "registry:hook"
         }
       ],
