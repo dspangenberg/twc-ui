@@ -1,0 +1,22 @@
+## Motivation
+It was my goal to make a library of reusable components that follows the Shadcn/ui philosophy, is more accessible, and
+encourages the use of the DRY principle in both my own software projects and client projects. The components are widely
+based on [React Aria Components](https://react-aria.adobe.com).
+
+Coming from Vue.js, I wanted to keep forms simple and without "blank" or repeated code. In
+particular, the form components are preconfigured to operate seamlessly with Inertia.js and Laravel's precognition
+feature.
+
+## Credits
+
+### JollyUI
+Specifically, the form components are influenced by [jolbol1's](https://github.com/jolbol1) **[jolly-ui](https://www.jollyui.dev/)**. Although my library only contains a few React Aria components, his library supports the entire Adobe library.
+
+### Taki UI
+[Taki UI](https://taki-ui.com/) is a fork of shadcn/ui rebuilt with React Aria Components instead of Radix UI.
+
+### Intent UI
+[Intent UI](https://intentui.com/) is a chill set of React components, built on top of React Aria Components
+
+### PaceUI
+Initially, the library and documentation used [Pace UI](https://www.paceui.com/) as scaffolding. While this project is now realized with the React Starter kit of Laravel, some of his documentation components are furthermore the base of mine.

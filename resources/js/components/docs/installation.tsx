@@ -1,15 +1,11 @@
 import React, { useEffect } from 'react'
-import { DemoCodePreview } from '@/components/docs/DemoCodePreview'
 import { InstallationCommand } from '@/components/docs/install-command'
+import { registryMapping } from '@/components/docs/registry-mapping'
 import { SourceCodeBlock } from '@/components/docs/SourceCodeBlock'
 import { Tab, TabList, TabPanel, Tabs } from '@/components/twc-ui/tabs'
 
-interface DemoCodePreviewProps {
+interface InstallationProps {
   registry: string
-  devDependencies?: string[]
-  libs?: string[]
-  hooks: string[]
-  components: string[]
 }
 
 interface RegistryFile {
@@ -27,131 +23,7 @@ interface Registry {
 
 const mainUrl = import.meta.env.VITE_APP_URL
 
-interface RegistryMapping {
-  alias: string
-  name: string
-  docPath: string
-}
-
-const registryMapping: RegistryMapping[] = [
-  {
-    alias: '@twc-ui/alert-dialog',
-    name: 'AlertDialog',
-    docPath: '/docs/components/alert-dialog'
-  },
-  {
-    alias: '@twc-ui/button',
-    name: 'Button',
-    docPath: '/docs/components/button'
-  },
-  {
-    alias: '@twc-ui/dialog',
-    name: 'Dialog',
-    docPath: '/docs/components/dialog'
-  },
-  {
-    alias: '@twc-ui/dropdown-button',
-    name: 'DropdownButton',
-    docPath: '/docs/components/dropdown-button'
-  },
-  {
-    alias: '@twc-ui/calendar',
-    name: 'Calendar',
-    docPath: '/docs/components/calendar'
-  },
-  {
-    alias: '@twc-ui/field',
-    name: 'Field',
-    docPath: '/docs/components/field'
-  },
-  {
-    alias: '@twc-ui/form',
-    name: 'Form',
-    docPath: '/docs/components/form'
-  },
-  {
-    alias: '@twc-ui/form-errors',
-    name: 'FormErrors',
-    docPath: '/docs/components/form-errors'
-  },
-  {
-    alias: '@twc-ui/icon',
-    name: 'Icon',
-    docPath: '/docs/components/icon'
-  },
-  {
-    alias: '@twc-ui/list-box',
-    name: 'ListBox',
-    docPath: '/docs/components/list-box'
-  },
-  {
-    alias: '@twc-ui/logo',
-    name: 'Logo',
-    docPath: '/docs/components/logo'
-  },
-  {
-    alias: '@twc-ui/logo-spinner',
-    name: 'LogoSpinner',
-    docPath: '/docs/components/logo-spinner'
-  },
-  {
-    alias: '@twc-ui/pdf-container',
-    name: 'PdfContainer',
-    docPath: '/docs/components/pdf-container'
-  },
-  {
-    alias: '@twc-ui/menu',
-    name: 'Menu',
-    docPath: '/docs/components/menu'
-  },
-  {
-    alias: '@twc-ui/popover',
-    name: 'Popover',
-    docPath: '/docs/components/popover'
-  },
-  {
-    alias: '@twc-ui/select',
-    name: 'Select',
-    docPath: '/docs/components/select'
-  },
-  {
-    alias: '@twc-ui/separator',
-    name: 'Separator',
-    docPath: '/docs/components/separator'
-  },
-  {
-    alias: '@twc-ui/tooltip',
-    name: 'Tooltip',
-    docPath: '/docs/components/tooltip'
-  },
-  {
-    alias: '@twc-ui/toggle-button',
-    name: 'ToggleButton',
-    docPath: '/docs/components/toggle-button'
-  },
-  {
-    alias: '@twc-ui/toggle-button-group',
-    name: 'ToggleButtonGroup',
-    docPath: '/docs/components/toggle-button-group'
-  },
-  {
-    alias: '@twc-ui/toolbar',
-    name: 'Toolbar',
-    docPath: '/docs/components/toolbar'
-  },
-  {
-    alias: '@twc-ui/use-file-download',
-    name: 'useFileDownload',
-    docPath: '/docs/hooks/use-file-download'
-  },
-  {
-    alias: '@twc-ui/use-twc-ui-form',
-    name: 'useTwcUiForm',
-    docPath: '/docs/hooks/use-twc-ui-form'
-  }
-]
-
-export const Installation: React.FC<DemoCodePreviewProps> = ({ registry }) => {
+export const Installation: React.FC<InstallationProps> = ({ registry }) => {
   const [dependenciesList, setDependenciesList] = React.useState<string[]>([])
   const [devDependenciesList, setDevDependenciesList] = React.useState<string[]>([])
   const [componentName, setComponentName] = React.useState('')
