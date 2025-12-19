@@ -116,5 +116,5 @@ const FormDateField = ({ ...props }: DateFieldProps) => {
   return <DateField errorComponent={FormFieldError} errorMessage={error} {...props} />
 }
 
-export { DateField, DateSegment, DateInput, BaseDateField }
+export { DateField, FormDateField, DateSegment, DateInput, BaseDateField }
 export type { DateInputProps, DateFieldProps }
