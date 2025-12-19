@@ -128,5 +128,5 @@ const FormDateRangePicker = ({ ...props }: DateRangePickerProps) => {
   return <DateRangePicker errorComponent={FormFieldError} errorMessage={error} {...props} />
 }
 
-export { DateRangePicker, BaseDateRangePicker }
-export type { DateRangePickerProps, FormDateRangePicker }
+export { DateRangePicker, BaseDateRangePicker, FormDateRangePicker }
+export type { DateRangePickerProps }
