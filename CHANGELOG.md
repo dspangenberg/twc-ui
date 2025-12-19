@@ -1,9 +1,7 @@
-Latest updates and announcements.
+### 2024-12-19
 
-## 2024-12-19
-
-### Components:
+#### Components:
 - Refactoring Calendar and RangeCalendar
 
-### Infrastructure and docs
+#### Infrastructure and docs
 - Refactoring and automatic creation of clearer instructions for components and hooks.

@@ -253,11 +253,11 @@ const DocPageContent = ({ children, frontmatter }: DocPageProps) => {
         <title>{frontmatter?.title ? `${frontmatter.title}` : 'Documentation'}</title>
         {frontmatter?.description && <meta name="description" content={frontmatter.description} />}
       </Head>
-      <div className="mx-auto mt-12 flex w-screen max-w-7xl gap-4">
+      <div className="mx-auto mt-12 flex w-full max-w-8xl gap-4">
         <aside className="sticky top-0 hidden h-screen w-64 flex-none space-y-4 overflow-y-auto p-4 lg:flex">
           <DocsNavigation />
         </aside>
-        <div className="doc flex-1 gap-12 space-y-6 py-4">
+        <div className="doc min-w-0 flex-1 gap-12 space-y-6 py-4">
           {/* Breadcrumb Navigation */}
           <Breadcrumb currentPath={url} />
 
