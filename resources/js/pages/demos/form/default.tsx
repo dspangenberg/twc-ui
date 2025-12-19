@@ -7,7 +7,8 @@ import { FormDatePicker } from '@/components/twc-ui/date-picker'
 import { Form, useForm } from '@/components/twc-ui/form'
 import { FormGrid } from '@/components/twc-ui/form-grid'
 import { FormNumberField } from '@/components/twc-ui/number-field'
-import { FormTextAreaField, FormTextField } from '@/components/twc-ui/text-field'
+import { FormTextAreaField } from '@/components/twc-ui/text-area'
+import { FormTextField } from '@/components/twc-ui/text-field'
 
 interface Props {
   contact: App.Data.ContactData

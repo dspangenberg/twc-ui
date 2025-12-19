@@ -1,9 +1,10 @@
-import { CalendarDate, type DateValue } from '@internationalized/date'
+import { CalendarDate, type DateValue, Time, type TimeValue } from '@internationalized/date'
 import type { RangeValue } from '@react-types/shared'
 import { format, parse } from 'date-fns'
 import { useCallback, useMemo } from 'react'
 
 export const DATE_FORMAT = import.meta.env.VITE_DATE_FORMAT || 'yyyy-MM-dd'
+export const TIME_FORMAT = import.meta.env.VITE_TIME_FORMAT || 'HH:mm:ss'
 
 export const dateValueToDate = (dateValue: DateValue): Date => {
   return new Date(dateValue.year, dateValue.month - 1, dateValue.day)
@@ -51,6 +52,50 @@ export function useDateConversion(
   )
 
   return { parsedDate, handleChange }
+}
+
+interface UseTimeConversionReturn {
+  parsedTime: TimeValue | null
+  handleChange: (newValue: TimeValue | null) => void
+}
+
+export function useTimeConversion(
+  value: string | null | undefined,
+  onChange?: (value: string | null) => void
+): UseTimeConversionReturn {
+  const parsedTime = useMemo((): TimeValue | null => {
+    if (!value) return null
+
+    try {
+      const date = parse(value, TIME_FORMAT, new Date())
+      if (Number.isNaN(date.getTime())) return null
+      return new Time(date.getHours(), date.getMinutes(), date.getSeconds())
+    } catch {
+      return null
+    }
+  }, [value])
+
+  const handleChange = useCallback(
+    (newValue: TimeValue | null) => {
+      if (!onChange) return
+
+      if (!newValue) {
+        onChange(null)
+        return
+      }
+
+      try {
+        const jsDate = new Date(2000, 0, 1, newValue.hour, newValue.minute, newValue.second)
+        const formattedTime = format(jsDate, TIME_FORMAT)
+        onChange(formattedTime)
+      } catch {
+        onChange(null)
+      }
+    },
+    [onChange]
+  )
+
+  return { parsedTime, handleChange }
 }
 
 interface UseDateRangeConversionReturn {

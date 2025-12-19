@@ -1,0 +1,42 @@
+---
+title: TextField
+description: A text field allows a user to enter a plain text value with a keyboard.
+---
+<CombiDemoCodePreview codePath="text-field/default.tsx" demoPath="demos/text-field/default" />
+
+## Installation
+<Installation registry="text-field" />
+
+## TextField
+### Documentation
+#### Props
+
+[React Aria TextField props](https://react-spectrum.adobe.com/react-aria/TextField.html#props)
+
+| Prop        | Type      | Default | Descriptions                                                       |
+  |-------------|-----------|---------|--------------------------------------------------------------------|
+| description | `string`  | ``      | Helper text displayed below the label                              |
+| error       | `string`  | ``      | Error message                                                      |
+| isRequired  | `boolean` | `false` | Whether the text field is required (shows a red asteriks in label) |
+| label       | `string`  | ``      | Label text for the text field                                      |
+
+## TextAreaField
+### Documentation
+#### Props
+
+| Prop        | Type      | Default | Descriptions                                                       |
+  |-------------|-----------|---------|--------------------------------------------------------------------|
+| autoSize    | `boolean` | `true`  | Autosize the field                                                 |
+| description | `string`  | ``      | Helper text displayed below the label                              |
+| error       | `string`  | ``      | Error message                                                      |
+| isRequired  | `boolean` | `false` | Whether the text field is required (shows a red asteriks in label) |
+| label       | `string`  | ``      | Label text for the text field                                      |
+| rows        | `number`  | `2`     | Number of rows                                                     |
+
+
+## FormTextField / FormTextAreaField
+
+TextField / TextAreaField for use within the Form-Component; gets the error from FormContext.
+
+
+

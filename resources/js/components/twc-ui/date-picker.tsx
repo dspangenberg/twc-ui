@@ -44,11 +44,9 @@ const DatePickerContent = ({
 )
 
 // DatePicker - orientiert an DateField
-interface DatePickerProps extends Omit<AriaDatePickerProps<DateValue>, 'value' | 'onChange'> {
+interface DatePickerProps extends AriaDatePickerProps<DateValue> {
   label?: string
   description?: string
-  value?: string | null
-  onChange?: (value: string | null) => void
   maxYears?: number
   errorMessage?: string | ((validation: AriaValidationResult) => string)
   errorComponent?: React.ComponentType<{
@@ -74,15 +72,14 @@ const DatePicker = ({
 }: DatePickerProps) => {
   const hasError = !!errorMessage
 
-  const { parsedDate, handleChange } = useDateConversion(value, onChange)
   return (
     <BaseDatePicker
       className={composeRenderProps(className, className =>
         cn('group flex flex-col gap-1.5', className)
       )}
       isInvalid={hasError}
-      value={parsedDate}
-      onChange={handleChange}
+      value={value}
+      onChange={onChange}
       validationBehavior="native"
       {...props}
     >
@@ -107,19 +104,25 @@ const DatePicker = ({
           className="p-0"
           maxYears={maxYears}
           footerButtons={footerButtons}
-          onChange={handleChange}
+          onChange={onChange}
         />
       </DatePickerContent>
     </BaseDatePicker>
   )
 }
 
-const FormDatePicker = ({ ...props }: DatePickerProps) => {
+interface FormDatePickerProps extends Omit<DatePickerProps, 'value' | 'onChange'> {
+  value?: string | null
+  onChange?: (value: string | null) => void
+}
+
+const FormDatePicker = ({ value, onChange, ...props }: FormDatePickerProps) => {
   const form = useFormContext()
   const error = form?.errors?.[props.name as string]
+  const { parsedDate, handleChange } = useDateConversion(value, onChange)
 
-  return <DatePicker errorComponent={FormFieldError} errorMessage={error} {...props} />
+  return <DatePicker errorComponent={FormFieldError} errorMessage={error} value={parsedDate} onChange={handleChange} {...props} />
 }
 
 export { DatePicker, BaseDatePicker, FormDatePicker }
-export type { DatePickerProps }
+export type { DatePickerProps, FormDatePickerProps }

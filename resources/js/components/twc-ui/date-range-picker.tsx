@@ -27,16 +27,14 @@ import { type FooterButtons, RangeCalendar } from './range-calendar'
 const BaseDateRangePicker = AriaDateRangePicker
 
 interface DateRangePickerProps
-  extends Omit<AriaDateRangePickerProps<DateValue>, 'value' | 'onChange'> {
+  extends AriaDateRangePickerProps<DateValue> {
   label?: string
   description?: string
-  value?: RangeValue<string> | null
-  onChange?: (value: RangeValue<string> | null) => void
   errorMessage?: string | ((validation: AriaValidationResult) => string)
   errorComponent?: React.ComponentType<{
     children?: React.ReactNode | ((validation: ValidationResult) => React.ReactNode)
   }>
-  name: string
+  name?: string
   maxYears?: number
   footerButtons?: FooterButtons
 }
@@ -71,16 +69,14 @@ const DateRangePicker = ({
 }: DateRangePickerProps) => {
   const hasError = !!errorMessage
 
-  const { parsedDate, handleChange } = useDateRangeConversion(value, onChange)
-
   return (
     <BaseDateRangePicker
       className={composeRenderProps(className, className =>
         cn('group flex flex-col gap-1.5', className)
       )}
       isInvalid={hasError}
-      value={parsedDate}
-      onChange={handleChange}
+      value={value}
+      onChange={onChange}
       validationBehavior="native"
       {...props}
     >
@@ -114,19 +110,26 @@ const DateRangePicker = ({
           className="p-0"
           footerButtons={props.footerButtons}
           maxYears={maxYears}
-          onChange={handleChange}
+          onChange={onChange}
         />
       </DatePickerContent>
     </BaseDateRangePicker>
   )
 }
 
-const FormDateRangePicker = ({ ...props }: DateRangePickerProps) => {
+interface FormDateRangePickerProps extends Omit<DateRangePickerProps, 'value' | 'onChange'> {
+  value?: RangeValue<string> | null
+  onChange?: (value: RangeValue<string> | null) => void
+  name: string
+}
+
+const FormDateRangePicker = ({ value, onChange, ...props }: FormDateRangePickerProps) => {
   const form = useFormContext()
   const error = form?.errors?.[props.name as string]
+  const { parsedDate, handleChange } = useDateRangeConversion(value, onChange)
 
-  return <DateRangePicker errorComponent={FormFieldError} errorMessage={error} {...props} />
+  return <DateRangePicker errorComponent={FormFieldError} errorMessage={error} value={parsedDate} onChange={handleChange} {...props} />
 }
 
 export { DateRangePicker, BaseDateRangePicker, FormDateRangePicker }
-export type { DateRangePickerProps }
+export type { DateRangePickerProps, FormDateRangePickerProps }
