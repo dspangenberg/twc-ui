@@ -15,7 +15,7 @@ export default function Dashboard() {
 
   return (
     <DemoContainer>
-      <Head title="TextField Demo" />
+      <Head title="TextArea Demo" />
       <Form form={form} className="mx-auto max-w-lg">
         <FormGrid>
           <div className="col-span-24">

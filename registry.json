@@ -764,7 +764,9 @@
       ],
       "registryDependencies": [
         "@twc-ui/field",
-        "@twc-ui/date-field"
+        "@twc-ui/date-field",
+        "@twc-ui/form",
+        "@twc-ui/use-date-conversion"
       ],
       "files": [
         {
