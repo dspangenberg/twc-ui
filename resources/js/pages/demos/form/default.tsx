@@ -7,7 +7,7 @@ import { FormDatePicker } from '@/components/twc-ui/date-picker'
 import { Form, useForm } from '@/components/twc-ui/form'
 import { FormGrid } from '@/components/twc-ui/form-grid'
 import { FormNumberField } from '@/components/twc-ui/number-field'
-import { FormTextAreaField } from '@/components/twc-ui/text-area'
+import { FormTextArea } from '@/components/twc-ui/text-area'
 import { FormTextField } from '@/components/twc-ui/text-field'
 
 interface Props {
@@ -61,7 +61,7 @@ export default function FormDemo({ contact, countries }: Props) {
             <FormDatePicker isRequired maxYears={50} label="DOB" {...form.register('dob')} />
           </div>
           <div className="col-span-24">
-            <FormTextAreaField autoSize label="Note" {...form.register('note')} />
+            <FormTextArea autoSize label="Note" {...form.register('note')} />
           </div>
           <div className="col-span-12">
             <Button title="Save" type="submit" />
