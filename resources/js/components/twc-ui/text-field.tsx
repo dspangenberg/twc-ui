@@ -6,6 +6,7 @@ import {
   type TextAreaProps as AriaTextAreaProps,
   TextField as AriaTextField,
   type TextFieldProps as AriaTextFieldProps,
+  type ValidationResult,
   composeRenderProps
 } from 'react-aria-components'
 import { cn } from '@/lib/utils'
@@ -69,10 +70,12 @@ interface TextFieldProps extends Omit<AriaTextFieldProps, 'value' | 'onChange'> 
   placeholder?: string
   autoSize?: boolean
   onChange?: ((value: string | null) => void) | ((value: string) => void)
-  errorComponent?: React.ComponentType<{ children?: React.ReactNode }>
+  errorComponent?: React.ComponentType<{
+    children?: React.ReactNode | ((validation: ValidationResult) => React.ReactNode)
+  }>
   name?: string
   value?: string | null | undefined
-  error?: string | undefined
+  error?: string | ((validation: ValidationResult) => string)
   onBlur?: () => void
   autoComplete?: string
 }
@@ -129,10 +132,12 @@ interface TextAreaProps extends Omit<AriaTextFieldProps, 'value' | 'onChange'> {
   placeholder?: string
   autoSize?: boolean
   onChange?: ((value: string | null) => void) | ((value: string) => void)
-  errorComponent?: React.ComponentType<{ children?: React.ReactNode }>
+  errorComponent?: React.ComponentType<{
+    children?: React.ReactNode | ((validation: ValidationResult) => React.ReactNode)
+  }>
   name?: string
   value?: string | null | undefined
-  error?: string | undefined
+  error?: string | ((validation: ValidationResult) => string)
   onBlur?: () => void
   autoComplete?: string
 }

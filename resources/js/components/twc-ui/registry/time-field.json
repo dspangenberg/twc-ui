@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "time-field",
+  "type": "registry:ui",
+  "title": "Date Field",
+  "description": "Date Field component",
+  "dependencies": ["react-aria-components"],
+  "registryDependencies": ["@twc-ui/field", "@twc-ui/date-field"],
+  "files": [
+    {
+      "path": "resources/js/components/twc-ui/time-field.tsx",
+      "type": "registry:ui",
+      "target": "components/twc-ui/time-field.tsx"
+    }
+  ]
+}

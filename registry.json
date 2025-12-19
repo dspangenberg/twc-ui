@@ -815,6 +815,28 @@
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "use-date-conversion",
+      "type": "registry:hook",
+      "title": "use-date-conversion",
+      "description": "use-date-conversion Hook",
+      "dependencies": [
+        "@internationalized/date",
+        "date-fns"
+      ],
+      "devDependencies": [
+        "@react-types/shared"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "resources/js/hooks/use-date-conversion.ts",
+          "type": "registry:hook"
+        }
+      ],
+      "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "name": "use-file-download",
       "type": "registry:hook",
       "title": "use-file-download Hook",

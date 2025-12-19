@@ -4,15 +4,8 @@
   "type": "registry:ui",
   "title": "Date Field",
   "description": "Date Field component",
-  "dependencies": [
-    "@internationalized/date",
-    "react-aria-components",
-    "class-variance-authority",
-    "date-fns",
-    "react-aria",
-    "tailwind-variants"
-  ],
-  "registryDependencies": ["@twc-ui/field", "@twc-ui/form"],
+  "dependencies": ["@internationalized/date", "react-aria-components", "class-variance-authority"],
+  "registryDependencies": ["@twc-ui/field", "@twc-ui/form", "@twc-ui/use-date-conversion"],
   "files": [
     {
       "path": "resources/js/components/twc-ui/date-field.tsx",

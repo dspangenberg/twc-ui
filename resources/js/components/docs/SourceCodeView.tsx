@@ -40,7 +40,7 @@ export const SourceCodeView: React.FC<DemoCodePreviewProps> = ({
       : `@/${type}s/${propFileName || (codePath ? codePath.split('/').pop() : '')}`
   const { appearance } = useAppearance()
 
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(false)
   const [collapsible, _setCollapsible] = useState(isComponent)
   const [expand, setExpand] = useState(false)
 

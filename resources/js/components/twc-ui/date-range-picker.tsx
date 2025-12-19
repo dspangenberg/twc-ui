@@ -1,10 +1,9 @@
 'use client'
 
 import { Calendar04Icon } from '@hugeicons/core-free-icons'
-import { CalendarDate, type DateValue } from '@internationalized/date'
+import type { DateValue } from '@internationalized/date'
 import type { RangeValue } from '@react-types/shared'
-import { format, parse } from 'date-fns'
-import React from 'react'
+import type React from 'react'
 import {
   DateRangePicker as AriaDateRangePicker,
   type DateRangePickerProps as AriaDateRangePickerProps,
@@ -13,22 +12,20 @@ import {
   type ValidationResult as AriaValidationResult,
   composeRenderProps,
   Dialog,
-  Text
+  Text,
+  type ValidationResult
 } from 'react-aria-components'
+import { useFormContext } from '@/components/twc-ui/form'
+import { useDateRangeConversion } from '@/hooks/use-date-conversion'
 import { cn } from '@/lib/utils'
 import { Button } from './button'
 import { DateInput } from './date-field'
-import { FieldError, FieldGroup, Label } from './field'
+import { FieldError, FieldGroup, FormFieldError, Label } from './field'
 import { Popover } from './popover'
 import { type FooterButtons, RangeCalendar } from './range-calendar'
 
 const BaseDateRangePicker = AriaDateRangePicker
 
-const DATE_FORMAT = import.meta.env.VITE_DATE_FORMAT || 'yyyy-MM-dd'
-
-const dateValueToDate = (dateValue: DateValue): Date => {
-  return new Date(dateValue.year, dateValue.month - 1, dateValue.day)
-}
 interface DateRangePickerProps
   extends Omit<AriaDateRangePickerProps<DateValue>, 'value' | 'onChange'> {
   label?: string
@@ -36,6 +33,9 @@ interface DateRangePickerProps
   value?: RangeValue<string> | null
   onChange?: (value: RangeValue<string> | null) => void
   errorMessage?: string | ((validation: AriaValidationResult) => string)
+  errorComponent?: React.ComponentType<{
+    children?: React.ReactNode | ((validation: ValidationResult) => React.ReactNode)
+  }>
   name: string
   maxYears?: number
   footerButtons?: FooterButtons
@@ -66,55 +66,12 @@ const DateRangePicker = ({
   maxYears = 50,
   onChange,
   isRequired = false,
+  errorComponent: ErrorComponent = FieldError,
   ...props
 }: DateRangePickerProps) => {
   const hasError = !!errorMessage
 
-  const parsedDate = React.useMemo((): RangeValue<DateValue> | null => {
-    if (!value?.start || !value.end) return null
-
-    try {
-      const startDate = parse(value.start, DATE_FORMAT, new Date())
-      const endDate = parse(value.end, DATE_FORMAT, new Date())
-
-      if (Number.isNaN(startDate.getTime()) || Number.isNaN(endDate.getTime())) return null
-
-      return {
-        start: new CalendarDate(
-          startDate.getFullYear(),
-          startDate.getMonth() + 1,
-          startDate.getDate()
-        ),
-        end: new CalendarDate(endDate.getFullYear(), endDate.getMonth() + 1, endDate.getDate())
-      }
-    } catch {
-      return null
-    }
-  }, [value?.start, value?.end])
-
-  const handleChange = React.useCallback(
-    (newValue: RangeValue<DateValue> | null) => {
-      if (!onChange) return
-
-      if (!newValue?.start || !newValue.end) {
-        onChange(null)
-        return
-      }
-
-      try {
-        const startDate = dateValueToDate(newValue.start)
-        const endDate = dateValueToDate(newValue.end)
-        const formattedRange = {
-          start: format(startDate, DATE_FORMAT),
-          end: format(endDate, DATE_FORMAT)
-        }
-        onChange(formattedRange)
-      } catch {
-        onChange(null)
-      }
-    },
-    [onChange]
-  )
+  const { parsedDate, handleChange } = useDateRangeConversion(value, onChange)
 
   return (
     <BaseDateRangePicker
@@ -151,7 +108,7 @@ const DateRangePicker = ({
           {description}
         </Text>
       )}
-      <FieldError>{errorMessage}</FieldError>
+      <ErrorComponent>{errorMessage}</ErrorComponent>
       <DatePickerContent popoverClassName="min-h-[360px]">
         <RangeCalendar
           className="p-0"
@@ -164,5 +121,12 @@ const DateRangePicker = ({
   )
 }
 
+const FormDateRangePicker = ({ ...props }: DateRangePickerProps) => {
+  const form = useFormContext()
+  const error = form?.errors?.[props.name as string]
+
+  return <DateRangePicker errorComponent={FormFieldError} errorMessage={error} {...props} />
+}
+
 export { DateRangePicker, BaseDateRangePicker }
-export type { DateRangePickerProps }
+export type { DateRangePickerProps, FormDateRangePicker }

@@ -1,9 +1,8 @@
 'use client'
 
 import { Calendar04Icon } from '@hugeicons/core-free-icons'
-import { CalendarDate, type DateValue } from '@internationalized/date'
-import { format, parse } from 'date-fns'
-import React from 'react'
+import type { DateValue } from '@internationalized/date'
+import type React from 'react'
 import {
   DatePicker as AriaDatePicker,
   type DatePickerProps as AriaDatePickerProps,
@@ -12,22 +11,19 @@ import {
   type ValidationResult as AriaValidationResult,
   composeRenderProps,
   Dialog,
-  Text
+  Text,
+  type ValidationResult
 } from 'react-aria-components'
+import { useDateConversion } from '@/hooks/use-date-conversion'
 import { cn } from '@/lib/utils'
 import { Button } from './button'
 import { Calendar, type FooterButtons } from './calendar'
 import { DateInput } from './date-field'
-import { FieldError, FieldGroup, Label } from './field'
+import { FieldError, FieldGroup, FormFieldError, Label } from './field'
+import { useFormContext } from './form'
 import { Popover } from './popover'
 
 const BaseDatePicker = AriaDatePicker
-
-const DATE_FORMAT = import.meta.env.VITE_APP_DATE_FORMAT || 'yyyy-MM-dd'
-
-const dateValueToDate = (dateValue: DateValue): Date => {
-  return new Date(dateValue.year, dateValue.month - 1, dateValue.day)
-}
 
 const DatePickerContent = ({
   className,
@@ -55,6 +51,10 @@ interface DatePickerProps extends Omit<AriaDatePickerProps<DateValue>, 'value' |
   onChange?: (value: string | null) => void
   maxYears?: number
   errorMessage?: string | ((validation: AriaValidationResult) => string)
+  errorComponent?: React.ComponentType<{
+    children?: React.ReactNode | ((validation: ValidationResult) => React.ReactNode)
+  }>
+
   footerButtons?: FooterButtons
   isRequired?: boolean
 }
@@ -69,42 +69,12 @@ const DatePicker = ({
   errorMessage,
   onChange,
   isRequired = false,
+  errorComponent: ErrorComponent = FieldError,
   ...props
 }: DatePickerProps) => {
   const hasError = !!errorMessage
 
-  const parsedDate = React.useMemo((): DateValue | null => {
-    if (!value) return null
-
-    try {
-      const date = parse(value, DATE_FORMAT, new Date())
-      if (Number.isNaN(date.getTime())) return null
-      return new CalendarDate(date.getFullYear(), date.getMonth() + 1, date.getDate())
-    } catch {
-      return null
-    }
-  }, [value])
-
-  // Convert DateValue to string (same logic as DateField)
-  const handleChange = React.useCallback(
-    (newValue: DateValue | null) => {
-      if (!onChange) return
-
-      if (!newValue) {
-        onChange(null)
-        return
-      }
-
-      try {
-        const jsDate = dateValueToDate(newValue)
-        const formattedDate = format(jsDate, DATE_FORMAT)
-        onChange(formattedDate)
-      } catch {
-        onChange(null)
-      }
-    },
-    [onChange]
-  )
+  const { parsedDate, handleChange } = useDateConversion(value, onChange)
   return (
     <BaseDatePicker
       className={composeRenderProps(className, className =>
@@ -131,7 +101,7 @@ const DatePicker = ({
           {description}
         </Text>
       )}
-      <FieldError>{errorMessage}</FieldError>
+      <ErrorComponent>{errorMessage}</ErrorComponent>
       <DatePickerContent popoverClassName="min-h-fit" slot="dialog">
         <Calendar
           className="p-0"
@@ -144,5 +114,12 @@ const DatePicker = ({
   )
 }
 
-export { DatePicker, BaseDatePicker }
+const FormDatePicker = ({ ...props }: DatePickerProps) => {
+  const form = useFormContext()
+  const error = form?.errors?.[props.name as string]
+
+  return <DatePicker errorComponent={FormFieldError} errorMessage={error} {...props} />
+}
+
+export { DatePicker, BaseDatePicker, FormDatePicker }
 export type { DatePickerProps }

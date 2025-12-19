@@ -1,9 +1,8 @@
 'use client'
 
-import { CalendarDate, type DateValue } from '@internationalized/date'
+import type { DateValue } from '@internationalized/date'
 import type { VariantProps } from 'class-variance-authority'
-import { format, parse } from 'date-fns'
-import { useCallback, useMemo } from 'react'
+import type React from 'react'
 import {
   DateField as AriaDateField,
   type DateFieldProps as AriaDateFieldProps,
@@ -11,19 +10,17 @@ import {
   type DateInputProps as AriaDateInputProps,
   DateSegment as AriaDateSegment,
   type DateSegmentProps as AriaDateSegmentProps,
-  TimeField as AriaTimeField,
-  type TimeFieldProps as AriaTimeFieldProps,
-  type TimeValue as AriaTimeValue,
   type ValidationResult as AriaValidationResult,
   composeRenderProps,
-  Text
+  Text,
+  type ValidationResult
 } from 'react-aria-components'
+import { useFormContext } from '@/components/twc-ui/form'
+import { useDateConversion } from '@/hooks/use-date-conversion'
 import { cn } from '@/lib/utils'
-import { FieldError, fieldGroupVariants, Label } from './field'
-import { useFormContext } from './form'
+import { FieldError, FormFieldError, fieldGroupVariants, Label } from './field'
 
 const BaseDateField = AriaDateField
-const BaseTimeField = AriaTimeField
 
 const DateSegment = ({ className, ...props }: AriaDateSegmentProps) => (
   <AriaDateSegment
@@ -47,8 +44,6 @@ interface DateInputProps extends AriaDateInputProps, VariantProps<typeof fieldGr
   isInvalid?: boolean
 }
 
-const DATE_FORMAT = import.meta.env.VITE_DATE_FORMAT || 'yyyy-MM-dd'
-
 const DateInput = ({
   className,
   isInvalid,
@@ -65,64 +60,31 @@ const DateInput = ({
   </AriaDateInput>
 )
 
-// Helper function to convert DateValue to JavaScript Date
-const dateValueToDate = (dateValue: DateValue): Date => {
-  return new Date(dateValue.year, dateValue.month - 1, dateValue.day)
-}
-
 interface DateFieldProps extends Omit<AriaDateFieldProps<DateValue>, 'value' | 'onChange'> {
   label?: string
   description?: string
   value?: string | null
   onChange?: (value: string | null) => void
-  error?: string | ((validation: AriaValidationResult) => string)
+  errorMessage?: string | ((validation: AriaValidationResult) => string)
+  errorComponent?: React.ComponentType<{
+    children?: React.ReactNode | ((validation: ValidationResult) => React.ReactNode)
+  }>
 }
 
 const DateField = ({
   label,
   description,
   className,
+  errorComponent: ErrorComponent = FieldError,
   value,
+  errorMessage,
   onChange,
   isRequired = false,
   ...props
 }: DateFieldProps) => {
-  const form = useFormContext()
-  const error = form?.errors?.[props.name as string] || props.error
-  const hasError = !!error
+  const hasError = !!errorMessage
 
-  const parsedDate = useMemo((): DateValue | null => {
-    if (!value) return null
-
-    try {
-      const date = parse(value, DATE_FORMAT, new Date())
-      if (Number.isNaN(date.getTime())) return null
-      return new CalendarDate(date.getFullYear(), date.getMonth() + 1, date.getDate())
-    } catch {
-      return null
-    }
-  }, [value])
-
-  // Convert DateValue to string
-  const handleChange = useCallback(
-    (newValue: DateValue | null) => {
-      if (!onChange) return
-
-      if (!newValue) {
-        onChange(null)
-        return
-      }
-
-      try {
-        const jsDate = dateValueToDate(newValue)
-        const formattedDate = format(jsDate, DATE_FORMAT)
-        onChange(formattedDate)
-      } catch {
-        onChange(null)
-      }
-    },
-    [onChange]
-  )
+  const { parsedDate, handleChange } = useDateConversion(value, onChange)
 
   return (
     <BaseDateField
@@ -142,43 +104,17 @@ const DateField = ({
           {description}
         </Text>
       )}
-      <FieldError>{error}</FieldError>
+      <ErrorComponent>{errorMessage}</ErrorComponent>
     </BaseDateField>
   )
 }
 
-interface TimeFieldProps<T extends AriaTimeValue> extends AriaTimeFieldProps<T> {
-  label?: string
-  description?: string
-  error?: string | ((validation: AriaValidationResult) => string)
-}
-
-const TimeField = <T extends AriaTimeValue>({
-  label,
-  description,
-  error,
-  className,
-  ...props
-}: TimeFieldProps<T>) => {
+const FormDateField = ({ ...props }: DateFieldProps) => {
   const form = useFormContext()
-  const realError = form?.errors?.[props.name as string] || error
-  const hasError = !!realError
+  const error = form?.errors?.[props.name as string]
 
-  return (
-    <BaseTimeField
-      isInvalid={hasError}
-      className={composeRenderProps(className, className =>
-        cn('group flex flex-col gap-2', className)
-      )}
-      {...props}
-    >
-      <Label value={label} />
-      <DateInput />
-      {description && <Text slot="description">{description}</Text>}
-      <FieldError>{realError}</FieldError>
-    </BaseTimeField>
-  )
+  return <DateField errorComponent={FormFieldError} errorMessage={error} {...props} />
 }
 
-export { DateField, DateSegment, DateInput, BaseTimeField, BaseDateField, TimeField }
-export type { DateInputProps, DateFieldProps, TimeFieldProps }
+export { DateField, DateSegment, DateInput, BaseDateField }
+export type { DateInputProps, DateFieldProps }
