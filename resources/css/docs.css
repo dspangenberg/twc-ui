@@ -55,3 +55,36 @@ h3 {
 h4 {
   @apply mt-8 scroll-m-16 font-medium text-xl;
 }
+
+.doc table {
+  @apply w-full;
+  display: table !important;
+  table-layout: auto;
+  border-collapse: collapse;
+}
+
+.doc table thead,
+.doc table tbody,
+.doc table tr {
+  display: table-row-group;
+}
+
+.doc table tr {
+  display: table-row !important;
+}
+
+.doc table th,
+.doc table td {
+  @apply whitespace-normal align-top;
+  display: table-cell !important;
+  word-break: break-word;
+}
+
+.doc table td:first-child {
+  @apply whitespace-nowrap;
+}
+
+.doc table code {
+  @apply whitespace-normal;
+  word-break: break-word;
+}
