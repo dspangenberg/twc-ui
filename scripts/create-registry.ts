@@ -2,8 +2,6 @@ import * as fs from 'node:fs'
 import * as path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import * as dotenv from 'dotenv'
-import { syncChangelog } from './sync-changelog.js'
-import { syncReadme } from './sync-readme.js'
 
 interface RegistryItem {
   $schema: string
@@ -146,11 +144,6 @@ function createRegistry() {
 
   // Create registry mapping for installation.tsx
   createRegistryMapping(registry.items)
-
-  // Sync CHANGELOG.md and README.md
-  console.log('\n📝 Syncing documentation files...')
-  syncChangelog()
-  syncReadme()
 }
 
 /**
