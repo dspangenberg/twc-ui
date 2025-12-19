@@ -11,17 +11,19 @@ credits:
 ## Installation
 <Installation registry="search-field" />
 
-## TextField
+## SearchField
 ### Documentation
 #### Props
 
 [React Aria SearchField props](https://react-aria.adobe.com/SearchField#searchfield)
 
-| Prop        | Type      | Default | Descriptions                                                       |
-  |-------------|-----------|---------|--------------------------------------------------------------------|
-| description | `string`  | ``      | Helper text displayed below the label                              |
-| errorMessage       | `string`  | ``      | Error message                                                      |
-| isRequired  | `boolean` | `false` | Whether the text field is required (shows a red asteriks in label) |
-| label       | `string`  | ``      | Label text for the text field                                      |
+| Prop         | Type      | Default | Descriptions                                                       |
+|--------------|-----------|---------|--------------------------------------------------------------------|
+| description  | `string`  | ``      | Helper text displayed below the label                              |
+| errorMessage | `string`  | ``      | Error message                                                      |
+| isRequired   | `boolean` | `false` | Whether the text field is required (shows a red asteriks in label) |
+| label        | `string`  | ``      | Label text for the text field                                      |
 
 
+## FormSearchField
+SearchField for use within the Form-Component; gets the error from FormContext.

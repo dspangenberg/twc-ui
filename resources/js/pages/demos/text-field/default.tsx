@@ -8,7 +8,7 @@ interface Contact extends Record<string, any> {
   first_name: string
 }
 
-export default function Dashboard() {
+export default function Demo() {
   const form = useForm<Contact>('contact-form', 'post', route('contact.store'), {
     first_name: ''
   })
