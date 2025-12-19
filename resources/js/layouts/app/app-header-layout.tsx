@@ -13,7 +13,7 @@ export default function AppHeaderLayout({
   return (
     <AppShell>
       <AppHeader breadcrumbs={breadcrumbs} />
-      <AppContent className="mx-auto w-screen max-w-8xl flex-1 overflow-scroll">
+      <AppContent className="mx-auto w-full max-w-8xl flex-1 overflow-scroll">
         {children}
       </AppContent>
       <div className="w-screen border-t">

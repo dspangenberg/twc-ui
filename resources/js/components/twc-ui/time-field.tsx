@@ -50,7 +50,7 @@ const TimeField = <T extends AriaTimeValue>({
           {description}
         </Text>
       )}
-      <FieldError>{errorMessage}</FieldError>
+      <ErrorComponent>{errorMessage}</ErrorComponent>
     </BaseTimeField>
   )
 }
