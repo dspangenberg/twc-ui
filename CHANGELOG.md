@@ -1,8 +1,3 @@
----
-title: Change log
-order: 40
----
-
 Latest updates and announcements.
 
 ## 2024-12-19
@@ -12,5 +7,3 @@ Latest updates and announcements.
 
 ### Infrastructure and docs
 - Refactoring and automatic creation of clearer instructions for components and hooks.
-
-
