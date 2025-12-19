@@ -1,13 +1,15 @@
 ### 2025-12-20
 
 #### Components
-- Refactoring DateField, DatePicker, DateRangePicker, TimeField; useDateConversion-Hook
-- Refactoring TextField/FormTextField and TextArea/FormTextArea; useFieldChange-Hook
+
+- Added SearchField component
 
 ### 2025-12-19
 
 #### Components:
 - Refactoring Calendar and RangeCalendar
+- Refactoring DateField, DatePicker, DateRangePicker, TimeField; useDateConversion-Hook
+- Refactoring TextField/FormTextField and TextArea/FormTextArea; useFieldChange-Hook
 
 #### Infrastructure and docs
 - Refactoring and automatic creation of clearer instructions for components and hooks.

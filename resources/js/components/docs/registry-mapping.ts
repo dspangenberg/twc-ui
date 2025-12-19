@@ -99,6 +99,11 @@ export const registryMapping: RegistryMapping[] = [
     "docPath": "/docs/components/separator"
   },
   {
+    "alias": "@twc-ui/text-field",
+    "name": "TextField",
+    "docPath": "/docs/components/text-field"
+  },
+  {
     "alias": "@twc-ui/toggle-button",
     "name": "ToggleButton",
     "docPath": "/docs/components/toggle-button"

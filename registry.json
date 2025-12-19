@@ -647,6 +647,30 @@
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "search-field",
+      "type": "registry:ui",
+      "title": "SearchField",
+      "description": "SearchField component",
+      "dependencies": [
+        "react-aria-components",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@twc-ui/button",
+        "@twc-ui/field",
+        "@twc-ui/text-field"
+      ],
+      "files": [
+        {
+          "path": "resources/js/components/twc-ui/search-field.tsx",
+          "type": "registry:ui",
+          "target": "components/twc-ui/search-field.tsx"
+        }
+      ],
+      "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "name": "select",
       "type": "registry:ui",
       "title": "select",
@@ -764,9 +788,7 @@
       ],
       "registryDependencies": [
         "@twc-ui/field",
-        "@twc-ui/date-field",
-        "@twc-ui/form",
-        "@twc-ui/use-date-conversion"
+        "@twc-ui/date-field"
       ],
       "files": [
         {
