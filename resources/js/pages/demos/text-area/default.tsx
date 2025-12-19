@@ -2,15 +2,15 @@ import { Head } from '@inertiajs/react'
 import { DemoContainer } from '@/components/docs/DemoContainer'
 import { Form, useForm } from '@/components/twc-ui/form'
 import { FormGrid } from '@/components/twc-ui/form-grid'
-import { TextField } from '@/components/twc-ui/text-field'
+import { TextArea } from '@/components/twc-ui/text-area'
 
 interface Contact extends Record<string, any> {
-  first_name: string
+  bio: string
 }
 
 export default function Dashboard() {
   const form = useForm<Contact>('contact-form', 'post', route('contact.store'), {
-    first_name: ''
+    bio: ''
   })
 
   return (
@@ -19,12 +19,13 @@ export default function Dashboard() {
       <Form form={form} className="mx-auto max-w-lg">
         <FormGrid>
           <div className="col-span-24">
-            <TextField
+            <TextArea
               isRequired
-              description="Enter your first name"
-              placeholder="Danny"
-              label="First name"
-              {...form.register('first_name')}
+              description="Enter your bio"
+              placeholder="Tell something about yourself..."
+              rows={3}
+              label="Bio"
+              {...form.register('bio')}
             />
           </div>
         </FormGrid>

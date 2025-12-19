@@ -89,11 +89,6 @@ export const registryMapping: RegistryMapping[] = [
     "docPath": "/docs/components/popover"
   },
   {
-    "alias": "@twc-ui/range-calendar",
-    "name": "RangeCalendar",
-    "docPath": "/docs/components/range-calendar"
-  },
-  {
     "alias": "@twc-ui/select",
     "name": "Select",
     "docPath": "/docs/components/select"
@@ -122,6 +117,16 @@ export const registryMapping: RegistryMapping[] = [
     "alias": "@twc-ui/tooltip",
     "name": "Tooltip",
     "docPath": "/docs/components/tooltip"
+  },
+  {
+    "alias": "@twc-ui/use-date-conversion",
+    "name": "UseDateConversion",
+    "docPath": "/docs/hooks/use-date-conversion"
+  },
+  {
+    "alias": "@twc-ui/use-field-change",
+    "name": "UseFieldChange",
+    "docPath": "/docs/hooks/use-field-change"
   },
   {
     "alias": "@twc-ui/use-file-download",

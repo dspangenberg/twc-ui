@@ -1,15 +1,13 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
-  "name": "use-date-conversion",
+  "name": "use-field-change",
   "type": "registry:hook",
-  "title": "use-date-conversion",
-  "description": "use-date-conversion Hook",
-  "dependencies": ["@internationalized/date", "date-fns"],
-  "devDependencies": ["@react-types/shared"],
+  "title": "use-field-change",
+  "description": "use-field-change Hook",
   "registryDependencies": [],
   "files": [
     {
-      "path": "resources/js/hooks/use-date-conversion.ts",
+      "path": "resources/js/hooks/use-field-change.ts",
       "type": "registry:hook"
     }
   ]

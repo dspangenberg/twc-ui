@@ -5,7 +5,7 @@
   "title": "TextField",
   "description": "TextField component",
   "dependencies": ["react-aria-components"],
-  "registryDependencies": ["@twc-ui/form", "@twc-ui/field"],
+  "registryDependencies": ["@twc-ui/field", "@twc-ui/form", "@twc-ui/use-field-change"],
   "files": [
     {
       "path": "resources/js/components/twc-ui/text-field.tsx",

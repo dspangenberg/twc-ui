@@ -1,6 +1,10 @@
 ---
 title: TextField
 description: A text field allows a user to enter a plain text value with a keyboard.
+docUrl: https://react-aria.adobe.com/TextField#api
+credits:
+  - url: https://www.jollyui.dev/docs/components/textfield
+    title: JollyUI
 ---
 <CombiDemoCodePreview codePath="text-field/default.tsx" demoPath="demos/text-field/default" />
 
@@ -16,27 +20,14 @@ description: A text field allows a user to enter a plain text value with a keybo
 | Prop        | Type      | Default | Descriptions                                                       |
   |-------------|-----------|---------|--------------------------------------------------------------------|
 | description | `string`  | ``      | Helper text displayed below the label                              |
-| error       | `string`  | ``      | Error message                                                      |
+| errorMessage       | `string`  | ``      | Error message                                                      |
 | isRequired  | `boolean` | `false` | Whether the text field is required (shows a red asteriks in label) |
 | label       | `string`  | ``      | Label text for the text field                                      |
 
-## TextAreaField
-### Documentation
-#### Props
 
-| Prop        | Type      | Default | Descriptions                                                       |
-  |-------------|-----------|---------|--------------------------------------------------------------------|
-| autoSize    | `boolean` | `true`  | Autosize the field                                                 |
-| description | `string`  | ``      | Helper text displayed below the label                              |
-| error       | `string`  | ``      | Error message                                                      |
-| isRequired  | `boolean` | `false` | Whether the text field is required (shows a red asteriks in label) |
-| label       | `string`  | ``      | Label text for the text field                                      |
-| rows        | `number`  | `2`     | Number of rows                                                     |
+## FormTextField
 
-
-## FormTextField / FormTextAreaField
-
-TextField / TextAreaField for use within the Form-Component; gets the error from FormContext.
+TextField for use within the Form-Component; gets the error from FormContext.
 
 
 
