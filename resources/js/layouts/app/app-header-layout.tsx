@@ -3,6 +3,7 @@ import type { PropsWithChildren } from 'react'
 import { AppContent } from '@/components/app-content'
 import { AppHeader } from '@/components/app-header'
 import { AppShell } from '@/components/app-shell'
+import { TwicewareSolution } from '@/components/twc-ui/TwicewareSolution'
 import type { BreadcrumbItem } from '@/types'
 
 export default function AppHeaderLayout({
@@ -12,13 +13,17 @@ export default function AppHeaderLayout({
   return (
     <AppShell>
       <AppHeader breadcrumbs={breadcrumbs} />
-      <AppContent className="mx-auto w-full max-w-8xl overflow-scroll">{children}</AppContent>
-      <div className="w-full border-t">
-        <div className="mx-auto flex w-full max-w-8xl flex-1 p-2 text-center text-sm">
-          Made in the European Union.
-          <Link href={route('imprint')} className="ml-1 underline">
-            Imprint
-          </Link>
+      <AppContent className="mx-auto w-full max-w-8xl flex-1 overflow-scroll">
+        {children}
+      </AppContent>
+      <div className="w-screen border-t">
+        <div className="mx-auto flex w-full max-w-8xl flex-none flex-col p-2 py-6 text-center text-sm">
+          <TwicewareSolution
+            appName="twc-ui"
+            appWebsite="https://ui.twiceware.de"
+            copyrightHolder="Danny Spangenberg"
+            copyrightYear={2025}
+          />
         </div>
       </div>
     </AppShell>

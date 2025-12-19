@@ -3,7 +3,7 @@ import { DemoContainer } from '@/components/docs/DemoContainer'
 import { Button } from '@/components/twc-ui/button'
 import { Checkbox } from '@/components/twc-ui/checkbox'
 import { FormComboBox } from '@/components/twc-ui/combo-box'
-import { DatePicker } from '@/components/twc-ui/date-picker'
+import { FormDatePicker } from '@/components/twc-ui/date-picker'
 import { Form, useForm } from '@/components/twc-ui/form'
 import { FormGrid } from '@/components/twc-ui/form-grid'
 import { FormNumberField } from '@/components/twc-ui/number-field'
@@ -57,7 +57,7 @@ export default function FormDemo({ contact, countries }: Props) {
             />
           </div>
           <div className="col-span-12">
-            <DatePicker isRequired maxYears={50} label="DOB" {...form.register('dob')} />
+            <FormDatePicker isRequired maxYears={50} label="DOB" {...form.register('dob')} />
           </div>
           <div className="col-span-24">
             <FormTextAreaField autoSize label="Note" {...form.register('note')} />

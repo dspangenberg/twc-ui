@@ -5,19 +5,18 @@
   "title": "Date Range Picker",
   "description": "Date range picker component",
   "dependencies": [
-    "@internationalized/date",
-    "react-aria-components",
     "@hugeicons/core-free-icons",
-    "date-fns",
-    "react-aria",
-    "tailwind-variants"
+    "@internationalized/date",
+    "react-aria-components"
   ],
+  "devDependencies": ["@react-types/shared"],
   "registryDependencies": [
     "@twc-ui/button",
-    "@twc-ui/range-calendar",
     "@twc-ui/date-field",
     "@twc-ui/field",
-    "@twc-ui/popover"
+    "@twc-ui/form",
+    "@twc-ui/popover",
+    "@twc-ui/use-date-conversion"
   ],
   "files": [
     {

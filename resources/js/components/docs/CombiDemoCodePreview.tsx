@@ -52,7 +52,7 @@ export const CombiDemoCodePreview: React.FC<DemoCodePreviewProps> = ({
             )}
           >
             {isLoading && (
-              <div className="absolute right-0 left-0">
+              <div className="my-auto">
                 <LogoSpinner className="mx-auto" />
               </div>
             )}
