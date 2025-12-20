@@ -1,8 +1,7 @@
 ### 2025-12-20
 
 #### Components
-
-- Added SearchField component
+- Added Alert, DateTimeField, SearchField components
 
 ### 2025-12-19
 

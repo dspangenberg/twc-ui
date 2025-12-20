@@ -20,7 +20,7 @@ export default function AppHeaderLayout({
         <div className="mx-auto flex w-full max-w-8xl flex-none flex-col p-2 py-6 text-center text-sm">
           <TwicewareSolution
             appName="twc-ui"
-            appWebsite="https://ui.twiceware.de"
+            appWebsite="https://ui.twiceware.cloud"
             copyrightHolder="Danny Spangenberg"
             copyrightYear={2025}
           />
