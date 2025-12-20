@@ -147,10 +147,50 @@ function createRegistry() {
 }
 
 /**
+ * Load docs structure to determine component categories
+ */
+function loadDocsStructure(): Map<string, string> {
+  const docsStructurePath = path.join(process.cwd(), 'public/docs-structure.json')
+  const categoryMap = new Map<string, string>()
+
+  if (!fs.existsSync(docsStructurePath)) {
+    console.warn('⚠️ docs-structure.json not found, using fallback categorization')
+    return categoryMap
+  }
+
+  try {
+    const content = fs.readFileSync(docsStructurePath, 'utf-8')
+    const structure = JSON.parse(content)
+
+    // Find the Components section
+    const componentsSection = structure.find((item: any) => item.title === 'Components')
+    if (componentsSection?.children) {
+      // Iterate through React Aria and Twiceware UI sections
+      for (const category of componentsSection.children) {
+        const categoryName = category.path.split('/').pop() // 'react-aria' or 'twiceware-ui'
+        if (category.children) {
+          for (const component of category.children) {
+            const componentName = component.path.split('/').pop()
+            categoryMap.set(componentName, categoryName)
+          }
+        }
+      }
+    }
+
+    console.log(`📋 Loaded ${categoryMap.size} component categories from docs-structure.json`)
+  } catch (error) {
+    console.warn('⚠️ Error loading docs-structure.json:', error)
+  }
+
+  return categoryMap
+}
+
+/**
  * Creates a registryMapping array for the installation.tsx component
  */
 function createRegistryMapping(items: RegistryItem[]) {
   const outputPath = path.join(process.cwd(), 'resources/js/components/docs/registry-mapping.ts')
+  const categoryMap = loadDocsStructure()
 
   const mappings = items
     .filter(item => item.registryDependencies && item.registryDependencies.length > 0)
@@ -162,8 +202,11 @@ function createRegistryMapping(items: RegistryItem[]) {
           word.charAt(0).toUpperCase() + word.slice(1)
         ).join('')
 
+        // Get category from docs structure, fallback to 'react-aria'
+        const docCategory = categoryMap.get(componentName) || 'react-aria'
+
         // Determine doc path based on component type (use-xxx = hook, otherwise component)
-        const docType = componentName.startsWith('use-') ? 'hooks' : 'components'
+        const docType = componentName.startsWith('use-') ? 'hooks' : `components/${docCategory}`
 
         return {
           alias: dep,

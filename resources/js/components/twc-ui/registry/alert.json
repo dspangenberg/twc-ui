@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "alert",
+  "type": "registry:ui",
+  "title": "Alert",
+  "description": "Alert component",
+  "dependencies": ["class-variance-authority"],
+  "registryDependencies": ["@twc-ui/icon"],
+  "files": [
+    {
+      "path": "resources/js/components/twc-ui/alert.tsx",
+      "type": "registry:ui",
+      "target": "components/twc-ui/alert.tsx"
+    }
+  ]
+}

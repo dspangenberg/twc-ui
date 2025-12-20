@@ -100,13 +100,13 @@ function sortItems(items: DocItem[]): DocItem[] {
       'client-side-routing': 3,
 
       // Components Reihenfolge
-      button: 1,
-      'base-button': 2,
-      form: 10,
+      alert: 1,
 
       // Directory Prioritäten
       'getting-started': 1,
       components: 2,
+      'twiceware-ui': 1,
+      'react-aria': 2,
       hooks: 3,
       legal: 99
     }

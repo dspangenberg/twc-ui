@@ -11,112 +11,117 @@ export const registryMapping: RegistryMapping[] = [
   {
     "alias": "@twc-ui/alert-dialog",
     "name": "AlertDialog",
-    "docPath": "/docs/components/alert-dialog"
+    "docPath": "/docs/components/twiceware-ui/alert-dialog"
   },
   {
     "alias": "@twc-ui/button",
     "name": "Button",
-    "docPath": "/docs/components/button"
+    "docPath": "/docs/components/react-aria/button"
   },
   {
     "alias": "@twc-ui/calendar",
     "name": "Calendar",
-    "docPath": "/docs/components/calendar"
+    "docPath": "/docs/components/react-aria/calendar"
   },
   {
     "alias": "@twc-ui/date-field",
     "name": "DateField",
-    "docPath": "/docs/components/date-field"
+    "docPath": "/docs/components/react-aria/date-field"
   },
   {
     "alias": "@twc-ui/dialog",
     "name": "Dialog",
-    "docPath": "/docs/components/dialog"
+    "docPath": "/docs/components/react-aria/dialog"
   },
   {
     "alias": "@twc-ui/dropdown-button",
     "name": "DropdownButton",
-    "docPath": "/docs/components/dropdown-button"
+    "docPath": "/docs/components/react-aria/dropdown-button"
   },
   {
     "alias": "@twc-ui/field",
     "name": "Field",
-    "docPath": "/docs/components/field"
+    "docPath": "/docs/components/react-aria/field"
   },
   {
     "alias": "@twc-ui/form",
     "name": "Form",
-    "docPath": "/docs/components/form"
+    "docPath": "/docs/components/twiceware-ui/form"
   },
   {
     "alias": "@twc-ui/form-errors",
     "name": "FormErrors",
-    "docPath": "/docs/components/form-errors"
+    "docPath": "/docs/components/twiceware-ui/form-errors"
   },
   {
     "alias": "@twc-ui/icon",
     "name": "Icon",
-    "docPath": "/docs/components/icon"
+    "docPath": "/docs/components/twiceware-ui/icon"
   },
   {
     "alias": "@twc-ui/list-box",
     "name": "ListBox",
-    "docPath": "/docs/components/list-box"
+    "docPath": "/docs/components/react-aria/list-box"
   },
   {
     "alias": "@twc-ui/logo",
     "name": "Logo",
-    "docPath": "/docs/components/logo"
+    "docPath": "/docs/components/react-aria/logo"
   },
   {
     "alias": "@twc-ui/logo-spinner",
     "name": "LogoSpinner",
-    "docPath": "/docs/components/logo-spinner"
+    "docPath": "/docs/components/react-aria/logo-spinner"
   },
   {
     "alias": "@twc-ui/menu",
     "name": "Menu",
-    "docPath": "/docs/components/menu"
+    "docPath": "/docs/components/react-aria/menu"
   },
   {
     "alias": "@twc-ui/pdf-container",
     "name": "PdfContainer",
-    "docPath": "/docs/components/pdf-container"
+    "docPath": "/docs/components/twiceware-ui/pdf-container"
   },
   {
     "alias": "@twc-ui/popover",
     "name": "Popover",
-    "docPath": "/docs/components/popover"
+    "docPath": "/docs/components/react-aria/popover"
   },
   {
     "alias": "@twc-ui/select",
     "name": "Select",
-    "docPath": "/docs/components/select"
+    "docPath": "/docs/components/react-aria/select"
   },
   {
     "alias": "@twc-ui/separator",
     "name": "Separator",
-    "docPath": "/docs/components/separator"
+    "docPath": "/docs/components/react-aria/separator"
+  },
+  {
+    "alias": "@twc-ui/text-field",
+    "name": "TextField",
+    "docPath": "/docs/components/react-aria/text-field"
   },
   {
     "alias": "@twc-ui/toggle-button",
     "name": "ToggleButton",
-    "docPath": "/docs/components/toggle-button"
+    "docPath": "/docs/components/react-aria/toggle-button"
   },
   {
     "alias": "@twc-ui/toggle-button-group",
     "name": "ToggleButtonGroup",
-    "docPath": "/docs/components/toggle-button-group"
+    "docPath": "/docs/components/react-aria/toggle-button-group"
   },
   {
     "alias": "@twc-ui/toolbar",
     "name": "Toolbar",
-    "docPath": "/docs/components/toolbar"
+    "docPath": "/docs/components/react-aria/toolbar"
   },
   {
     "alias": "@twc-ui/tooltip",
     "name": "Tooltip",
-    "docPath": "/docs/components/tooltip"
+    "docPath": "/docs/components/react-aria/tooltip"
   },
   {
     "alias": "@twc-ui/use-date-conversion",

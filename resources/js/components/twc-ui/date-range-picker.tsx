@@ -15,19 +15,18 @@ import {
   Text,
   type ValidationResult
 } from 'react-aria-components'
-import { useFormContext } from '@/components/twc-ui/form'
 import { useDateRangeConversion } from '@/hooks/use-date-conversion'
 import { cn } from '@/lib/utils'
 import { Button } from './button'
 import { DateInput } from './date-field'
 import { FieldError, FieldGroup, FormFieldError, Label } from './field'
+import { useFormContext } from './form'
 import { Popover } from './popover'
 import { type FooterButtons, RangeCalendar } from './range-calendar'
 
 const BaseDateRangePicker = AriaDateRangePicker
 
-interface DateRangePickerProps
-  extends AriaDateRangePickerProps<DateValue> {
+interface DateRangePickerProps extends AriaDateRangePickerProps<DateValue> {
   label?: string
   description?: string
   errorMessage?: string | ((validation: AriaValidationResult) => string)
@@ -128,7 +127,15 @@ const FormDateRangePicker = ({ value, onChange, ...props }: FormDateRangePickerP
   const error = form?.errors?.[props.name as string]
   const { parsedDate, handleChange } = useDateRangeConversion(value, onChange)
 
-  return <DateRangePicker errorComponent={FormFieldError} errorMessage={error} value={parsedDate} onChange={handleChange} {...props} />
+  return (
+    <DateRangePicker
+      errorComponent={FormFieldError}
+      errorMessage={error}
+      value={parsedDate}
+      onChange={handleChange}
+      {...props}
+    />
+  )
 }
 
 export { DateRangePicker, BaseDateRangePicker, FormDateRangePicker }

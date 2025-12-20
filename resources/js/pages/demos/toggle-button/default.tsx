@@ -4,7 +4,7 @@ import { ToggleButton } from '@/components/twc-ui/toggle-button'
 export const Demo = () => {
   return (
     <DemoContainer className="w-max-lg gap-2">
-      <ToggleButton icon={TextBoldIcon} tooltip="Bold" />
+      <ToggleButton defaultSelected icon={TextBoldIcon} tooltip="Bold" />
       <ToggleButton variant="outline" icon={TextBoldIcon} tooltip="Bold" />
       <ToggleButton variant="toolbar" icon={TextBoldIcon} tooltip="Bold" />
       <ToggleButton size="default" icon={TextBoldIcon} title="Bold" />

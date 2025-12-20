@@ -48,6 +48,8 @@ const sortDocsItems = (items: DocItem[]): DocItem[] => {
     quickstart: 4,
     'quick-start': 4,
     components: 10,
+    'twiceware-ui': 1,
+    'react-aria': 2,
     hooks: 15,
     api: 20,
     examples: 30,
@@ -112,7 +114,7 @@ export function DocsStructureProvider({ children }: DocsStructureProviderProps) 
       setLoading(true)
       setError(null)
 
-      const response = await fetch('/docs-structure.json')
+      const response = await fetch(`/docs-structure.json?v=${Date.now()}`)
 
       if (!response.ok) {
         throw new Error(`Failed to load docs structure: ${response.status}`)

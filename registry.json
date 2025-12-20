@@ -30,6 +30,27 @@
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "alert",
+      "type": "registry:ui",
+      "title": "Alert",
+      "description": "Alert component",
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "@twc-ui/icon"
+      ],
+      "files": [
+        {
+          "path": "resources/js/components/twc-ui/alert.tsx",
+          "type": "registry:ui",
+          "target": "components/twc-ui/alert.tsx"
+        }
+      ],
+      "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "name": "avatar",
       "type": "registry:ui",
       "title": "Avatar",
@@ -251,6 +272,31 @@
           "path": "resources/js/components/twc-ui/date-range-picker.tsx",
           "type": "registry:ui",
           "target": "components/twc-ui/date-range-picker.tsx"
+        }
+      ],
+      "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "date-time-field",
+      "type": "registry:ui",
+      "title": "Date Time Field",
+      "description": "Date Time Field component",
+      "dependencies": [
+        "@internationalized/date",
+        "react-aria-components",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "@twc-ui/field",
+        "@twc-ui/form",
+        "@twc-ui/use-date-conversion"
+      ],
+      "files": [
+        {
+          "path": "resources/js/components/twc-ui/date-time-field.tsx",
+          "type": "registry:ui",
+          "target": "components/twc-ui/date-time-field.tsx"
         }
       ],
       "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
@@ -647,6 +693,30 @@
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "search-field",
+      "type": "registry:ui",
+      "title": "SearchField",
+      "description": "SearchField component",
+      "dependencies": [
+        "react-aria-components",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@twc-ui/button",
+        "@twc-ui/field",
+        "@twc-ui/text-field"
+      ],
+      "files": [
+        {
+          "path": "resources/js/components/twc-ui/search-field.tsx",
+          "type": "registry:ui",
+          "target": "components/twc-ui/search-field.tsx"
+        }
+      ],
+      "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "name": "select",
       "type": "registry:ui",
       "title": "select",
@@ -764,9 +834,7 @@
       ],
       "registryDependencies": [
         "@twc-ui/field",
-        "@twc-ui/date-field",
-        "@twc-ui/form",
-        "@twc-ui/use-date-conversion"
+        "@twc-ui/date-field"
       ],
       "files": [
         {
