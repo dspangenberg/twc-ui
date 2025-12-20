@@ -49,7 +49,7 @@ const DateTimeField = ({
       validationBehavior="native"
       {...props}
     >
-      <Label value={label} />
+      {label && <Label value={label} isRequired={isRequired} />}
       <DateInput />
       {description && (
         <Text className="text-muted-foreground text-sm" slot="description">
