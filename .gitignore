@@ -24,4 +24,5 @@ yarn-error.log
 /.nova
 /.vscode
 /.zed
-resources/js/components/docs/registry-mapping.ts
+/resources/js/components/docs/registry-mapping.ts
+/public/r/
