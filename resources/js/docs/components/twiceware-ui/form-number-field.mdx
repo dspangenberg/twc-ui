@@ -1,0 +1,24 @@
+---
+title: FormNumberField
+description: A number field allows a user to enter a number, and increment or decrement the value using stepper buttons.
+docUrl: https://react-aria.adobe.com/NumberField#api
+credits:
+  - url: https://www.jollyui.dev/docs/components/numberfield
+    title: JollyUI
+---
+
+## Installation
+<Installation registry="form-number-field" />
+
+## Documentation
+### Props
+
+[React Aria NumberField props](https://react-spectrum.adobe.com/react-aria/NumberField.html)
+
+| Prop          | Type                                                                                                                                          | Default                                 | Descriptions                                                                                                                                |
+  |---------------|-----------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------|
+| description   | `string`                                                                                                                                      | ``                                      | Helper text displayed below the label                                                                                                       |
+| isRequired    | `boolean`                                                                                                                                     | `false`                                 | Whether the number field is required (shows a red asteriks in label)                                                                        |
+| error         | `string`                                                                                                                                      | ``                                      | Error message                                                                                                                               |
+| formatOptions | [`Intl.NumberFormatOptions`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/NumberFormat) | `{style: 'currency', currency: 'EUR' }` | Formatting options for the value displayed in the number field. <br/>This also affects what characters are allowed to be typed by the user. |
+| label         | `string`                                                                                                                                      | ``                                      | Label text for the number field                                                                                                             |

@@ -6,7 +6,6 @@
   "description": "TextField ComboBox",
   "dependencies": ["react-aria-components", "react-aria", "lucide-react"],
   "registryDependencies": [
-    "@twc-ui/form",
     "@twc-ui/field",
     "@twc-ui/button",
     "@twc-ui/list-box",

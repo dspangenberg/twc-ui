@@ -15,10 +15,8 @@ import {
   Text,
   type ValidationResult
 } from 'react-aria-components'
-import { useDateConversion } from '@/hooks/use-date-conversion'
 import { cn } from '@/lib/utils'
-import { FieldError, FormFieldError, fieldGroupVariants, Label } from './field'
-import { useFormContext } from './form'
+import { FieldError, fieldGroupVariants, Label } from './field'
 
 const BaseDateField = AriaDateField
 
@@ -105,26 +103,5 @@ const DateField = ({
   )
 }
 
-interface FormDateFieldProps extends Omit<DateFieldProps, 'value' | 'onChange'> {
-  value?: string | null
-  onChange?: (value: string | null) => void
-}
-
-const FormDateField = ({ value, onChange, ...props }: FormDateFieldProps) => {
-  const form = useFormContext()
-  const error = form?.errors?.[props.name as string]
-  const { parsedDate, handleChange } = useDateConversion(value, onChange)
-
-  return (
-    <DateField
-      errorComponent={FormFieldError}
-      errorMessage={error}
-      value={parsedDate}
-      onChange={handleChange}
-      {...props}
-    />
-  )
-}
-
-export { DateField, FormDateField, DateSegment, DateInput, BaseDateField }
-export type { DateInputProps, DateFieldProps, FormDateFieldProps }
+export { DateField, DateSegment, DateInput, BaseDateField }
+export type { DateInputProps, DateFieldProps }

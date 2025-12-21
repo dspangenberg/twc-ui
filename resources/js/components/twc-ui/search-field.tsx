@@ -15,8 +15,7 @@ import {
 import { useFieldChange } from '@/hooks/use-field-change'
 import { cn } from '@/lib/utils'
 import { Button } from './button'
-import { FieldDescription, FieldError, FieldGroup, FormFieldError, Label } from './field'
-import { useFormContext } from './form'
+import { FieldDescription, FieldError, FieldGroup, Label } from './field'
 import { Input } from './text-field'
 
 function BaseSearchField({ className, ...props }: AriaSearchFieldProps) {
@@ -97,12 +96,5 @@ function SearchField({
   )
 }
 
-const FormSearchField = ({ ...props }: SearchFieldProps) => {
-  const form = useFormContext()
-  const error = form?.errors?.[props.name as string]
-
-  return <SearchField errorComponent={FormFieldError} errorMessage={error} {...props} />
-}
-
-export { SearchField, FormSearchField }
+export { SearchField, BaseSearchField, SearchFieldInput, SearchFieldClear }
 export type { SearchFieldProps }

@@ -4,11 +4,11 @@ import { DialogTrigger } from 'react-aria-components'
 import { DemoContainer } from '@/components/docs/DemoContainer'
 import { Button } from '@/components/twc-ui/button'
 import { Checkbox } from '@/components/twc-ui/checkbox'
-import { FormComboBox } from '@/components/twc-ui/combo-box'
 import { Dialog } from '@/components/twc-ui/dialog'
 import { Form, useForm } from '@/components/twc-ui/form'
+import { FormComboBox } from '@/components/twc-ui/form-combo-box'
 import { FormGrid } from '@/components/twc-ui/form-grid'
-import { FormTextField } from '@/components/twc-ui/text-field'
+import { FormTextField } from '@/components/twc-ui/form-text-field'
 
 interface Props {
   contact: App.Data.ContactData

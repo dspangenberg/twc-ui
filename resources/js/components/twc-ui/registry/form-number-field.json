@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "form-number-field",
+  "type": "registry:ui",
+  "title": "FormNumberField",
+  "description": "NumberField component with form integration",
+  "dependencies": ["react-aria-components"],
+  "registryDependencies": ["@twc-ui/number-field", "@twc-ui/form", "@twc-ui/form-errors"],
+  "files": [
+    {
+      "path": "resources/js/components/twc-ui/form-number-field.tsx",
+      "type": "registry:ui",
+      "target": "components/twc-ui/form-number-field.tsx"
+    }
+  ]
+}

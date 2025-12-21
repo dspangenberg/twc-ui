@@ -173,7 +173,6 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "@twc-ui/form",
         "@twc-ui/field",
         "@twc-ui/button",
         "@twc-ui/list-box",
@@ -201,7 +200,6 @@
       ],
       "registryDependencies": [
         "@twc-ui/field",
-        "@twc-ui/form",
         "@twc-ui/use-date-conversion"
       ],
       "files": [
@@ -232,7 +230,6 @@
         "@twc-ui/calendar",
         "@twc-ui/date-field",
         "@twc-ui/field",
-        "@twc-ui/form",
         "@twc-ui/popover",
         "@twc-ui/use-date-conversion"
       ],
@@ -263,7 +260,6 @@
         "@twc-ui/button",
         "@twc-ui/date-field",
         "@twc-ui/field",
-        "@twc-ui/form",
         "@twc-ui/popover",
         "@twc-ui/use-date-conversion"
       ],
@@ -289,7 +285,6 @@
       ],
       "registryDependencies": [
         "@twc-ui/field",
-        "@twc-ui/form",
         "@twc-ui/use-date-conversion"
       ],
       "files": [
@@ -359,14 +354,167 @@
         "react-aria-components",
         "class-variance-authority"
       ],
-      "registryDependencies": [
-        "@twc-ui/form"
-      ],
       "files": [
         {
           "path": "resources/js/components/twc-ui/field.tsx",
           "type": "registry:ui",
           "target": "components/twc-ui/field.tsx"
+        }
+      ],
+      "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "form-combo-box",
+      "type": "registry:ui",
+      "title": "FormComboBox",
+      "description": "ComboBox component with form integration",
+      "dependencies": [
+        "react-aria-components"
+      ],
+      "registryDependencies": [
+        "@twc-ui/combo-box",
+        "@twc-ui/form",
+        "@twc-ui/form-errors"
+      ],
+      "files": [
+        {
+          "path": "resources/js/components/twc-ui/form-combo-box.tsx",
+          "type": "registry:ui",
+          "target": "components/twc-ui/form-combo-box.tsx"
+        }
+      ],
+      "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "form-complete",
+      "type": "registry:ui",
+      "title": "Form",
+      "description": "All form components",
+      "dependencies": [
+        "@inertiajs/core",
+        "laravel-precognition"
+      ],
+      "registryDependencies": [
+        "@twc-ui/form-combo-box",
+        "@twc-ui/form-date-field",
+        "@twc-ui/form-date-picker",
+        "@twc-ui/form-date-range-picker",
+        "@twc-ui/form-date-time-field",
+        "@twc-ui/form-errors",
+        "@twc-ui/form-grid",
+        "@twc-ui/form-number-field",
+        "@twc-ui/form-radio-group",
+        "@twc-ui/form-search-field",
+        "@twc-ui/form-select",
+        "@twc-ui/form-text-area",
+        "@twc-ui/form-text-field",
+        "@twc-ui/form-time-field",
+        "@twc-ui/use-twc-ui-form"
+      ],
+      "files": [
+        {
+          "path": "resources/js/components/twc-ui/form.tsx",
+          "type": "registry:ui",
+          "target": "components/twc-ui/form.tsx"
+        }
+      ],
+      "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "form-date-field",
+      "type": "registry:ui",
+      "title": "FormDateField",
+      "description": "DateField component with form integration",
+      "dependencies": [
+        "react-aria-components"
+      ],
+      "registryDependencies": [
+        "@twc-ui/date-field",
+        "@twc-ui/form",
+        "@twc-ui/form-errors",
+        "@twc-ui/use-date-conversion"
+      ],
+      "files": [
+        {
+          "path": "resources/js/components/twc-ui/form-date-field.tsx",
+          "type": "registry:ui",
+          "target": "components/twc-ui/form-date-field.tsx"
+        }
+      ],
+      "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "form-date-picker",
+      "type": "registry:ui",
+      "title": "FormDatePicker",
+      "description": "DatePicker component with form integration",
+      "dependencies": [
+        "react-aria-components"
+      ],
+      "registryDependencies": [
+        "@twc-ui/date-picker",
+        "@twc-ui/form",
+        "@twc-ui/form-errors",
+        "@twc-ui/use-date-conversion"
+      ],
+      "files": [
+        {
+          "path": "resources/js/components/twc-ui/form-date-picker.tsx",
+          "type": "registry:ui",
+          "target": "components/twc-ui/form-date-picker.tsx"
+        }
+      ],
+      "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "form-date-range-picker",
+      "type": "registry:ui",
+      "title": "FormDateRangePicker",
+      "description": "DateRangePicker component with form integration",
+      "dependencies": [
+        "react-aria-components",
+        "@react-types/shared"
+      ],
+      "registryDependencies": [
+        "@twc-ui/date-range-picker",
+        "@twc-ui/form",
+        "@twc-ui/form-errors",
+        "@twc-ui/use-date-conversion"
+      ],
+      "files": [
+        {
+          "path": "resources/js/components/twc-ui/form-date-range-picker.tsx",
+          "type": "registry:ui",
+          "target": "components/twc-ui/form-date-range-picker.tsx"
+        }
+      ],
+      "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "form-date-time-field",
+      "type": "registry:ui",
+      "title": "FormDateTimeField",
+      "description": "DateTimeField component with form integration",
+      "dependencies": [
+        "react-aria-components"
+      ],
+      "registryDependencies": [
+        "@twc-ui/date-time-field",
+        "@twc-ui/form",
+        "@twc-ui/form-errors",
+        "@twc-ui/use-date-conversion"
+      ],
+      "files": [
+        {
+          "path": "resources/js/components/twc-ui/form-date-time-field.tsx",
+          "type": "registry:ui",
+          "target": "components/twc-ui/form-date-time-field.tsx"
         }
       ],
       "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
@@ -405,6 +553,168 @@
           "path": "resources/js/components/twc-ui/form-grid.tsx",
           "type": "registry:ui",
           "target": "components/twc-ui/form-grid.tsx"
+        }
+      ],
+      "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "form-number-field",
+      "type": "registry:ui",
+      "title": "FormNumberField",
+      "description": "NumberField component with form integration",
+      "dependencies": [
+        "react-aria-components"
+      ],
+      "registryDependencies": [
+        "@twc-ui/number-field",
+        "@twc-ui/form",
+        "@twc-ui/form-errors"
+      ],
+      "files": [
+        {
+          "path": "resources/js/components/twc-ui/form-number-field.tsx",
+          "type": "registry:ui",
+          "target": "components/twc-ui/form-number-field.tsx"
+        }
+      ],
+      "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "form-radio-group",
+      "type": "registry:ui",
+      "title": "FormRadioGroup",
+      "description": "RadioGroup component with form integration",
+      "dependencies": [
+        "react-aria-components"
+      ],
+      "registryDependencies": [
+        "@twc-ui/radio-group",
+        "@twc-ui/form",
+        "@twc-ui/form-errors"
+      ],
+      "files": [
+        {
+          "path": "resources/js/components/twc-ui/form-radio-group.tsx",
+          "type": "registry:ui",
+          "target": "components/twc-ui/form-radio-group.tsx"
+        }
+      ],
+      "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "form-search-field",
+      "type": "registry:ui",
+      "title": "FormSearchField",
+      "description": "SearchField component with form integration",
+      "dependencies": [
+        "react-aria-components"
+      ],
+      "registryDependencies": [
+        "@twc-ui/search-field",
+        "@twc-ui/form",
+        "@twc-ui/form-errors"
+      ],
+      "files": [
+        {
+          "path": "resources/js/components/twc-ui/form-search-field.tsx",
+          "type": "registry:ui",
+          "target": "components/twc-ui/form-search-field.tsx"
+        }
+      ],
+      "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "form-select",
+      "type": "registry:ui",
+      "title": "FormSelect",
+      "description": "Select component with form integration",
+      "dependencies": [
+        "react-aria-components"
+      ],
+      "registryDependencies": [
+        "@twc-ui/select",
+        "@twc-ui/form",
+        "@twc-ui/form-errors"
+      ],
+      "files": [
+        {
+          "path": "resources/js/components/twc-ui/form-select.tsx",
+          "type": "registry:ui",
+          "target": "components/twc-ui/form-select.tsx"
+        }
+      ],
+      "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "form-text-area",
+      "type": "registry:ui",
+      "title": "FormTextArea",
+      "description": "TextArea component with form integration",
+      "dependencies": [
+        "react-aria-components"
+      ],
+      "registryDependencies": [
+        "@twc-ui/text-area",
+        "@twc-ui/form",
+        "@twc-ui/form-errors"
+      ],
+      "files": [
+        {
+          "path": "resources/js/components/twc-ui/form-text-area.tsx",
+          "type": "registry:ui",
+          "target": "components/twc-ui/form-text-area.tsx"
+        }
+      ],
+      "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "form-text-field",
+      "type": "registry:ui",
+      "title": "FormTextField",
+      "description": "TextField component with form integration",
+      "dependencies": [
+        "react-aria-components"
+      ],
+      "registryDependencies": [
+        "@twc-ui/text-field",
+        "@twc-ui/form",
+        "@twc-ui/form-errors"
+      ],
+      "files": [
+        {
+          "path": "resources/js/components/twc-ui/form-text-field.tsx",
+          "type": "registry:ui",
+          "target": "components/twc-ui/form-text-field.tsx"
+        }
+      ],
+      "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "form-time-field",
+      "type": "registry:ui",
+      "title": "FormTimeField",
+      "description": "TimeField component with form integration",
+      "dependencies": [
+        "react-aria-components"
+      ],
+      "registryDependencies": [
+        "@twc-ui/time-field",
+        "@twc-ui/form",
+        "@twc-ui/form-errors",
+        "@twc-ui/use-date-conversion"
+      ],
+      "files": [
+        {
+          "path": "resources/js/components/twc-ui/form-time-field.tsx",
+          "type": "registry:ui",
+          "target": "components/twc-ui/form-time-field.tsx"
         }
       ],
       "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
@@ -564,7 +874,6 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "@twc-ui/form",
         "@twc-ui/button",
         "@twc-ui/field"
       ],
@@ -654,7 +963,8 @@
       "title": "Radio Group",
       "description": "Radio Group",
       "dependencies": [
-        "react-aria-components"
+        "react-aria-components",
+        "lucide-react"
       ],
       "registryDependencies": [
         "@twc-ui/field",
@@ -726,7 +1036,6 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "@twc-ui/form",
         "@twc-ui/field",
         "@twc-ui/list-box",
         "@twc-ui/popover"
@@ -811,7 +1120,6 @@
       ],
       "registryDependencies": [
         "@twc-ui/field",
-        "@twc-ui/form",
         "@twc-ui/use-field-change"
       ],
       "files": [
@@ -834,7 +1142,6 @@
       ],
       "registryDependencies": [
         "@twc-ui/field",
-        "@twc-ui/form",
         "@twc-ui/use-field-change"
       ],
       "files": [

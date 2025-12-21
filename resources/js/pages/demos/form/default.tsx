@@ -2,13 +2,13 @@ import { Head } from '@inertiajs/react'
 import { DemoContainer } from '@/components/docs/DemoContainer'
 import { Button } from '@/components/twc-ui/button'
 import { Checkbox } from '@/components/twc-ui/checkbox'
-import { FormComboBox } from '@/components/twc-ui/combo-box'
-import { FormDatePicker } from '@/components/twc-ui/date-picker'
 import { Form, useForm } from '@/components/twc-ui/form'
+import { FormComboBox } from '@/components/twc-ui/form-combo-box'
+import { FormDatePicker } from '@/components/twc-ui/form-date-picker'
 import { FormGrid } from '@/components/twc-ui/form-grid'
-import { FormNumberField } from '@/components/twc-ui/number-field'
-import { FormTextArea } from '@/components/twc-ui/text-area'
-import { FormTextField } from '@/components/twc-ui/text-field'
+import { FormNumberField } from '@/components/twc-ui/form-number-field'
+import { FormTextArea } from '@/components/twc-ui/form-text-area'
+import { FormTextField } from '@/components/twc-ui/form-text-field'
 
 interface Props {
   contact: App.Data.ContactData

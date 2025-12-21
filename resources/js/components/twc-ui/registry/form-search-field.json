@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "form-search-field",
+  "type": "registry:ui",
+  "title": "FormSearchField",
+  "description": "SearchField component with form integration",
+  "dependencies": ["react-aria-components"],
+  "registryDependencies": ["@twc-ui/search-field", "@twc-ui/form", "@twc-ui/form-errors"],
+  "files": [
+    {
+      "path": "resources/js/components/twc-ui/form-search-field.tsx",
+      "type": "registry:ui",
+      "target": "components/twc-ui/form-search-field.tsx"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "form-combo-box",
+  "type": "registry:ui",
+  "title": "FormComboBox",
+  "description": "ComboBox component with form integration",
+  "dependencies": ["react-aria-components"],
+  "registryDependencies": ["@twc-ui/combo-box", "@twc-ui/form", "@twc-ui/form-errors"],
+  "files": [
+    {
+      "path": "resources/js/components/twc-ui/form-combo-box.tsx",
+      "type": "registry:ui",
+      "target": "components/twc-ui/form-combo-box.tsx"
+    }
+  ]
+}

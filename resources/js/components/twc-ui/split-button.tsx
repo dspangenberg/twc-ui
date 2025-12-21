@@ -23,13 +23,14 @@ function SplitButton<T extends object>({
         icon={props.icon}
         title={title}
         onClick={onClick}
-        className="rounded-r-none! border-0 border-r border-r-transparent! focus-visible:ring-0 group-hover:border-r-border!"
+        className="rounded-r-none! border-0 border-r focus-visible:ring-0 group-hover:border-r-border!"
       />
       <DropdownButton
-        variant={variant}
+        variant="ghost"
         size="icon"
         icon={ChevronDown}
         className="rounded-l-none border-l! border-y-0 border-r-0"
+        iconClassName="size-4"
         placement={placement}
         selectionMode={selectionMode}
         selectedKeys={selectedKeys}

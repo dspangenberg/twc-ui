@@ -5,7 +5,6 @@
   "title": "Field",
   "description": "Field component",
   "dependencies": ["react-aria-components", "class-variance-authority"],
-  "registryDependencies": ["@twc-ui/form"],
   "files": [
     {
       "path": "resources/js/components/twc-ui/field.tsx",
