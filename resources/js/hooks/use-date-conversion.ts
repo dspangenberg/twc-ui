@@ -1,10 +1,16 @@
-import { CalendarDate, CalendarDateTime, type DateValue, Time, type TimeValue } from '@internationalized/date'
+import {
+  CalendarDate,
+  CalendarDateTime,
+  type DateValue,
+  Time,
+  type TimeValue
+} from '@internationalized/date'
 import type { RangeValue } from '@react-types/shared'
 import { format, parse } from 'date-fns'
 import { useCallback, useMemo } from 'react'
 
-export const DATE_FORMAT = import.meta.env.VITE_DATE_FORMAT || 'yyyy-MM-dd'
-export const TIME_FORMAT = import.meta.env.VITE_TIME_FORMAT || 'HH:mm:ss'
+export const DATE_FORMAT = import.meta.env.VITE_APP_DATE_FORMAT || 'yyyy-MM-dd'
+export const TIME_FORMAT = import.meta.env.VITE_APP_TIME_FORMAT || 'HH:mm:ss'
 export const DATE_TIME_FORMAT = import.meta.env.VITE_APP_DATE_TIME_FORMAT || 'yyyy-MM-dd HH:mm'
 
 export const dateValueToDate = (dateValue: DateValue): Date => {

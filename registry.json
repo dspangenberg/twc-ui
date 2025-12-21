@@ -760,6 +760,29 @@
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "split-button",
+      "type": "registry:ui",
+      "title": "SplitButton",
+      "description": "SplitButton component",
+      "dependencies": [
+        "react-aria-components",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@twc-ui/button",
+        "@twc-ui/dropdown-button"
+      ],
+      "files": [
+        {
+          "path": "resources/js/components/twc-ui/split-button.tsx",
+          "type": "registry:ui",
+          "target": "components/twc-ui/split-button.tsx"
+        }
+      ],
+      "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "name": "tabs",
       "type": "registry:ui",
       "title": "Tabs",

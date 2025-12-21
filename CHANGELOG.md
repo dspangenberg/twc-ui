@@ -1,3 +1,10 @@
+### 2025-12-21
+
+#### Components
+- Added SplitButton component
+- Register functions in useTwcUiForm supports now array syntax für nested fields.
+
+
 ### 2025-12-20
 
 #### Components
