@@ -1,3 +1,9 @@
+### 2025-12-21
+
+#### Components
+- Added SplitButton component
+
+
 ### 2025-12-20
 
 #### Components

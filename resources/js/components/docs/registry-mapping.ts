@@ -36,7 +36,7 @@ export const registryMapping: RegistryMapping[] = [
   {
     "alias": "@twc-ui/dropdown-button",
     "name": "DropdownButton",
-    "docPath": "/docs/components/react-aria/dropdown-button"
+    "docPath": "/docs/components/twiceware-ui/dropdown-button"
   },
   {
     "alias": "@twc-ui/field",
