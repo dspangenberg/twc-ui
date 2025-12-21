@@ -9,10 +9,11 @@ interface ExtLinkProps {
 }
 
 export const ExtLink = ({ title, href, className }: ExtLinkProps) => {
+  const target = href.startsWith('http') ? '_blank' : '_self'
   return (
     <a
       href={href}
-      target="_blank"
+      target={target}
       rel="noopener noreferrer"
       className={cn(
         className,

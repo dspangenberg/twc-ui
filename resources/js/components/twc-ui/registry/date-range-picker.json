@@ -14,7 +14,6 @@
     "@twc-ui/button",
     "@twc-ui/date-field",
     "@twc-ui/field",
-    "@twc-ui/form",
     "@twc-ui/popover",
     "@twc-ui/use-date-conversion"
   ],

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "form-text-field",
+  "type": "registry:ui",
+  "title": "FormTextField",
+  "description": "TextField component with form integration",
+  "dependencies": ["react-aria-components"],
+  "registryDependencies": ["@twc-ui/text-field", "@twc-ui/form", "@twc-ui/form-errors"],
+  "files": [
+    {
+      "path": "resources/js/components/twc-ui/form-text-field.tsx",
+      "type": "registry:ui",
+      "target": "components/twc-ui/form-text-field.tsx"
+    }
+  ]
+}

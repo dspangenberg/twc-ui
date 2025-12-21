@@ -4,7 +4,7 @@
   "type": "registry:ui",
   "title": "Radio Group",
   "description": "Radio Group",
-  "dependencies": ["react-aria-components"],
+  "dependencies": ["react-aria-components", "lucide-react"],
   "registryDependencies": ["@twc-ui/field", "@twc-ui/form"],
   "files": [
     {

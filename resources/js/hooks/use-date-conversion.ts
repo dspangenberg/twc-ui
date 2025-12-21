@@ -2,8 +2,7 @@ import {
   CalendarDate,
   CalendarDateTime,
   type DateValue,
-  Time,
-  type TimeValue
+  Time
 } from '@internationalized/date'
 import type { RangeValue } from '@react-types/shared'
 import { format, parse } from 'date-fns'
@@ -124,7 +123,7 @@ export function useDateTimeConversion(
 
 interface UseTimeConversionReturn {
   parsedTime: Time | null
-  handleChange: (newValue: TimeValue | null) => void
+  handleChange: (newValue: Time | null) => void
 }
 
 export function useTimeConversion(
@@ -144,7 +143,7 @@ export function useTimeConversion(
   }, [value])
 
   const handleChange = useCallback(
-    (newValue: TimeValue | null) => {
+    (newValue: Time | null) => {
       if (!onChange) return
 
       if (!newValue) {

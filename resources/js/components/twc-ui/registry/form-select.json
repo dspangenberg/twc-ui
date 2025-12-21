@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "form-select",
+  "type": "registry:ui",
+  "title": "FormSelect",
+  "description": "Select component with form integration",
+  "dependencies": ["react-aria-components"],
+  "registryDependencies": ["@twc-ui/select", "@twc-ui/form", "@twc-ui/form-errors"],
+  "files": [
+    {
+      "path": "resources/js/components/twc-ui/form-select.tsx",
+      "type": "registry:ui",
+      "target": "components/twc-ui/form-select.tsx"
+    }
+  ]
+}

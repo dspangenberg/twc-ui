@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "form-date-field",
+  "type": "registry:ui",
+  "title": "FormDateField",
+  "description": "DateField component with form integration",
+  "dependencies": ["react-aria-components"],
+  "registryDependencies": [
+    "@twc-ui/date-field",
+    "@twc-ui/form",
+    "@twc-ui/form-errors",
+    "@twc-ui/use-date-conversion"
+  ],
+  "files": [
+    {
+      "path": "resources/js/components/twc-ui/form-date-field.tsx",
+      "type": "registry:ui",
+      "target": "components/twc-ui/form-date-field.tsx"
+    }
+  ]
+}

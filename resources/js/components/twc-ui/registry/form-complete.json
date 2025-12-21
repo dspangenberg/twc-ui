@@ -1,0 +1,32 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "form-complete",
+  "type": "registry:ui",
+  "title": "Form",
+  "description": "All form components",
+  "dependencies": ["@inertiajs/core", "laravel-precognition"],
+  "registryDependencies": [
+    "@twc-ui/form-combo-box",
+    "@twc-ui/form-date-field",
+    "@twc-ui/form-date-picker",
+    "@twc-ui/form-date-range-picker",
+    "@twc-ui/form-date-time-field",
+    "@twc-ui/form-errors",
+    "@twc-ui/form-grid",
+    "@twc-ui/form-number-field",
+    "@twc-ui/form-radio-group",
+    "@twc-ui/form-search-field",
+    "@twc-ui/form-select",
+    "@twc-ui/form-text-area",
+    "@twc-ui/form-text-field",
+    "@twc-ui/form-time-field",
+    "@twc-ui/use-twc-ui-form"
+  ],
+  "files": [
+    {
+      "path": "resources/js/components/twc-ui/form.tsx",
+      "type": "registry:ui",
+      "target": "components/twc-ui/form.tsx"
+    }
+  ]
+}
