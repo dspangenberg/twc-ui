@@ -30,6 +30,11 @@ function SplitButton<T extends object>({
         size="icon"
         icon={ChevronDown}
         className="rounded-l-none border-l! border-y-0 border-r-0"
+        placement={placement}
+        selectionMode={selectionMode}
+        selectedKeys={selectedKeys}
+        onSelectionChange={onSelectionChange}
+        menuClassName={props.menuClassName}
       >
         {children}
       </DropdownButton>
