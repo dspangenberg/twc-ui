@@ -7,7 +7,7 @@
 
 #### Components
 - Added SplitButton component
-- Register functions in useTwcUiForm supports now array syntax für nested fields.
+- Register functions in useTwcUiForm supports now array syntax for nested fields.
 - Refactored RadioGroup
 - FormErrors title in English and German
 - Separated Form* components for all input fields (e. g. form-text-field.tsx)
