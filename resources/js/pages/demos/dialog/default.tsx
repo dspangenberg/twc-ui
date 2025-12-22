@@ -9,8 +9,7 @@ import {
   DialogTitle,
   DialogTrigger
 } from '@/components/twc-ui/dialog'
-import { Label } from '@/components/twc-ui/field'
-import { Input, TextField } from '@/components/twc-ui/text-field'
+import { TextField } from '@/components/twc-ui/text-field'
 
 export default function DialogDemo() {
   return (
@@ -18,7 +17,7 @@ export default function DialogDemo() {
       <DialogTrigger>
         <Button variant="outline">Sign up...</Button>
         <DialogOverlay>
-          <DialogContent className="sm:max-w-[425px]">
+          <DialogContent className="sm:max-w-106.25">
             {({ close }) => (
               <>
                 <DialogHeader>
@@ -31,11 +30,7 @@ export default function DialogDemo() {
                   </div>
                 </DialogBody>
                 <DialogFooter>
-                  <Button onPress={close}>
-                     Save changes
-                   </Button>
-                    Save changes
-                  </Button>
+                  <Button onPress={close}>Save changes</Button>
                 </DialogFooter>
               </>
             )}
