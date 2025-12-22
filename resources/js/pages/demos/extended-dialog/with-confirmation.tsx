@@ -4,7 +4,7 @@ import { DialogTrigger } from 'react-aria-components'
 import { DemoContainer } from '@/components/docs/DemoContainer'
 import { Button } from '@/components/twc-ui/button'
 import { Checkbox } from '@/components/twc-ui/checkbox'
-import { Dialog } from '@/components/twc-ui/dialog'
+import { ExtendedDialog } from '@/components/twc-ui/extended-dialog'
 import { Form, useForm } from '@/components/twc-ui/form'
 import { FormComboBox } from '@/components/twc-ui/form-combo-box'
 import { FormGrid } from '@/components/twc-ui/form-grid'
@@ -36,10 +36,9 @@ export default function DialogFormDemo({ contact, countries }: Props) {
         <Button variant="default" onClick={() => setIsOpen(true)}>
           Edit contact
         </Button>
-        <Dialog
+        <ExtendedDialog
           isOpen={isOpen}
           onClosed={handleClose}
-          bodyPadding
           showDescription
           description="Change something and click cancel."
           title="Edit contact"
@@ -82,7 +81,7 @@ export default function DialogFormDemo({ contact, countries }: Props) {
               </div>
             </FormGrid>
           </Form>
-        </Dialog>
+        </ExtendedDialog>
       </DialogTrigger>
     </DemoContainer>
   )

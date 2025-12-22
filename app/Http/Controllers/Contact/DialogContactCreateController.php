@@ -21,7 +21,7 @@ class DialogContactCreateController extends Controller
 
         $contact = Contact::query()->first();
 
-        return Inertia::render('demos/dialog/with-confirmation', [
+        return Inertia::render('demos/extended-dialog/with-confirmation', [
             'contact' => ContactData::from($contact),
             'countries' => CountryData::collect(Country::query()->orderBy('name')->get())
         ]);

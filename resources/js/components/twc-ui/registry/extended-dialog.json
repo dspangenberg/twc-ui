@@ -1,0 +1,25 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "extended-dialog",
+  "type": "registry:ui",
+  "title": "ExtendedDialog",
+  "description": "ExtendedDialog component",
+  "dependencies": [
+    "class-variance-authority",
+    "react-aria-components",
+    "@hugeicons/core-free-icons"
+  ],
+  "registryDependencies": [
+    "@twc-ui/alert-dialog",
+    "@twc-ui/dialog",
+    "@twc-ui/button",
+    "@twc-ui/icon"
+  ],
+  "files": [
+    {
+      "path": "resources/js/components/twc-ui/extended-dialog.tsx",
+      "type": "registry:ui",
+      "target": "components/twc-ui/extended-dialog.tsx"
+    }
+  ]
+}

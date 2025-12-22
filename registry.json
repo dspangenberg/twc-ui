@@ -308,7 +308,6 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "@twc-ui/alert-dialog",
         "@twc-ui/button"
       ],
       "files": [
@@ -346,6 +345,32 @@
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "extended-dialog",
+      "type": "registry:ui",
+      "title": "ExtendedDialog",
+      "description": "ExtendedDialog component",
+      "dependencies": [
+        "class-variance-authority",
+        "react-aria-components",
+        "@hugeicons/core-free-icons"
+      ],
+      "registryDependencies": [
+        "@twc-ui/alert-dialog",
+        "@twc-ui/dialog",
+        "@twc-ui/button",
+        "@twc-ui/icon"
+      ],
+      "files": [
+        {
+          "path": "resources/js/components/twc-ui/extended-dialog.tsx",
+          "type": "registry:ui",
+          "target": "components/twc-ui/extended-dialog.tsx"
+        }
+      ],
+      "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "name": "field",
       "type": "registry:ui",
       "title": "Field",
@@ -359,6 +384,24 @@
           "path": "resources/js/components/twc-ui/field.tsx",
           "type": "registry:ui",
           "target": "components/twc-ui/field.tsx"
+        }
+      ],
+      "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "form-checkbox",
+      "type": "registry:ui",
+      "title": "FormCheckbox",
+      "description": "FormCheckbox component with form integration",
+      "registryDependencies": [
+        "@twc-ui/checkbox"
+      ],
+      "files": [
+        {
+          "path": "resources/js/components/twc-ui/form-checkbox.tsx",
+          "type": "registry:ui",
+          "target": "components/twc-ui/form-checkbox.tsx"
         }
       ],
       "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
@@ -397,6 +440,7 @@
         "laravel-precognition"
       ],
       "registryDependencies": [
+        "@twc-ui/form-checkbox",
         "@twc-ui/form-combo-box",
         "@twc-ui/form-date-field",
         "@twc-ui/form-date-picker",

@@ -1,0 +1,65 @@
+import { Head } from '@inertiajs/react'
+import { DemoContainer } from '@/components/docs/DemoContainer'
+import { Button } from '@/components/twc-ui/button'
+import { DialogTrigger, ExtendedDialog } from '@/components/twc-ui/extended-dialog'
+import { Form, useForm } from '@/components/twc-ui/form'
+import { FormGrid } from '@/components/twc-ui/form-grid'
+import { TextField } from '@/components/twc-ui/text-field'
+
+interface Contact extends Record<string, any> {
+  first_name: string
+  last_name: string
+  email: string
+}
+
+export default function Demo() {
+  const form = useForm<Contact>('contact-form', 'post', route('contact.store'), {
+    first_name: 'Danny',
+    last_name: 'Mustermann',
+    email: 'danny@example.com'
+  })
+
+  return (
+    <DemoContainer>
+      <Head title="FormGrid Demo" />
+      <DialogTrigger>
+        <Button variant="default">Edit contact</Button>
+
+        <ExtendedDialog
+          showDescription
+          description="Make changes to your profile here. Click save when you're done."
+          footer={dialogRenderProps => (
+            <div className="mx-0 flex w-full gap-2">
+              <div className="flex flex-1 justify-start" />
+              <div className="flex flex-none gap-2">
+                <Button variant="outline" onClick={dialogRenderProps.close}>
+                  Abbrechen
+                </Button>
+                <Button variant="default">Speichern</Button>
+              </div>
+            </div>
+          )}
+        >
+          <Form form={form}>
+            <FormGrid>
+              <div className="col-span-12">
+                <TextField
+                  autoFocus
+                  isRequired
+                  label="First name"
+                  {...form.register('first_name')}
+                />
+              </div>
+              <div className="col-span-12">
+                <TextField isRequired label="Last name" {...form.register('last_name')} />
+              </div>
+              <div className="col-span-24">
+                <TextField isRequired label="E-Mail" {...form.register('email')} />
+              </div>
+            </FormGrid>
+          </Form>
+        </ExtendedDialog>
+      </DialogTrigger>
+    </DemoContainer>
+  )
+}
