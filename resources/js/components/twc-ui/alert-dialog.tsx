@@ -1,5 +1,6 @@
 import { Alert02Icon, HelpCircleIcon, InformationCircleIcon } from '@hugeicons/core-free-icons'
 import type * as React from 'react'
+import { useRef } from 'react'
 import { Heading, useLocale } from 'react-aria-components'
 import { createRoot } from 'react-dom/client'
 import { cn } from '@/lib/utils'
@@ -29,6 +30,8 @@ const AlertDialogComponent: React.FC<AlertDialogProps> = ({
   onCancel
 }) => {
   const { locale } = useLocale()
+  const dismissed = useRef<boolean>(false)
+
   const realCancelButtonTitle = cancelButtonTitle
     ? cancelButtonTitle
     : locale.startsWith('de')
@@ -46,7 +49,9 @@ const AlertDialogComponent: React.FC<AlertDialogProps> = ({
     <Dialog
       isOpen={true}
       onOpenChange={open => {
-        if (!open) {
+        if (open) {
+          dismissed.current = false
+        } else if (!dismissed.current) {
           setTimeout(() => {
             onCancel()
           }, 50)
@@ -93,6 +98,7 @@ const AlertDialogComponent: React.FC<AlertDialogProps> = ({
               autoFocus
               variant="outline"
               onClick={() => {
+                dismissed.current = true
                 setTimeout(() => {
                   onCancel()
                 }, 50)

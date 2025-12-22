@@ -298,7 +298,7 @@ const DocPageContent = ({ children, frontmatter }: DocPageProps) => {
 
           {children}
         </div>
-        <aside className="sticky top-0 hidden h-screen w-48 flex-none space-y-4 overflow-y-auto p-4 lg:flex">
+        <aside className="sticky top-0 hidden h-full w-48 flex-none space-y-4 overflow-y-auto p-4 lg:flex">
           <TableOfContents />
         </aside>
       </div>
