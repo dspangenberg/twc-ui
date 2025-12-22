@@ -1,10 +1,16 @@
+### 2025-12-22
+
+#### Components
+- Refactored dialog component in (Base-) Dialog and ExtendedDialog
+
 ### 2025-12-21
 
 #### Components
 - Added SplitButton component
-- Register functions in useTwcUiForm supports now array syntax für nested fields.
-- Refactored RadioGroup/FormRadioGroup
+- Register functions in useTwcUiForm supports now array syntax for nested fields.
+- Refactored RadioGroup
 - FormErrors title in English and German
+- Separated Form* components for all input fields (e. g. form-text-field.tsx)
 
 ### 2025-12-20
 

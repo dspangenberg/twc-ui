@@ -254,7 +254,7 @@ const DocPageContent = ({ children, frontmatter }: DocPageProps) => {
         {frontmatter?.description && <meta name="description" content={frontmatter.description} />}
       </Head>
       <div className="mx-auto mt-12 flex w-full max-w-8xl gap-4">
-        <aside className="sticky top-0 hidden h-screen w-64 flex-none space-y-4 overflow-y-auto p-4 lg:flex">
+        <aside className="sticky top-0 hidden h-full w-64 flex-none space-y-4 overflow-y-auto p-4 lg:flex">
           <DocsNavigation />
         </aside>
         <div className="doc min-w-0 flex-1 gap-12 space-y-6 py-4">

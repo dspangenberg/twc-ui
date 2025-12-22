@@ -40,7 +40,7 @@ const mainNavItems: NavItem[] = [
   },
   {
     title: 'Components',
-    href: '/docs/components/twiceware-ui/alert',
+    href: '/docs/components/twiceware-ui/alert-dialog',
     icon: GeometricShapes01Icon
   },
   {

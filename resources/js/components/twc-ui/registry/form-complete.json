@@ -6,6 +6,7 @@
   "description": "All form components",
   "dependencies": ["@inertiajs/core", "laravel-precognition"],
   "registryDependencies": [
+    "@twc-ui/form-checkbox",
     "@twc-ui/form-combo-box",
     "@twc-ui/form-date-field",
     "@twc-ui/form-date-picker",

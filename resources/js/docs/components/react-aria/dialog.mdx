@@ -1,5 +1,9 @@
 ---
 title: Dialog
+docUrl: https://react-aria.adobe.com/Modal
+credits:
+  - url: https://www.jollyui.dev/docs/components/dialog
+    title: JollyUI
 ---
 
 
@@ -8,29 +12,3 @@ title: Dialog
 ## Installation
 <Installation registry="dialog" />
 
-
-## Examples
-
-### Dialog with confirmation
-Useful for (dirty) forms in dialogs. **Works only in controlled mode.**
-
-<CombiDemoCodePreview codePath="dialog/with-confirmation.tsx" demoPath={route('contact.dialog')} className="h-125" />
-
-
-## Documentation
-### Props
-
-| Prop                    | Type                                                                                          | Default                                 | Descriptions                                                                               |
-  |-------------------------|-----------------------------------------------------------------------------------------------|-----------------------------------------|--------------------------------------------------------------------------------------------|
-| confirmClose            | `boolean`                                                                                     | `false`                                 | Closing of dialog must be confirmed                                                        |
-| confirmationTitle       | `string`                                                                                      | `Änderungen verwerfen`                  | Confirmation message                                                                       |
-| confirmationMessage     | `string`                                                                                      | `Möchtest Du die Änderungen verwerfen?` | Label of the OK button                                                                     |
-| confirmationButtonTitle | `string`                                                                                      | `Verwerfen`                             | Label of the cancel button                                                                 |
-| confirmationVariant     | <TypeInfo title="variant" types={['default', 'destructive']} />                               | `default`                               | Variant of the OK-button                                                                   |
-| description             | `ReactNodeOrString`                                                                           | ``                                      | Description of the dialog                                                                  |
-| footer                  | `React.ReactNode` \|`(renderProps: DialogRenderProps)`                                        | ``                                      | Footer                                                                                     |
-| hideHeader              | `boolean`                                                                                     | `false`                                 | Should the dialog header hidden                                                            |
-| isDismissible           | `boolean`                                                                                     | `true`                                  | Should the dialog close on ESC, <br/>outside interaction or the close-button in the header |
-| showDescription         | `boolean`                                                                                     | `false`                                 | If false the description is only visible on screenreaders                                  |
-| title <Required />      | `string`                                                                                      | ``                                      | Dialog title                                                                               |
-| width                   | <TypeInfo title="width" types={['default', 'md', 'lg', '2xl', '3xl', '4xl', '5xl', '6xl']} /> | `default` (w-xl)                        | Width of the dialog                                                                        |

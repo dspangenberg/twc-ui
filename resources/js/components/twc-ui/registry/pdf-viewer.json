@@ -5,7 +5,7 @@
   "title": "PdfViewer",
   "description": "PdfViewer component",
   "dependencies": [],
-  "registryDependencies": ["@twc-ui/dialog", "@twc-ui/pdf-container"],
+  "registryDependencies": ["@twc-ui/extended-dialog", "@twc-ui/pdf-container"],
   "files": [
     {
       "path": "resources/js/components/twc-ui/pdf-viewer.tsx",
