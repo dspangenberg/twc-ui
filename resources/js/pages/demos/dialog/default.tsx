@@ -31,7 +31,9 @@ export default function DialogDemo() {
                   </div>
                 </DialogBody>
                 <DialogFooter>
-                  <Button onPress={close} type="submit">
+                  <Button onPress={close}>
+                     Save changes
+                   </Button>
                     Save changes
                   </Button>
                 </DialogFooter>
