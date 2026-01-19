@@ -19,18 +19,27 @@ const FormDateRangePicker = ({ value, onChange, ...props }: FormDateRangePickerP
 
   // Use internal state to prevent resets during typing
   const [internalValue, setInternalValue] = useState<RangeValue<DateValue> | null>(parsedDate)
+  const [isTyping, setIsTyping] = useState(false)
   const typingTimeoutRef = useRef<NodeJS.Timeout | null>(null)
-  const isTypingRef = useRef(false)
 
   // Update internal value when external value changes (but not while user is typing)
   useEffect(() => {
-    if (!isTypingRef.current) {
+    if (!isTyping) {
       setInternalValue(parsedDate)
     }
-  }, [parsedDate])
+  }, [parsedDate, isTyping])
+
+  // Cleanup timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (typingTimeoutRef.current) {
+        clearTimeout(typingTimeoutRef.current)
+      }
+    }
+  }, [])
 
   const handleInternalChange = (newValue: RangeValue<DateValue> | null) => {
-    isTypingRef.current = true
+    setIsTyping(true)
     setInternalValue(newValue)
     handleChange(newValue)
 
@@ -41,7 +50,7 @@ const FormDateRangePicker = ({ value, onChange, ...props }: FormDateRangePickerP
 
     // Reset typing flag after a short delay
     typingTimeoutRef.current = setTimeout(() => {
-      isTypingRef.current = false
+      setIsTyping(false)
     }, 500)
   }
 
