@@ -345,6 +345,24 @@
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "empty",
+      "type": "registry:ui",
+      "title": "Empty",
+      "description": "React aria components empty",
+      "dependencies": [
+        "tailwind-variants"
+      ],
+      "files": [
+        {
+          "path": "resources/js/components/twc-ui/empty.tsx",
+          "type": "registry:ui",
+          "target": "components/twc-ui/empty.tsx"
+        }
+      ],
+      "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "name": "extended-dialog",
       "type": "registry:ui",
       "title": "ExtendedDialog",
@@ -357,8 +375,7 @@
       "registryDependencies": [
         "@twc-ui/alert-dialog",
         "@twc-ui/dialog",
-        "@twc-ui/button",
-        "@twc-ui/icon"
+        "@twc-ui/button"
       ],
       "files": [
         {
@@ -367,6 +384,14 @@
           "target": "components/twc-ui/extended-dialog.tsx"
         }
       ],
+      "cssVars": {
+        "light": {
+          "page-content": "oklch(0.99 0.0011 197.13)"
+        },
+        "dark": {
+          "page-content": "oklch(0.01 0.0011 197.13)"
+        }
+      },
       "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
     },
     {
@@ -384,6 +409,24 @@
           "path": "resources/js/components/twc-ui/field.tsx",
           "type": "registry:ui",
           "target": "components/twc-ui/field.tsx"
+        }
+      ],
+      "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "file-trigger",
+      "type": "registry:ui",
+      "title": "FileTrigger",
+      "description": "React aria FileTrigger component",
+      "dependencies": [
+        "react-aria-components"
+      ],
+      "files": [
+        {
+          "path": "resources/js/components/twc-ui/file-trigger.tsx",
+          "type": "registry:ui",
+          "target": "components/twc-ui/file-trigger.tsx"
         }
       ],
       "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
@@ -941,8 +984,7 @@
         "react-pdf",
         "print-js",
         "@hugeicons/core-free-icons",
-        "lucide-react",
-        "react-use"
+        "lucide-react"
       ],
       "registryDependencies": [
         "@twc-ui/button",
@@ -970,7 +1012,7 @@
       "description": "PdfViewer component",
       "dependencies": [],
       "registryDependencies": [
-        "@twc-ui/dialog",
+        "@twc-ui/extended-dialog",
         "@twc-ui/pdf-container"
       ],
       "files": [

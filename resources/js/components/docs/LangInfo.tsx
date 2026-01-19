@@ -1,29 +1,32 @@
-import { InformationCircleIcon } from '@hugeicons/core-free-icons'
+import { LanguageSkillIcon } from '@hugeicons/core-free-icons'
 import { Pressable } from 'react-aria-components'
+import Flag from 'react-flagpack'
 import { Icon } from '../twc-ui/icon'
 import { Popover, PopoverTrigger } from '../twc-ui/popover'
 
 type CalloutProps = {
-  title: string
-  types: string[]
+  de: string
+  en: string[]
 }
 
-export const TypeInfo = ({ title, types }: CalloutProps) => {
+export const LangInfo = ({ de, en }: CalloutProps) => {
   // Types alphabetisch sortieren
-  const sortedTypes = [...types].sort((a, b) => a.localeCompare(b))
 
   return (
     <div className="flex items-center gap-1">
-      <span className="bg-muted px-1 font-mono">{title}</span>
+      <span className="px-1 font-mono">DE/EN</span>
       <PopoverTrigger>
         <Pressable>
-          <Icon role="button" icon={InformationCircleIcon} className="size-4 cursor-help" />
+          <Icon role="button" icon={LanguageSkillIcon} className="size-4 cursor-help" />
         </Pressable>
         <Popover>
           <ul className="p-4 font-mono text-sm">
-            {sortedTypes.map((type, index) => (
-              <li key={index}>{type}</li>
-            ))}
+            <li className="flex items-center gap-1">
+              <Flag code="GB-UKM" size="s" /> {en}
+            </li>
+            <li className="flex items-center gap-1">
+              <Flag code="DE" size="s" /> {de}
+            </li>
           </ul>
         </Popover>
       </PopoverTrigger>

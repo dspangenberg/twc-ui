@@ -25,8 +25,8 @@ const ComboBoxHeader = ListBoxHeader
 const ComboBoxSection = ListBoxSection
 const ComboBoxCollection = ListBoxCollection
 
-const ComboBoxInput = ({ className, ...props }: AriaInputProps) => {
-  const [isReadOnly, setIsReadOnly] = useState(true)
+const ComboBoxInput = ({ autoFocus, className, ...props }: AriaInputProps) => {
+  const [isReadOnly, setIsReadOnly] = useState(!autoFocus)
   const randomName = useMemo(() => `combo_${Math.random().toString(36).substring(2, 11)}`, [])
 
   return (
@@ -45,6 +45,7 @@ const ComboBoxInput = ({ className, ...props }: AriaInputProps) => {
       onBlur={() => setIsReadOnly(true)}
       autoComplete="off"
       autoCorrect="off"
+      autoFocus={autoFocus}
       autoCapitalize="off"
       spellCheck="false"
       data-form-type="other"
@@ -87,6 +88,7 @@ interface ComboBoxProps<T extends object> {
   description?: string
   itemName?: keyof T & string
   itemValue?: keyof T & string
+  defaultSelectedKey?: Key
   hasError?: boolean
   onChange: (value: string | number | null) => void
   onBlur?: () => void
@@ -127,6 +129,7 @@ const ComboBox = <T extends Record<string, unknown>>({
 
   const handleSelectionChange = useCallback(
     (key: Key | null) => {
+      setInputValue('') // Reset filter when selection is made
       if (key === null) {
         onChange(null)
       } else if (isStringValue) {
@@ -151,32 +154,47 @@ const ComboBox = <T extends Record<string, unknown>>({
             } as T
           ]
         : Array.from(items),
-    [isOptional, itemValue, itemName, optionalValue, items, isStringValue]
+    [isOptional, itemValue, itemName, optionalValue, items]
   )
 
   const { contains } = useFilter({ sensitivity: 'base' })
-  const [filterValue, setFilterValue] = useState('')
-  const filteredItems: T[] = useMemo(
-    () => itemsWithPlaceholder.filter(item => contains(String(item[itemName]), filterValue)),
-    [itemsWithPlaceholder, itemName, contains, filterValue]
-  )
+  const [inputValue, setInputValue] = useState('')
 
   const selectedKey = value ?? null
+
+  // Find the selected item to display its name
+  const selectedItem = useMemo(
+    () =>
+      itemsWithPlaceholder.find(item => {
+        const itemVal = isStringValue ? String(item[itemValue]) : Number(item[itemValue])
+        return itemVal === selectedKey
+      }),
+    [itemsWithPlaceholder, selectedKey, itemValue, isStringValue]
+  )
+
+  const filteredItems: T[] = useMemo(
+    () => itemsWithPlaceholder.filter(item => contains(String(item[itemName]), inputValue)),
+    [itemsWithPlaceholder, itemName, contains, inputValue]
+  )
+
+  const displayValue = inputValue || (selectedItem ? String(selectedItem[itemName]) : '')
 
   return (
     <BaseComboBox
       onSelectionChange={handleSelectionChange}
       selectedKey={selectedKey}
       items={filteredItems}
-      onInputChange={setFilterValue}
+      inputValue={displayValue}
+      onInputChange={setInputValue}
       className={composeRenderProps(className, className =>
-        cn('group flex flex-col gap-2', className)
+        cn('group flex flex-col gap-1.5', className)
       )}
       isInvalid={hasError}
+      autoFocus={autoFocus}
       name={name}
       {...props}
     >
-      <Label value={label} />
+      {label && <Label value={label} isRequired={!isOptional} />}
       <FieldGroup className="p-0">
         <ComboBoxInput className="border-transparent focus:ring-0" />
         <Button variant="ghost" size="icon" className="mr-1.5 size-6 p-1">

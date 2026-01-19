@@ -23,7 +23,7 @@ const PdfViewerComponent: React.FC<PdfViewerComponentProps> = ({ file, filename,
       }}
       className="z-100"
       width="3xl"
-      bodyClass="aspect-210/297 w-3x bg-accent"
+      bodyClassName="aspect-210/297 w-3x bg-accent"
       confirmClose={false}
       role="dialog"
       background="accent"

@@ -41,13 +41,18 @@ export const CombiDemoCodePreview: React.FC<DemoCodePreviewProps> = ({
     <div className="">
       <div className="relative">
         <div
-          className={cn('relative min-h-80 overflow-hidden rounded-md-t bg-transparent', className)}
+          className={cn(
+            disableCode ? 'rounded-md' : 'rounded-t-md',
+            'relative min-h-80 overflow-hidden bg-transparent',
+            className
+          )}
         >
           <div className="absolute inset-0 rounded-md" />
 
           <div
             className={cn(
-              'absolute top-0 bottom-0 flex h-full min-h-80 w-full flex-1 grow items-center justify-center rounded-t-md border p-6 lg:p-12'
+              'absolute top-0 bottom-0 flex h-full min-h-80 w-full flex-1 grow items-center justify-center border p-6 lg:p-12',
+              disableCode ? 'rounded-md' : 'rounded-t-md'
             )}
           >
             {isLoading && (
@@ -57,7 +62,7 @@ export const CombiDemoCodePreview: React.FC<DemoCodePreviewProps> = ({
             )}
             <iframe
               src={demoUrl}
-              className="absolute top-0 right-0 left-0 m-0 h-screen w-screen max-w-full rounded-t-md bg-transparent p-0"
+              className="absolute top-0 right-0 left-0 m-0 h-screen w-screen max-w-full rounded-md bg-transparent p-0"
               loading="lazy"
               title="Component preview"
               style={{ height: '100%' }}
@@ -65,7 +70,7 @@ export const CombiDemoCodePreview: React.FC<DemoCodePreviewProps> = ({
             />
           </div>
         </div>
-        <div>{codeView()}</div>
+        {!disableCode && <div>{codeView()}</div>}
 
         <div className="absolute top-1 right-1">
           <Button

@@ -1,15 +1,15 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
-  "name": "icon",
+  "name": "empty",
   "type": "registry:ui",
-  "title": "Tooltip",
-  "description": "React aria components tooltip",
-  "dependencies": ["lucide-react", "@hugeicons/react"],
+  "title": "Empty",
+  "description": "React aria components empty",
+  "dependencies": ["tailwind-variants"],
   "files": [
     {
-      "path": "resources/js/components/twc-ui/icon.tsx",
+      "path": "resources/js/components/twc-ui/empty.tsx",
       "type": "registry:ui",
-      "target": "components/twc-ui/icon.tsx"
+      "target": "components/twc-ui/empty.tsx"
     }
   ]
 }

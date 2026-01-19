@@ -61,7 +61,7 @@ const AlertDialogComponent: React.FC<AlertDialogProps> = ({
       _skipContentWrapper={true}
     >
       <DialogContent closeButton={false} role="alertdialog" className="z-100 max-w-xl bg-white">
-        <DialogBody className="px-4 py-0">
+        <DialogBody className="px-4 py-0 pb-3">
           <div className="mt-6 flex rounded-t-lg">
             <div className="sm:flex sm:items-start">
               <div
@@ -85,7 +85,7 @@ const AlertDialogComponent: React.FC<AlertDialogProps> = ({
                 >
                   {title}
                 </Heading>
-                <div className="mt-2">
+                <div className="mb-2">
                   <p className="text-gray-500 text-sm">{message}</p>
                 </div>
               </div>

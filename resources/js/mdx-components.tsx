@@ -6,6 +6,7 @@ import { DemoCodePreview } from '@/components/docs/DemoCodePreview'
 import { InstallationCommand } from '@/components/docs/install-command'
 import { Installation } from '@/components/docs/installation'
 import { InstallationSection } from '@/components/docs/installation-section'
+import { LangInfo } from '@/components/docs/LangInfo'
 import { Required } from '@/components/docs/required'
 import { SourceCode } from '@/components/docs/SourceCode'
 import { TypeInfo } from '@/components/docs/TypeInfo'
@@ -93,6 +94,7 @@ const sharedComponents = {
   InstallationSection,
   Installation,
   Icon,
+  LangInfo,
   Required,
   SourceCode,
   TypeInfo,

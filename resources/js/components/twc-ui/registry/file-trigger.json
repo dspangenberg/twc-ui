@@ -1,15 +1,15 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
-  "name": "list-box",
+  "name": "file-trigger",
   "type": "registry:ui",
-  "title": "ListBox",
-  "description": "React aria ListBox component",
-  "dependencies": ["lucide-react", "react-aria-components"],
+  "title": "FileTrigger",
+  "description": "React aria FileTrigger component",
+  "dependencies": ["react-aria-components"],
   "files": [
     {
-      "path": "resources/js/components/twc-ui/list-box.tsx",
+      "path": "resources/js/components/twc-ui/file-trigger.tsx",
       "type": "registry:ui",
-      "target": "components/twc-ui/list-box.tsx"
+      "target": "components/twc-ui/file-trigger.tsx"
     }
   ]
 }

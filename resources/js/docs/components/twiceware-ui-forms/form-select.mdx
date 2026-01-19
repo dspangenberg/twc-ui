@@ -5,3 +5,16 @@ title: FormSelect
 ## Installation
 
 <Installation registry="form-select" />
+
+## Documentation
+## Props
+
+| Prop        | Type                 | Default | Descriptions                                                  |
+  |-------------|----------------------|---------|---------------------------------------------------------------|
+| description | `string`             | ``      | Helper text displayed below the label                         |
+| isRequired  | `boolean`            | `false` | Whether the field is required (shows a red asterisk in label) |
+| items       | `[] as T[],`         | `[]`    | Items for the radio group                                     |
+| label       | `string`             | ``      | Label text for the text field                                 |
+| itemName    | `keyof T & string`   | `name`  | Name of the field in items which is displayed                 |
+| itemValue   | `keyof T & string`   | `id`    | Name of the field in items which is used as value             |
+| value       | `string` \| `number` | ``      | Selected value                                                |

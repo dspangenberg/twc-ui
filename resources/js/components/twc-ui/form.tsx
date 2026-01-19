@@ -2,7 +2,6 @@ import type { FormDataConvertible } from '@inertiajs/core'
 import type { RequestMethod, SimpleValidationErrors, ValidationConfig } from 'laravel-precognition'
 import type React from 'react'
 import { createContext, type FormEvent, type HTMLAttributes, useContext } from 'react'
-import { useLocale } from 'react-aria-components'
 import { useForm as internalUseForm } from '@/hooks/use-twc-ui-form'
 import { cn } from '@/lib/utils'
 import { FormErrors } from './form-errors'
@@ -43,6 +42,7 @@ type ExtendedForm<T extends FormSchema> = {
 type FormContextValue = {
   errorTitle?: string
   errorVariant?: 'form' | 'field'
+  errorClassName?: string
   [key: string]: any // Erlaubt alle ExtendedForm Properties
 }
 
@@ -55,6 +55,7 @@ interface FormProps<T extends FormSchema> extends BaseFormProps {
   errorTitle?: string
   className?: string
   errorVariant?: 'form' | 'field'
+  errorClassName?: string
 }
 
 export const Form = <T extends FormSchema>({
@@ -62,12 +63,11 @@ export const Form = <T extends FormSchema>({
   children,
   errorVariant = 'form',
   errorTitle,
+  errorClassName,
   onSubmitted,
   className,
   ...props
 }: FormProps<T>) => {
-  const { locale } = useLocale()
-
   if (!form) {
     console.error('Form component received undefined form prop')
     return null
@@ -79,9 +79,14 @@ export const Form = <T extends FormSchema>({
     return new Promise((resolve, reject) => {
       form.submit({
         preserveScroll: true,
-        onError: (errors: SimpleValidationErrors) => {
-          form.setErrors(errors)
-          reject(errors)
+        onError: errors => {
+          // Convert Inertia errors (string[]) to SimpleValidationErrors (string)
+          const simpleErrors = Object.entries(errors).reduce((acc, [key, value]) => {
+            acc[key] = Array.isArray(value) ? value[0] : value
+            return acc
+          }, {} as SimpleValidationErrors)
+          form.setErrors(simpleErrors)
+          reject(simpleErrors)
         },
         onSuccess: () => {
           onSubmitted?.()
@@ -96,7 +101,8 @@ export const Form = <T extends FormSchema>({
       value={{
         ...form,
         errorTitle,
-        errorVariant
+        errorVariant,
+        errorClassName
       }}
     >
       <form
@@ -107,7 +113,12 @@ export const Form = <T extends FormSchema>({
         className={cn('w-full', className)}
         {...props}
       >
-        <FormErrors errors={form.errors} title={errorTitle} showErrors={errorVariant === 'form'} />
+        <FormErrors
+          className={errorClassName}
+          errors={form.errors}
+          title={errorTitle}
+          showErrors={errorVariant === 'form'}
+        />
         <fieldset disabled={form.processing}>{children}</fieldset>
       </form>
     </FormContext.Provider>
@@ -121,6 +132,7 @@ export const useFormContext = <T extends FormSchema = FormSchema>() => {
   }
   return context as ExtendedForm<T> & {
     errorTitle?: string
+    errorClass?: string
     errorVariant?: 'form' | 'field'
   }
 }

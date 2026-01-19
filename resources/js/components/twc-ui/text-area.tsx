@@ -21,7 +21,7 @@ const RACTextArea = ({ className, autoSize = true, rows = 2, ...props }: RACText
     <AriaTextArea
       className={composeRenderProps(className, className =>
         cn(
-          'flex w-full rounded-sm border border-input bg-transparent px-3 py-1 font-medium shadow-none outline-0 transition-colors file:border-0 file:bg-transparent file:font-medium file:text-sm placeholder:text-muted-foreground',
+          'flex w-full rounded-sm border border-input bg-background px-3 py-1 font-medium shadow-none outline-0 transition-colors file:border-0 file:bg-transparent file:font-medium file:text-sm placeholder:text-muted-foreground',
           /* Disabled */
           'data-disabled:cursor-not-allowed data-disabled:opacity-50',
           /* Focused */

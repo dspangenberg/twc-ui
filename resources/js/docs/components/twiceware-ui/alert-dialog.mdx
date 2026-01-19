@@ -24,8 +24,8 @@ const doSomething = async () => {
 
 | Prop              | Type                                                                    | Default       | Descriptions                                    |
   |-------------------|-------------------------------------------------------------------------|---------------|-------------------------------------------------|
-| title             | `string`                                                                | ``            | Title of the alert dialog                       |
-| message           | `string`                                                                | ``            | Message                                         |
+| title <Required />            | `string`                                                                | ``            | Title of the alert dialog                       |
+| message <Required />          | `string`                                                                | ``            | Message                                         |
 | buttonTitle       | `string`                                                                | `OK`          | Label of the OK button                          |
-| cancelButtonTitle | `string`                                                                | EN: `Cancel`<br/>DE: `Abbruch`      | Label of the cancel button                      |
+| cancelButtonTitle | `string`                                                                | <LangInfo de="Abbrechen" en="Cancel" />    | Label of the cancel button                      |
 | variant           | <TypeInfo title="variant" types={['default', 'destructive', 'info']} /> | `destructive` | Icon of the dialog and variant of the OK-button |

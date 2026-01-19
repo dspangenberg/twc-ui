@@ -1,5 +1,41 @@
 ---
 title: FormComboBox
 ---
+<CombiDemoCodePreview disableCode codePath="form/default.tsx" demoPath={route('contact.create')} className="h-200" />
+
 # Installation
 <Installation registry="form-combo-box" />
+
+# Documentation
+
+## Usage
+<SourceCode hideHeader={true} code={`
+  interface Props {
+    contact: App.Data.ContactData
+    countries: App.Data.CountryData[]
+  }
+  export default function FormDemo({ contact, countries }: Props) {
+    const form = useForm<App.Data.ContactData>(
+      'contact-form',
+      'post',
+      route('contact.store'),
+      contact
+    )
+
+    return (
+      <FormComboBox label="Country" {...form.register('country_id')} items={countries} />
+    )
+  }
+`} />
+
+## Props
+
+| Prop        | Type                 | Default | Descriptions                                                  |
+|-------------|----------------------|---------|---------------------------------------------------------------|
+| description | `string`             | ``      | Helper text displayed below the label                         |
+| isRequired  | `boolean`            | `false` | Whether the field is required (shows a red asterisk in label) |
+| items       | `[] as T[],`         | `[]`    | Items for the radio group                                     |
+| label       | `string`             | ``      | Label text for the text field                                 |
+| itemName    | `keyof T & string`   | `name`  | Name of the field in items which is displayed                 |
+| itemValue   | `keyof T & string`   | `id`    | Name of the field in items which is used as value             |
+| value       | `string` \| `number` | ``      | Selected value                                                |
