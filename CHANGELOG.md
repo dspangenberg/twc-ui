@@ -1,6 +1,6 @@
 ### 2026-01-29
 
-- The combo box has lost the selected value if autoFocus was used.
+- Fixed: Combo box lost the selected value when autoFocus was used.
 - ListBox supports double-click.
 - Tab style for classical tabs optimized
 - Styles for alert dialog optimized
