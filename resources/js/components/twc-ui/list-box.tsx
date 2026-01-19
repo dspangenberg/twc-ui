@@ -1,4 +1,4 @@
-import { CheckIcon } from '@radix-ui/react-icons'
+import { Check } from 'lucide-react'
 import {
   Collection as AriaCollection,
   Header as AriaHeader,
@@ -36,12 +36,14 @@ const ListBoxItem = <T extends object>({
   className,
   children,
   id,
+  onDoubleClick,
   ...props
-}: Omit<AriaListBoxItemProps<T>, 'id'> & { id?: string | number }) => {
+}: Omit<AriaListBoxItemProps<T>, 'id'> & { id?: string | number; onDoubleClick?: () => void }) => {
   return (
     <AriaListBoxItem
       textValue={props.textValue}
       id={id}
+      onDoubleClick={onDoubleClick}
       className={composeRenderProps(className, className =>
         cn(
           'pointer-events-auto relative flex w-full cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none',
@@ -62,7 +64,7 @@ const ListBoxItem = <T extends object>({
         <>
           {renderProps.isSelected && (
             <span className="absolute left-2 flex size-4 items-center justify-center">
-              <CheckIcon className="size-4 text-primary" />
+              <Check className="size-4 text-primary" />
             </span>
           )}
           {children}

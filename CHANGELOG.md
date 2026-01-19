@@ -1,3 +1,15 @@
+### 2026-01-29
+
+- Fixed: Combo box lost the selected value when autoFocus was used.
+- ListBox supports double-click.
+- Tab style for classical tabs optimized
+- Styles for alert dialog optimized
+- PDF-Container dependency for rect-use removed
+- Extended dialog changed property bodyClass to bodyClassName
+- Added file trigger component
+- New className property for FormErrors
+- New errorClassName property for Form
+
 ### 2025-12-22
 
 #### Components

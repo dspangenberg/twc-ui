@@ -9,17 +9,20 @@
     "react-aria-components",
     "@hugeicons/core-free-icons"
   ],
-  "registryDependencies": [
-    "@twc-ui/alert-dialog",
-    "@twc-ui/dialog",
-    "@twc-ui/button",
-    "@twc-ui/icon"
-  ],
+  "registryDependencies": ["@twc-ui/alert-dialog", "@twc-ui/dialog", "@twc-ui/button"],
   "files": [
     {
       "path": "resources/js/components/twc-ui/extended-dialog.tsx",
       "type": "registry:ui",
       "target": "components/twc-ui/extended-dialog.tsx"
     }
-  ]
+  ],
+  "cssVars": {
+    "light": {
+      "page-content": "oklch(0.99 0.0011 197.13)"
+    },
+    "dark": {
+      "page-content": "oklch(0.01 0.0011 197.13)"
+    }
+  }
 }

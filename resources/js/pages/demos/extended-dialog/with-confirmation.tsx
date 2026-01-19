@@ -60,12 +60,7 @@ export default function DialogFormDemo({ contact, countries }: Props) {
           <Form form={form}>
             <FormGrid>
               <div className="col-span-12">
-                <FormTextField
-                  autoFocus
-                  isRequired
-                  label="First name"
-                  {...form.register('first_name')}
-                />
+                <FormTextField isRequired label="First name" {...form.register('first_name')} />
                 <div className="pt-0.5">
                   <Checkbox label="VIP" {...form.registerCheckbox('is_vip')} />
                 </div>
@@ -77,7 +72,12 @@ export default function DialogFormDemo({ contact, countries }: Props) {
                 <FormTextField isRequired label="E-Mail" {...form.register('email')} />
               </div>
               <div className="col-span-12">
-                <FormComboBox label="Country" {...form.register('country_id')} items={countries} />
+                <FormComboBox
+                  autoFocus
+                  label="Country"
+                  {...form.register('country_id')}
+                  items={countries}
+                />
               </div>
             </FormGrid>
           </Form>

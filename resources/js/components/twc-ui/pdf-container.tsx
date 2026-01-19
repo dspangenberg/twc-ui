@@ -7,7 +7,6 @@ import { LogoSpinner } from './logo-spinner'
 import { Separator } from './separator'
 import 'react-pdf/dist/Page/TextLayer.css'
 import 'react-pdf/dist/Page/AnnotationLayer.css'
-
 import {
   ArrowDown01Icon,
   ArrowUp01Icon,
@@ -19,8 +18,6 @@ import {
   SquareArrowDiagonal02Icon
 } from '@hugeicons/core-free-icons'
 import { TextCursor } from 'lucide-react'
-
-import { useFullscreen, useToggle } from 'react-use'
 import { useFileDownload } from '@/hooks/use-file-download'
 import { cn } from '@/lib/utils'
 import { Button } from './button'
@@ -28,6 +25,52 @@ import { DropdownButton } from './dropdown-button'
 import { MenuItem } from './menu'
 import { ToggleButtonGroup, ToggleButtonGroupItem } from './toggle-button-group'
 import { Toolbar } from './toolbar'
+
+// Native implementation of useToggle
+const useToggle = (initialValue = false): [boolean, (value?: boolean) => void] => {
+  const [value, setValue] = useState(initialValue)
+  const toggle = useCallback((newValue?: boolean) => {
+    setValue(prev => (newValue !== undefined ? newValue : !prev))
+  }, [])
+  return [value, toggle]
+}
+
+// Native implementation of useFullscreen
+const useFullscreen = (
+  ref: React.RefObject<Element>,
+  enabled: boolean,
+  options?: { onClose?: () => void }
+) => {
+  const [isFullscreen, setIsFullscreen] = useState(false)
+  const onClose = options?.onClose
+
+  useEffect(() => {
+    if (!ref.current) return
+
+    const onFullscreenChange = () => {
+      const isFull = !!document.fullscreenElement
+      setIsFullscreen(isFull)
+      if (!isFull && onClose) {
+        onClose()
+      }
+    }
+
+    document.addEventListener('fullscreenchange', onFullscreenChange)
+    return () => document.removeEventListener('fullscreenchange', onFullscreenChange)
+  }, [onClose])
+
+  useEffect(() => {
+    if (!ref.current) return
+
+    if (enabled && !document.fullscreenElement) {
+      ref.current.requestFullscreen?.()
+    } else if (!enabled && document.fullscreenElement) {
+      document.exitFullscreen?.()
+    }
+  }, [enabled, ref])
+
+  return isFullscreen
+}
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdn.jsdelivr.net/npm/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`
 
@@ -57,7 +100,7 @@ export const PdfContainer: React.FC<Props> = ({
     } catch {
       return 'unbekannt.pdf'
     }
-  }, [file, filename])
+  }, [file])
 
   const divRef = useRef<HTMLDivElement>(null)
   const [show, toggle] = useToggle(false)
@@ -100,12 +143,12 @@ export const PdfContainer: React.FC<Props> = ({
     }
   }
 
-  const onDocumentLoadSuccess = async (document: PDFDocumentProxy): Promise<void> => {
+  const onDocumentLoadSuccess = (document: PDFDocumentProxy): void => {
     setNumPages(document.numPages)
     pdfRef.current = document
     setScale(1.25)
     setIsLoading(false)
-    await checkFitToPageVisibility()
+    void checkFitToPageVisibility()
   }
 
   const calculateFitToWidth = useCallback(async () => {
@@ -340,14 +383,12 @@ export const PdfContainer: React.FC<Props> = ({
           variant="toolbar"
           icon={SquareArrowDiagonal02Icon}
           title="Vollbildmodus"
-          onClick={toggle}
+          onClick={() => toggle()}
         />
       </Toolbar>
     ),
     [
       scale,
-      scaleMode,
-      showFitToPage,
       cursorTool,
       show,
       calculateFitToPage,
