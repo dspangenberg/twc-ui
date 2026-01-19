@@ -1,6 +1,6 @@
 import type { DateValue } from '@internationalized/date'
 import type { RangeValue } from '@react-types/shared'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useDateRangeConversion } from '@/hooks/use-date-conversion'
 import { DateRangePicker, type DateRangePickerProps } from './date-range-picker'
 import { useFormContext } from './form'
@@ -19,17 +19,30 @@ const FormDateRangePicker = ({ value, onChange, ...props }: FormDateRangePickerP
 
   // Use internal state to prevent resets during typing
   const [internalValue, setInternalValue] = useState<RangeValue<DateValue> | null>(parsedDate)
+  const typingTimeoutRef = useRef<NodeJS.Timeout | null>(null)
+  const isTypingRef = useRef(false)
 
-  // Update internal value when external value changes
+  // Update internal value when external value changes (but not while user is typing)
   useEffect(() => {
-    if (parsedDate) {
+    if (!isTypingRef.current) {
       setInternalValue(parsedDate)
     }
   }, [parsedDate])
 
   const handleInternalChange = (newValue: RangeValue<DateValue> | null) => {
+    isTypingRef.current = true
     setInternalValue(newValue)
     handleChange(newValue)
+
+    // Clear existing timeout
+    if (typingTimeoutRef.current) {
+      clearTimeout(typingTimeoutRef.current)
+    }
+
+    // Reset typing flag after a short delay
+    typingTimeoutRef.current = setTimeout(() => {
+      isTypingRef.current = false
+    }, 500)
   }
 
   return (

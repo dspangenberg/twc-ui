@@ -170,13 +170,26 @@ export function useDateRangeConversion(
   onChange?: (value: RangeValue<string> | null) => void
 ): UseDateRangeConversionReturn {
   const parsedDate = useMemo((): RangeValue<DateValue> | null => {
-    if (!value?.start || !value.end) return null
+    if (!value?.start || !value.end) {
+      return null
+    }
 
     try {
-      const startDate = parse(value.start, DATE_FORMAT, new Date())
-      const endDate = parse(value.end, DATE_FORMAT, new Date())
+      // Try ISO format first (yyyy-MM-dd), then fall back to DATE_FORMAT
+      let startDate = parse(value.start, 'yyyy-MM-dd', new Date())
+      let endDate = parse(value.end, 'yyyy-MM-dd', new Date())
 
-      if (Number.isNaN(startDate.getTime()) || Number.isNaN(endDate.getTime())) return null
+      // If ISO parsing failed, try DATE_FORMAT
+      if (Number.isNaN(startDate.getTime())) {
+        startDate = parse(value.start, DATE_FORMAT, new Date())
+      }
+      if (Number.isNaN(endDate.getTime())) {
+        endDate = parse(value.end, DATE_FORMAT, new Date())
+      }
+
+      if (Number.isNaN(startDate.getTime()) || Number.isNaN(endDate.getTime())) {
+        return null
+      }
 
       return {
         start: new CalendarDate(
@@ -208,9 +221,10 @@ export function useDateRangeConversion(
       try {
         const startDate = dateValueToDate(newValue.start)
         const endDate = dateValueToDate(newValue.end)
+        // Format as ISO (yyyy-MM-dd) to match what registerDateRange expects
         const formattedRange = {
-          start: format(startDate, DATE_FORMAT),
-          end: format(endDate, DATE_FORMAT)
+          start: format(startDate, 'yyyy-MM-dd'),
+          end: format(endDate, 'yyyy-MM-dd')
         }
         onChange(formattedRange)
       } catch {
