@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "icon",
+  "type": "registry:ui",
+  "title": "Tooltip",
+  "description": "React aria components tooltip",
+  "dependencies": ["lucide-react", "@hugeicons/react"],
+  "files": [
+    {
+      "path": "resources/js/components/twc-ui/icon.tsx",
+      "type": "registry:ui",
+      "target": "components/twc-ui/icon.tsx"
+    }
+  ]
+}
