@@ -258,6 +258,7 @@
       ],
       "registryDependencies": [
         "@twc-ui/button",
+        "@twc-ui/range-calendar",
         "@twc-ui/date-field",
         "@twc-ui/field",
         "@twc-ui/popover",
