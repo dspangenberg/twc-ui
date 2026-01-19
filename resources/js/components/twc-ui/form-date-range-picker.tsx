@@ -24,10 +24,17 @@ const FormDateRangePicker = ({ value, onChange, ...props }: FormDateRangePickerP
 
   // Update internal value when external value changes (but not while user is typing)
   useEffect(() => {
-    if (!isTyping) {
+    // Always reset if value becomes null (from form reset or calendar reset button)
+    if (value === null || (value?.start === null && value?.end === null)) {
+      setInternalValue(null)
+      setIsTyping(false)
+      return
+    }
+
+    if (!isTyping && parsedDate !== null) {
       setInternalValue(parsedDate)
     }
-  }, [parsedDate, isTyping])
+  }, [value, parsedDate, isTyping])
 
   // Cleanup timeout on unmount
   useEffect(() => {
@@ -39,6 +46,17 @@ const FormDateRangePicker = ({ value, onChange, ...props }: FormDateRangePickerP
   }, [])
 
   const handleInternalChange = (newValue: RangeValue<DateValue> | null) => {
+    // If reset (null), handle immediately
+    if (newValue === null) {
+      setInternalValue(null)
+      setIsTyping(false)
+      handleChange(null)
+      if (typingTimeoutRef.current) {
+        clearTimeout(typingTimeoutRef.current)
+      }
+      return
+    }
+
     setIsTyping(true)
     setInternalValue(newValue)
     handleChange(newValue)
