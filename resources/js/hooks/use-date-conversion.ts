@@ -1,9 +1,4 @@
-import {
-  CalendarDate,
-  CalendarDateTime,
-  type DateValue,
-  Time
-} from '@internationalized/date'
+import { CalendarDate, CalendarDateTime, type DateValue, Time } from '@internationalized/date'
 import type { RangeValue } from '@react-types/shared'
 import { format, parse } from 'date-fns'
 import { useCallback, useMemo } from 'react'
@@ -200,8 +195,13 @@ export function useDateRangeConversion(
     (newValue: RangeValue<DateValue> | null) => {
       if (!onChange) return
 
-      if (!newValue?.start || !newValue.end) {
+      if (!newValue) {
         onChange(null)
+        return
+      }
+
+      // Don't update if either value is incomplete - let the user finish typing
+      if (!newValue.start || !newValue.end) {
         return
       }
 
@@ -214,7 +214,8 @@ export function useDateRangeConversion(
         }
         onChange(formattedRange)
       } catch {
-        onChange(null)
+        // Don't reset on error - let the user finish typing
+        return
       }
     },
     [onChange]

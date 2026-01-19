@@ -1,8 +1,10 @@
+import type { DateValue } from '@internationalized/date'
 import type { RangeValue } from '@react-types/shared'
+import { useEffect, useState } from 'react'
 import { useDateRangeConversion } from '@/hooks/use-date-conversion'
-import { FormFieldError } from './form-errors'
 import { DateRangePicker, type DateRangePickerProps } from './date-range-picker'
 import { useFormContext } from './form'
+import { FormFieldError } from './form-errors'
 
 interface FormDateRangePickerProps extends Omit<DateRangePickerProps, 'value' | 'onChange'> {
   value?: RangeValue<string> | null
@@ -15,12 +17,27 @@ const FormDateRangePicker = ({ value, onChange, ...props }: FormDateRangePickerP
   const error = form?.errors?.[props.name as string]
   const { parsedDate, handleChange } = useDateRangeConversion(value, onChange)
 
+  // Use internal state to prevent resets during typing
+  const [internalValue, setInternalValue] = useState<RangeValue<DateValue> | null>(parsedDate)
+
+  // Update internal value when external value changes
+  useEffect(() => {
+    if (parsedDate) {
+      setInternalValue(parsedDate)
+    }
+  }, [parsedDate])
+
+  const handleInternalChange = (newValue: RangeValue<DateValue> | null) => {
+    setInternalValue(newValue)
+    handleChange(newValue)
+  }
+
   return (
     <DateRangePicker
       errorComponent={FormFieldError}
       errorMessage={error}
-      value={parsedDate}
-      onChange={handleChange}
+      value={internalValue}
+      onChange={handleInternalChange}
       {...props}
     />
   )

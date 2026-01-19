@@ -9,6 +9,7 @@
 - Added file trigger component
 - New className property for FormErrors
 - New errorClassName property for Form
+- Fixed: DateRangePicker now properly handles partial date input without resetting the field. Changed validation behavior from 'native' to 'aria' and added internal state management to prevent value loss while typing dates.
 
 ### 2025-12-22
 
