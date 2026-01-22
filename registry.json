@@ -670,6 +670,34 @@
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "form-password-field",
+      "type": "registry:ui",
+      "title": "FormPasswordField",
+      "description": "FormPasswordField component",
+      "dependencies": [
+        "react-aria-components",
+        "@hugeicons/core-free-icons"
+      ],
+      "registryDependencies": [
+        "@twc-ui/button",
+        "@twc-ui/field",
+        "@twc-ui/form",
+        "@twc-ui/form-errors",
+        "@twc-ui/icon",
+        "@twc-ui/input-group",
+        "@twc-ui/tooltip"
+      ],
+      "files": [
+        {
+          "path": "resources/js/components/twc-ui/form-password-field.tsx",
+          "type": "registry:ui",
+          "target": "components/twc-ui/form-password-field.tsx"
+        }
+      ],
+      "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "name": "form-radio-group",
       "type": "registry:ui",
       "title": "FormRadioGroup",
@@ -845,6 +873,29 @@
           "path": "resources/js/components/twc-ui/icon.tsx",
           "type": "registry:ui",
           "target": "components/twc-ui/icon.tsx"
+        }
+      ],
+      "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "input-group",
+      "type": "registry:ui",
+      "title": "InputGroup",
+      "description": "InputGroup component",
+      "dependencies": [
+        "react-aria-components",
+        "tailwind-variants"
+      ],
+      "registryDependencies": [
+        "@twc-ui/button",
+        "@twc-ui/text-area"
+      ],
+      "files": [
+        {
+          "path": "resources/js/components/twc-ui/input-group.tsx",
+          "type": "registry:ui",
+          "target": "components/twc-ui/input-group.tsx"
         }
       ],
       "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"

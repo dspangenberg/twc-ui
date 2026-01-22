@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "input-group",
+  "type": "registry:ui",
+  "title": "InputGroup",
+  "description": "InputGroup component",
+  "dependencies": ["react-aria-components", "tailwind-variants"],
+  "registryDependencies": ["@twc-ui/button", "@twc-ui/text-area"],
+  "files": [
+    {
+      "path": "resources/js/components/twc-ui/input-group.tsx",
+      "type": "registry:ui",
+      "target": "components/twc-ui/input-group.tsx"
+    }
+  ]
+}
