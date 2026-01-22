@@ -73,6 +73,10 @@ const FormPasswordField = ({
       sr: {
         met: ' - Anforderung erfüllt',
         notMet: ' - Anforderung nicht erfüllt'
+      },
+      toggle: {
+        show: 'Kennwort anzeigen',
+        hide: 'Kennwort ausblenden'
       }
     },
     en: {
@@ -93,11 +97,16 @@ const FormPasswordField = ({
       sr: {
         met: ' - Requirement met',
         notMet: ' - Requirement not met'
+      },
+      toggle: {
+        show: 'Show password',
+        hide: 'Hide password'
       }
     }
   }
 
   const t = translations[locale?.startsWith('de') ? 'de' : 'en']
+  const toggleLabel = revealed ? t.toggle.hide : t.toggle.show
 
   const checkStrength = (pass: string) => {
     const requirements = [
@@ -206,6 +215,9 @@ const FormPasswordField = ({
               variant="ghost"
               size="icon-sm"
               icon={icon}
+              aria-label={toggleLabel}
+              aria-pressed={revealed}
+              title={toggleLabel}
               onClick={() => {
                 setRevealed(!revealed)
                 inputRef.current?.focus()
