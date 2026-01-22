@@ -1,6 +1,6 @@
 ### 2026-01-22
 #### Components
-- Added FormPasswordFields component
+- Added FormPasswordField component
 - Added InputGroup component
 
 ### 2026-01-19

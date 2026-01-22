@@ -19,7 +19,7 @@ export default function Demo() {
 
   return (
     <DemoContainer className="h-60">
-      <Head title="TextField Demo" />
+      <Head title="FormPasswordField Demo" />
       <Form form={form} className="mx-auto mt-12 max-w-lg">
         <FormGrid>
           <div className="col-span-12">

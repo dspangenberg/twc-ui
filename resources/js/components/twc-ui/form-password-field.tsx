@@ -6,6 +6,7 @@ import {
 } from '@hugeicons/core-free-icons'
 import React, { useMemo, useState } from 'react'
 import { Focusable, useLocale } from 'react-aria-components'
+import { useFormContext } from '@/components/twc-ui/form'
 import { cn } from '@/lib/utils'
 import { Button } from './button'
 import { FieldDescription, Label } from './field'
@@ -38,7 +39,6 @@ const FormPasswordField = ({
   label,
   name,
   value,
-  error,
   onChange,
   onBlur,
   placeholder,
@@ -48,6 +48,8 @@ const FormPasswordField = ({
   const [isFocused, setIsFocused] = useState(false)
   const { locale } = useLocale()
   const inputRef = React.useRef<HTMLInputElement>(null)
+  const form = useFormContext()
+  const error = form?.errors?.[name as string]
 
   const inputType = revealed ? 'text' : 'password'
   const icon = revealed ? ViewIcon : ViewOffSlashIcon
@@ -112,7 +114,8 @@ const FormPasswordField = ({
     }))
   }
 
-  const strength = checkStrength(value as unknown as string)
+  const strength = useMemo(() => checkStrength(value ?? ''), [value])
+
   const strengthScore = useMemo(() => {
     return strength.filter(req => req.met).length
   }, [strength])
