@@ -4,12 +4,13 @@ import {
   ViewIcon,
   ViewOffSlashIcon
 } from '@hugeicons/core-free-icons'
-import React, { useMemo, useState } from 'react'
+import React, { useCallback, useLayoutEffect, useMemo, useState } from 'react'
 import { Focusable, useLocale } from 'react-aria-components'
-import { useFormContext } from '@/components/twc-ui/form'
+import { createPortal } from 'react-dom'
 import { cn } from '@/lib/utils'
 import { Button } from './button'
 import { FieldDescription, Label } from './field'
+import { useFormContext } from './form'
 import { FormFieldError } from './form-errors'
 import { Icon } from './icon'
 import { InputGroup, InputGroupAddon, InputGroupInput } from './input-group'
@@ -48,6 +49,7 @@ const FormPasswordField = ({
   const [isFocused, setIsFocused] = useState(false)
   const { locale } = useLocale()
   const inputRef = React.useRef<HTMLInputElement>(null)
+  const hintAnchorRef = React.useRef<HTMLDivElement>(null)
   const form = useFormContext()
   const error = form?.errors?.[name as string]
 
@@ -58,7 +60,7 @@ const FormPasswordField = ({
     de: {
       title: 'Kennwort-Anforderungen:',
       requirements: {
-        length: 'mindestens zwölf Zeichen',
+        length: 'zwischen 12 und 24 Zeichen lang',
         number: 'mindestens eine Ziffer',
         lowercase: 'mindestens einen Kleinbuchstaben',
         uppercase: 'mindestens einen Großbuchstaben',
@@ -73,16 +75,12 @@ const FormPasswordField = ({
       sr: {
         met: ' - Anforderung erfüllt',
         notMet: ' - Anforderung nicht erfüllt'
-      },
-      toggle: {
-        show: 'Kennwort anzeigen',
-        hide: 'Kennwort ausblenden'
       }
     },
     en: {
       title: 'Password requirements:',
       requirements: {
-        length: 'at least twelve characters',
+        length: '12 to 24 characters',
         number: 'at least one number',
         lowercase: 'at least one lowercase letter',
         uppercase: 'at least one uppercase letter',
@@ -97,20 +95,15 @@ const FormPasswordField = ({
       sr: {
         met: ' - Requirement met',
         notMet: ' - Requirement not met'
-      },
-      toggle: {
-        show: 'Show password',
-        hide: 'Hide password'
       }
     }
   }
 
   const t = translations[locale?.startsWith('de') ? 'de' : 'en']
-  const toggleLabel = revealed ? t.toggle.hide : t.toggle.show
 
   const checkStrength = (pass: string) => {
     const requirements = [
-      { regex: /.{12,}/, text: t.requirements.length },
+      { regex: /^.{12,24}$/, text: t.requirements.length },
       { regex: /[0-9]/, text: t.requirements.number },
       { regex: /[a-z]/, text: t.requirements.lowercase },
       { regex: /[A-Z]/, text: t.requirements.uppercase },
@@ -148,41 +141,81 @@ const FormPasswordField = ({
     return 'bg-emerald-500'
   }, [strengthScore])
 
+  const [hintStyle, setHintStyle] = useState<React.CSSProperties | null>(null)
+  const updateHintPosition = useCallback(() => {
+    const anchor = hintAnchorRef.current
+    if (!anchor) return
+    const rect = anchor.getBoundingClientRect()
+    const width = Math.min(rect.width * 1.2, 448)
+    setHintStyle({
+      left: rect.left + rect.width / 2,
+      top: rect.top - 8,
+      width,
+      maxWidth: 448
+    })
+  }, [hintAnchorRef.current])
+
+  useLayoutEffect(() => {
+    if (!showHint || !isFocused || allRequirementsMet) {
+      setHintStyle(null)
+      return
+    }
+
+    updateHintPosition()
+    const handle = () => updateHintPosition()
+    window.addEventListener('resize', handle)
+    window.addEventListener('scroll', handle, true)
+    return () => {
+      window.removeEventListener('resize', handle)
+      window.removeEventListener('scroll', handle, true)
+    }
+  }, [allRequirementsMet, isFocused, showHint, updateHintPosition])
+
   return (
     <>
       {label && <Label isRequired={isRequired} value={label} />}
-      <div className="relative">
-        {showHint && isFocused && !allRequirementsMet && (
-          <div className="fade-in-0 zoom-in-95 slide-in-from-bottom-2 absolute bottom-full left-1/2 z-50 mb-2 w-[120%] max-w-md -translate-x-1/2 animate-in rounded-md border bg-popover p-4 text-popover-foreground shadow-md">
-            <p className="mb-2 font-semibold text-sm">{t.title}</p>
-            <ul className="space-y-1 text-sm">
-              {strength.map((req, index) => (
-                <li key={index} className="flex items-center gap-2">
-                  {req.met ? (
-                    <Icon icon={Tick01Icon} className="size-4 text-emerald-500" />
-                  ) : (
-                    <Icon
-                      icon={MultiplicationSignIcon}
-                      className="size-4 text-muted-foreground/80"
-                    />
-                  )}
-                  <span
-                    className={`text-sm ${req.met ? 'text-emerald-600' : 'text-muted-foreground'}`}
-                  >
-                    {req.text}
-                    <span className="sr-only">{req.met ? t.sr.met : t.sr.notMet}</span>
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
+      <div className="relative" ref={hintAnchorRef}>
+        {showHint &&
+          isFocused &&
+          !allRequirementsMet &&
+          hintStyle &&
+          typeof document !== 'undefined' &&
+          createPortal(
+            <div
+              className="fade-in-0 zoom-in-95 slide-in-from-bottom-2 fixed z-100 -translate-x-1/2 -translate-y-full animate-in rounded-md border bg-popover p-4 text-popover-foreground shadow-md"
+              style={hintStyle}
+            >
+              <p className="mb-2 font-semibold text-sm">{t.title}</p>
+              <ul className="space-y-1 text-sm">
+                {strength.map((req, index) => (
+                  <li key={index} className="flex items-center gap-2">
+                    {req.met ? (
+                      <Icon icon={Tick01Icon} className="size-4 text-emerald-500" />
+                    ) : (
+                      <Icon
+                        icon={MultiplicationSignIcon}
+                        className="size-4 text-muted-foreground/80"
+                      />
+                    )}
+                    <span
+                      className={`text-sm ${req.met ? 'text-emerald-600' : 'text-muted-foreground'}`}
+                    >
+                      {req.text}
+                      <span className="sr-only">{req.met ? t.sr.met : t.sr.notMet}</span>
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>,
+            document.body
+          )}
         <InputGroup data-invalid={error ? '' : undefined}>
           {showStrength && (
             <InputGroupAddon align="inline-start">
               <TooltipTrigger>
                 <Focusable>
                   <span
+                    role="button"
                     className={cn(strengthColor, 'size-2 cursor-help rounded-full')}
                     tabIndex={-1}
                   />
@@ -198,6 +231,11 @@ const FormPasswordField = ({
             autoFocus={autoFocus}
             value={value ?? ''}
             onChange={e => onChange?.(e.target.value)}
+            onKeyDown={e => {
+              if (e.key === 'Escape') {
+                setIsFocused(false)
+              }
+            }}
             onFocus={() => setIsFocused(true)}
             onBlur={() => {
               setIsFocused(false)
@@ -207,7 +245,7 @@ const FormPasswordField = ({
             placeholder={placeholder}
             aria-invalid={Boolean(error)}
             autoComplete={autoComplete}
-            passwordRules="minlength: 12; maxLength: 24; required: lower; required: upper; required: digit; required: [!@#$%^&*+=.-];"
+            passwordrules="minlength: 12; maxlength: 24; required: lower; required: upper; required: digit; required: [!@#$%^&*+=.-];"
           />
 
           <InputGroupAddon align="inline-end">
@@ -215,9 +253,6 @@ const FormPasswordField = ({
               variant="ghost"
               size="icon-sm"
               icon={icon}
-              aria-label={toggleLabel}
-              aria-pressed={revealed}
-              title={toggleLabel}
               onClick={() => {
                 setRevealed(!revealed)
                 inputRef.current?.focus()
