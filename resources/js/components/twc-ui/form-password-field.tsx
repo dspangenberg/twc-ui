@@ -245,7 +245,7 @@ const FormPasswordField = ({
             placeholder={placeholder}
             aria-invalid={Boolean(error)}
             autoComplete={autoComplete}
-            passwordrules="minlength: 12; maxLength: 24; required: lower; required: upper; required: digit; required: [!@#$%^&*+=.-];"
+            passwordrules="minlength: 12; maxlength: 24; required: lower; required: upper; required: digit; required: [!@#$%^&*+=.-];"
           />
 
           <InputGroupAddon align="inline-end">
