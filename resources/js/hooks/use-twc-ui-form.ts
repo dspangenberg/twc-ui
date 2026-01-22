@@ -19,7 +19,7 @@ const DATE_FORMAT = import.meta.env.VITE_APP_DATE_FORMAT || 'yyyy-MM-dd'
  */
 function getNestedValue(obj: any, path: string): any {
   // Convert array notation to dot notation: phones[0].number -> phones.0.number
-  const normalizedPath = path.replace(/\[(\d+)\]/g, '.$1')
+  const normalizedPath = path.replace(/\[(\d+)]/g, '.$1')
 
   return normalizedPath.split('.').reduce((current, key) => {
     return current?.[key]
@@ -35,9 +35,12 @@ function getNestedValue(obj: any, path: string): any {
  */
 function setNestedValue(obj: any, path: string, value: any): any {
   // Convert array notation to dot notation: phones[0].number -> phones.0.number
-  const normalizedPath = path.replace(/\[(\d+)\]/g, '.$1')
+  const normalizedPath = path.replace(/\[(\d+)]/g, '.$1')
   const keys = normalizedPath.split('.')
-  const lastKey = keys.pop()!
+  const lastKey = keys.pop()
+  if (!lastKey) {
+    return obj
+  }
 
   // Navigate to the parent object, creating intermediate objects as needed
   const parent = keys.reduce((current, key, index) => {
@@ -103,13 +106,13 @@ export function useForm<T extends Record<string, FormDataConvertible>>(
 
   const validateFormField = (name: string) => {
     // Convert array notation to dot notation for Laravel validation
-    const laravelName = name.replace(/\[(\d+)\]/g, '.$1')
+  const laravelName = name.replace(/\[(\d+)]/g, '.$1')
     ;(form as any).validate(laravelName)
   }
 
   const touchFormField = (name: string) => {
     // Convert array notation to dot notation for Laravel validation
-    const laravelName = name.replace(/\[(\d+)\]/g, '.$1')
+  const laravelName = name.replace(/\[(\d+)]/g, '.$1')
     ;(form as any).touched(laravelName)
   }
 
@@ -122,7 +125,7 @@ export function useForm<T extends Record<string, FormDataConvertible>>(
 
   function register(name: string) {
     // Get error using both array notation and Laravel dot notation
-    const laravelName = name.replace(/\[(\d+)\]/g, '.$1')
+    const laravelName = name.replace(/\[(\d+)]/g, '.$1')
     const error = (form.errors as any)[name] || (form.errors as any)[laravelName]
 
     return {
@@ -148,7 +151,7 @@ export function useForm<T extends Record<string, FormDataConvertible>>(
 
   function registerEvent(name: string) {
     // Get error using both array notation and Laravel dot notation
-    const laravelName = name.replace(/\[(\d+)\]/g, '.$1')
+    const laravelName = name.replace(/\[(\d+)]/g, '.$1')
     const error = (form.errors as any)[name] || (form.errors as any)[laravelName]
 
     return {
@@ -174,7 +177,7 @@ export function useForm<T extends Record<string, FormDataConvertible>>(
 
   const registerCheckbox = (name: string) => {
     // Get error using both array notation and Laravel dot notation
-    const laravelName = name.replace(/\[(\d+)\]/g, '.$1')
+    const laravelName = name.replace(/\[(\d+)]/g, '.$1')
     const error = (form.errors as any)[name] || (form.errors as any)[laravelName]
     const value =
       name.includes('.') || name.includes('[')
