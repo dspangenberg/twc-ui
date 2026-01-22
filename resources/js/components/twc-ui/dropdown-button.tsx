@@ -5,7 +5,7 @@ import type { PopoverProps } from 'react-aria-components'
 import { cn } from '@/lib/utils'
 import { Button, type buttonVariants } from './button'
 import type { IconType } from './icon'
-import { type AriaMenuProps, Menu, MenuPopover, MenuTrigger } from './menu'
+import { type AriaMenuProps, Menu, MenuItem, MenuPopover, MenuTrigger } from './menu'
 
 interface DropdownButtonProps<T>
   extends AriaMenuProps<T>,
@@ -68,5 +68,5 @@ function DropdownButton<T extends object>({
   )
 }
 
-export { DropdownButton }
+export { DropdownButton, MenuItem }
 export type { DropdownButtonProps }

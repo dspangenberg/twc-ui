@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+@php use Illuminate\Support\Env; @endphp
+        <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" @class(['dark' => ($appearance ?? 'system') == 'dark'])>
 <head>
     <meta charset="utf-8">
@@ -43,6 +44,12 @@
 <body class="font-sans antialiased">
 @inertia
 </body>
-<script defer src="https://umami.twiceware.cloud/script.js" data-website-id="3aeec79f-10f5-4eb6-8e9c-6e3148f86c8c"
-></script>
+
+
+@if (config('services.umami.site_token'))
+    <script defer src="https://umami.twiceware.cloud/script.js" data-website-id="{{config('services.umami.site_token')}}"
+    ></script>
+@endif
+
+
 </html>

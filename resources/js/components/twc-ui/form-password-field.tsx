@@ -253,6 +253,7 @@ const FormPasswordField = ({
               variant="ghost"
               size="icon-sm"
               icon={icon}
+              excludeFromTabOrder
               onClick={() => {
                 setRevealed(!revealed)
                 inputRef.current?.focus()
