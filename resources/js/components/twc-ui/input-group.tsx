@@ -158,7 +158,7 @@ export const inputGroupInputStyles = tv({
 
 interface InputGroupInputProps extends AriaInputProps {
   ref?: React.Ref<HTMLInputElement>
-  passwordRules?: string
+  passwordrules?: string
 }
 
 const InputGroupInput = ({ className, ref, ...props }: InputGroupInputProps) => {
