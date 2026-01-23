@@ -11,7 +11,7 @@ import { cn } from '@/lib/utils'
 import { Button } from './button'
 import { FieldDescription, Label } from './field'
 import { useFormContext } from './form'
-import { FormFieldError } from './form-errors'
+import { FormFieldError, getFormError } from './form-errors'
 import { Icon } from './icon'
 import { InputGroup, InputGroupAddon, InputGroupInput } from './input-group'
 import { Tooltip, TooltipTrigger } from './tooltip'
@@ -51,7 +51,7 @@ const FormPasswordField = ({
   const inputRef = React.useRef<HTMLInputElement>(null)
   const hintAnchorRef = React.useRef<HTMLDivElement>(null)
   const form = useFormContext()
-  const error = form?.errors?.[name as string]
+  const error = getFormError(form?.errors, name)
 
   const inputType = revealed ? 'text' : 'password'
   const icon = revealed ? ViewIcon : ViewOffSlashIcon
