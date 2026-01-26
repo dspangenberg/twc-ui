@@ -4,7 +4,7 @@
   "type": "registry:ui",
   "title": "DropdownButton",
   "description": "DropdownButton component",
-  "dependencies": ["class-variance-authority", "react-aria-components", "lucide-react"],
+  "dependencies": ["tailwind-variants", "react-aria-components", "lucide-react"],
   "registryDependencies": ["@twc-ui/list-box", "@twc-ui/select", "@twc-ui/icon"],
   "files": [
     {

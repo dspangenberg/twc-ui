@@ -1,8 +1,8 @@
-import { render, screen, act, waitFor } from '@testing-library/react'
-import { describe, it, expect, vi } from 'vitest'
-import { Button } from '@/components/twc-ui/button'
 import { Rocket02Icon } from '@hugeicons/core-free-icons'
+import { act, render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
+import { describe, expect, it, vi } from 'vitest'
+import { Button } from '@/components/twc-ui/button'
 
 // Helper function to wrap components that might have tooltips
 const renderButton = (props: any) => {

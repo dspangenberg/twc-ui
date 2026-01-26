@@ -1,4 +1,4 @@
-import { Pen01Icon, PrinterIcon, Delete02Icon } from '@hugeicons/core-free-icons'
+import { Delete02Icon, Pen01Icon, PrinterIcon } from '@hugeicons/core-free-icons'
 import { DemoContainer } from '@/components/docs/DemoContainer'
 import { Button } from '@/components/twc-ui/button'
 import { Toolbar } from '@/components/twc-ui/toolbar'

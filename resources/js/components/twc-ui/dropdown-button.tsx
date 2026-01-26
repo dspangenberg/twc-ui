@@ -1,9 +1,10 @@
-import type { VariantProps } from 'class-variance-authority'
 import type * as React from 'react'
 import type { AriaMenuTriggerProps } from 'react-aria'
 import type { PopoverProps } from 'react-aria-components'
+import type { VariantProps } from 'tailwind-variants'
 import { cn } from '@/lib/utils'
-import { Button, type buttonVariants } from './button'
+import type { buttonVariants } from './button'
+import { Button } from './button'
 import type { IconType } from './icon'
 import { type AriaMenuProps, Menu, MenuItem, MenuPopover, MenuTrigger } from './menu'
 

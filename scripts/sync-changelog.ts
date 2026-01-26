@@ -7,7 +7,10 @@ import matter from 'gray-matter'
  * Syncs CHANGELOG.md in the root with changelog.mdx in docs
  */
 function syncChangelog() {
-  const changelogMdxPath = path.join(process.cwd(), 'resources/js/docs/getting-started/changelog.mdx')
+  const changelogMdxPath = path.join(
+    process.cwd(),
+    'resources/js/docs/getting-started/changelog.mdx'
+  )
   const changelogMdPath = path.join(process.cwd(), 'CHANGELOG.md')
 
   console.log('Syncing changelog...')

@@ -4,7 +4,7 @@
   "type": "registry:ui",
   "title": "Tabs",
   "description": "React aria components tabs",
-  "dependencies": ["class-variance-authority", "react-aria-components"],
+  "dependencies": ["tailwind-variants", "react-aria-components"],
   "files": [
     {
       "path": "resources/js/components/twc-ui/tabs.tsx",

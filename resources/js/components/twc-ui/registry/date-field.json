@@ -4,7 +4,7 @@
   "type": "registry:ui",
   "title": "Date Field",
   "description": "Date Field component",
-  "dependencies": ["@internationalized/date", "react-aria-components", "class-variance-authority"],
+  "dependencies": ["@internationalized/date", "react-aria-components", "tailwind-variants"],
   "registryDependencies": ["@twc-ui/field", "@twc-ui/use-date-conversion"],
   "files": [
     {

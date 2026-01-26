@@ -1,6 +1,6 @@
 import { DemoContainer } from '@/components/docs/DemoContainer'
-import { PdfViewer } from '@/components/twc-ui/pdf-viewer'
 import { Button } from '@/components/twc-ui/button'
+import { PdfViewer } from '@/components/twc-ui/pdf-viewer'
 
 export const Demo = () => {
   const onOpenPdfClicked = async () => {

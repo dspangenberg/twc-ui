@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom'
-import { vi } from 'vitest'
 import { configure } from '@testing-library/react'
+import { vi } from 'vitest'
 
 // Configure React Testing Library to automatically wrap in act()
 configure({

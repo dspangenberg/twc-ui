@@ -10,7 +10,7 @@
       "title": "AlertDialog",
       "description": "AlertDialog component",
       "dependencies": [
-        "class-variance-authority",
+        "tailwind-variants",
         "react-aria-components",
         "@hugeicons/core-free-icons"
       ],
@@ -35,7 +35,7 @@
       "title": "Alert",
       "description": "Alert component",
       "dependencies": [
-        "class-variance-authority"
+        "tailwind-variants"
       ],
       "registryDependencies": [
         "@twc-ui/icon"
@@ -120,7 +120,7 @@
       "title": "Button",
       "description": "Button component",
       "dependencies": [
-        "class-variance-authority",
+        "tailwind-variants",
         "react-aria-components",
         "lucide-react"
       ],
@@ -212,6 +212,48 @@
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "complete",
+      "type": "registry:ui",
+      "title": "All components",
+      "description": "All components",
+      "dependencies": [
+        "@inertiajs/core",
+        "laravel-precognition"
+      ],
+      "registryDependencies": [
+        "@twc-ui/form-complete",
+        "@twc-ui/alert",
+        "@twc-ui/alert-dialog",
+        "@twc-ui/button",
+        "@twc-ui/dialog",
+        "@twc-ui/dropdown-button",
+        "@twc-ui/empty",
+        "@twc-ui/extended-dialog",
+        "@twc-ui/icon",
+        "@twc-ui/link-button",
+        "@twc-ui/list-box",
+        "@twc-ui/logo",
+        "@twc-ui/logo-spinner",
+        "@twc-ui/pdf-viewer",
+        "@twc-ui/popover",
+        "@twc-ui/popover",
+        "@twc-ui/separator",
+        "@twc-ui/split-button",
+        "@twc-ui/tabs",
+        "@twc-ui/tooltip",
+        "@twc-ui/toolbar"
+      ],
+      "files": [
+        {
+          "path": "resources/js/components/twc-ui/form.tsx",
+          "type": "registry:ui",
+          "target": "components/twc-ui/form.tsx"
+        }
+      ],
+      "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "name": "date-field",
       "type": "registry:ui",
       "title": "Date Field",
@@ -219,7 +261,7 @@
       "dependencies": [
         "@internationalized/date",
         "react-aria-components",
-        "class-variance-authority"
+        "tailwind-variants"
       ],
       "registryDependencies": [
         "@twc-ui/field",
@@ -305,7 +347,7 @@
       "dependencies": [
         "@internationalized/date",
         "react-aria-components",
-        "class-variance-authority"
+        "tailwind-variants"
       ],
       "registryDependencies": [
         "@twc-ui/field",
@@ -327,7 +369,7 @@
       "title": "Dialog",
       "description": "Dialog component",
       "dependencies": [
-        "class-variance-authority",
+        "tailwind-variants",
         "react-aria-components",
         "lucide-react"
       ],
@@ -350,7 +392,7 @@
       "title": "DropdownButton",
       "description": "DropdownButton component",
       "dependencies": [
-        "class-variance-authority",
+        "tailwind-variants",
         "react-aria-components"
       ],
       "registryDependencies": [
@@ -392,7 +434,7 @@
       "title": "ExtendedDialog",
       "description": "ExtendedDialog component",
       "dependencies": [
-        "class-variance-authority",
+        "tailwind-variants",
         "react-aria-components",
         "@hugeicons/core-free-icons"
       ],
@@ -426,7 +468,7 @@
       "description": "Field component",
       "dependencies": [
         "react-aria-components",
-        "class-variance-authority"
+        "tailwind-variants"
       ],
       "files": [
         {
@@ -930,7 +972,7 @@
       "title": "LinkButton",
       "description": "LinkButton component",
       "dependencies": [
-        "class-variance-authority",
+        "tailwind-variants",
         "react-aria-components",
         "lucide-react"
       ],
@@ -1007,7 +1049,7 @@
       "title": "DropdownButton",
       "description": "DropdownButton component",
       "dependencies": [
-        "class-variance-authority",
+        "tailwind-variants",
         "react-aria-components",
         "lucide-react"
       ],
@@ -1258,7 +1300,7 @@
       "title": "Tabs",
       "description": "React aria components tabs",
       "dependencies": [
-        "class-variance-authority",
+        "tailwind-variants",
         "react-aria-components"
       ],
       "files": [
@@ -1391,7 +1433,7 @@
       "description": "React aria components toolbar",
       "dependencies": [
         "react-aria-components",
-        "class-variance-authority"
+        "tailwind-variants"
       ],
       "registryDependencies": [
         "@twc-ui/button"

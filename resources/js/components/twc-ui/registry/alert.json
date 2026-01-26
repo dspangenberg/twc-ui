@@ -4,7 +4,7 @@
   "type": "registry:ui",
   "title": "Alert",
   "description": "Alert component",
-  "dependencies": ["class-variance-authority"],
+  "dependencies": ["tailwind-variants"],
   "registryDependencies": ["@twc-ui/icon"],
   "files": [
     {

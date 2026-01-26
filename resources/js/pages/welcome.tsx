@@ -129,7 +129,7 @@ export default function Welcome() {
                 </li>
               </ul>
             </div>
-            <div className="-mb-px lg:-ml-px relative aspect-[335/376] w-full shrink-0 overflow-hidden rounded-t-lg bg-[#fff2f2] lg:mb-0 lg:aspect-auto lg:w-[438px] lg:rounded-t-none lg:rounded-r-lg dark:bg-[#1D0002]">
+            <div className="relative -mb-px aspect-[335/376] w-full shrink-0 overflow-hidden rounded-t-lg bg-[#fff2f2] lg:mb-0 lg:-ml-px lg:aspect-auto lg:w-[438px] lg:rounded-t-none lg:rounded-r-lg dark:bg-[#1D0002]">
               <svg
                 className="w-full max-w-none starting:translate-y-6 translate-y-0 text-[#F53003] opacity-100 starting:opacity-0 transition-all duration-750 dark:text-[#F61500]"
                 viewBox="0 0 438 104"
@@ -160,7 +160,7 @@ export default function Welcome() {
                 />
               </svg>
               <svg
-                className="-mt-[4.9rem] -ml-8 lg:-mt-[6.6rem] relative w-[448px] max-w-none lg:ml-0 dark:hidden"
+                className="relative -mt-[4.9rem] -ml-8 w-[448px] max-w-none lg:-mt-[6.6rem] lg:ml-0 dark:hidden"
                 viewBox="0 0 440 376"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -481,7 +481,7 @@ export default function Welcome() {
                 </g>
               </svg>
               <svg
-                className="-mt-[4.9rem] -ml-8 lg:-mt-[6.6rem] relative hidden w-[448px] max-w-none lg:ml-0 dark:block"
+                className="relative -mt-[4.9rem] -ml-8 hidden w-[448px] max-w-none lg:-mt-[6.6rem] lg:ml-0 dark:block"
                 viewBox="0 0 440 376"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
