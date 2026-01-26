@@ -60,6 +60,9 @@ export const AvatarUpload: React.FC<Props> = ({
   }
 
   const removeAvatar = () => {
+    if (droppedImage?.startsWith('blob:')) {
+      URL.revokeObjectURL(droppedImage)
+    }
     setDroppedImage(undefined)
     onSelect(undefined)
   }
@@ -78,7 +81,7 @@ export const AvatarUpload: React.FC<Props> = ({
             size={size}
             initials={initials}
             className="cursor-pointer"
-            aria-label="Avatar ändern"
+            aria-label="Change avatar"
           />
         </Pressable>
       </FileTrigger>
