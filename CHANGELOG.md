@@ -1,3 +1,7 @@
+### 2026-01-26
+#### Components
+- Added AvatarUpload component
+
 ### 2026-01-22
 #### Components
 - Added FormPasswordField component

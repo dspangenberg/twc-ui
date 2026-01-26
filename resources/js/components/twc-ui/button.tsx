@@ -32,10 +32,10 @@ const buttonVariants = cva(
         outline:
           'border border-input bg-background selected:bg-accent  data-[hovered]:bg-accent data-[hovered]:text-accent-foreground focus-visible:ring-ring/20',
         secondary:
-          'bg-secondary/90 text-secondary-foreground border-transparent border focus-visible:border-input focus-visible:border data-[hovered]:bg-secondary/20',
+          'bg-secondary/90 text-secondary-foreground border-transparent border focus-visible:border-input focus-visible:border data-[hovered]:bg-secondary/50 data-[hovered]:border-border',
         ghost:
           'data-[hovered]:bg-accent/80 data-[hovered]:border-border  selected:bg-muted data-[hovered]:text-accent-foreground focus-visible:border border border-transparent focus-visible:border-input focus-visible:ring-ring/20 text-sm',
-        link: 'text-primary underline-offset-4 data-[hovered]:underline',
+        link: 'text-primary underline-offset-4 data-[hovered]:underline cursor-pointer',
         'ghost-destructive':
           'data-[hovered]:bg-accent data-[hovered]:border-border data-[hovered]:text-destructive-foreground focus-visible:border border border-transparent focus-visible:border-input focus-visible:ring-ring/20 text-sm',
         toolbar:
