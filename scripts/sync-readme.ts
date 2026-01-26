@@ -7,7 +7,10 @@ import matter from 'gray-matter'
  * Syncs README.md in the root with introduction.mdx in docs
  */
 function syncReadme() {
-  const introductionMdxPath = path.join(process.cwd(), 'resources/js/docs/getting-started/introduction.mdx')
+  const introductionMdxPath = path.join(
+    process.cwd(),
+    'resources/js/docs/getting-started/introduction.mdx'
+  )
   const readmeMdPath = path.join(process.cwd(), 'README.md')
 
   console.log('Syncing readme...')

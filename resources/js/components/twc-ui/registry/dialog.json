@@ -4,7 +4,7 @@
   "type": "registry:ui",
   "title": "Dialog",
   "description": "Dialog component",
-  "dependencies": ["class-variance-authority", "react-aria-components", "lucide-react"],
+  "dependencies": ["tailwind-variants", "react-aria-components", "lucide-react"],
   "registryDependencies": ["@twc-ui/button"],
   "files": [
     {

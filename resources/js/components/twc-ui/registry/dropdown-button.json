@@ -4,7 +4,7 @@
   "type": "registry:ui",
   "title": "DropdownButton",
   "description": "DropdownButton component",
-  "dependencies": ["class-variance-authority", "react-aria-components"],
+  "dependencies": ["tailwind-variants", "react-aria-components"],
   "registryDependencies": ["@twc-ui/menu", "@twc-ui/button", "@twc-ui/icon"],
   "files": [
     {

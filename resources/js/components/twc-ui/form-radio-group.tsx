@@ -1,7 +1,6 @@
 import { useCallback } from 'react'
-import type { ValidationResult } from 'react-aria-components'
-import { FormFieldError, getFormError } from './form-errors'
 import { useFormContext } from './form'
+import { FormFieldError, getFormError } from './form-errors'
 import { RadioGroup, type RadioGroupProps } from './radio-group'
 
 const useRadioGroupChange = (

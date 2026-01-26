@@ -1,4 +1,4 @@
-import React from 'react'
+import type React from 'react'
 import { cn } from '@/lib/utils' // oder der entsprechende Pfad zu Ihrer cn-Funktion
 
 const Step = ({ className, ...props }: React.ComponentProps<'h3'>) => (

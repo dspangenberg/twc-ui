@@ -56,13 +56,6 @@ function setNestedValue(obj: any, path: string, value: any): any {
   return obj
 }
 
-/**
- * Convert Laravel error key format (phones.0.number) to array notation (phones[0].number)
- */
-function convertErrorKey(key: string): string {
-  return key.replace(/\.(\d+)\./g, '[$1].').replace(/\.(\d+)$/, '[$1]')
-}
-
 export type FormValidationMode = 'change' | 'blur' | 'both' | 'none'
 
 export interface FormValidationOptions {
@@ -106,13 +99,13 @@ export function useForm<T extends Record<string, FormDataConvertible>>(
 
   const validateFormField = (name: string) => {
     // Convert array notation to dot notation for Laravel validation
-  const laravelName = name.replace(/\[(\d+)]/g, '.$1')
+    const laravelName = name.replace(/\[(\d+)]/g, '.$1')
     ;(form as any).validate(laravelName)
   }
 
   const touchFormField = (name: string) => {
     // Convert array notation to dot notation for Laravel validation
-  const laravelName = name.replace(/\[(\d+)]/g, '.$1')
+    const laravelName = name.replace(/\[(\d+)]/g, '.$1')
     ;(form as any).touched(laravelName)
   }
 

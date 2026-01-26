@@ -4,7 +4,7 @@
   "type": "registry:ui",
   "title": "toolbar",
   "description": "React aria components toolbar",
-  "dependencies": ["react-aria-components", "class-variance-authority"],
+  "dependencies": ["react-aria-components", "tailwind-variants"],
   "registryDependencies": ["@twc-ui/button"],
   "files": [
     {

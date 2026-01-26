@@ -1,0 +1,38 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "complete",
+  "type": "registry:ui",
+  "title": "All components",
+  "description": "All components",
+  "dependencies": ["@inertiajs/core", "laravel-precognition"],
+  "registryDependencies": [
+    "@twc-ui/form-complete",
+    "@twc-ui/alert",
+    "@twc-ui/alert-dialog",
+    "@twc-ui/button",
+    "@twc-ui/dialog",
+    "@twc-ui/dropdown-button",
+    "@twc-ui/empty",
+    "@twc-ui/extended-dialog",
+    "@twc-ui/icon",
+    "@twc-ui/link-button",
+    "@twc-ui/list-box",
+    "@twc-ui/logo",
+    "@twc-ui/logo-spinner",
+    "@twc-ui/pdf-viewer",
+    "@twc-ui/popover",
+    "@twc-ui/popover",
+    "@twc-ui/separator",
+    "@twc-ui/split-button",
+    "@twc-ui/tabs",
+    "@twc-ui/tooltip",
+    "@twc-ui/toolbar"
+  ],
+  "files": [
+    {
+      "path": "resources/js/components/twc-ui/form.tsx",
+      "type": "registry:ui",
+      "target": "components/twc-ui/form.tsx"
+    }
+  ]
+}
