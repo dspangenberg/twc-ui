@@ -430,7 +430,7 @@ export const CodeBlockCopyButton = ({
 }: CodeBlockCopyButtonProps) => {
   const [isCopied, setIsCopied] = useState(false)
   const { data, value } = useContext(CodeBlockContext)
-  const code = data.find(item => item.language === value)?.code
+  const code = data.find(item => item.filename === value)?.code
 
   const copyToClipboard = () => {
     if (typeof window === 'undefined' || !navigator.clipboard.writeText || !code) {
