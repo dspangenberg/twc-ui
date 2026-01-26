@@ -65,6 +65,7 @@ interface RadioGroupProps<T extends Record<string, unknown>> {
   onChange?: (value: string) => void
   onBlur?: () => void
   isOptional?: boolean
+  isDisabled?: boolean
   optionalValue?: string
   orientation?: 'horizontal' | 'vertical'
   errorMessage?: string | ((validation: AriaValidationResult) => string)

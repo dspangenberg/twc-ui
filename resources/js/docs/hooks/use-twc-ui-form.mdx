@@ -1,7 +1,56 @@
 ---
 title: useTwcUiForm
+description: "Precognition form hook with nested paths, checkbox helpers, and date-range wiring."
 ---
 
-## Installation
+## Overview
 
-<Installation registry="use-twc-ui-form" />
+`useForm` from `use-twc-ui-form.ts` wraps `laravel-precognition-react-inertia` and adds
+ergonomic helpers for field registration, nested paths, and date range pickers.
+
+## Usage
+
+<SourceCode hideHeader={true} code={`
+  import { useForm } from '@/hooks/use-twc-ui-form'
+
+  const form = useForm(
+    'post',
+    route('contact.store'),
+    { name: '', phones: [{ number: '' }], consent: false },
+    { validateOn: 'change' }
+  )
+
+  form.register('name')
+  form.register('phones[0].number')
+  form.registerCheckbox('consent')
+`} />
+
+## Signature
+
+```
+useForm<T>(
+  method: RequestMethod,
+  url: string,
+  data: T,
+  config?: ValidationConfig & { validateOn?: 'change' | 'blur' | 'both' | 'none' }
+)
+```
+
+## Returned helpers
+
+| Helper                        | Description |
+|------------------------------|-------------|
+| `register(name)`             | Value-first registration for custom inputs. Supports nested paths. |
+| `registerEvent(name)`        | Event-based registration for native inputs (`e.currentTarget.value`). |
+| `registerCheckbox(name)`     | Checkbox wiring with `checked`/`isSelected`. |
+| `registerDateRange(start, end)` | Bridges two fields to a `DateRangePicker` using ISO `yyyy-MM-dd` values. |
+| `updateAndValidate(event)`   | Event handler that updates, touches, and validates. |
+| `updateAndValidateWithoutEvent(name, value)` | Value handler that updates and validates. |
+| `isDirty`                    | `true` when current data differs from the initial snapshot. |
+
+## Notes
+
+- Nested paths are supported using `user.name` or `phones[0].number`.
+- Validation uses Laravel Precognition with optional `validateOn` modes.
+- Date ranges respect `VITE_APP_DATE_FORMAT`; internal ISO values are converted with `date-fns`.
+- registerDateRange currently doesn't work with nested paths

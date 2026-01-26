@@ -1,8 +1,7 @@
 ---
 title: Form
+description: "Form wrapper for Laravel Precognition + Inertia forms."
 ---
-
-
 
 
 <CombiDemoCodePreview codePath="form/default.tsx" demoPath={route('contact.create')} className="h-200" />
@@ -13,17 +12,57 @@ title: Form
 
 ## Documentation
 
-Lorem ipsum
+The `Form` component wraps a Precognition-powered Inertia form and provides a context so
+field components can access the form state and validation helpers.
+
+### Usage
+
+<SourceCode hideHeader={true} code={`
+  import { Form, useForm } from '@/components/twc-ui/form'
+  import { FormTextField } from '@/components/twc-ui/form-text-field'
+
+  export default function ContactForm({ contact }) {
+    const form = useForm(
+      'contact-form',
+      'post',
+      route('contact.store'),
+      contact,
+      { validateOn: 'both' }
+    )
+
+    return (
+      <Form form={form} errorTitle="Please fix the highlighted fields.">
+        <FormTextField label="Name" {...form.register('name')} />
+      </Form>
+    )
+  }
+`} />
+
+### Behavior
+
+- Submits with `form.submit`, preserves scroll, and maps Inertia error arrays to single strings.
+- Provides a context for nested fields via `useFormContext`.
+- Disables the fieldset while `form.processing` is `true`.
 
 ### Props
 
 | Prop              | Type              | Default              |
   |-------------------|-------------------|----------------------|
+| form              | `ExtendedForm<T>` | ``                   |
 | errorVariant      | `form` \| `field` | `form`               |
 | errorTitle        | `string`            | <LangInfo de="Es ist ein Fehler aufgetreten." en="Something went wrong." /> |
+| errorClassName    | `string`          | ``                   |
+| onSubmitted       | `() => void`      | ``                   |
+| className         | `string`          | ``                   |
 
 ### Events
 
 | Prop        | Type              | Default |
   |-------------|-------------------|---------|
-| onSubmitted | `form` \| `field` | `form`  |
+| onSubmitted | `() => void`      | ``      |
+
+### Related
+
+- [Hook docs](/docs/hooks/use-twc-ui-form)
+
+
