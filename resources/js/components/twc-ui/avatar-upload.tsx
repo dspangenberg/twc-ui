@@ -8,14 +8,14 @@ import { FileTrigger } from './file-trigger'
 
 interface Props {
   src: string | null
-  fullName: string
+  fullname: string
   initials?: string
   size?: 'sm' | 'md' | 'lg'
   onSelect: (avatar: File | undefined) => void
 }
 
 export const AvatarUpload: React.FC<Props> = ({
-  fullName,
+  fullname,
   initials,
   size = 'md',
   src,
@@ -30,6 +30,15 @@ export const AvatarUpload: React.FC<Props> = ({
       }
     }
   }, [droppedImage])
+
+  useEffect(() => {
+    setDroppedImage(prev => {
+      if (prev?.startsWith('blob:') && prev !== src) {
+        URL.revokeObjectURL(prev)
+      }
+      return src ?? undefined
+    })
+  }, [src])
 
   async function onSelectHandler(e: FileList | null) {
     if (!e || e.length === 0) return
@@ -64,7 +73,7 @@ export const AvatarUpload: React.FC<Props> = ({
         <Pressable>
           <Avatar
             role="button"
-            fullname={fullName}
+            fullname={fullname}
             src={droppedImage}
             size={size}
             initials={initials}
@@ -78,6 +87,7 @@ export const AvatarUpload: React.FC<Props> = ({
           variant="outline"
           size="icon-xs"
           className="size-4 rounded-full"
+          aria-label="Remove avatar"
           iconClassName="size-3"
           icon={MultiplicationSignIcon}
           onClick={removeAvatar}
