@@ -1,6 +1,7 @@
 ### 2026-01-26
 #### Components
 - Added AvatarUpload component
+- Migration to tailwind variants
 
 ### 2026-01-22
 #### Components
