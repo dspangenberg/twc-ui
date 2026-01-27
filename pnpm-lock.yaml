@@ -209,6 +209,9 @@ importers:
       tailwindcss-animate:
         specifier: ^1.0.7
         version: 1.0.7(tailwindcss@4.1.18)
+      twc-ui:
+        specifier: 'link:'
+        version: 'link:'
       typescript:
         specifier: ^5.9.3
         version: 5.9.3
