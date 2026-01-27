@@ -27,6 +27,7 @@
     "@testing-library/user-event": "^14.6.1",
     "@types/jest": "^30.0.0",
     "@types/node": "^25.0.9",
+    "hono": "4.11.7",
     "jsdom": "^27.4.0",
     "shiki": "^3.21.0",
     "tailwind-scrollbar": "^4.0.2",
@@ -114,12 +115,6 @@
     "lightningcss-linux-x64-gnu": "^1.30.2"
   },
   "pnpm": {
-    "overrides": {
-      "hono": "4.11.7"
-    },
-    "overridesNotes": {
-      "hono": "Security pin to 4.11.7 to address JWT algorithm-confusion (CVE-2026-22817, CVE-2026-22818; affects <4.11.4). 4.11.4+ is a breaking change requiring explicit \"alg\" option configuration in JWT/JWK middleware."
-    },
     "onlyBuiltDependencies": [
       "@biomejs/biome"
     ]
