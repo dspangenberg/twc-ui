@@ -59,7 +59,7 @@ export const LinkButton = ({
           </>
         )}
       </AriaLink>
-      {(resolvedTooltip || resolvedTitle) && (
+      {(resolvedTooltip || (resolvedTitle && !isToolbar)) && (
         <Tooltip placement={tooltipPlacement}>
           {resolvedTooltip
             ? resolvedTooltip
