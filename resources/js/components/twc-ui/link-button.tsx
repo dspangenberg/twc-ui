@@ -59,11 +59,13 @@ export const LinkButton = ({
           </>
         )}
       </AriaLink>
-      {resolvedTooltip && (
+      {(resolvedTooltip || (resolvedTitle && !isToolbar)) && (
         <Tooltip placement={tooltipPlacement}>
-          {resolvedTitle && variant !== 'toolbar' && (
-            <div className={cn(isToolbar ? 'hidden md:flex' : '')}>{resolvedTitle}</div>
-          )}
+          {resolvedTooltip
+            ? resolvedTooltip
+            : resolvedTitle && (
+                <div className={cn(isToolbar ? 'hidden md:flex' : '')}>{resolvedTitle}</div>
+              )}
         </Tooltip>
       )}
     </TooltipTrigger>

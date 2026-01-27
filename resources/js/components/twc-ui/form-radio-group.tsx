@@ -24,6 +24,7 @@ const useRadioGroupChange = (
 
 interface FormRadioGroupProps<T extends Record<string, unknown>>
   extends Omit<RadioGroupProps<T>, 'onChange'> {
+  isDisabled?: boolean
   onChange?: ((value: string | number | null) => void) | ((value: string) => void)
 }
 
