@@ -26,3 +26,4 @@ yarn-error.log
 /.zed
 /resources/js/components/docs/registry-mapping.ts
 /public/r/
+package-lock.json
