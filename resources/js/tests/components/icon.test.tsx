@@ -4,7 +4,7 @@ import { Icon } from '@/components/twc-ui/icon'
 
 vi.mock('@hugeicons/react', () => ({
   HugeiconsIcon: vi.fn(({ icon, strokeWidth, className, ...props }: any) => {
-    const strokeWidthValue = strokeWidth !== undefined ? strokeWidth.toString() : '1.5'
+    const strokeWidthValue = strokeWidth ? strokeWidth.toString() : '1.5'
     return (
       <div
         className={`h-4 w-4 shrink-0 ${className || ''}`}
