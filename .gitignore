@@ -27,3 +27,6 @@ yarn-error.log
 /resources/js/components/docs/registry-mapping.ts
 /public/r/
 package-lock.json
+coverage/
+.nyc_output/
+*.lcov

@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "form-card",
+  "type": "registry:ui",
+  "title": "FormCard",
+  "description": "FormCard component",
+  "registryDependencies": ["@twc-ui/scroll-area"],
+  "files": [
+    {
+      "path": "resources/js/components/twc-ui/form-card.tsx",
+      "type": "registry:ui",
+      "target": "components/twc-ui/form-card.tsx"
+    }
+  ]
+}

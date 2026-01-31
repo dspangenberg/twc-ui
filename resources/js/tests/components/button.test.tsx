@@ -75,7 +75,7 @@ describe('Button', () => {
     it('rendert ghost variant', () => {
       renderButton({ title: 'Ghost', variant: 'ghost' })
       const button = screen.getByRole('button')
-      expect(button).toHaveClass('data-[hovered]:bg-accent')
+      expect(button).toHaveClass('data-[hovered]:bg-accent/80')
     })
 
     it('rendert link variant', () => {

@@ -1,0 +1,16 @@
+{
+    "agents": [
+        "junie",
+        "opencode",
+        "claude_code"
+    ],
+    "guidelines": true,
+    "herd_mcp": true,
+    "mcp": true,
+    "sail": false,
+    "skills": [
+        "pest-testing",
+        "inertia-react-development",
+        "tailwindcss-development"
+    ]
+}

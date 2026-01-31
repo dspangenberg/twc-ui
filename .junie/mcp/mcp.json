@@ -1,0 +1,20 @@
+{
+    "mcpServers": {
+        "laravel-boost": {
+            "command": "/Users/dspangenberg/Library/Application Support/Herd/bin/php84",
+            "args": [
+                "/Users/dspangenberg/Projects/twiceware.cloud/twc-ui/artisan",
+                "boost:mcp"
+            ]
+        },
+        "herd": {
+            "command": "/Users/dspangenberg/Library/Application Support/Herd/bin/php84",
+            "args": [
+                "/Applications/Herd.app/Contents/Resources/herd-mcp.phar"
+            ],
+            "env": {
+                "SITE_PATH": "/Users/dspangenberg/Projects/twiceware.cloud/twc-ui"
+            }
+        }
+    }
+}
