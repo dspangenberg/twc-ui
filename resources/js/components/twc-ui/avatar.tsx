@@ -34,7 +34,10 @@ const AvatarFallback = ({
   return (
     <AvatarPrimitive.Fallback
       data-slot="avatar-fallback"
-      className={cn('flex size-full items-center justify-center rounded-full bg-muted', className)}
+      className={cn(
+        'flex size-full items-center justify-center rounded-full bg-muted font-medium text-xs uppercase',
+        className
+      )}
       {...props}
     />
   )
@@ -46,6 +49,8 @@ interface AvatarProps extends React.ComponentPropsWithoutRef<typeof AvatarPrimit
   src?: string | null
   size?: 'sm' | 'md' | 'lg'
   className?: string
+  alt?: string
+  children?: React.ReactNode
 }
 
 const Avatar = ({
@@ -54,6 +59,8 @@ const Avatar = ({
   className = '',
   size = 'md',
   src,
+  alt,
+  children,
   ...props
 }: AvatarProps) => {
   const [backgroundColor, setBackgroundColor] = useState<string>('')
@@ -62,13 +69,15 @@ const Avatar = ({
   if (!initials) {
     initials = fullname
       .split(' ')
+      .filter(n => n.length > 0)
+      .slice(0, 2)
       .map(n => n[0])
       .join('')
   }
 
   const avatarSizeClass = {
     sm: 'size-7',
-    md: 'size-8',
+    md: 'size-9',
     lg: 'size-10'
   }[size]
 
@@ -92,10 +101,11 @@ const Avatar = ({
         className={cn('rounded-full border-2 border-transparent', avatarSizeClass, className)}
         {...props}
       >
-        <AvatarImage src={src ?? undefined} alt={fullname} />
+        {children}
+        <AvatarImage src={src ?? undefined} alt={alt || fullname} />
         <AvatarFallback
           style={{ backgroundColor, color: textColor }}
-          className={cn('rounded-full', fallBackFontSize)}
+          className={cn(fallBackFontSize)}
         >
           {initials}
         </AvatarFallback>

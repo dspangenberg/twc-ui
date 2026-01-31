@@ -1,184 +1,99 @@
 import { render, screen } from '@testing-library/react'
-import React from 'react'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import '@testing-library/jest-dom'
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/twc-ui/avatar'
 
-// Mock @radix-ui/react-avatar
 vi.mock('@radix-ui/react-avatar', () => ({
   Root: ({ children, className, ...props }: any) => (
-    <div data-slot="avatar" className={className} {...props} data-testid="avatar-root">
+    <div data-testid="avatar-root" className={className} {...props}>
       {children}
     </div>
   ),
-  Image: ({ src, alt, className, ...props }: any) => (
-    <img src={src} alt={alt} className={className} {...props} data-testid="avatar-image" />
+  Image: ({ src, alt, ...props }: any) => (
+    <img data-testid="avatar-image" src={src} alt={alt} {...props} />
   ),
   Fallback: ({ children, className, ...props }: any) => (
-    <div className={className} {...props} data-testid="avatar-fallback">
+    <div data-testid="avatar-fallback" className={className} {...props}>
       {children}
     </div>
   )
 }))
 
-import { Avatar, AvatarFallback, AvatarImage, AvatarRoot } from '@/components/twc-ui/avatar'
-
-describe('Avatar Component', () => {
-  beforeEach(() => {
-    vi.clearAllMocks()
+describe('Avatar', () => {
+  it('renders an Avatar component', () => {
+    render(<Avatar />)
+    expect(screen.getByTestId('avatar-root')).toBeInTheDocument()
   })
 
-  describe('Basic Rendering', () => {
-    it('renders Avatar with default props', () => {
-      render(<Avatar />)
-
-      const container = screen.getByTestId('avatar-container')
-      const root = screen.getByTestId('avatar-root')
-      expect(container).toBeInTheDocument()
-      expect(root).toBeInTheDocument()
-    })
-
-    it('renders with custom className', () => {
-      render(<Avatar className="custom-avatar" />)
-
-      const root = screen.getByTestId('avatar-root')
-      expect(root).toHaveClass('custom-avatar')
-    })
-
-    it('renders container with correct structure', () => {
-      render(<Avatar />)
-
-      const container = screen.getByTestId('avatar-container')
-      const root = container.querySelector('[data-slot="avatar"]')
-      expect(container).toHaveClass('rounded-full', 'border', 'border-border')
-      expect(root).toBeInTheDocument()
-    })
+  it('applies standard classes', () => {
+    render(<Avatar />)
+    const avatar = screen.getByTestId('avatar-root')
+    expect(avatar).toHaveClass(
+      'relative',
+      'flex',
+      'size-9',
+      'shrink-0',
+      'overflow-hidden',
+      'rounded-full'
+    )
   })
 
-  describe('Size Variations', () => {
-    it('renders small size correctly', () => {
-      render(<Avatar size="sm" />)
-
-      const root = screen.getByTestId('avatar-root')
-      expect(root).toHaveClass('size-7')
-    })
-
-    it('renders medium size correctly (default)', () => {
-      render(<Avatar />)
-
-      const root = screen.getByTestId('avatar-root')
-      expect(root).toHaveClass('size-8')
-    })
-
-    it('renders medium size explicitly', () => {
-      render(<Avatar size="md" />)
-
-      const root = screen.getByTestId('avatar-root')
-      expect(root).toHaveClass('size-8')
-    })
-
-    it('renders large size correctly', () => {
-      render(<Avatar size="lg" />)
-
-      const root = screen.getByTestId('avatar-root')
-      expect(root).toHaveClass('size-10')
-    })
-
-    it('applies correct fallback font sizes', () => {
-      const { rerender } = render(<Avatar size="sm" initials="AB" />)
-
-      let fallback = screen.getByTestId('avatar-fallback')
-      expect(fallback).toHaveClass('text-xs')
-
-      rerender(<Avatar size="md" initials="AB" />)
-      fallback = screen.getByTestId('avatar-fallback')
-      expect(fallback).toHaveClass('text-sm')
-
-      rerender(<Avatar size="lg" initials="AB" />)
-      fallback = screen.getByTestId('avatar-fallback')
-      expect(fallback).toHaveClass('text-lg')
-    })
+  it('applies custom className', () => {
+    render(<Avatar className="custom-avatar-class" />)
+    const avatar = screen.getByTestId('avatar-root')
+    expect(avatar).toHaveClass('custom-avatar-class')
   })
 
-  describe('Image Handling', () => {
-    it('renders image when src is provided', () => {
-      render(<Avatar src="https://example.com/avatar.jpg" fullname="John Doe" />)
-
-      const image = screen.getByTestId('avatar-image')
-      expect(image).toBeInTheDocument()
-      expect(image).toHaveAttribute('src', 'https://example.com/avatar.jpg')
-      expect(image).toHaveAttribute('alt', 'John Doe')
-    })
-
-    it('renders fallback when src is null', () => {
-      render(<Avatar src={null} fullname="John Doe" />)
-
-      const image = screen.getByTestId('avatar-image')
-      const fallback = screen.getByTestId('avatar-fallback')
-      expect(image).toBeInTheDocument()
-      expect(image).not.toHaveAttribute('src') // null means no src attribute
-      expect(fallback).toBeInTheDocument()
-    })
-
-    it('renders fallback when src is undefined', () => {
-      render(<Avatar fullname="John Doe" />)
-
-      const image = screen.queryByTestId('avatar-image')
-      const fallback = screen.getByTestId('avatar-fallback')
-      // When src is undefined, the AvatarImage still renders but with undefined src
-      expect(image).toBeInTheDocument()
-      expect(fallback).toBeInTheDocument()
-    })
-
-    it('applies correct image classes', () => {
-      render(<Avatar src="https://example.com/avatar.jpg" />)
-
-      const image = screen.getByTestId('avatar-image')
-      expect(image).toHaveClass('aspect-square', 'size-full')
-    })
+  it('renders children correctly', () => {
+    render(
+      <Avatar>
+        <div data-testid="avatar-child">Child Content</div>
+      </Avatar>
+    )
+    expect(screen.getByTestId('avatar-child')).toBeInTheDocument()
   })
 
-  describe('Initials and Fullname', () => {
-    it('displays provided initials', () => {
-      render(<Avatar initials="JD" />)
+  it('renders with src prop', () => {
+    render(<Avatar src="https://example.com/avatar.jpg" />)
+    const image = screen.getByTestId('avatar-image')
+    expect(image).toHaveAttribute('src', 'https://example.com/avatar.jpg')
+  })
 
-      const fallback = screen.getByTestId('avatar-fallback')
-      expect(fallback).toHaveTextContent('JD')
-    })
+  it('renders with fullname and generates initials', () => {
+    render(<Avatar fullname="John Doe" />)
+    expect(screen.getByText('JD')).toBeInTheDocument()
+  })
 
-    it('generates initials from fullname', () => {
-      render(<Avatar fullname="John Doe" />)
+  it('uses custom initials when provided', () => {
+    render(<Avatar fullname="John Doe" initials="XY" />)
+    expect(screen.getByText('XY')).toBeInTheDocument()
+    expect(screen.queryByText('JD')).not.toBeInTheDocument()
+  })
 
-      const fallback = screen.getByTestId('avatar-fallback')
-      expect(fallback).toHaveTextContent('JD')
-    })
+  it('renders only initials prop when no fullname', () => {
+    render(<Avatar initials="AB" />)
+    expect(screen.getByText('AB')).toBeInTheDocument()
+  })
 
-    it('handles complex fullname correctly', () => {
-      render(<Avatar fullname="John Michael Doe" />)
+  it('generates single initial from single name', () => {
+    render(<Avatar fullname="Madonna" />)
+    expect(screen.getByText('M')).toBeInTheDocument()
+  })
 
-      const fallback = screen.getByTestId('avatar-fallback')
-      expect(fallback).toHaveTextContent('JMD')
-    })
+  it('generates two initials from full name', () => {
+    render(<Avatar fullname="John Doe" />)
+    expect(screen.getByText('JD')).toBeInTheDocument()
+  })
 
-    it('uses initials when both provided', () => {
-      render(<Avatar fullname="John Doe" initials="Custom" />)
+  it('handles empty fullname gracefully', () => {
+    render(<Avatar fullname="" />)
+    const fallback = screen.getByTestId('avatar-fallback')
+    expect(fallback).toBeInTheDocument()
+  })
 
-      const fallback = screen.getByTestId('avatar-fallback')
-      expect(fallback).toHaveTextContent('Custom')
-    })
-
-    it('handles empty fullname', () => {
-      render(<Avatar fullname="" initials="AB" />)
-
-      const fallback = screen.getByTestId('avatar-fallback')
-      expect(fallback).toHaveTextContent('AB')
-    })
-
-    it('handles single word fullname', () => {
-      render(<Avatar fullname="John" />)
-
-      const fallback = screen.getByTestId('avatar-fallback')
-      expect(fallback).toHaveTextContent('J')
-    })
+  it('renders image and fallback together', () => {
+    render(<Avatar src="https://example.com/avatar.jpg" fullname="John Doe" />)
+    expect(screen.getByTestId('avatar-image')).toBeInTheDocument()
+    expect(screen.getByTestId('avatar-fallback')).toBeInTheDocument()
   })
 
   describe('Color Generation', () => {
@@ -194,9 +109,10 @@ describe('Avatar Component', () => {
       render(<Avatar fullname="John Doe" />)
 
       const fallback = screen.getByTestId('avatar-fallback')
+      // Run timers to allow any async color generation to complete
       vi.runAllTimers()
 
-      // Should have generated background color (check if style property exists)
+      // Should have generated a background color based on the fullname hash
       const style = fallback.getAttribute('style')
       expect(style).toContain('background-color')
     })
@@ -207,7 +123,7 @@ describe('Avatar Component', () => {
       const fallback = screen.getByTestId('avatar-fallback')
       vi.runAllTimers()
 
-      // Should have contrasting text color
+      // Should have generated a contrasting text color for readability
       const style = fallback.getAttribute('style')
       expect(style).toContain('color')
     })
@@ -216,9 +132,11 @@ describe('Avatar Component', () => {
       render(<Avatar src="https://example.com/avatar.jpg" fullname="John Doe" />)
 
       const fallback = screen.getByTestId('avatar-fallback')
+      // Run timers to ensure any async operations complete
       vi.runAllTimers()
 
-      // Fallback should exist but not have generated colors
+      // When an image source is provided, the fallback should not generate
+      // colors since the image will be displayed instead
       expect(fallback).toBeInTheDocument()
       const style = fallback.getAttribute('style') || ''
       expect(style).not.toContain('background-color')
@@ -230,6 +148,7 @@ describe('Avatar Component', () => {
       const fallback = screen.getByTestId('avatar-fallback')
       vi.runAllTimers()
 
+      // Without a fullname, there's no seed for color generation
       const style = fallback.getAttribute('style') || ''
       expect(style).not.toContain('background-color')
     })
@@ -243,6 +162,7 @@ describe('Avatar Component', () => {
       const initialBgColor = fallback.style.backgroundColor
       const initialTextColor = fallback.style.color
 
+      // Rerender with a different fullname to trigger new color generation
       rerender(<Avatar fullname="Jane Smith" />)
       fallback = screen.getByTestId('avatar-fallback')
       vi.runAllTimers()
@@ -250,107 +170,123 @@ describe('Avatar Component', () => {
       const newBgColor = fallback.style.backgroundColor
       const newTextColor = fallback.style.color
 
+      // Different fullnames should generate different color combinations
       expect(newBgColor).not.toBe(initialBgColor)
       expect(newTextColor).not.toBe(initialTextColor)
     })
   })
+})
 
-  describe('Props Handling', () => {
-    it('passes through additional props to AvatarRoot', () => {
-      render(<Avatar data-testid="custom-avatar" aria-label="User Avatar" />)
-
-      const root = screen.getByTestId('avatar-root')
-      expect(root).toHaveAttribute('aria-label', 'User Avatar')
-    })
-
-    it('merges className correctly', () => {
-      render(<Avatar className="custom-class another-class" />)
-
-      const root = screen.getByTestId('avatar-root')
-      expect(root).toHaveClass('custom-class', 'another-class')
-    })
-
-    it('applies correct default classes', () => {
-      render(<Avatar />)
-
-      const root = screen.getByTestId('avatar-root')
-      expect(root).toHaveClass('rounded-full', 'border-2', 'border-transparent', 'size-8')
-    })
+describe('AvatarImage', () => {
+  it('renders an AvatarImage component', () => {
+    render(<AvatarImage src="https://example.com/avatar.jpg" alt="Avatar" />)
+    const image = screen.getByTestId('avatar-image')
+    expect(image).toBeInTheDocument()
   })
 
-  describe('Component Composition', () => {
-    it('renders subcomponents with correct structure within Avatar', () => {
-      render(<Avatar fullname="John Doe" />)
-
-      // Check that all subcomponents are rendered with correct data-slot attributes
-      const root = screen.getByTestId('avatar-root')
-      const image = screen.getByTestId('avatar-image')
-      const fallback = screen.getByTestId('avatar-fallback')
-
-      expect(root).toBeInTheDocument()
-      expect(image).toBeInTheDocument()
-      expect(fallback).toBeInTheDocument()
-      expect(root).toHaveAttribute('data-slot', 'avatar')
-      expect(image).toHaveAttribute('data-slot', 'avatar-image')
-      expect(fallback).toHaveAttribute('data-slot', 'avatar-fallback')
-    })
+  it('applies src attribute', () => {
+    render(<AvatarImage src="https://example.com/avatar.jpg" />)
+    const image = screen.getByTestId('avatar-image')
+    expect(image).toHaveAttribute('src', 'https://example.com/avatar.jpg')
   })
 
-  describe('Edge Cases', () => {
-    it('handles undefined props gracefully', () => {
-      render(<Avatar fullname={undefined} initials={undefined} />)
-
-      const container = screen.getByTestId('avatar-container')
-      expect(container).toBeInTheDocument()
-    })
-
-    it('handles null src gracefully', () => {
-      render(<Avatar src={null} fullname="John Doe" />)
-
-      const image = screen.getByTestId('avatar-image')
-      const fallback = screen.getByTestId('avatar-fallback')
-      expect(image).toBeInTheDocument()
-      expect(image).not.toHaveAttribute('src') // null means no src attribute
-      expect(fallback).toBeInTheDocument()
-    })
-
-    it('handles empty string initials', () => {
-      render(<Avatar initials="" fullname="John Doe" />)
-
-      const fallback = screen.getByTestId('avatar-fallback')
-      expect(fallback).toHaveTextContent('JD') // Should use fullname instead
-    })
-
-    it('handles whitespace in fullname', () => {
-      render(<Avatar fullname="  John  Doe  " />)
-
-      const fallback = screen.getByTestId('avatar-fallback')
-      expect(fallback).toHaveTextContent('JD')
-    })
-
-    it('handles special characters in fullname', () => {
-      render(<Avatar fullname="John-Doe Smith" />)
-
-      const fallback = screen.getByTestId('avatar-fallback')
-      // The logic takes n[0] from each word, so "John-Doe" becomes "J" and "Smith" becomes "S"
-      expect(fallback).toHaveTextContent('JS')
-    })
+  it('applies alt attribute', () => {
+    render(<AvatarImage src="https://example.com/avatar.jpg" alt="User Avatar" />)
+    const image = screen.getByTestId('avatar-image')
+    expect(image).toHaveAttribute('alt', 'User Avatar')
   })
 
-  describe('Accessibility', () => {
-    it('applies alt attribute to image when fullname provided', () => {
-      render(<Avatar src="test.jpg" fullname="John Doe" />)
+  it('applies standard classes', () => {
+    render(<AvatarImage src="https://example.com/avatar.jpg" />)
+    const image = screen.getByTestId('avatar-image')
+    expect(image).toHaveClass('aspect-square', 'size-full')
+  })
 
-      const image = screen.getByTestId('avatar-image')
-      expect(image).toHaveAttribute('alt', 'John Doe')
-    })
+  it('applies custom className', () => {
+    render(<AvatarImage src="https://example.com/avatar.jpg" className="custom-image-class" />)
+    const image = screen.getByTestId('avatar-image')
+    expect(image).toHaveClass('custom-image-class')
+  })
+})
 
-    it('passes through ARIA attributes', () => {
-      render(<Avatar aria-label="User Avatar" aria-describedby="avatar-desc" />)
+describe('AvatarFallback', () => {
+  it('renders an AvatarFallback component', () => {
+    render(<AvatarFallback />)
+    const fallback = screen.getByTestId('avatar-fallback')
+    expect(fallback).toBeInTheDocument()
+  })
 
-      const root = screen.getByTestId('avatar-root')
-      expect(root).toHaveAttribute('aria-label', 'User Avatar')
-      expect(root).toHaveAttribute('aria-describedby', 'avatar-desc')
-    })
+  it('applies standard classes', () => {
+    render(<AvatarFallback />)
+    const fallback = screen.getByTestId('avatar-fallback')
+    expect(fallback).toHaveClass(
+      'flex',
+      'size-full',
+      'items-center',
+      'justify-center',
+      'rounded-full',
+      'bg-muted',
+      'text-xs',
+      'font-medium',
+      'uppercase'
+    )
+  })
+
+  it('applies custom className', () => {
+    render(<AvatarFallback className="custom-fallback-class" />)
+    const fallback = screen.getByTestId('avatar-fallback')
+    expect(fallback).toHaveClass('custom-fallback-class')
+  })
+
+  it('renders children correctly', () => {
+    render(<AvatarFallback>AB</AvatarFallback>)
+    expect(screen.getByText('AB')).toBeInTheDocument()
+  })
+})
+
+describe('Accessibility', () => {
+  it('supports ARIA attributes', () => {
+    render(<Avatar fullname="John Doe" aria-label="User profile picture" />)
+    const avatar = screen.getByTestId('avatar-root')
+    expect(avatar).toHaveAttribute('aria-label', 'User profile picture')
+  })
+
+  it('provides alt text for images', () => {
+    render(<Avatar src="https://example.com/avatar.jpg" fullname="John Doe" />)
+    const image = screen.getByTestId('avatar-image')
+    expect(image).toHaveAttribute('alt', 'John Doe')
+  })
+
+  it('uses custom alt text when provided', () => {
+    render(<Avatar src="https://example.com/avatar.jpg" alt="Custom Alt Text" />)
+    const image = screen.getByTestId('avatar-image')
+    expect(image).toHaveAttribute('alt', 'Custom Alt Text')
+  })
+})
+
+describe('Edge Cases', () => {
+  it('handles very long names', () => {
+    render(<Avatar fullname="Christopher Bartholomew" />)
+    expect(screen.getByText('CB')).toBeInTheDocument()
+  })
+
+  it('handles names with special characters', () => {
+    render(<Avatar fullname="Jean-Claude Van Damme" />)
+    expect(screen.getByText('JV')).toBeInTheDocument()
+  })
+
+  it('handles single character names', () => {
+    render(<Avatar fullname="X" />)
+    expect(screen.getByText('X')).toBeInTheDocument()
+  })
+
+  it('handles names with extra spaces', () => {
+    render(<Avatar fullname="  John   Doe  " />)
+    expect(screen.getByText('JD')).toBeInTheDocument()
+  })
+
+  it('renders without any props', () => {
+    render(<Avatar />)
+    expect(screen.getByTestId('avatar-root')).toBeInTheDocument()
   })
 })

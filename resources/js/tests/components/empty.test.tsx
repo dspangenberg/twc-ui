@@ -174,115 +174,49 @@ describe('EmptyMedia', () => {
   })
 })
 
-it('wendet default variant Klassen an', () => {
-  render(<EmptyMedia data-testid="empty-media" />)
-  const media = screen.getByTestId('empty-media')
-  expect(media).toHaveClass(
-    'mb-2',
-    'flex',
-    'shrink-0',
-    'items-center',
-    'justify-center',
-    '[&_svg]:pointer-events-none',
-    '[&_svg]:shrink-0'
-  )
-})
-
-it('rendert mit icon variant', () => {
-  render(<EmptyMedia data-testid="empty-media" variant="icon" />)
-  const media = screen.getByTestId('empty-media')
-  expect(media).toHaveAttribute('data-variant', 'icon')
-  expect(media).toHaveClass(
-    'mb-2',
-    '[&_svg]:pointer-events-none',
-    '[&_svg]:shrink-0',
-    'flex',
-    'size-10',
-    'shrink-0',
-    'items-center',
-    'justify-center',
-    'rounded-lg',
-    'bg-muted',
-    'text-foreground',
-    "[&_svg:not([class*='size-'])]:size-6"
-  )
-})
-
-it('wendet custom className an', () => {
-  render(<EmptyMedia data-testid="empty-media" className="custom-media-class" />)
-  const media = screen.getByTestId('empty-media')
-  expect(media).toHaveClass('custom-media-class')
-})
-
-it('wendet custom className mit variant an', () => {
-  render(<EmptyMedia data-testid="empty-media" variant="icon" className="custom-media-class" />)
-  const media = screen.getByTestId('empty-media')
-  expect(media).toHaveClass('custom-media-class')
-  expect(media).toHaveAttribute('data-variant', 'icon')
-})
-
-it('leitet additional props durch', () => {
-  render(<EmptyMedia data-testid="empty-media" aria-hidden="true" />)
-  const media = screen.getByTestId('empty-media')
-  expect(media).toHaveAttribute('aria-hidden', 'true')
-})
-
-it('rendert children wie Icons korrekt', () => {
-  render(
-    <EmptyMedia data-testid="empty-media">
-      <svg data-testid="test-icon" />
-    </EmptyMedia>
-  )
-  expect(screen.getByTestId('test-icon')).toBeInTheDocument()
-})
-})
-
-describe('EmptyTitle', () =>
-{
-  it('rendert eine EmptyTitle-Komponente', () => {
+describe('EmptyTitle', () => {
+  it('renders an EmptyTitle component', () => {
     render(<EmptyTitle data-testid="empty-title" />)
     expect(screen.getByTestId('empty-title')).toBeInTheDocument()
   })
 
-  it('wendet Standard-Klassen an', () => {
+  it('applies standard classes', () => {
     render(<EmptyTitle data-testid="empty-title" />)
     const title = screen.getByTestId('empty-title')
     expect(title).toHaveClass('font-medium', 'text-lg', 'tracking-tight')
   })
 
-  it('wendet custom className an', () => {
+  it('applies custom className', () => {
     render(<EmptyTitle data-testid="empty-title" className="custom-title-class" />)
     const title = screen.getByTestId('empty-title')
     expect(title).toHaveClass('custom-title-class')
   })
 
-  it('behält data-slot Attribut', () => {
+  it('retains data-slot attribute', () => {
     render(<EmptyTitle data-testid="empty-title" />)
     const title = screen.getByTestId('empty-title')
     expect(title).toHaveAttribute('data-slot', 'empty-title')
   })
 
-  it('rendert title Text', () => {
+  it('renders title text', () => {
     render(<EmptyTitle>No items found</EmptyTitle>)
     expect(screen.getByText('No items found')).toBeInTheDocument()
   })
 
-  it('leitet additional props durch', () => {
+  it('forwards additional props', () => {
     render(<EmptyTitle data-testid="empty-title" role="heading" />)
     const title = screen.getByTestId('empty-title')
     expect(title).toHaveAttribute('role', 'heading')
   })
-}
-)
+})
 
-describe('EmptyDescription', () =>
-{
-  it('rendert eine EmptyDescription-Komponente', () => {
+describe('EmptyDescription', () => {
+  it('renders an EmptyDescription component', () => {
     render(<EmptyDescription data-testid="empty-description" />)
     expect(screen.getByTestId('empty-description')).toBeInTheDocument()
   })
 
-  it('wendet Standard-Klassen an', () => {
+  it('applies standard classes', () => {
     render(<EmptyDescription data-testid="empty-description" />)
     const description = screen.getByTestId('empty-description')
     expect(description).toHaveClass(
@@ -294,7 +228,7 @@ describe('EmptyDescription', () =>
     )
   })
 
-  it('wendet custom className an', () => {
+  it('applies custom className', () => {
     render(
       <EmptyDescription data-testid="empty-description" className="custom-description-class" />
     )
@@ -302,18 +236,18 @@ describe('EmptyDescription', () =>
     expect(description).toHaveClass('custom-description-class')
   })
 
-  it('behält data-slot Attribut', () => {
+  it('retains data-slot attribute', () => {
     render(<EmptyDescription data-testid="empty-description" />)
     const description = screen.getByTestId('empty-description')
     expect(description).toHaveAttribute('data-slot', 'empty-description')
   })
 
-  it('rendert description Text', () => {
+  it('renders description text', () => {
     render(<EmptyDescription>Your search returned no results.</EmptyDescription>)
     expect(screen.getByText('Your search returned no results.')).toBeInTheDocument()
   })
 
-  it('stützt Links in description mit korrekten Stilen', () => {
+  it('supports links in description with correct styles', () => {
     render(
       <EmptyDescription>
         Try <a href="/help">getting help</a> or search again.
@@ -324,22 +258,20 @@ describe('EmptyDescription', () =>
     expect(link).toHaveAttribute('href', '/help')
   })
 
-  it('leitet additional props durch', () => {
+  it('forwards additional props', () => {
     render(<EmptyDescription data-testid="empty-description" role="status" />)
     const description = screen.getByTestId('empty-description')
     expect(description).toHaveAttribute('role', 'status')
   })
-}
-)
+})
 
-describe('EmptyContent', () =>
-{
-  it('rendert eine EmptyContent-Komponente', () => {
+describe('EmptyContent', () => {
+  it('renders an EmptyContent component', () => {
     render(<EmptyContent data-testid="empty-content" />)
     expect(screen.getByTestId('empty-content')).toBeInTheDocument()
   })
 
-  it('wendet Standard-Klassen an', () => {
+  it('applies standard classes', () => {
     render(<EmptyContent data-testid="empty-content" />)
     const content = screen.getByTestId('empty-content')
     expect(content).toHaveClass(
@@ -355,19 +287,19 @@ describe('EmptyContent', () =>
     )
   })
 
-  it('wendet custom className an', () => {
+  it('applies custom className', () => {
     render(<EmptyContent data-testid="empty-content" className="custom-content-class" />)
     const content = screen.getByTestId('empty-content')
     expect(content).toHaveClass('custom-content-class')
   })
 
-  it('behält data-slot Attribut', () => {
+  it('retains data-slot attribute', () => {
     render(<EmptyContent data-testid="empty-content" />)
     const content = screen.getByTestId('empty-content')
     expect(content).toHaveAttribute('data-slot', 'empty-content')
   })
 
-  it('rendert children korrekt', () => {
+  it('renders children correctly', () => {
     render(
       <EmptyContent>
         <button type="button">Action Button</button>
@@ -376,17 +308,15 @@ describe('EmptyContent', () =>
     expect(screen.getByRole('button', { name: 'Action Button' })).toBeInTheDocument()
   })
 
-  it('leitet additional props durch', () => {
+  it('forwards additional props', () => {
     render(<EmptyContent data-testid="empty-content" role="group" />)
     const content = screen.getByTestId('empty-content')
     expect(content).toHaveAttribute('role', 'group')
   })
-}
-)
+})
 
-describe('Komplette Empty Komponente', () =>
-{
-  it('kombiniert alle Sub-Komponenten korrekt', () => {
+describe('Complete Empty Component', () => {
+  it('combines all sub-components correctly', () => {
     render(
       <Empty data-testid="complete-empty">
         <EmptyHeader>
@@ -414,7 +344,7 @@ describe('Komplette Empty Komponente', () =>
     expect(screen.getByTestId('action-button')).toBeInTheDocument()
   })
 
-  it('hat korrekte data-slot Attribute für alle Komponenten', () => {
+  it('has correct data-slot attributes for all components', () => {
     render(
       <Empty>
         <EmptyHeader>
@@ -435,7 +365,7 @@ describe('Komplette Empty Komponente', () =>
     expect(document.querySelector('[data-slot="empty-content"]')).toBeInTheDocument()
   })
 
-  it('unterstützt komplexe nested Strukturen', () => {
+  it('supports complex nested structures', () => {
     render(
       <Empty className="border-2 border-gray-200">
         <EmptyHeader className="pt-4">
@@ -466,7 +396,7 @@ describe('Komplette Empty Komponente', () =>
     expect(screen.getByRole('button', { name: 'Create' })).toBeInTheDocument()
   })
 
-  it('verwendet default variant für EmptyMedia wenn nicht angegeben', () => {
+  it('uses default variant for EmptyMedia when not specified', () => {
     render(
       <Empty>
         <EmptyMedia data-testid="default-media">
@@ -480,12 +410,10 @@ describe('Komplette Empty Komponente', () =>
     expect(media).toHaveClass('bg-transparent')
     expect(media).not.toHaveClass('bg-muted')
   })
-}
-)
+})
 
-describe('Accessibility', () =>
-{
-  it('unterstützt ARIA Attribute', () => {
+describe('Accessibility', () => {
+  it('supports ARIA attributes', () => {
     render(
       <Empty role="status" aria-live="polite">
         <EmptyTitle>Loading</EmptyTitle>
@@ -497,7 +425,7 @@ describe('Accessibility', () =>
     expect(empty).toHaveAttribute('aria-live', 'polite')
   })
 
-  it('unterstützt keyboard-navigierbare Elemente', () => {
+  it('supports keyboard-navigable elements', () => {
     render(
       <Empty>
         <EmptyContent>
@@ -510,5 +438,4 @@ describe('Accessibility', () =>
     expect(screen.getByRole('button', { name: 'Accessible Button' })).toBeInTheDocument()
     expect(screen.getByRole('link', { name: 'Help Link' })).toBeInTheDocument()
   })
-}
-)
+})
