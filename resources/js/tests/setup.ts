@@ -9,16 +9,16 @@ configure({
   asyncUtilTimeout: 2000
 })
 
-// Nur in Testumgebung ausführen
+// Only run in test environment
 if (typeof window !== 'undefined' && process.env.NODE_ENV === 'test') {
-  // Mock für ResizeObserver (häufig benötigt für React-Komponenten)
+  // Mock for ResizeObserver (frequently needed for React components)
   global.ResizeObserver = vi.fn().mockImplementation(() => ({
     observe: vi.fn(),
     unobserve: vi.fn(),
     disconnect: vi.fn()
   }))
 
-  // Mock für matchMedia (für responsive Tests)
+  // Mock for matchMedia (for responsive tests)
   Object.defineProperty(window, 'matchMedia', {
     writable: true,
     value: vi.fn().mockImplementation(query => ({
@@ -33,7 +33,7 @@ if (typeof window !== 'undefined' && process.env.NODE_ENV === 'test') {
     }))
   })
 
-  // Mock für IntersectionObserver (für Tooltips)
+  // Mock for IntersectionObserver (for tooltips)
   global.IntersectionObserver = vi.fn().mockImplementation(() => ({
     observe: vi.fn(),
     unobserve: vi.fn(),
@@ -43,7 +43,7 @@ if (typeof window !== 'undefined' && process.env.NODE_ENV === 'test') {
     thresholds: []
   }))
 
-  // Mock für requestAnimationFrame
+  // Mock for requestAnimationFrame
   global.requestAnimationFrame = vi.fn().mockImplementation(cb => {
     return setTimeout(cb, 16)
   })

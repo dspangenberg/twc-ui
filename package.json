@@ -27,6 +27,7 @@
     "@testing-library/user-event": "^14.6.1",
     "@types/jest": "^30.0.0",
     "@types/node": "^25.1.0",
+    "@vitest/coverage-v8": "4.0.18",
     "hono": "4.11.7",
     "jsdom": "^27.4.0",
     "shiki": "^3.22.0",
