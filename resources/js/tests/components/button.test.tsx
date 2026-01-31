@@ -4,6 +4,17 @@ import { userEvent } from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
 import { Button } from '@/components/twc-ui/button'
 
+vi.mock('@hugeicons/react', () => ({
+  HugeiconsIcon: vi.fn(({ icon, strokeWidth, className, ...props }: any) => (
+    <svg
+      className={`h-4 w-4 shrink-0 ${className || ''}`}
+      data-stroke-width={strokeWidth?.toString() || '1.5'}
+      {...props}
+    />
+  )),
+  Rocket02Icon: [['path', { d: 'M10 10 L20 20' }]] as any
+}))
+
 const renderButton = (props: React.ComponentProps<typeof Button>) => {
   return render(<Button {...props} />)
 }

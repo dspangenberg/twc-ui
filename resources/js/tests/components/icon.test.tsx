@@ -3,9 +3,17 @@ import { describe, expect, it, vi } from 'vitest'
 import { Icon } from '@/components/twc-ui/icon'
 
 vi.mock('@hugeicons/react', () => ({
-  HugeiconsProps: {},
-  renderIcon: vi.fn((icon: any) => {
-    return `MockHugeIcon-${JSON.stringify(icon)}`
+  HugeiconsIcon: vi.fn(({ icon, strokeWidth, className, ...props }: any) => {
+    const strokeWidthValue = strokeWidth !== undefined ? strokeWidth.toString() : '1.5'
+    return (
+      <div
+        className={`h-4 w-4 shrink-0 ${className || ''}`}
+        data-stroke-width={strokeWidthValue}
+        {...props}
+      >
+        MockHugeIcon-{JSON.stringify(icon)}
+      </div>
+    )
   })
 }))
 
