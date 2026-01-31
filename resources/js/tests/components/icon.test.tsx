@@ -7,7 +7,7 @@ vi.mock('@hugeicons/react', () => ({
     const strokeWidthValue = strokeWidth !== undefined ? strokeWidth.toString() : '1.5'
     return (
       <div
-        className={`h-4 w-4 shrink-0 ${className || ''}`}
+        className={`h-4 w-4 ${className || ''}`}
         data-stroke-width={strokeWidthValue}
         {...props}
       >
@@ -95,7 +95,7 @@ describe('Icon', () => {
     render(<Icon icon={mockHugeIcon} />)
 
     const icon = screen.getByText('MockHugeIcon-[["path",{"d":"M10 10 L20 20"}]]')
-    expect(icon).toHaveClass('shrink-0')
+    expect(icon).toHaveClass('h-4', 'w-4')
   })
 
   it('forwards additional props', () => {
@@ -138,7 +138,7 @@ describe('Icon', () => {
       )
 
       const icon = screen.getByTestId('styled-icon')
-      expect(icon).toHaveClass('text-blue-500', 'size-8', 'shrink-0')
+      expect(icon).toHaveClass('text-blue-500', 'size-8')
       expect(icon).toHaveAttribute('data-stroke-width', '3')
     })
   })
