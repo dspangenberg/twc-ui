@@ -214,7 +214,7 @@ describe('TextField', () => {
     render(<TextField label="Test" value="Initial value" />)
 
     const input = screen.getByTestId('text-input')
-    expect(input).toHaveDisplayValue('')
+    expect(input).toHaveDisplayValue('Initial value')
   })
 
   it('handles null value', () => {
