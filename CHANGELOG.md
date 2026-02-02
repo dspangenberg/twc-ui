@@ -1,3 +1,28 @@
+### 2026-02-01
+#### Components
+- Added badge slot and variant prop for Avatar
+- Added FormCard component
+- Added ScrollArea component
+
+#### Tests
+- Added tests – created by OpenCode – for
+  - Alert
+  - Avatar
+  - Button
+  - Checkbox
+  - Empty
+  - FormCard
+  - FormErrors
+  - FormGrid
+  - FormTextField,
+  - FormTextArea
+  - Icon
+  - ScrollArea
+  - TextArea
+  - TextField
+  - Tooltip
+
+
 ### 2026-01-26
 #### Components
 - Added AvatarUpload component

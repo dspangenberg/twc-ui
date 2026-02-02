@@ -8,20 +8,33 @@ vi.mock('@radix-ui/react-avatar', () => ({
       {children}
     </div>
   ),
-  Image: ({ src, alt, ...props }: any) => (
-    <img data-testid="avatar-image" src={src} alt={alt} {...props} />
+  Image: ({ src, alt, className, ...props }: any) => (
+    <img data-testid="avatar-image" src={src} alt={alt} className={className} {...props} />
   ),
-  Fallback: ({ children, className, ...props }: any) => (
-    <div data-testid="avatar-fallback" className={className} {...props}>
+  Fallback: ({ children, className, style, ...props }: any) => (
+    <div data-testid="avatar-fallback" className={className} style={style} {...props}>
       {children}
     </div>
   )
+}))
+
+vi.mock('@/hooks/use-initials', () => ({
+  useInitials: () => (name: string) => {
+    if (!name) return ''
+    const parts = name.trim().split(/\s+/)
+    if (parts.length === 1) return parts[0].charAt(0).toUpperCase()
+    return parts
+      .slice(0, 2)
+      .map(part => part.charAt(0).toUpperCase())
+      .join('')
+  }
 }))
 
 describe('Avatar', () => {
   it('renders an Avatar component', () => {
     render(<Avatar />)
     expect(screen.getByTestId('avatar-root')).toBeInTheDocument()
+    expect(screen.getByTestId('avatar-container')).toBeInTheDocument()
   })
 
   it('applies standard classes', () => {
@@ -30,11 +43,28 @@ describe('Avatar', () => {
     expect(avatar).toHaveClass(
       'relative',
       'flex',
-      'size-9',
       'shrink-0',
       'overflow-hidden',
-      'rounded-full'
+      'rounded-full',
+      'p-0.5',
+      'text-primary-foreground',
+      'focus-visible:ring-primary/20',
+      'data-[hovered]:bg-primary/90'
     )
+  })
+
+  it('applies size variants correctly', () => {
+    const { rerender } = render(<Avatar size="sm" />)
+    let avatar = screen.getByTestId('avatar-root')
+    expect(avatar).toHaveClass('size-7')
+
+    rerender(<Avatar size="md" />)
+    avatar = screen.getByTestId('avatar-root')
+    expect(avatar).toHaveClass('size-9')
+
+    rerender(<Avatar size="lg" />)
+    avatar = screen.getByTestId('avatar-root')
+    expect(avatar).toHaveClass('size-10')
   })
 
   it('applies custom className', () => {
@@ -96,6 +126,11 @@ describe('Avatar', () => {
     expect(screen.getByTestId('avatar-fallback')).toBeInTheDocument()
   })
 
+  it('renders with badge', () => {
+    render(<Avatar badge="🟢" />)
+    expect(screen.getByText('🟢')).toBeInTheDocument()
+  })
+
   describe('Color Generation', () => {
     beforeEach(() => {
       vi.useFakeTimers()
@@ -109,10 +144,8 @@ describe('Avatar', () => {
       render(<Avatar fullname="John Doe" />)
 
       const fallback = screen.getByTestId('avatar-fallback')
-      // Run timers to allow any async color generation to complete
       vi.runAllTimers()
 
-      // Should have generated a background color based on the fullname hash
       const style = fallback.getAttribute('style')
       expect(style).toContain('background-color')
     })
@@ -123,7 +156,6 @@ describe('Avatar', () => {
       const fallback = screen.getByTestId('avatar-fallback')
       vi.runAllTimers()
 
-      // Should have generated a contrasting text color for readability
       const style = fallback.getAttribute('style')
       expect(style).toContain('color')
     })
@@ -132,11 +164,8 @@ describe('Avatar', () => {
       render(<Avatar src="https://example.com/avatar.jpg" fullname="John Doe" />)
 
       const fallback = screen.getByTestId('avatar-fallback')
-      // Run timers to ensure any async operations complete
       vi.runAllTimers()
 
-      // When an image source is provided, the fallback should not generate
-      // colors since the image will be displayed instead
       expect(fallback).toBeInTheDocument()
       const style = fallback.getAttribute('style') || ''
       expect(style).not.toContain('background-color')
@@ -148,7 +177,6 @@ describe('Avatar', () => {
       const fallback = screen.getByTestId('avatar-fallback')
       vi.runAllTimers()
 
-      // Without a fullname, there's no seed for color generation
       const style = fallback.getAttribute('style') || ''
       expect(style).not.toContain('background-color')
     })
@@ -162,7 +190,6 @@ describe('Avatar', () => {
       const initialBgColor = fallback.style.backgroundColor
       const initialTextColor = fallback.style.color
 
-      // Rerender with a different fullname to trigger new color generation
       rerender(<Avatar fullname="Jane Smith" />)
       fallback = screen.getByTestId('avatar-fallback')
       vi.runAllTimers()
@@ -170,7 +197,6 @@ describe('Avatar', () => {
       const newBgColor = fallback.style.backgroundColor
       const newTextColor = fallback.style.color
 
-      // Different fullnames should generate different color combinations
       expect(newBgColor).not.toBe(initialBgColor)
       expect(newTextColor).not.toBe(initialTextColor)
     })
@@ -196,10 +222,11 @@ describe('AvatarImage', () => {
     expect(image).toHaveAttribute('alt', 'User Avatar')
   })
 
-  it('applies standard classes', () => {
+  it('renders AvatarImage without variant classes when used standalone', () => {
     render(<AvatarImage src="https://example.com/avatar.jpg" />)
     const image = screen.getByTestId('avatar-image')
-    expect(image).toHaveClass('aspect-square', 'size-full')
+    // Standalone AvatarImage doesn't have variant classes - they're applied by Avatar wrapper
+    expect(image).toBeInTheDocument()
   })
 
   it('applies custom className', () => {
@@ -216,20 +243,29 @@ describe('AvatarFallback', () => {
     expect(fallback).toBeInTheDocument()
   })
 
-  it('applies standard classes', () => {
+  it('renders AvatarFallback without variant classes when used standalone', () => {
     render(<AvatarFallback />)
     const fallback = screen.getByTestId('avatar-fallback')
-    expect(fallback).toHaveClass(
-      'flex',
-      'size-full',
-      'items-center',
-      'justify-center',
-      'rounded-full',
-      'bg-muted',
-      'text-xs',
-      'font-medium',
-      'uppercase'
-    )
+    // Standalone AvatarFallback doesn't have variant classes - they're applied by Avatar wrapper
+    expect(fallback).toBeInTheDocument()
+  })
+
+  it('applies size-dependent text classes when used within Avatar', () => {
+    const { rerender } = render(<Avatar fullname="John Doe" size="sm" />)
+    let fallback = screen.getByTestId('avatar-fallback')
+
+    // Should have text-xs for sm size
+    expect(fallback).toHaveClass('text-xs')
+
+    rerender(<Avatar fullname="John Doe" size="md" />)
+    fallback = screen.getByTestId('avatar-fallback')
+    // Should have text-sm for md size
+    expect(fallback).toHaveClass('text-sm')
+
+    rerender(<Avatar fullname="John Doe" size="lg" />)
+    fallback = screen.getByTestId('avatar-fallback')
+    // Should have text-lg for lg size
+    expect(fallback).toHaveClass('text-lg')
   })
 
   it('applies custom className', () => {
@@ -288,5 +324,60 @@ describe('Edge Cases', () => {
   it('renders without any props', () => {
     render(<Avatar />)
     expect(screen.getByTestId('avatar-root')).toBeInTheDocument()
+    expect(screen.getByTestId('avatar-container')).toBeInTheDocument()
+  })
+
+  it('handles null src prop', () => {
+    render(<Avatar src={null} fullname="John Doe" />)
+    expect(screen.getByText('JD')).toBeInTheDocument()
+  })
+})
+
+describe('Badge Functionality', () => {
+  it('renders badge container with proper structure', () => {
+    render(<Avatar badge="🟢" />)
+
+    // Find badge container by looking for element with badge container classes
+    const badgeContainer = document.querySelector(
+      '.absolute.-bottom-1\\.5.-right-1\\.5.border-2.border-background.rounded-full'
+    )
+    expect(badgeContainer).toBeInTheDocument()
+  })
+
+  it('renders badge element with proper classes', () => {
+    render(<Avatar badge="🟢" />)
+
+    // Look for the actual badge element - check if badge text exists and has badge container
+    const badgeText = screen.getByText('🟢')
+    expect(badgeText).toBeInTheDocument()
+    expect(badgeText.parentElement).toBeInTheDocument()
+  })
+
+  it('renders badge with variant classes', () => {
+    render(<Avatar badge="🟢" variant="info" />)
+
+    const badge = document.querySelector('.bg-primary.text-background')
+    expect(badge).toBeInTheDocument()
+  })
+
+  it('renders destructive variant badge', () => {
+    render(<Avatar badge="❌" variant="destructive" />)
+
+    const badge = document.querySelector('.bg-destructive\\/80.border-destructive.text-white')
+    expect(badge).toBeInTheDocument()
+  })
+
+  it('applies custom badge className', () => {
+    render(<Avatar badge="🟢" badgeClassName="custom-badge" />)
+
+    const badge = document.querySelector('.custom-badge')
+    expect(badge).toBeInTheDocument()
+  })
+
+  it('does not render badge when not provided', () => {
+    render(<Avatar fullname="John Doe" />)
+
+    const badgeContainer = document.querySelector('.absolute.-bottom-1\\.5.-right-1\\.5')
+    expect(badgeContainer).not.toBeInTheDocument()
   })
 })

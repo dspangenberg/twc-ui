@@ -1,0 +1,14 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "use-initials",
+  "type": "registry:hook",
+  "title": "use-initials",
+  "description": "use-field-change Hook",
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "resources/js/hooks/use-initials.ts",
+      "type": "registry:hook"
+    }
+  ]
+}

@@ -81,6 +81,9 @@
       "dependencies": [
         "@radix-ui/react-avatar"
       ],
+      "registryDependencies": [
+        "@twc-ui/use-initials"
+      ],
       "files": [
         {
           "path": "resources/js/components/twc-ui/avatar.tsx",
@@ -492,6 +495,24 @@
           "path": "resources/js/components/twc-ui/file-trigger.tsx",
           "type": "registry:ui",
           "target": "components/twc-ui/file-trigger.tsx"
+        }
+      ],
+      "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "form-card",
+      "type": "registry:ui",
+      "title": "FormCard",
+      "description": "FormCard component",
+      "registryDependencies": [
+        "@twc-ui/scroll-card"
+      ],
+      "files": [
+        {
+          "path": "resources/js/components/twc-ui/form-card.tsx",
+          "type": "registry:ui",
+          "target": "components/twc-ui/form-card.tsx"
         }
       ],
       "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
@@ -1205,6 +1226,42 @@
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "scroll-area",
+      "type": "registry:ui",
+      "title": "ScrollArea",
+      "description": "ScrollArea component",
+      "dependencies": [
+        "@radix-ui/react-scroll-area"
+      ],
+      "files": [
+        {
+          "path": "resources/js/components/twc-ui/scroll-area.tsx",
+          "type": "registry:ui",
+          "target": "components/twc-ui/scroll-area.tsx"
+        }
+      ],
+      "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "scroll-card",
+      "type": "registry:ui",
+      "title": "ScrollCard",
+      "description": "ScrollCard component",
+      "registryDependencies": [
+        "@twc-ui/scroll-area"
+      ],
+      "files": [
+        {
+          "path": "resources/js/components/twc-ui/scroll-card.tsx",
+          "type": "registry:ui",
+          "target": "components/twc-ui/scroll-card.tsx"
+        }
+      ],
+      "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "name": "search-field",
       "type": "registry:ui",
       "title": "SearchField",
@@ -1510,6 +1567,21 @@
       "files": [
         {
           "path": "resources/js/hooks/use-file-download.ts",
+          "type": "registry:hook"
+        }
+      ],
+      "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "use-initials",
+      "type": "registry:hook",
+      "title": "use-initials",
+      "description": "use-field-change Hook",
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "resources/js/hooks/use-initials.ts",
           "type": "registry:hook"
         }
       ],

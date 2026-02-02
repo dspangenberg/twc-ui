@@ -5,6 +5,7 @@
   "title": "Avatar",
   "description": "Avatar component",
   "dependencies": ["@radix-ui/react-avatar"],
+  "registryDependencies": ["@twc-ui/use-initials"],
   "files": [
     {
       "path": "resources/js/components/twc-ui/avatar.tsx",

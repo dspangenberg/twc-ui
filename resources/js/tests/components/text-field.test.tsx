@@ -43,7 +43,7 @@ vi.mock('@/components/twc-ui/field', () => ({
 }))
 
 vi.mock('react-aria-components', () => ({
-  TextField: ({ children, className, isInvalid, ...props }: any) =>
+  TextField: ({ children, className, isInvalid, value, onChange, isDisabled, ...props }: any) =>
     React.createElement(
       'div',
       {
@@ -52,34 +52,62 @@ vi.mock('react-aria-components', () => ({
         'data-invalid': isInvalid ? 'true' : 'false',
         ...props
       },
-      children
+      // Pass TextField props down to Input children via context simulation
+      React.Children.map(children, (child: any) => {
+        if (React.isValidElement(child) && typeof child.type === 'function') {
+          // Pass TextField props to Input children
+          return React.cloneElement(child as any, {
+            ...child.props,
+            _textFieldProps: { isInvalid, isDisabled, value, onChange }
+          })
+        }
+        return child
+      })
     ),
-  Input: ({
-    className,
-    value,
-    onChange,
-    placeholder,
-    autoComplete,
-    disabled,
-    isInvalid,
-    ...props
-  }: any) =>
-    React.createElement('input', {
-      className: `flex h-9 w-full rounded-sm border border-input bg-background px-3 py-1 font-medium text-sm shadow-none outline-0 transition-colors file:border-0 file:bg-transparent file:font-medium file:text-sm placeholder:text-muted-foreground focus:border-primary focus:ring-[3px] focus:ring-primary/20 ${className || ''} ${isInvalid ? 'data-invalid:border-destructive data-invalid:focus:border-destructive data-invalid:focus:ring-destructive/20' : ''} ${disabled ? 'data-disabled:cursor-not-allowed data-disabled:opacity-50' : ''}`,
-      'data-testid': 'text-input',
-      'data-invalid': isInvalid ? 'true' : undefined,
-      disabled: disabled || false,
-      value: value || '',
+  Input: (allProps: any) => {
+    // Extract and remove internal props first
+    const {
+      _textFieldProps,
+      ...propsWithoutInternal
+    } = allProps
+
+    // Extract known props, rest goes to DOM
+    const {
+      className,
+      value: directValue,
+      onChange: directOnChange,
+      placeholder = '',
+      autoComplete = 'off',
+      disabled,
+      isInvalid,
+      'data-testid': dataTestId,
+      ...domProps
+    } = propsWithoutInternal
+
+    const { isInvalid: contextInvalid, isDisabled, value: contextValue, onChange: contextOnChange } = _textFieldProps || {}
+
+    // Use context values if available, otherwise use direct values
+    const onChange = contextOnChange || directOnChange
+    const value = contextValue ?? directValue
+    const invalid = contextInvalid ?? isInvalid
+
+    return React.createElement('input', {
+      className: `flex h-9 w-full rounded-sm border border-input bg-background px-3 py-1 font-medium text-sm shadow-none outline-0 transition-colors file:border-0 file:bg-transparent file:font-medium file:text-sm placeholder:text-muted-foreground focus:border-primary focus:ring-[3px] focus:ring-primary/20 ${className || ''} ${invalid ? 'data-invalid:border-destructive data-invalid:focus:border-destructive data-invalid:focus:ring-destructive/20' : ''} ${(isDisabled || disabled) ? 'data-disabled:cursor-not-allowed data-disabled:opacity-50' : ''}`,
+      'data-testid': dataTestId || 'text-input',
+      'data-invalid': invalid ? 'true' : undefined,
+      disabled: isDisabled || disabled || false,
+      value: value ?? '',
       onChange: (e: any) => {
-        const newValue = e?.target?.value || e || ''
+        const newValue = e?.target?.value || ''
         if (onChange) {
           onChange(newValue)
         }
       },
       placeholder,
-      autoComplete: autoComplete || 'off',
-      ...props
-    }),
+      autoComplete,
+      ...domProps
+    })
+  },
   composeRenderProps: (className: string, fn: any) => fn(className)
 }))
 
