@@ -506,13 +506,31 @@
       "title": "FormCard",
       "description": "FormCard component",
       "registryDependencies": [
-        "@twc-ui/scroll-card"
+        "@twc-ui/scroll-area"
       ],
       "files": [
         {
           "path": "resources/js/components/twc-ui/form-card.tsx",
           "type": "registry:ui",
           "target": "components/twc-ui/form-card.tsx"
+        }
+      ],
+      "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "form-checkbox-group",
+      "type": "registry:ui",
+      "title": "FormCheckboxGroup",
+      "description": "FormCheckboxGroup component with form integration",
+      "registryDependencies": [
+        "@twc-ui/checkbox"
+      ],
+      "files": [
+        {
+          "path": "resources/js/components/twc-ui/form-checkbox-group.tsx",
+          "type": "registry:ui",
+          "target": "components/twc-ui/form-checkbox-group.tsx"
         }
       ],
       "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
@@ -569,6 +587,7 @@
         "laravel-precognition"
       ],
       "registryDependencies": [
+        "@twc-ui/form-card",
         "@twc-ui/form-checkbox",
         "@twc-ui/form-combo-box",
         "@twc-ui/form-date-field",
@@ -1238,24 +1257,6 @@
           "path": "resources/js/components/twc-ui/scroll-area.tsx",
           "type": "registry:ui",
           "target": "components/twc-ui/scroll-area.tsx"
-        }
-      ],
-      "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
-    },
-    {
-      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
-      "name": "scroll-card",
-      "type": "registry:ui",
-      "title": "ScrollCard",
-      "description": "ScrollCard component",
-      "registryDependencies": [
-        "@twc-ui/scroll-area"
-      ],
-      "files": [
-        {
-          "path": "resources/js/components/twc-ui/scroll-card.tsx",
-          "type": "registry:ui",
-          "target": "components/twc-ui/scroll-card.tsx"
         }
       ],
       "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"

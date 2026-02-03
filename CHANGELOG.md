@@ -3,6 +3,7 @@
 - Added badge slot and variant prop for Avatar
 - Added FormCard component
 - Added ScrollArea component
+- Added FormCheckboxGroup component
 
 #### Tests
 - Added tests – created by OpenCode – for
@@ -10,13 +11,18 @@
   - Avatar
   - Button
   - Checkbox
+  - CheckboxGroup
   - Empty
   - FormCard
+  - FormCheckbox
+  - FormCheckboxGroup
   - FormErrors
   - FormGrid
-  - FormTextField,
+  - FormSelect
+  - FormTextField
   - FormTextArea
   - Icon
+  - Select
   - ScrollArea
   - TextArea
   - TextField
