@@ -230,13 +230,19 @@ const FormPasswordField = ({
             name={name}
             autoFocus={autoFocus}
             value={value ?? ''}
-            onChange={e => onChange?.(e.target.value)}
+            onChange={e => {
+              setRevealed(false)
+              onChange?.(e.target.value)
+            }}
             onKeyDown={e => {
               if (e.key === 'Escape') {
                 setIsFocused(false)
               }
             }}
-            onFocus={() => setIsFocused(true)}
+            onFocus={() => {
+              setIsFocused(true)
+              setRevealed(false)
+            }}
             onBlur={() => {
               setIsFocused(false)
               setRevealed(false)

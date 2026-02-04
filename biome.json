@@ -1,32 +1,11 @@
 {
-  "$schema": "https://biomejs.dev/schemas/2.3.11/schema.json",
-  "assist": {
-    "actions": {
-      "source": {
-        "organizeImports": "on"
-      }
-    }
-  },
-  "files": {
-    "includes": [
-      "**",
-      "!**/*.generated/*",
-      "!tsconfig.json",
-      "!resources/js/components/ui",
-      "resources/js/**/*"
-    ]
-  },
+  "$schema": "https://biomejs.dev/schemas/2.2.0/schema.json",
   "formatter": {
     "enabled": true,
     "lineWidth": 100,
     "indentStyle": "space",
     "indentWidth": 2,
     "formatWithErrors": true
-  },
-  "css": {
-    "parser": {
-      "tailwindDirectives": true
-    }
   },
   "javascript": {
     "formatter": {
@@ -88,18 +67,6 @@
         "useAnchorContent": "off",
         "useValidAnchor": "off",
         "useAltText": "off"
-      },
-      "style": {
-        "noParameterAssign": "error",
-        "useAsConstAssertion": "error",
-        "useDefaultParameterLast": "error",
-        "useEnumInitializers": "error",
-        "useSelfClosingElements": "error",
-        "useSingleVarDeclarator": "error",
-        "noUnusedTemplateLiteral": "error",
-        "useNumberNamespace": "error",
-        "noInferrableTypes": "error",
-        "noUselessElse": "error"
       }
     }
   }

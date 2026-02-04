@@ -14,9 +14,11 @@ description: An image element with a fallback for representing the user.
 ## Documentation
 ### Props
 
-| Prop     | Type                                                 | Default | Description                               |
-  |----------|------------------------------------------------------|---------|-------------------------------------------|
-| fullname | `string`                                             | ``      | Used for calculating the background-color |
-| initials | `string`                                             | ``      | Used for Fallback                         |
-| size     | <TypeInfo title="size" types={['sm', 'md', 'lg']} /> | `md`    | Size of the avatar                        |
-| src      | `string`                                             | ``      | Image source                              |
+| Prop     | Type                                                 | Default   | Description                                           |
+  |----------|------------------------------------------------------|-----------|-------------------------------------------------------|
+| badge    | `string \| ReactNode`                                | undefined | The badge appears in the avatar's lower right corner. |
+| fullname | `string`                                             | ``        | Used for calculating the background-color             |
+| initials | `string`                                             | ``        | Used for Fallback                                     |
+| size     | <TypeInfo title="size" types={['sm', 'md', 'lg']} /> | `md`      | Size of the avatar                                    |
+| src      | `string`                                             | ``        | Image source                                          |
+

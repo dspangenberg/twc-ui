@@ -1,18 +1,271 @@
 ---
 title: FormGrid
+description: A flexible grid layout component for organizing form fields with customizable columns, borders, and section titles.
 ---
 
 <CombiDemoCodePreview codePath="form-grid/default.tsx" demoPath="demos/form-grid/default" />
+
 ## Installation
 
 <Installation registry="form-grid" />
 
-## Documentation
+## FormGrid
 
-### Props
+A responsive grid layout component designed specifically for organizing form fields. It provides a structured way to arrange form elements in columns with optional section titles, borders, and actions.
 
-| Prop              | Type    | Default              |
-  |-------------------|---------|----------------------|
-| border             | `boolean` | `false`  |
-| cols              | `6`  \| `12` \| `24`                                                  | `24`    |
-| title             | `string` | ``  |
+### Features
+
+- **Flexible Grid System**: Supports 6, 12, or 24 column layouts
+- **Responsive Design**: Fields use Tailwind's `col-span-*` classes for width control
+- **Section Organization**: Optional titles and borders for form sections
+- **Action Support**: Right-aligned action buttons in title area
+- **Spacing Control**: Configurable margins and gaps
+- **Styling Flexibility**: Customizable title styles and container classes
+
+### Documentation
+
+#### Props
+
+| Prop            | Type                | Default   | Descriptions                                                  |
+|-----------------|---------------------|-----------|---------------------------------------------------------------|
+| action          | `React.ReactNode`   | ``        | Optional action element (typically buttons) displayed in title area |
+| border          | `boolean`           | `false`   | Adds a top border to separate form sections                   |
+| children        | `React.ReactNode`   | **Required** | Form fields and content to be displayed in the grid         |
+| className       | `string`            | ``        | Additional CSS classes applied to the grid container         |
+| cols            | `6 \| 12 \| 24`     | `24`      | Number of columns in the grid system                        |
+| fullWidth       | `boolean`           | `true`    | Whether the grid should take full width                       |
+| grid            | `boolean`           | `true`    | Whether to apply grid layout (set to false for flex layout)  |
+| margin          | `boolean`           | `true`    | Whether to add margin to the grid container                   |
+| title           | `string`            | ``        | Section title displayed above the grid                        |
+| titleClass      | `string`            | `'font-medium text-sm text-black mt-4 pb-3 border-b'` | CSS classes applied to the title container |
+
+### Grid System
+
+The FormGrid uses a 24-column grid system by default, but can be configured for 6 or 12 columns. Child elements should use Tailwind's `col-span-*` classes to define their width:
+
+- **24-column system**: `col-span-1` to `col-span-24`
+- **12-column system**: `col-span-1` to `col-span-12`
+- **6-column system**: `col-span-1` to `col-span-6`
+
+### Usage Examples
+
+#### Basic Two-Column Layout
+
+```tsx
+import { FormGrid } from '@/components/twc-ui/form-grid'
+import { FormTextField } from '@/components/twc-ui/form-text-field'
+
+export function BasicForm() {
+  return (
+    <FormGrid cols={12}>
+      <div className="col-span-6">
+        <FormTextField label="First Name" />
+      </div>
+      <div className="col-span-6">
+        <FormTextField label="Last Name" />
+      </div>
+    </FormGrid>
+  )
+}
+```
+
+#### With Section Titles
+
+```tsx
+export function SectionedForm() {
+  return (
+    <>
+      <FormGrid title="Personal Information">
+        <div className="col-span-12">
+          <FormTextField label="Full Name" />
+        </div>
+        <div className="col-span-12">
+          <FormTextField label="Email" />
+        </div>
+      </FormGrid>
+      
+      <FormGrid title="Address" border>
+        <div className="col-span-24">
+          <FormTextField label="Street Address" />
+        </div>
+        <div className="col-span-8">
+          <FormTextField label="City" />
+        </div>
+        <div className="col-span-8">
+          <FormTextField label="State" />
+        </div>
+        <div className="col-span-8">
+          <FormTextField label="ZIP Code" />
+        </div>
+      </FormGrid>
+    </>
+  )
+}
+```
+
+#### With Actions
+
+```tsx
+export function FormWithActions() {
+  return (
+    <FormGrid 
+      title="User Settings"
+      action={
+        <div className="flex gap-2">
+          <Button variant="outline" size="sm">
+            Reset
+          </Button>
+          <Button size="sm">
+            Save
+          </Button>
+        </div>
+      }
+    >
+      <div className="col-span-12">
+        <FormTextField label="Username" />
+      </div>
+      <div className="col-span-12">
+        <FormTextField label="Email" />
+      </div>
+    </FormGrid>
+  )
+}
+```
+
+#### Custom Column Configuration
+
+```tsx
+export function CustomGridForm() {
+  return (
+    <FormGrid cols={6}>
+      <div className="col-span-3">
+        <FormTextField label="First Name" />
+      </div>
+      <div className="col-span-3">
+        <FormTextField label="Last Name" />
+      </div>
+      <div className="col-span-6">
+        <FormTextField label="Email" />
+      </div>
+      <div className="col-span-2">
+        <FormTextField label="City" />
+      </div>
+      <div className="col-span-2">
+        <FormTextField label="State" />
+      </div>
+      <div className="col-span-2">
+        <FormTextField label="ZIP" />
+      </div>
+    </FormGrid>
+  )
+}
+```
+
+#### Non-Grid Layout
+
+```tsx
+export function FlexLayoutForm() {
+  return (
+    <FormGrid grid={false} margin={false}>
+      {/* Uses flex layout instead of grid */}
+      <FormTextField label="Field 1" />
+      <FormTextField label="Field 2" />
+      <FormTextField label="Field 3" />
+    </FormGrid>
+  )
+}
+```
+
+#### Custom Styling
+
+```tsx
+export function StyledForm() {
+  return (
+    <FormGrid 
+      title="Custom Styled Section"
+      titleClass="text-lg font-bold text-blue-600 mb-4 border-b-2 border-blue-200 pb-2"
+      className="bg-gray-50 rounded-lg p-4"
+      border
+    >
+      <div className="col-span-24">
+        <FormTextField label="Styled Field" />
+      </div>
+    </FormGrid>
+  )
+}
+```
+
+### Common Layout Patterns
+
+#### Two-Column Form (12-col grid)
+
+```tsx
+<FormGrid cols={12}>
+  <div className="col-span-12">
+    <FormTextField label="Full Width Field" />
+  </div>
+  <div className="col-span-6">
+    <FormTextField label="First Half" />
+  </div>
+  <div className="col-span-6">
+    <FormTextField label="Second Half" />
+  </div>
+</FormGrid>
+```
+
+#### Four-Column Form (24-col grid)
+
+```tsx
+<FormGrid cols={24}>
+  <div className="col-span-6">
+    <FormTextField label="Column 1" />
+  </div>
+  <div className="col-span-6">
+    <FormTextField label="Column 2" />
+  </div>
+  <div className="col-span-6">
+    <FormTextField label="Column 3" />
+  </div>
+  <div className="col-span-6">
+    <FormTextField label="Column 4" />
+  </div>
+</FormGrid>
+```
+
+### Integration with Form Components
+
+FormGrid is designed to work seamlessly with other form components:
+
+```tsx
+import { Form, useForm } from '@/components/twc-ui/form'
+import { FormGrid } from '@/components/twc-ui/form-grid'
+import { FormTextField, FormSelect, FormTextArea } from '@/components/twc-ui/form-text-field'
+
+export function CompleteForm() {
+  const form = useForm(/* config */)
+
+  return (
+    <Form form={form}>
+      <FormGrid title="Contact Information">
+        <div className="col-span-12">
+          <FormTextField {...form.register('first_name')} label="First Name" />
+        </div>
+        <div className="col-span-12">
+          <FormTextField {...form.register('last_name')} label="Last Name" />
+        </div>
+        <div className="col-span-24">
+          <FormTextField {...form.register('email')} label="Email" />
+        </div>
+      </FormGrid>
+    </Form>
+  )
+}
+```
+
+### Best Practices
+
+1. **Use consistent column systems** throughout your application
+2. **Organize related fields** into sections with titles
+3. **Use borders** to visually separate major form sections
+4. **Keep responsive design** in mind when choosing column spans
+5. **Utilize actions** for section-specific buttons (like "Add More" or "Clear")

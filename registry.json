@@ -81,6 +81,9 @@
       "dependencies": [
         "@radix-ui/react-avatar"
       ],
+      "registryDependencies": [
+        "@twc-ui/use-initials"
+      ],
       "files": [
         {
           "path": "resources/js/components/twc-ui/avatar.tsx",
@@ -498,6 +501,42 @@
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "form-card",
+      "type": "registry:ui",
+      "title": "FormCard",
+      "description": "FormCard component",
+      "registryDependencies": [
+        "@twc-ui/scroll-area"
+      ],
+      "files": [
+        {
+          "path": "resources/js/components/twc-ui/form-card.tsx",
+          "type": "registry:ui",
+          "target": "components/twc-ui/form-card.tsx"
+        }
+      ],
+      "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "form-checkbox-group",
+      "type": "registry:ui",
+      "title": "FormCheckboxGroup",
+      "description": "FormCheckboxGroup component with form integration",
+      "registryDependencies": [
+        "@twc-ui/checkbox"
+      ],
+      "files": [
+        {
+          "path": "resources/js/components/twc-ui/form-checkbox-group.tsx",
+          "type": "registry:ui",
+          "target": "components/twc-ui/form-checkbox-group.tsx"
+        }
+      ],
+      "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "name": "form-checkbox",
       "type": "registry:ui",
       "title": "FormCheckbox",
@@ -548,6 +587,7 @@
         "laravel-precognition"
       ],
       "registryDependencies": [
+        "@twc-ui/form-card",
         "@twc-ui/form-checkbox",
         "@twc-ui/form-combo-box",
         "@twc-ui/form-date-field",
@@ -1205,6 +1245,24 @@
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "scroll-area",
+      "type": "registry:ui",
+      "title": "ScrollArea",
+      "description": "ScrollArea component",
+      "dependencies": [
+        "@radix-ui/react-scroll-area"
+      ],
+      "files": [
+        {
+          "path": "resources/js/components/twc-ui/scroll-area.tsx",
+          "type": "registry:ui",
+          "target": "components/twc-ui/scroll-area.tsx"
+        }
+      ],
+      "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "name": "search-field",
       "type": "registry:ui",
       "title": "SearchField",
@@ -1510,6 +1568,21 @@
       "files": [
         {
           "path": "resources/js/hooks/use-file-download.ts",
+          "type": "registry:hook"
+        }
+      ],
+      "author": "Danny Spangenberg <danny.spangenberg@twiceware.de>"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "use-initials",
+      "type": "registry:hook",
+      "title": "use-initials",
+      "description": "use-field-change Hook",
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "resources/js/hooks/use-initials.ts",
           "type": "registry:hook"
         }
       ],
