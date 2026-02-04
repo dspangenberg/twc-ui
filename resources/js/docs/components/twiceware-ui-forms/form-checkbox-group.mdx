@@ -1,7 +1,139 @@
 ---
 title: FormCheckboxGroup
+description: A checkbox group allows users to select multiple items from a list of options. Built on top of React Aria components with form integration.
+docUrl: https://react-aria.adobe.com/CheckboxGroup#api
+credits:
+  - url: https://www.jollyui.dev/docs/components/checkbox-group
+    title: JollyUI
 ---
+
 <CombiDemoCodePreview codePath="form-checkbox-group/default.tsx" demoPath="demos/form-checkbox-group/default" />
 
-# Installation
+## Installation
 <Installation registry="form-checkbox-group" />
+
+## FormCheckboxGroup
+
+A form-integrated checkbox group that allows users to select multiple items from a list of options. It automatically handles type conversion between string and numeric values, integrates with form validation, and provides a consistent styling approach.
+
+### Documentation
+
+#### Props
+
+| Prop           | Type                         | Default      | Descriptions                                                  |
+|----------------|------------------------------|--------------|---------------------------------------------------------------|
+| description    | `string`                     | ``           | Helper text displayed below the label                         |
+| errorMessage   | `string \| ((validation: any) => string)` | ``           | Custom error message or function to generate error message    |
+| items          | `T[]`                        | `[]`         | Array of items for the checkbox group                         |
+| label          | `string`                     | ``           | Label text for the checkbox group                            |
+| listClassName  | `string`                     | ``           | CSS class applied to the container div of checkbox items      |
+| name           | `string`                     | **Required** | Form field name                                                |
+| itemName       | `keyof T & string`           | `'name'`     | Property name in items that contains the display text          |
+| itemValue      | `keyof T & string`           | `'id'`       | Property name in items that contains the value                 |
+| value          | `(string \| number)[]`       | ``           | Currently selected values                                     |
+| onChange       | `(value: (string \| number)[]) => void` | ``           | Callback function when selection changes                      |
+| onBlur         | `() => void`                 | ``           | Callback function when field loses focus                      |
+
+#### Features
+
+- **Automatic Type Handling**: Automatically converts between string and numeric values based on the item value type
+- **Form Integration**: Works seamlessly with the `useForm` hook and automatically displays form validation errors
+- **Flexible Item Mapping**: Supports any object structure with customizable display and value properties
+- **Accessibility**: Built on React Aria components for full keyboard navigation and screen reader support
+- **Custom Styling**: Supports custom CSS classes for the checkbox list container
+
+### Usage Examples
+
+#### Basic Usage
+
+```tsx
+import { FormCheckboxGroup } from '@/components/twc-ui/form-checkbox-group'
+
+const fileTypes = [
+  { name: 'Images', id: 1 },
+  { name: 'Videos', id: 2 },
+  { name: 'Documents', id: 3 }
+]
+
+<FormCheckboxGroup
+  name="filetypes"
+  label="Select File Types"
+  items={fileTypes}
+  itemName="name"
+  itemValue="id"
+  value={[1, 2]}
+  onChange={(values) => console.log('Selected:', values)}
+/>
+```
+
+#### With Form Integration
+
+```tsx
+import { Form, useForm } from '@/components/twc-ui/form'
+import { FormCheckboxGroup } from '@/components/twc-ui/form-checkbox-group'
+
+interface ContactData {
+  interests: number[]
+}
+
+export function ContactForm() {
+  const form = useForm<ContactData>('contact-form', 'post', '/contact', {
+    interests: []
+  })
+
+  const interests = [
+    { name: 'Technology', id: 1 },
+    { name: 'Sports', id: 2 },
+    { name: 'Music', id: 3 },
+    { name: 'Art', id: 4 }
+  ]
+
+  return (
+    <Form form={form}>
+      <FormCheckboxGroup
+        label="Interests"
+        {...form.register('interests')}
+        items={interests}
+        description="Select all that interest you"
+      />
+    </Form>
+  )
+}
+```
+
+#### With String Values
+
+```tsx
+const categories = [
+  { name: 'Electronics', value: 'electronics' },
+  { name: 'Clothing', value: 'clothing' },
+  { name: 'Books', value: 'books' }
+]
+
+<FormCheckboxGroup
+  name="categories"
+  label="Categories"
+  items={categories}
+  itemName="name"
+  itemValue="value"
+  value={['electronics', 'books']}
+  onChange={(values) => setCategories(values)}
+/>
+```
+
+#### Custom List Styling
+
+```tsx
+<FormCheckboxGroup
+  name="options"
+  label="Options"
+  items={options}
+  listClassName="grid grid-cols-2 gap-4"
+  onChange={handleChange}
+/>
+```
+
+### Exported Components
+
+- `FormCheckbox`: Individual checkbox component (alias for `BaseCheckbox`)
+- `FormCheckboxProps`: Type definition for individual checkbox props

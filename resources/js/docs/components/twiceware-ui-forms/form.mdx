@@ -1,68 +1,264 @@
 ---
 title: Form
-description: "Form wrapper for Laravel Precognition + Inertia forms."
+description: A comprehensive form wrapper that integrates Laravel Precognition with Inertia for real-time validation and seamless form handling.
 ---
 
-
-<CombiDemoCodePreview codePath="form/default.tsx" demoPath={route('contact.create')} className="h-200" />
+<CombiDemoCodePreview codePath="form/default.tsx" demoPath="demos/form/default" />
 
 ## Installation
 
 <Installation registry="form" />
 
-## Documentation
+## Form
 
-The `Form` component wraps a Precognition-powered Inertia form and provides a context so
-field components can access the form state and validation helpers.
+The `Form` component provides a complete form solution that wraps Laravel Precognition-powered Inertia forms. It offers real-time validation, error handling, and a context system for nested form components.
 
-### Usage
+### Features
 
-<SourceCode hideHeader={true} code={`
-  import { Form, useForm } from '@/components/twc-ui/form'
-  import { FormTextField } from '@/components/twc-ui/form-text-field'
+- **Real-time Validation**: Uses Laravel Precognition for client-side validation before submission
+- **Inertia Integration**: Seamlessly handles form submissions with proper error handling
+- **Form Context**: Provides React context for all nested form components
+- **Error Management**: Centralized error display with customizable variants
+- **Loading States**: Automatic form disabling during processing
+- **Type Safety**: Full TypeScript support with generic form schemas
 
-  export default function ContactForm({ contact }) {
-    const form = useForm(
-      'contact-form',
-      'post',
-      route('contact.store'),
-      contact,
-      { validateOn: 'both' }
-    )
+### useForm Hook
 
-    return (
-      <Form form={form} errorTitle="Please fix the highlighted fields.">
-        <FormTextField label="Name" {...form.register('name')} />
-      </Form>
-    )
+Create and configure form instances with the `useForm` hook:
+
+```tsx
+import { Form, useForm } from '@/components/twc-ui/form'
+
+interface ContactData {
+  first_name: string
+  last_name: string
+  email: string
+  country_id?: number
+  hourly?: number
+  dob?: string
+  note?: string
+  is_vip?: boolean
+}
+
+export function ContactForm({ contact, countries }) {
+  const form = useForm<ContactData>(
+    'contact-form',           // Form ID
+    'post',                   // HTTP method
+    route('contact.store'),   // Action URL
+    contact,                  // Initial data
+    {                         // Validation config
+      validateOn: 'both'      // Validate on change and blur
+    }
+  )
+
+  return (
+    <Form form={form} errorTitle="Please fix the highlighted fields.">
+      {/* Form fields */}
+    </Form>
+  )
+}
+```
+
+#### useForm Signature
+
+```tsx
+useForm<T extends FormSchema>(
+  id: string,
+  method: RequestMethod,
+  action: string,
+  data: T,
+  config?: ValidationConfig & FormValidationOptions,
+  className?: string
+): ExtendedForm<T>
+```
+
+### Form Props
+
+| Prop              | Type                    | Default      | Descriptions                                                  |
+|-------------------|-------------------------|--------------|---------------------------------------------------------------|
+| form              | `ExtendedForm<T>`       | **Required** | Form instance created with `useForm` hook                     |
+| children          | `React.ReactNode`       | **Required** | Form content and fields                                       |
+| errorVariant      | `'form' \| 'field'`     | `'form'`     | Where to display validation errors                            |
+| errorTitle        | `string`                | ``           | Title for form-level error messages                           |
+| errorClassName    | `string`                | ``           | Custom CSS class for error display                            |
+| onSubmitted       | `() => void`            | ``           | Callback function called after successful submission          |
+| className         | `string`                | ``           | Custom CSS class for the form element                         |
+
+### ExtendedForm Methods
+
+| Method                        | Description |
+|------------------------------|-------------|
+| `register(name)`             | Register field with value-first approach |
+| `registerEvent(name)`        | Register field with event-based approach |
+| `registerCheckbox(name)`     | Register checkbox field with proper wiring |
+| `registerDateRange(start, end)` | Register date range fields |
+| `updateAndValidate(event)`   | Update field and validate from event |
+| `updateAndValidateWithoutEvent(name, value)` | Update field and validate from values |
+| `submit()`                   | Submit form with proper error handling |
+| `validate()`                 | Validate all form fields |
+| `setData(data)`              | Update form data |
+| `setErrors(errors)`          | Update form errors |
+| `reset()`                    | Reset form to initial state |
+| `transform(data)`            | Transform form data before submission |
+
+### Form Properties
+
+| Property      | Type | Description |
+|---------------|------|-------------|
+| `data`        | `T` | Current form data |
+| `errors`      | `SimpleValidationErrors` | Validation errors |
+| `touched`     | `Record<string, boolean>` | Field touch states |
+| `processing`  | `boolean` | Form submission state |
+| `isDirty`     | `boolean` | Form has unsaved changes |
+
+### Usage Examples
+
+#### Basic Form with Validation
+
+```tsx
+import { Form, useForm } from '@/components/twc-ui/form'
+import { FormTextField } from '@/components/twc-ui/form-text-field'
+import { Button } from '@/components/twc-ui/button'
+
+export function UserForm() {
+  const form = useForm('user-form', 'post', '/users', {
+    name: '',
+    email: ''
+  })
+
+  return (
+    <Form form={form}>
+      <FormTextField 
+        label="Name" 
+        {...form.register('name')}
+        isRequired 
+      />
+      <FormTextField 
+        label="Email" 
+        {...form.register('email')}
+        isRequired 
+        type="email"
+      />
+      <Button type="submit">Save User</Button>
+    </Form>
+  )
+}
+```
+
+#### With Custom Error Handling
+
+```tsx
+export function AdvancedForm() {
+  const form = useForm('advanced-form', 'post', '/submit', data)
+
+  const handleSubmitSuccess = () => {
+    // Custom success handling
+    toast.success('Form submitted successfully!')
   }
-`} />
 
-### Behavior
+  return (
+    <Form 
+      form={form}
+      errorVariant="field"  // Show errors at field level
+      errorTitle="Please correct the following errors:"
+      errorClassName="bg-red-50 border-red-200"
+      onSubmitted={handleSubmitSuccess}
+      className="space-y-4"
+    >
+      {/* Form fields */}
+    </Form>
+  )
+}
+```
 
-- Submits with `form.submit`, preserves scroll, and maps Inertia error arrays to single strings.
-- Provides a context for nested fields via `useFormContext`.
-- Disables the fieldset while `form.processing` is `true`.
+#### Nested Form Fields
 
-### Props
+```tsx
+interface AddressForm {
+  'address.street': string
+  'address.city': string
+  'address.zip': string
+  'phones[0].number': string
+  'phones[1].number': string
+}
 
-| Prop              | Type              | Default              |
-  |-------------------|-------------------|----------------------|
-| form              | `ExtendedForm<T>` | ``                   |
-| errorVariant      | `form` \| `field` | `form`               |
-| errorTitle        | `string`            | <LangInfo de="Es ist ein Fehler aufgetreten." en="Something went wrong." /> |
-| errorClassName    | `string`          | ``                   |
-| onSubmitted       | `() => void`      | ``                   |
-| className         | `string`          | ``                   |
+export function NestedForm() {
+  const form = useForm<AddressForm>('address-form', 'post', '/address', {})
 
-### Events
+  return (
+    <Form form={form}>
+      <FormTextField 
+        label="Street" 
+        {...form.register('address.street')} 
+      />
+      <FormTextField 
+        label="City" 
+        {...form.register('address.city')} 
+      />
+      <FormTextField 
+        label="ZIP Code" 
+        {...form.register('address.zip')} 
+      />
+      <FormTextField 
+        label="Phone 1" 
+        {...form.register('phones[0].number')} 
+      />
+      <FormTextField 
+        label="Phone 2" 
+        {...form.register('phones[1].number')} 
+      />
+    </Form>
+  )
+}
+```
 
-| Prop        | Type              | Default |
-  |-------------|-------------------|---------|
-| onSubmitted | `() => void`      | ``      |
+### useFormContext Hook
 
-### Related
+Access form context from nested components:
 
-- [Hook docs](/docs/hooks/use-twc-ui-form)
+```tsx
+import { useFormContext } from '@/components/twc-ui/form'
+
+function CustomField() {
+  const form = useFormContext()
+  
+  if (!form) {
+    throw new Error('CustomField must be used within a Form component')
+  }
+
+  return (
+    <input 
+      {...form.register('custom_field')}
+      className={form.errors.custom_field ? 'border-red-500' : ''}
+    />
+  )
+}
+```
+
+### Error Display Variants
+
+- **'form'**: Display all errors in a summary at the top of the form
+- **'field'**: Display errors inline with each field (default for individual components)
+
+### Validation Configuration
+
+```tsx
+const form = useForm('my-form', 'post', '/submit', data, {
+  validateOn: 'both',    // 'change' | 'blur' | 'both' | 'none'
+  timeout: 500,          // Debounce time for validation requests
+  transform: (data) => ({ // Transform data before validation
+    ...data,
+    full_name: `${data.first_name} ${data.last_name}`
+  })
+})
+```
+
+### Related Components
+
+- [FormTextField](/docs/components/twiceware-ui-forms/form-text-field)
+- [FormTextArea](/docs/components/twiceware-ui-forms/form-text-area)
+- [FormSelect](/docs/components/twiceware-ui-forms/form-select)
+- [FormCheckboxGroup](/docs/components/twiceware-ui-forms/form-checkbox-group)
+- [useTwcUiForm Hook](/docs/hooks/use-twc-ui-form)
 
 

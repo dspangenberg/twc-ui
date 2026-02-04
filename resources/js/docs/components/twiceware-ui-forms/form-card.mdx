@@ -1,11 +1,126 @@
 ---
 title: FormCard
-description: Card for forms
+description: A card component specifically designed for forms with scrollable content area and optional footer.
 ---
+
 <CombiDemoCodePreview codePath="form-card/default.tsx" demoPath="demos/form-card/default" />
 
 ## Installation
 
-  <Installation
-    registry="form-card"
-  />
+<Installation registry="form-card" />
+
+## FormCard
+
+A form card component that provides a structured layout with a scrollable content area and an optional footer section. It's designed to handle forms with potentially long content that needs to be scrollable while keeping action buttons fixed at the bottom.
+
+### Documentation
+
+#### Props
+
+| Prop            | Type                | Default | Descriptions                                                  |
+|-----------------|---------------------|---------|---------------------------------------------------------------|
+| children        | `React.ReactNode`   | **Required** | Content to be displayed inside the scrollable area          |
+| className       | `string`            | ``      | CSS class applied to the outer container                     |
+| innerClassName  | `string`            | ``      | CSS class applied to the inner scrollable content area      |
+| footer          | `React.ReactNode`   | ``      | Optional footer content (typically action buttons)            |
+
+#### Features
+
+- **Scrollable Content**: The main content area is wrapped in a `ScrollArea` component, allowing forms with many fields to scroll independently
+- **Fixed Footer**: Footer content remains fixed at the bottom of the card, perfect for action buttons
+- **Responsive Design**: The card flexes to fill available space while maintaining proper aspect ratios
+- **Styled Container**: Includes border, background, and proper spacing for a polished appearance
+- **Flexible Layout**: Can be used with or without footer content
+
+### Usage Examples
+
+#### Basic Form Card
+
+```tsx
+import { FormCard } from '@/components/twc-ui/form-card'
+import { Form } from '@/components/twc-ui/form'
+
+<FormCard>
+  <Form>
+    {/* Form fields go here */}
+  </Form>
+</FormCard>
+```
+
+#### With Footer Actions
+
+```tsx
+import { FormCard } from '@/components/twc-ui/form-card'
+import { Button } from '@/components/twc-ui/button'
+import { Form, useForm } from '@/components/twc-ui/form'
+
+export function ContactForm() {
+  const form = useForm(/* form config */)
+
+  return (
+    <FormCard 
+      footer={
+        <div className="flex gap-2">
+          <Button variant="outline" type="button">
+            Cancel
+          </Button>
+          <Button type="submit">
+            Save Changes
+          </Button>
+        </div>
+      }
+      className="mx-auto max-w-2xl"
+    >
+      <Form form={form}>
+        {/* Form content */}
+      </Form>
+    </FormCard>
+  )
+}
+```
+
+#### With Custom Styling
+
+```tsx
+<FormCard 
+  className="h-[600px] border-2"
+  innerClassName="p-6"
+  footer={<Button type="submit">Submit</Button>}
+>
+  <Form>
+    {/* Form content with custom padding */}
+  </Form>
+</FormCard>
+```
+
+#### With FormGrid Integration
+
+```tsx
+import { FormCard } from '@/components/twc-ui/form-card'
+import { FormGrid } from '@/components/twc-ui/form-grid'
+import { FormTextField } from '@/components/twc-ui/form-text-field'
+
+<FormCard footer={<Button type="submit">Save</Button>}>
+  <Form>
+    <FormGrid>
+      <div className="col-span-12">
+        <FormTextField label="First Name" />
+      </div>
+      <div className="col-span-12">
+        <FormTextField label="Last Name" />
+      </div>
+      <div className="col-span-24">
+        <FormTextField label="Email" />
+      </div>
+    </FormGrid>
+  </Form>
+</FormCard>
+```
+
+### Design Considerations
+
+- **Height Management**: The card requires a parent container with a defined height or uses `flex-1` to fill available space
+- **Scroll Behavior**: Content will automatically scroll when it exceeds the available height
+- **Footer Position**: The footer is always visible at the bottom, making it ideal for form actions
+- **Border Radius**: The card includes rounded corners and subtle borders for visual separation
+- **Background Colors**: Uses semantic color tokens (`bg-page-content`, `bg-background`) for consistent theming
