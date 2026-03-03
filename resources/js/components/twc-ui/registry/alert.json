@@ -12,5 +12,15 @@
       "type": "registry:ui",
       "target": "components/twc-ui/alert.tsx"
     }
-  ]
+  ],
+  "cssVars": {
+    "theme": {
+      "info": "oklch(0.7 0.15 240)",
+      "info-foreground": "oklch(0.145 0 0)",
+      "warning": "oklch(0.95 0.12 90)",
+      "warning-foreground": "oklch(0.35 0.09 70)",
+      "success": "oklch(0.7 0.15 145)",
+      "success-foreground": "oklch(0.145 0 0)"
+    }
+  }
 }

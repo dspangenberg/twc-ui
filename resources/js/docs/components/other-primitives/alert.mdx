@@ -1,11 +1,115 @@
 ---
 title: "Alert"
-description: "Displays a callout for user attention."
+description: "Displays a callout for user attention with different variants and customizable content."
 credits:
   - url: https://ui.shadcn.com/docs/components/alert
     title: shadcn/ui
 ---
+
 <CombiDemoCodePreview codePath="alert/default.tsx" demoPath="demos/alert/default" />
 
 ## Installation
+
 <Installation registry="alert" />
+
+## Examples
+
+### Default Alert
+
+The default alert is styled with card colors and includes an appropriate icon.
+
+<CombiDemoCodePreview codePath="alert/default.tsx" demoPath="demos/alert/default" />
+
+### Alert Variants
+
+Alert supports five variants for different use cases:
+
+- **default** - Standard card styling with neutral colors
+- **destructive** - Red styling for errors and critical messages
+- **info** - Blue styling for informational messages
+- **warning** - Yellow/orange styling for warnings
+- **success** - Green styling for success messages
+
+<CombiDemoCodePreview codePath="alert/variants.tsx" demoPath="demos/alert/variants" />
+
+### With Title and Description
+
+Alerts can include both a title and detailed description content. The title is displayed with medium font weight, while the description supports rich content like lists and links.
+
+<CombiDemoCodePreview codePath="alert/with-content.tsx" demoPath="demos/alert/with-content" />
+
+### With Actions
+
+Alerts can include action buttons or other interactive elements. Actions are displayed on the right side of the alert.
+
+<CombiDemoCodePreview codePath="alert/custom-actions.tsx" demoPath="demos/alert/with-actions" />
+
+### Custom Icons
+
+You can provide custom icons or disable icons entirely. When no icon is specified, an appropriate default icon is automatically selected based on the variant.
+
+<CombiDemoCodePreview codePath="alert/custom-icons.tsx" demoPath="demos/alert/custom-icons" />
+
+## Documentation
+
+### Alert Props
+
+| Prop | Type | Default | Description |
+|------|------|----------|-------------|
+| variant | <TypeInfo title="variant" types={['default', 'destructive', 'info', 'warning', 'success']} /> | `default` | Visual style variant of the alert |
+| icon | `IconType \| false \| null` | `null` | Icon to display. Set to `false` to hide icon. Auto-selects appropriate icon based on variant when `null` or undefined |
+| title | `string` | `undefined` | Optional title text displayed in bold |
+| actions | `ReactNode` | `undefined` | Optional action buttons or controls displayed on the right side |
+| className | `string` | `undefined` | Additional CSS classes to apply to the alert container |
+
+### AlertTitle Props
+
+The `AlertTitle` component accepts all standard div props plus:
+
+| Prop | Type | Default | Description |
+|------|------|----------|-------------|
+| variant | <TypeInfo title="variant" types={['default', 'destructive', 'info', 'warning', 'success']} /> | `undefined` | Visual style variant (inherited from parent Alert) |
+| className | `string` | `undefined` | Additional CSS classes to apply |
+
+### AlertDescription Props
+
+The `AlertDescription` component accepts all standard div props plus:
+
+| Prop | Type | Default | Description |
+|------|------|----------|-------------|
+| variant | <TypeInfo title="variant" types={['default', 'destructive', 'info', 'warning', 'success']} /> | `undefined` | Visual style variant (inherited from parent Alert) |
+| className | `string` | `undefined` | Additional CSS classes to apply |
+
+## Icon Selection
+
+When `icon` is `null` or `undefined`, the following default icons are automatically selected:
+
+- **default** - `AlertCircleIcon`
+- **destructive** - `Alert02Icon`
+- **info** - `InformationCircleIcon`
+- **warning** - `AlertSquareIcon`
+- **success** - `AlertCircleIcon`
+
+## Accessibility
+
+- Alerts have `role="alert"` for screen readers
+- Icons are properly decorated for accessibility
+- All interactive elements in actions remain keyboard navigable
+- Color contrast meets WCAG standards for all variants
+
+## Styling
+
+Alert uses Tailwind Variants for consistent styling:
+
+- Base styles include `relative`, `flex`, `items-center`, `gap-2.5`, `rounded-md`, `border`, `px-4`, `py-2`, `text-sm`
+- Each variant has specific background, border, and text colors
+- Icons are sized at `size-5` with `shrink-0`
+- Description text uses `text-muted-foreground` with proper leading
+
+## Usage Tips
+
+1. **Use appropriate variants** - Match the variant to the message importance
+2. **Keep messages concise** - Alerts are meant for brief, important information
+3. **Provide clear actions** - When including actions, make the action text descriptive
+4. **Consider custom icons** - Use custom icons when the default icons don't fit your context
+5. **Test with screen readers** - Ensure alerts read properly in assistive technologies

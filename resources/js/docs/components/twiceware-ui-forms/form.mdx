@@ -3,7 +3,7 @@ title: Form
 description: A comprehensive form wrapper that integrates Laravel Precognition with Inertia for real-time validation and seamless form handling.
 ---
 
-<CombiDemoCodePreview codePath="form/default.tsx" demoPath="demos/form/default" />
+<CombiDemoCodePreview codePath="form/default.tsx" demoPath={route('contact.create')} className="h-200" />
 
 ## Installation
 
@@ -128,15 +128,15 @@ export function UserForm() {
 
   return (
     <Form form={form}>
-      <FormTextField 
-        label="Name" 
+      <FormTextField
+        label="Name"
         {...form.register('name')}
-        isRequired 
+        isRequired
       />
-      <FormTextField 
-        label="Email" 
+      <FormTextField
+        label="Email"
         {...form.register('email')}
-        isRequired 
+        isRequired
         type="email"
       />
       <Button type="submit">Save User</Button>
@@ -157,7 +157,7 @@ export function AdvancedForm() {
   }
 
   return (
-    <Form 
+    <Form
       form={form}
       errorVariant="field"  // Show errors at field level
       errorTitle="Please correct the following errors:"
@@ -187,25 +187,25 @@ export function NestedForm() {
 
   return (
     <Form form={form}>
-      <FormTextField 
-        label="Street" 
-        {...form.register('address.street')} 
+      <FormTextField
+        label="Street"
+        {...form.register('address.street')}
       />
-      <FormTextField 
-        label="City" 
-        {...form.register('address.city')} 
+      <FormTextField
+        label="City"
+        {...form.register('address.city')}
       />
-      <FormTextField 
-        label="ZIP Code" 
-        {...form.register('address.zip')} 
+      <FormTextField
+        label="ZIP Code"
+        {...form.register('address.zip')}
       />
-      <FormTextField 
-        label="Phone 1" 
-        {...form.register('phones[0].number')} 
+      <FormTextField
+        label="Phone 1"
+        {...form.register('phones[0].number')}
       />
-      <FormTextField 
-        label="Phone 2" 
-        {...form.register('phones[1].number')} 
+      <FormTextField
+        label="Phone 2"
+        {...form.register('phones[1].number')}
       />
     </Form>
   )
@@ -221,13 +221,13 @@ import { useFormContext } from '@/components/twc-ui/form'
 
 function CustomField() {
   const form = useFormContext()
-  
+
   if (!form) {
     throw new Error('CustomField must be used within a Form component')
   }
 
   return (
-    <input 
+    <input
       {...form.register('custom_field')}
       className={form.errors.custom_field ? 'border-red-500' : ''}
     />

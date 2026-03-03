@@ -3,6 +3,7 @@ import { DemoContainer } from '@/components/docs/DemoContainer'
 import { Button } from '@/components/twc-ui/button'
 import { Checkbox } from '@/components/twc-ui/checkbox'
 import { Form, useForm } from '@/components/twc-ui/form'
+import { FormCard } from '@/components/twc-ui/form-card'
 import { FormComboBox } from '@/components/twc-ui/form-combo-box'
 import { FormDatePicker } from '@/components/twc-ui/form-date-picker'
 import { FormGrid } from '@/components/twc-ui/form-grid'
@@ -24,50 +25,53 @@ export default function FormDemo({ contact, countries }: Props) {
   )
 
   return (
-    <DemoContainer>
+    <DemoContainer className="bg-accent/60">
       <Head title="Form Demo" />
-      <Form form={form} className="mx-auto my-12 max-w-lg p-12">
-        <FormGrid>
-          <div className="col-span-12">
-            <FormTextField
-              autoFocus
-              isRequired
-              label="First name"
-              {...form.register('first_name')}
-            />
-            <div className="pt-0.5">
-              <Checkbox label="VIP" {...form.registerCheckbox('is_vip')} />
+      <FormCard
+        footer={<Button form={form.id} title="Save" type="submit" />}
+        className="mx-auto h-auto max-w-lg"
+      >
+        <Form form={form}>
+          <FormGrid>
+            <div className="col-span-12">
+              <FormTextField
+                autoFocus
+                isRequired
+                label="First name"
+                {...form.register('first_name')}
+              />
+              <div className="pt-1.5">
+                <Checkbox label="VIP" {...form.registerCheckbox('is_vip')} />
+              </div>
             </div>
-          </div>
-          <div className="col-span-12">
-            <FormTextField isRequired label="Last name" {...form.register('last_name')} />
-          </div>
-          <div className="col-span-12">
-            <FormTextField isRequired label="E-Mail" {...form.register('email')} />
-          </div>
-          <div className="col-span-12">
-            <FormComboBox label="Country" {...form.register('country_id')} items={countries} />
-          </div>
-
-          <div className="col-span-12">
-            <FormNumberField
-              isRequired
-              label="Hourly rate"
-              {...form.register('hourly')}
-              description="How much is the fish?"
-            />
-          </div>
-          <div className="col-span-12">
-            <FormDatePicker isRequired maxYears={50} label="DOB" {...form.register('dob')} />
-          </div>
-          <div className="col-span-24">
-            <FormTextArea autoSize label="Note" {...form.register('note')} />
-          </div>
-          <div className="col-span-12">
-            <Button title="Save" type="submit" />
-          </div>
-        </FormGrid>
-      </Form>
+            <div className="col-span-12">
+              <FormTextField isRequired label="Last name" {...form.register('last_name')} />
+            </div>
+            <div className="col-span-12">
+              <FormTextField isRequired label="E-Mail" {...form.register('email')} />
+            </div>
+            <div className="col-span-12">
+              <FormComboBox label="Country" {...form.register('country_id')} items={countries} />
+            </div>
+          </FormGrid>
+          <FormGrid border>
+            <div className="col-span-12">
+              <FormNumberField
+                isRequired
+                label="Hourly rate"
+                {...form.register('hourly')}
+                description="How much is the fish?"
+              />
+            </div>
+            <div className="col-span-12">
+              <FormDatePicker isRequired maxYears={50} label="DOB" {...form.register('dob')} />
+            </div>
+            <div className="col-span-24">
+              <FormTextArea autoSize label="Note" {...form.register('note')} />
+            </div>
+          </FormGrid>
+        </Form>
+      </FormCard>
     </DemoContainer>
   )
 }

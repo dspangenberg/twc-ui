@@ -62,6 +62,13 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+
+  --color-info: var(--info);
+  --color-info-foreground: var(--info-foreground);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
 }
 
 /*
@@ -117,6 +124,12 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.87 0 0);
+  --info: oklch(0.45 0.15 257.292);
+  --info-foreground: oklch(0.985 0 0);
+  --warning: oklch(0.988 0.033 96.89);
+  --warning-foreground: oklch(0.461 0.106 66.89);
+  --success: oklch(0.548 0.17 154.693);
+  --success-foreground: oklch(0.985 0 0);
 }
 
 .dark {
@@ -153,12 +166,55 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(0.269 0 0);
   --sidebar-ring: oklch(0.439 0 0);
+  --info: oklch(0.45 0.15 257.292);
+  --info-foreground: oklch(0.985 0 0);
+  --warning: oklch(0.988 0.033 96.89);
+  --warning-foreground: oklch(0.461 0.106 66.89);
+  --success: oklch(0.542 0.17 154.693);
+  --success-foreground: oklch(0.985 0 0);
 }
 
 @layer base {
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* Custom CSS variables for Alert component */
+:root {
+  --alert-warning-bg: #fefce8;
+  --alert-warning-text: #854d0e;
+  --alert-warning-border: #fde047;
+  --alert-success-bg: #dcfce7;
+  --alert-success-text: #16a34a;
+  --alert-success-border: #22c55e;
+  --alert-info-bg: var(--info);
+  --alert-info-text: var(--info-foreground);
+  --alert-info-border: var(--info);
+}
+
+.border-warning {
+  border-color: #fde047;
+}
+
+.bg-warning {
+  background-color: #fefce8;
+}
+
+.text-warning\/20 {
+  color: color-mix(in oklab, #fde047 20%, transparent);
+}
+
+.border-warning\/20 {
+  border-color: #fde047;
+}
+
+.bg-warning\/20 {
+  background-color: color-mix(in oklab, #fefce8 20%, transparent);
+}
+
+.bg-warning\/10 {
+  background-color: color-mix(in oklab, #fefce8 10%, transparent);
 }
 
 code {
