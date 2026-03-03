@@ -180,43 +180,6 @@
   }
 }
 
-/* Custom CSS variables for Alert component */
-:root {
-  --alert-warning-bg: #fefce8;
-  --alert-warning-text: #854d0e;
-  --alert-warning-border: #fde047;
-  --alert-success-bg: #dcfce7;
-  --alert-success-text: #16a34a;
-  --alert-success-border: #22c55e;
-  --alert-info-bg: var(--info);
-  --alert-info-text: var(--info-foreground);
-  --alert-info-border: var(--info);
-}
-
-.border-warning {
-  border-color: #fde047;
-}
-
-.bg-warning {
-  background-color: #fefce8;
-}
-
-.text-warning\/20 {
-  color: color-mix(in oklab, #fde047 20%, transparent);
-}
-
-.border-warning\/20 {
-  border-color: #fde047;
-}
-
-.bg-warning\/20 {
-  background-color: color-mix(in oklab, #fefce8 20%, transparent);
-}
-
-.bg-warning\/10 {
-  background-color: color-mix(in oklab, #fefce8 10%, transparent);
-}
-
 code {
   counter-reset: step;
   counter-increment: step 0;

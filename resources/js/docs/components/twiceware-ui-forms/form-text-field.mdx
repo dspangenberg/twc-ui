@@ -46,16 +46,6 @@ const form = useForm('my-form', 'POST', '/submit', {
   />
 </Form>`} />
 
-### With Custom Error Handling
-
-<SourceCode hideHeader={true} code={`<FormTextField
-  name="username"
-  label="Username"
-  errorMessage={customError}
-  isRequired={true}
-  onChange={(value) => validateUsername(value)}
-/>`} />
-
 ## Props
 
 ### Required Props
@@ -95,79 +85,3 @@ The FormTextField automatically integrates with your form context and handles:
 ### Error Handling
 
 The component prioritizes custom error messages, falling back to form context errors:
-
-```tsx
-// Custom error takes precedence
-<FormTextField
-  name="email"
-  errorMessage="This email is already taken"
-/>
-
-// Falls back to form context errors
-<FormTextField
-  name="email"
-  // Will automatically show errors from form.errors.email
-/>
-```
-
-## Styling
-
-The component uses Tailwind CSS classes with consistent styling:
-
-- **Container**: Flex column layout with gap
-- **Input**: Rounded border, focus states, error states
-- **Error**: Red text for error messages
-- **Focus**: Blue border with ring effect
-- **Disabled**: Reduced opacity and cursor changes
-
-## Accessibility
-
-- Proper ARIA attributes for form validation
-- Screen reader support for error messages
-- Keyboard navigation support
-- Auto-focus behavior on input selection
-- Semantic HTML structure
-
-## Examples
-
-### Required Field with Validation
-
-<SourceCode hideHeader={true} code={`<FormTextField
-  name="requiredField"
-  label="Required Field"
-  isRequired={true}
-  placeholder="This field is required"
-  description="Please provide a value for this required field"
-/>`} />
-
-### Email Input with Autocomplete
-
-<SourceCode hideHeader={true} code={`<FormTextField
-  name="email"
-  label="Email Address"
-  type="email"
-  autoComplete="email"
-  placeholder="name@example.com"
-  description="We'll never share your email with anyone else"
-/>`} />
-
-### Numeric Input
-
-<SourceCode hideHeader={true} code={`<FormTextField
-  name="age"
-  label="Age"
-  type="number"
-  placeholder="Enter your age"
-  min="1"
-  max="120"
-/>`} />
-
-### Disabled Field
-
-<SourceCode hideHeader={true} code={`<FormTextField
-  name="disabledField"
-  label="Disabled Field"
-  value="This field is disabled"
-  isDisabled={true}
-  description="This field cannot be edited"
-/>`} />
