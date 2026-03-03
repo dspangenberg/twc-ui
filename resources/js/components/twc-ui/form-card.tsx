@@ -26,7 +26,12 @@ export const FormCard: React.FC<FormCardProps> = ({
           {children}
         </ScrollArea>
         {footer && (
-          <div className={cn('flex w-full flex-none items-center justify-end', footerClassName)}>
+          <div
+            className={cn(
+              'flex w-full flex-none items-center justify-end px-4 py-1.5',
+              footerClassName
+            )}
+          >
             {footer}
           </div>
         )}

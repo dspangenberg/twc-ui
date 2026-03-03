@@ -15,12 +15,9 @@ const buttonVariants = tv({
   slots: {
     base: [
       'inline-flex pressed:translate-y-px items-center justify-center whitespace-nowrap rounded-md font-medium text-sm pressed:shadow-black/20 pressed:shadow-inner pressed:brightness-95 transition-colors',
-      /* Disabled */
-      'data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
-      /* Focus Visible */
+      'data-disabled:pointer-events-none data-disabled:opacity-50',
       'focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/20',
       'pressed:shadow-black/20',
-      /* Resets */
       'ring-offset-1 focus-visible:outline-none'
     ],
     icon: ''
@@ -28,31 +25,35 @@ const buttonVariants = tv({
   variants: {
     variant: {
       default: {
-        base: 'bg-primary text-primary-foreground focus-visible:ring-primary/20 data-[hovered]:bg-primary/90'
+        base: 'bg-primary text-primary-foreground focus-visible:ring-primary/20 data-hovered:bg-primary/90'
       },
       destructive: {
-        base: 'border bg-destructive text-destructive-foreground text-white focus-visible:border-destructive/20 focus-visible:ring-destructive/20 data-[hovered]:bg-destructive/90'
+        base: 'border bg-destructive text-white focus-visible:border-destructive/20 focus-visible:ring-destructive/20 data-hovered:bg-destructive/90'
       },
       outline: {
-        base: 'border border-input bg-background selected:bg-accent focus-visible:ring-ring/20 data-[hovered]:bg-accent data-[hovered]:text-accent-foreground'
+        base: 'border border-input bg-background selected:bg-accent focus-visible:ring-ring/20 data-hovered:bg-accent data-hovered:text-accent-foreground'
       },
       secondary: {
-        base: 'border border-transparent bg-secondary/90 text-secondary-foreground focus-visible:border focus-visible:border-input data-[hovered]:border-border data-[hovered]:bg-secondary/50'
+        base: 'border border-transparent bg-secondary/90 text-secondary-foreground focus-visible:border focus-visible:border-input data-hovered:border-border data-hovered:bg-secondary/50'
       },
       ghost: {
-        base: 'border border-transparent selected:bg-muted text-sm focus-visible:border focus-visible:border-input focus-visible:ring-ring/20 data-[hovered]:border-border data-[hovered]:bg-accent/80 data-[hovered]:text-accent-foreground'
+        base: 'border border-transparent selected:bg-muted text-sm focus-visible:border focus-visible:border-input focus-visible:ring-ring/20 data-hovered:border-border data-hovered:bg-accent/80 data-hovered:text-accent-foreground'
       },
       link: {
-        base: 'cursor-pointer text-primary underline-offset-4 data-[hovered]:underline'
+        base: 'cursor-pointer text-primary underline-offset-4 data-hovered:underline'
       },
       'ghost-destructive': {
-        base: 'border border-transparent text-sm focus-visible:border focus-visible:border-input focus-visible:ring-ring/20 data-[hovered]:border-border data-[hovered]:bg-accent data-[hovered]:text-destructive-foreground'
+        base: 'border border-transparent text-sm focus-visible:border focus-visible:border-input focus-visible:ring-ring/20 data-hovered:border-border data-hovered:bg-accent data-hovered:text-destructive-foreground'
       },
       toolbar: {
-        base: 'border border-transparent selected:bg-accent text-primary text-sm focus-visible:border focus-visible:border-primary focus-visible:ring-ring/20 active:ring-ring/50 data-[hovered]:border-border data-[hovered]:bg-accent'
+        base: 'border selected:border border-transparent selected:bg-muted text-primary text-sm focus-visible:border focus-visible:border-primary focus-visible:ring-ring/20 active:ring-ring/50 data-hovered:border-border data-hovered:bg-accent'
+      },
+      toggle: {
+        base: 'selected:bg-background selected:shadow hover:border-primary',
+        icon: 'text-primary'
       },
       'toolbar-default': {
-        base: 'border border-input bg-background text-sm focus-visible:ring-ring/20 data-[hovered]:bg-accent data-[hovered]:text-accent-foreground'
+        base: 'border border-input bg-background text-sm focus-visible:ring-ring/20 data-hovered:bg-accent data-hovered:text-accent-foreground'
       }
     },
     size: {

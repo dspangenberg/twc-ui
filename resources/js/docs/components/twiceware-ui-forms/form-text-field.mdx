@@ -44,43 +44,44 @@ const form = useForm('my-form', 'POST', '/submit', {
     autoComplete="email"
     placeholder="your.email@example.com"
   />
-</Form>`} />
+</Form>`}
+/>
 
 ## Props
 
 ### Required Props
 
-| Prop | Type | Description |
-|------|------|-------------|
+| Prop   | Type     | Description                                           |
+|--------|----------|-------------------------------------------------------|
 | `name` | `string` | The form field name for identification and validation |
 
 ### Optional Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `label` | `string` | - | Field label displayed above the input |
-| `value` | `string \| null \| undefined` | - | Controlled text field value |
-| `onChange` | `(value: string \| null) => void` | - | Change handler callback |
-| `onBlur` | `() => void` | - | Blur handler callback |
-| `description` | `string` | - | Helper text displayed below the field |
-| `errorMessage` | `string` | - | Custom error message (overrides form context) |
-| `isRequired` | `boolean` | `false` | Whether the field is required (shows red asterisk) |
-| `placeholder` | `string` | `''` | Input placeholder text |
-| `autoComplete` | `string` | `'off'` | Browser autocomplete behavior |
-| `type` | `string` | `'text'` | Input type (text, email, tel, url, etc.) |
-| `className` | `string` | - | Additional CSS classes |
-| `isDisabled` | `boolean` | `false` | Whether the field is disabled |
-| `isReadOnly` | `boolean` | `false` | Whether the field is read-only |
-| `autoFocus` | `boolean` | `false` | Whether to auto-focus the input |
+| Prop           | Type                              | Default  | Description                                       |
+|----------------|-----------------------------------|----------|---------------------------------------------------|
+| `label`        | `string`                          | -        | Field label displayed above the input             |
+| `value`        | `string \| null \| undefined`     | -        | Controlled text field value                       |
+| `onChange`     | `(value: string \| null) => void` | -        | Change handler callback                           |
+| `onBlur`       | `() => void`                      | -        | Blur handler callback                             |
+| `description`  | `string`                          | -        | Helper text displayed below the field             |
+| `errorMessage` | `string`                          | -        | Custom error message(overrides form context)      |
+| `isRequired`   | `boolean`                         | `false`  | Whether the field is required(shows red asterisk) |
+| `placeholder`  | `string`                          | `''`     | Input placeholder text                            |
+| `autoComplete` | `string`                          | `'off'`  | Browser autocomplete behavior                     |
+| `type`         | `string`                          | `'text'` | Input type(text, email, tel, url, etc.)           |
+| `className`    | `string`                          | -        | Additional CSS classes                            |
+| `isDisabled`   | `boolean`                         | `false`  | Whether the field is disabled                     |
+| `isReadOnly`   | `boolean`                         | `false`  | Whether the field is read - only                  |
+| `autoFocus`    | `boolean`                         | `false`  | Whether to auto - focus the input                 |
 
 ## Form Integration
 
 The FormTextField automatically integrates with your form context and handles:
 
-- **Error Display**: Shows validation errors from the form context
-- **Error Variants**: Respects form-level `errorVariant` setting ('form' or 'field')
-- **State Management**: Connects to form data and validation state
-- **Laravel Integration**: Automatically handles Laravel validation error formatting
+- * * Error Display **: Shows validation errors from the form context
+- * * Error Variants **: Respects form - level`errorVariant` setting('form' or 'field')
+- * * State Management **: Connects to form data and validation state
+- * * Laravel Integration **: Automatically handles Laravel validation error formatting
 
 ### Error Handling
 

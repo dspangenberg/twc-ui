@@ -12,7 +12,7 @@ import type { buttonVariants } from './button'
 import { ToggleButton, type ToggleButtonProps } from './toggle-button'
 
 const ToggleButtonGroupContext = React.createContext<{
-  variant?: 'ghost' | 'outline' | 'toolbar'
+  variant?: 'ghost' | 'outline' | 'toolbar' | 'toggle'
   size?: VariantProps<typeof buttonVariants>['size']
   tooltipPlacement?: TooltipProps['placement']
 }>({
@@ -22,19 +22,20 @@ const ToggleButtonGroupContext = React.createContext<{
 })
 
 export interface ToggleButtonGroupProps extends AriaToggleButtonGroupProps {
-  variant?: 'ghost' | 'outline' | 'toolbar'
+  variant?: 'ghost' | 'outline' | 'toolbar' | 'toggle'
   size?: VariantProps<typeof buttonVariants>['size']
   tooltipPlacement?: TooltipProps['placement']
   id?: string
 }
 
 const toggleButtonGroupVariants = tv({
-  base: 'group/toggle-button-group flex w-fit items-center gap-1.5 rounded-md',
+  base: 'group/toggle-button-group flex w-fit items-center gap-0.5 rounded-md',
   variants: {
     variant: {
       ghost: '',
-      outline: 'shadow-xs',
-      toolbar: ''
+      outline: 'border p-0.5',
+      toolbar: 'rounded-md bg-muted/50 p-0.5',
+      toggle: 'rounded-lg bg-muted p-1'
     }
   },
   defaultVariants: {
@@ -45,7 +46,7 @@ const toggleButtonGroupVariants = tv({
 export const ToggleButtonGroup = ({
   className,
   variant = 'ghost',
-  size = 'icon',
+  size = 'icon-sm',
   tooltipPlacement = 'bottom',
   selectionMode = 'single',
   children,
@@ -92,7 +93,7 @@ export const ToggleButtonGroupItem = ({
 
   return (
     <ToggleButton
-      variant={variant ?? context.variant}
+      variant={context.variant ?? variant}
       size={size ?? context.size}
       tooltip={tooltip}
       tooltipPlacement={tooltipPlacement ?? context.tooltipPlacement}
