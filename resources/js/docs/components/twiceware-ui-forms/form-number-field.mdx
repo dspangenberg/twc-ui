@@ -1,24 +1,237 @@
 ---
 title: FormNumberField
-description: A number field allows a user to enter a number, and increment or decrement the value using stepper buttons.
+description: A form-integrated number field that allows users to enter numerical values with stepper buttons, formatting options, and automatic error handling.
 docUrl: https://react-aria.adobe.com/NumberField#api
 credits:
   - url: https://www.jollyui.dev/docs/components/numberfield
     title: JollyUI
 ---
 
+<CombiDemoCodePreview codePath="form-number-field/default.tsx" demoPath="demos/form-number-field/default" />
+
 ## Installation
 <Installation registry="form-number-field" />
 
-## Documentation
-### Props
+## Features
 
-[React Aria NumberField props](https://react-spectrum.adobe.com/react-aria/NumberField.html)
+- Built-in stepper buttons for increment/decrement
+- Flexible number formatting with Intl.NumberFormatOptions
+- Currency, percentage, unit, and decimal support
+- Real-time validation and error handling
+- Form integration with automatic error display
+- Keyboard navigation and accessibility
+- Auto-select text on focus
+- Configurable min/max values and step increments
 
-| Prop          | Type                                                                                                                                          | Default                                 | Descriptions                                                                                                                                |
-  |---------------|-----------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------|
-| description   | `string`                                                                                                                                      | ``                                      | Helper text displayed below the label                                                                                                       |
-| isRequired    | `boolean`                                                                                                                                     | `false`                                 | Whether the number field is required (shows a red asteriks in label)                                                                        |
-| error         | `string`                                                                                                                                      | ``                                      | Error message                                                                                                                               |
-| formatOptions | [`Intl.NumberFormatOptions`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/NumberFormat) | `{style: 'currency', currency: 'EUR' }` | Formatting options for the value displayed in the number field. <br/>This also affects what characters are allowed to be typed by the user. |
-| label         | `string`                                                                                                                                      | ``                                      | Label text for the number field                                                                                                             |
+## Usage
+
+### Basic Number Field
+
+<SourceCode hideHeader={true} code={`import { Form, FormNumberField, useForm } from '@/components/twc-ui'
+
+const form = useForm('my-form', 'POST', '/submit', {
+  quantity: 1,
+  price: 0
+})
+
+<Form form={form}>
+  <FormNumberField
+    name="quantity"
+    label="Quantity"
+    minValue={1}
+    maxValue={100}
+    description="Number of items to order"
+  />
+  <FormNumberField
+    name="price"
+    label="Price"
+    formatOptions={{
+      style: 'currency',
+      currency: 'EUR'
+    }}
+  />
+</Form>`} />
+
+### Currency Formatting
+
+<SourceCode hideHeader={true} code={`<FormNumberField
+  name="salary"
+  label="Annual Salary"
+  formatOptions={{
+    style: 'currency',
+    currency: 'EUR',
+    minimumFractionDigits: 0
+  }}
+  minValue={0}
+  step={1000}
+  description="Base annual salary"
+/>`} />
+
+### Percentage Formatting
+
+<SourceCode hideHeader={true} code={`<FormNumberField
+  name="taxRate"
+  label="Tax Rate"
+  formatOptions={{
+    style: 'percent',
+    minimumFractionDigits: 1,
+    maximumFractionDigits: 2
+  }}
+  minValue={0}
+  maxValue={1}
+  step={0.01}
+  description="Effective tax rate"
+/>`} />
+
+### Unit Formatting
+
+<SourceCode hideHeader={true} code={`<FormNumberField
+  name="weight"
+  label="Weight"
+  formatOptions={{
+    style: 'unit',
+    unit: 'kilogram',
+    minimumFractionDigits: 1,
+    maximumFractionDigits: 2
+  }}
+  minValue={0}
+  step={0.1}
+  description="Weight in kilograms"
+/>`} />
+
+## Props
+
+### Required Props
+
+| Prop | Type | Description |
+|------|------|-------------|
+| `name` | `string` | The form field name for identification and validation |
+
+### Optional Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `label` | `string` | - | Field label displayed above the input |
+| `value` | `number \| null \| undefined` | - | Controlled number field value |
+| `onChange` | `(value: number \| null) => void` | - | Change handler callback |
+| `onBlur` | `() => void` | - | Blur handler callback |
+| `description` | `string` | - | Helper text displayed below the field |
+| `errorMessage` | `string` | - | Custom error message (overrides form context) |
+| `isRequired` | `boolean` | `false` | Whether the field is required (shows red asterisk) |
+| `isDisabled` | `boolean` | `false` | Whether the field is disabled |
+| `isReadOnly` | `boolean` | `false` | Whether the field is read-only |
+| `formatOptions` | `Intl.NumberFormatOptions` | `{style: 'currency', currency: 'EUR'}` | Number formatting options |
+| `minValue` | `number` | - | Minimum allowed value |
+| `maxValue` | `number` | - | Maximum allowed value |
+| `step` | `number` | - | Increment/decrement step value |
+| `className` | `string` | - | Additional CSS classes |
+| `autoFocus` | `boolean` | `false` | Whether to auto-focus the input |
+
+## Format Options
+
+The component uses `Intl.NumberFormatOptions` for flexible number formatting:
+
+### Currency
+
+<SourceCode hideHeader={true} code={`formatOptions={{
+  style: 'currency',
+  currency: 'EUR',  // USD, GBP, JPY, etc.
+  minimumFractionDigits: 0,
+  maximumFractionDigits: 2
+}}`} />
+
+### Percentage
+
+<SourceCode hideHeader={true} code={`formatOptions={{
+  style: 'percent',
+  minimumFractionDigits: 1,
+  maximumFractionDigits: 2
+}}`} />
+
+### Units
+
+<SourceCode hideHeader={true} code={`formatOptions={{
+  style: 'unit',
+  unit: 'kilogram',  // celsius, meter, kilometer-per-hour, etc.
+  unitDisplay: 'long'  // 'short', 'narrow'
+}}`} />
+
+### Decimal
+
+<SourceCode hideHeader={true} code={`formatOptions={{
+  style: 'decimal',
+  minimumFractionDigits: 2,
+  maximumFractionDigits: 4,
+  useGrouping: true
+}}`} />
+
+## Form Integration
+
+The FormNumberField automatically integrates with your form context:
+
+- **Error Display**: Shows validation errors from the form context
+- **Error Variants**: Respects form-level `errorVariant` setting ('form' or 'field')
+- **State Management**: Connects to form data and validation state
+- **Laravel Integration**: Handles Laravel validation error formatting
+
+## Accessibility
+
+- Proper ARIA attributes for form validation
+- Screen reader support for formatted numbers
+- Keyboard navigation (arrow keys, page up/down)
+- Focus management and auto-selection
+- Semantic HTML structure
+
+## Examples
+
+### Financial Form
+
+<CombiDemoCodePreview codePath="form-number-field/financial.tsx" demoPath="demos/form-number-field/financial" />
+
+
+
+### Product Inventory
+
+<SourceCode hideHeader={true} code={`<FormNumberField
+  name="stock"
+  label="Items in Stock"
+  minValue={0}
+  maxValue={9999}
+  step={1}
+  formatOptions={{
+    style: 'decimal',
+    useGrouping: true
+  }}
+  description="Current inventory count"
+/>`} />
+
+### Temperature Control
+
+<SourceCode hideHeader={true} code={`<FormNumberField
+  name="temperature"
+  label="Temperature"
+  minValue={-20}
+  maxValue={40}
+  step={0.5}
+  formatOptions={{
+    style: 'unit',
+    unit: 'celsius',
+    unitDisplay: 'narrow'
+  }}
+  description="Room temperature in °C"
+/>`} />
+
+### Percentage with Bounds
+
+<SourceCode hideHeader={true} code={`<FormNumberField
+  name="completion"
+  label="Completion %"
+  minValue={0}
+  maxValue={1}
+  step={0.5}
+  formatOptions={{
+    style: 'percent',
+    minimumFractionDigits: 0
+  }}
+  description="Project completion percentage"
+/>`} />

@@ -1,3 +1,4 @@
+import { cn } from '@/lib/utils'
 import { BaseCheckbox, CheckboxGroup, type CheckboxProps } from './checkbox'
 import { useFormContext } from './form'
 import { FormFieldError, getFormError } from './form-errors'
@@ -16,7 +17,7 @@ interface CheckboxGroupProps<T extends object = any> {
   errorMessage?: string | ((validation: any) => string)
 }
 
-export const FormCheckboxGroup = <T extends object> ({
+export const FormCheckboxGroup = <T extends object>({
   name,
   items = [],
   itemName = 'name' as keyof T & string,
@@ -54,7 +55,7 @@ export const FormCheckboxGroup = <T extends object> ({
       onBlur={onBlur}
       {...props}
     >
-      <div className={listClassName}>
+      <div className={cn('space-y-1.5', listClassName)}>
         {itemsArray.map((item, index) => {
           const textValue =
             typeof item[itemName] === 'string' ? item[itemName] : String(item[itemName])

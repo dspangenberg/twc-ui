@@ -239,10 +239,7 @@ const FormPasswordField = ({
                 setIsFocused(false)
               }
             }}
-            onFocus={() => {
-              setIsFocused(true)
-              setRevealed(false)
-            }}
+            onFocus={() => setIsFocused(true)}
             onBlur={() => {
               setIsFocused(false)
               setRevealed(false)
@@ -260,7 +257,8 @@ const FormPasswordField = ({
               size="icon-sm"
               icon={icon}
               excludeFromTabOrder
-              onClick={() => {
+              onMouseDown={e => {
+                e.preventDefault()
                 setRevealed(!revealed)
                 inputRef.current?.focus()
               }}

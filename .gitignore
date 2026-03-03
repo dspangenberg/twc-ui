@@ -30,3 +30,4 @@ package-lock.json
 coverage/
 .nyc_output/
 *.lcov
+.DS_Store

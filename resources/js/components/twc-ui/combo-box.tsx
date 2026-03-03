@@ -34,7 +34,6 @@ const ComboBoxInput = ({ autoFocus, className, ...props }: AriaInputProps) => {
       className={composeRenderProps(className, className =>
         cn(
           'flex h-9 w-full border-input bg-background px-3 py-2 text-sm outline-none file:border-0 file:bg-transparent file:font-medium file:text-sm placeholder:text-muted-foreground',
-          'data-disabled:cursor-not-allowed data-disabled:opacity-50',
           className
         )
       )}
@@ -141,7 +140,7 @@ const ComboBox = <T extends Record<string, unknown>>({
         onChange(numericKey === NUMERIC_NULL_SENTINEL ? null : numericKey)
       }
     },
-    [onChange, isStringValue]
+    [onChange]
   )
 
   const itemsWithPlaceholder = useMemo(
@@ -164,14 +163,10 @@ const ComboBox = <T extends Record<string, unknown>>({
   const selectedKey = value ?? null
 
   // Find the selected item to display its name
-  const selectedItem = useMemo(
-    () =>
-      itemsWithPlaceholder.find(item => {
-        const itemVal = isStringValue ? String(item[itemValue]) : Number(item[itemValue])
-        return itemVal === selectedKey
-      }),
-    [itemsWithPlaceholder, selectedKey, itemValue, isStringValue]
-  )
+  const selectedItem = itemsWithPlaceholder.find(item => {
+    const itemVal = isStringValue ? String(item[itemValue]) : Number(item[itemValue])
+    return itemVal === selectedKey
+  })
 
   const filteredItems: T[] = useMemo(
     () => itemsWithPlaceholder.filter(item => contains(String(item[itemName]), inputValue)),

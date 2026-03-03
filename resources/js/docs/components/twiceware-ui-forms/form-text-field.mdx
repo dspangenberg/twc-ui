@@ -1,19 +1,87 @@
 ---
 title: FormTextField
-description: A text field allows a user to enter a plain text value with a keyboard.
+description: A form-integrated text field that allows users to enter plain text values with automatic error handling and form context integration.
 docUrl: docs/components/react-aria/text-field
 ---
-<CombiDemoCodePreview codePath="text-field/default.tsx" demoPath="demos/text-field/default" />
+
+<CombiDemoCodePreview codePath="form-text-field/default.tsx" demoPath="demos/form-text-field/default" />
 
 ## Installation
 <Installation registry="form-text-field" />
 
-## Documentation
-### Props
+## Features
 
-| Prop         | Type      | Default | Descriptions                                                       |
-  |--------------|-----------|---------|--------------------------------------------------------------------|
-| description  | `string`  | ``      | Helper text displayed below the label                              |
-| errorMessage | `string`  | ``      | Error message                                                      |
-| isRequired   | `boolean` | `false` | Whether the text field is required (shows a red asteriks in label) |
-| label        | `string`  | ``      | Label text for the text field                                      |
+- Seamless form integration with automatic error handling
+- Real-time validation feedback from form context
+- Accessibility-first design with proper ARIA attributes
+- Auto-select text on focus for better UX
+- Support for both controlled and uncontrolled usage
+- Integration with Laravel validation errors
+
+## Usage
+
+### Basic Usage
+
+<SourceCode hideHeader={true} code={`import { Form, FormTextField, useForm } from '@/components/twc-ui'
+
+const form = useForm('my-form', 'POST', '/submit', {
+  name: '',
+  email: ''
+})
+
+<Form form={form}>
+  <FormTextField
+    name="name"
+    label="Full Name"
+    isRequired={true}
+    placeholder="Enter your full name"
+    description="Please enter your legal name as it appears on documents"
+  />
+  <FormTextField
+    name="email"
+    label="Email Address"
+    type="email"
+    autoComplete="email"
+    placeholder="your.email@example.com"
+  />
+</Form>`} />
+
+## Props
+
+### Required Props
+
+| Prop | Type | Description |
+|------|------|-------------|
+| `name` | `string` | The form field name for identification and validation |
+
+### Optional Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `label` | `string` | - | Field label displayed above the input |
+| `value` | `string \| null \| undefined` | - | Controlled text field value |
+| `onChange` | `(value: string \| null) => void` | - | Change handler callback |
+| `onBlur` | `() => void` | - | Blur handler callback |
+| `description` | `string` | - | Helper text displayed below the field |
+| `errorMessage` | `string` | - | Custom error message (overrides form context) |
+| `isRequired` | `boolean` | `false` | Whether the field is required (shows red asterisk) |
+| `placeholder` | `string` | `''` | Input placeholder text |
+| `autoComplete` | `string` | `'off'` | Browser autocomplete behavior |
+| `type` | `string` | `'text'` | Input type (text, email, tel, url, etc.) |
+| `className` | `string` | - | Additional CSS classes |
+| `isDisabled` | `boolean` | `false` | Whether the field is disabled |
+| `isReadOnly` | `boolean` | `false` | Whether the field is read-only |
+| `autoFocus` | `boolean` | `false` | Whether to auto-focus the input |
+
+## Form Integration
+
+The FormTextField automatically integrates with your form context and handles:
+
+- **Error Display**: Shows validation errors from the form context
+- **Error Variants**: Respects form-level `errorVariant` setting ('form' or 'field')
+- **State Management**: Connects to form data and validation state
+- **Laravel Integration**: Automatically handles Laravel validation error formatting
+
+### Error Handling
+
+The component prioritizes custom error messages, falling back to form context errors:

@@ -38,6 +38,7 @@ export default function Demo() {
             <FormPasswordField
               isRequired
               showHint
+              showStrength
               description="Enter a secure password"
               label="New password"
               {...form.register('password')}

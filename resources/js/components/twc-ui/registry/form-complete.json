@@ -8,6 +8,7 @@
   "registryDependencies": [
     "@twc-ui/form-card",
     "@twc-ui/form-checkbox",
+    "@twc-ui/form-checkbox-group",
     "@twc-ui/form-combo-box",
     "@twc-ui/form-date-field",
     "@twc-ui/form-date-picker",
@@ -19,6 +20,7 @@
     "@twc-ui/form-radio-group",
     "@twc-ui/form-search-field",
     "@twc-ui/form-select",
+    "@twc-ui/form-password-field",
     "@twc-ui/form-text-area",
     "@twc-ui/form-text-field",
     "@twc-ui/form-time-field",

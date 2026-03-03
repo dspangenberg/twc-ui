@@ -1,11 +1,5 @@
 <?php
 
-/*
- * Beleg-Portal is a twiceware solution
- * Copyright (c) 2025 by Rechtsanwalt Peter Trettin
- *
- */
-
 namespace App\Data;
 
 use Spatie\LaravelData\Attributes\WithTransformer;

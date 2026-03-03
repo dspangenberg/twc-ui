@@ -1,55 +1,38 @@
-import { queryByAttribute, render, screen } from '@testing-library/react'
-import React from 'react'
+import { render, screen } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 import '@testing-library/jest-dom'
 
-// Import the alert component
 import { Alert, AlertDescription, AlertTitle } from '@/components/twc-ui/alert'
 
-// Mock the icons
+// Mock the icons that are actually imported in the alert component
 vi.mock('@hugeicons/core-free-icons', () => ({
-  InfoCircle: ({ className }: { className?: string }) => (
-    <div data-testid="info-circle" className={className}>
-      MockInfoCircle
+  Alert02Icon: ({ className }: { className?: string }) => (
+    <div data-testid="alert-02-icon" className={className}>
+      MockAlert02Icon
     </div>
   ),
-  CheckCircle01: ({ className }: { className?: string }) => (
-    <div data-testid="check-circle" className={className}>
-      MockCheckCircle
-    </div>
-  ),
-  AlertTriangle: ({ className }: { className?: string }) => (
-    <div data-testid="alert-triangle" className={className}>
-      MockAlertTriangle
-    </div>
-  ),
-  XClose: ({ className }: { className?: string }) => (
-    <div data-testid="x-close" className={className}>
-      MockXClose
-    </div>
-  ),
-  AlertCircleIcon: ({ className, strokeWidth }: { className?: string; strokeWidth?: string }) => (
-    <div data-testid="alert-circle-icon" className={className} data-stroke-width={strokeWidth}>
+  AlertCircleIcon: ({ className }: { className?: string }) => (
+    <div data-testid="alert-circle-icon" className={className}>
       MockAlertCircleIcon
     </div>
   ),
-  InformationCircleIcon: ({
-    className,
-    strokeWidth
-  }: {
-    className?: string
-    strokeWidth?: string
-  }) => (
-    <div data-testid="info-circle-icon" className={className} data-stroke-width={strokeWidth}>
+  AlertSquareIcon: ({ className }: { className?: string }) => (
+    <div data-testid="alert-square-icon" className={className}>
+      MockAlertSquareIcon
+    </div>
+  ),
+  InformationCircleIcon: ({ className }: { className?: string }) => (
+    <div data-testid="information-circle-icon" className={className}>
       MockInformationCircleIcon
     </div>
   )
 }))
 
-vi.mock('@/components/ui/icon', () => ({
-  default: ({ name, ...props }: { name: string; [key: string]: any }) => (
-    <div data-testid={`icon-${name}`} {...props}>
-      MockIcon-{name}
+// Mock the Icon component
+vi.mock('@/components/twc-ui/icon', () => ({
+  Icon: ({ icon, className }: { icon: any; className?: string }) => (
+    <div data-testid="icon" className={className}>
+      MockIcon-{icon.name || 'custom'}
     </div>
   )
 }))
@@ -66,7 +49,7 @@ describe('Alert Component', () => {
       const alertContainer = screen.getByRole('alert').parentElement
       const alertInner = screen.getByRole('alert')
       expect(alertContainer).toBeInTheDocument()
-      expect(alertContainer).toHaveClass('m-1')
+      expect(alertContainer).toHaveClass('m-1', 'w-full')
       expect(alertInner).toHaveClass('bg-card', 'text-card-foreground')
     })
 
@@ -79,7 +62,7 @@ describe('Alert Component', () => {
 
       const alertContainer = screen.getByRole('alert').parentElement
       const alertInner = screen.getByRole('alert')
-      expect(alertContainer).toHaveClass('m-1')
+      expect(alertContainer).toHaveClass('m-1', 'w-full')
       expect(alertInner).toHaveClass(
         'm-0',
         'border-destructive/20',
@@ -97,49 +80,137 @@ describe('Alert Component', () => {
 
       const alertContainer = screen.getByRole('alert').parentElement
       const alertInner = screen.getByRole('alert')
-      expect(alertContainer).toHaveClass('m-1')
-      expect(alertInner).toHaveClass(
-        'border-yellow-200',
-        'bg-yellow-50',
-        'dark:border-yellow-900/40',
-        'dark:bg-yellow-950/40'
+      expect(alertContainer).toHaveClass('m-1', 'w-full')
+      expect(alertInner).toHaveClass('border-info/20', 'bg-info/5', 'text-info')
+    })
+
+    it('renders alert with warning variant', () => {
+      render(
+        <Alert variant="warning">
+          <AlertDescription>Warning message</AlertDescription>
+        </Alert>
       )
+
+      const alertContainer = screen.getByRole('alert').parentElement
+      const alertInner = screen.getByRole('alert')
+      expect(alertContainer).toHaveClass('m-1', 'w-full')
+      expect(alertInner).toHaveClass('border-warning', 'bg-warning', 'text-warning-foreground')
+    })
+
+    it('renders alert with success variant', () => {
+      render(
+        <Alert variant="success">
+          <AlertDescription>Success message</AlertDescription>
+        </Alert>
+      )
+
+      const alertContainer = screen.getByRole('alert').parentElement
+      const alertInner = screen.getByRole('alert')
+      expect(alertContainer).toHaveClass('m-1', 'w-full')
+      expect(alertInner).toHaveClass('border-success/20', 'bg-success/5', 'text-success')
     })
   })
 
   describe('Icon Support', () => {
-    it('renders alert circle icon when variant is destructive and icon is null', () => {
-      render(
-        <Alert variant="destructive" icon={null}>
-          <AlertDescription>Warning</AlertDescription>
-        </Alert>
-      )
-
-      const icon = screen.getByTestId('alert-circle-icon')
-      expect(icon).toBeInTheDocument()
-      expect(icon).toHaveClass('size-5', 'text-destructive')
-    })
-
-    it('renders info circle icon when variant is info and icon is null', () => {
-      render(
-        <Alert variant="info" icon={null}>
-          <AlertDescription>Information</AlertDescription>
-        </Alert>
-      )
-
-      const icon = screen.getByTestId('info-circle-icon')
-      expect(icon).toBeInTheDocument()
-      expect(icon).toHaveClass('size-5', 'text-yellow-700')
-    })
-
-    it('does not render icon when icon is undefined', () => {
+    it('renders AlertCircleIcon for default variant when no icon provided', () => {
       render(
         <Alert>
+          <AlertDescription>Default message</AlertDescription>
+        </Alert>
+      )
+
+      const icon = screen.getByTestId('icon')
+      expect(icon).toBeInTheDocument()
+      expect(icon).toHaveClass('size-5', 'shrink-0', 'text-background')
+      expect(icon).toHaveTextContent('MockIcon-AlertCircleIcon')
+    })
+
+    it('renders Alert02Icon for destructive variant when no icon provided', () => {
+      render(
+        <Alert variant="destructive">
+          <AlertDescription>Warning message</AlertDescription>
+        </Alert>
+      )
+
+      const icon = screen.getByTestId('icon')
+      expect(icon).toBeInTheDocument()
+      expect(icon).toHaveClass('text-destructive')
+      expect(icon).toHaveTextContent('MockIcon-Alert02Icon')
+    })
+
+    it('renders InformationCircleIcon for info variant when no icon provided', () => {
+      render(
+        <Alert variant="info">
+          <AlertDescription>Info message</AlertDescription>
+        </Alert>
+      )
+
+      const icon = screen.getByTestId('icon')
+      expect(icon).toBeInTheDocument()
+      expect(icon).toHaveClass('text-info')
+      expect(icon).toHaveTextContent('MockIcon-InformationCircleIcon')
+    })
+
+    it('renders AlertSquareIcon for warning variant when no icon provided', () => {
+      render(
+        <Alert variant="warning">
+          <AlertDescription>Warning message</AlertDescription>
+        </Alert>
+      )
+
+      const icon = screen.getByTestId('icon')
+      expect(icon).toBeInTheDocument()
+      expect(icon).toHaveClass('text-warning-foreground')
+      expect(icon).toHaveTextContent('MockIcon-AlertSquareIcon')
+    })
+
+    it('renders AlertCircleIcon for success variant when no icon provided', () => {
+      render(
+        <Alert variant="success">
+          <AlertDescription>Success message</AlertDescription>
+        </Alert>
+      )
+
+      const icon = screen.getByTestId('icon')
+      expect(icon).toBeInTheDocument()
+      expect(icon).toHaveClass('text-success')
+      expect(icon).toHaveTextContent('MockIcon-AlertCircleIcon')
+    })
+
+    it('renders custom icon when provided', () => {
+      const CustomIcon = () => <div data-testid="custom-icon">Custom</div>
+      render(
+        <Alert icon={CustomIcon}>
+          <AlertDescription>Custom icon alert</AlertDescription>
+        </Alert>
+      )
+
+      const icon = screen.getByTestId('icon')
+      expect(icon).toBeInTheDocument()
+      expect(icon).toHaveTextContent('MockIcon-CustomIcon')
+    })
+
+    it('does not render icon when icon is false', () => {
+      render(
+        <Alert icon={false}>
           <AlertDescription>No icon alert</AlertDescription>
         </Alert>
       )
 
-      const icon = screen.queryByTestId('icon')
+      const icon = screen.queryByTestId('alert-circle-icon')
+      expect(icon).not.toBeInTheDocument()
+      const customIcon = screen.queryByTestId('custom-icon')
+      expect(customIcon).not.toBeInTheDocument()
+    })
+
+    it('does not render icon when icon is null', () => {
+      render(
+        <Alert icon={null}>
+          <AlertDescription>No icon alert</AlertDescription>
+        </Alert>
+      )
+
+      const icon = screen.queryByTestId('alert-circle-icon')
       expect(icon).not.toBeInTheDocument()
     })
   })
@@ -154,6 +225,7 @@ describe('Alert Component', () => {
 
       const title = screen.getByText('Alert Title')
       expect(title).toBeInTheDocument()
+      expect(title).toHaveAttribute('data-slot', 'alert-title')
     })
 
     it('does not render title when not provided', () => {
@@ -163,7 +235,18 @@ describe('Alert Component', () => {
         </Alert>
       )
 
-      const titleContainer = queryByAttribute('data-slot', document.body, 'alert-title')
+      const titleContainer = document.querySelector('[data-slot="alert-title"]')
+      expect(titleContainer).not.toBeInTheDocument()
+    })
+
+    it('does not render title when empty string', () => {
+      render(
+        <Alert title="">
+          <AlertDescription>Empty title alert</AlertDescription>
+        </Alert>
+      )
+
+      const titleContainer = document.querySelector('[data-slot="alert-title"]')
       expect(titleContainer).not.toBeInTheDocument()
     })
 
@@ -175,16 +258,7 @@ describe('Alert Component', () => {
       )
 
       const titleElement = screen.getByText('Test Title')
-      expect(titleElement).toBeInTheDocument()
-      expect(titleElement).toHaveAttribute('data-slot', 'alert-title')
-      expect(titleElement).toHaveClass(
-        'col-start-2',
-        'line-clamp-1',
-        'min-h-4',
-        'pt-0.5',
-        'font-medium',
-        'tracking-tight'
-      )
+      expect(titleElement).toHaveClass('font-medium', 'tracking-tight')
     })
   })
 
@@ -198,6 +272,7 @@ describe('Alert Component', () => {
 
       const description = screen.getByText('Description content')
       expect(description).toBeInTheDocument()
+      expect(description).toHaveAttribute('data-slot', 'alert-description')
     })
 
     it('applies correct description styles for default variant', () => {
@@ -207,16 +282,12 @@ describe('Alert Component', () => {
         </Alert>
       )
 
-      const descriptionContainer = screen.getByText('Description').parentElement
-      expect(descriptionContainer).toBeInTheDocument()
-      expect(descriptionContainer).toHaveAttribute('data-slot', 'alert-description')
-      expect(descriptionContainer).toHaveClass(
-        'flex-1',
-        'justify-items-start',
-        'gap-1',
+      const descriptionElement = screen.getByText('Description')
+      expect(descriptionElement).toHaveClass(
+        'w-full',
         'text-muted-foreground',
         'text-sm',
-        '[&_p]:leading-relaxed'
+        'leading-normal'
       )
     })
 
@@ -227,8 +298,8 @@ describe('Alert Component', () => {
         </Alert>
       )
 
-      const descriptionContainer = screen.getByText('Destructive description').parentElement
-      expect(descriptionContainer).toHaveClass('text-destructive')
+      const descriptionElement = screen.getByText('Destructive description').parentElement
+      expect(descriptionElement).toHaveClass('text-destructive')
     })
 
     it('applies correct description styles for info variant', () => {
@@ -238,15 +309,43 @@ describe('Alert Component', () => {
         </Alert>
       )
 
-      const descriptionContainer = screen.getByText('Info description').parentElement
-      expect(descriptionContainer).toHaveClass('text-yellow-700')
+      const descriptionElement = screen.getByText('Info description').parentElement
+      expect(descriptionElement).toHaveClass('text-info-foreground')
+    })
+
+    it('applies correct description styles for warning variant', () => {
+      render(
+        <Alert variant="warning">
+          <AlertDescription>Warning description</AlertDescription>
+        </Alert>
+      )
+
+      const descriptionElement = screen.getByText('Warning description').parentElement
+      expect(descriptionElement).toHaveClass('text-warning-foreground')
+    })
+
+    it('applies correct description styles for success variant', () => {
+      render(
+        <Alert variant="success">
+          <AlertDescription>Success description</AlertDescription>
+        </Alert>
+      )
+
+      const descriptionElement = screen.getByText('Success description').parentElement
+      expect(descriptionElement).toHaveClass('text-success')
     })
   })
 
   describe('Actions Support', () => {
     it('renders actions when provided', () => {
       render(
-        <Alert actions={<button data-testid="action-button">Action</button>}>
+        <Alert
+          actions={
+            <button type="button" data-testid="action-button">
+              Action
+            </button>
+          }
+        >
           <AlertDescription>Description</AlertDescription>
         </Alert>
       )
@@ -254,6 +353,30 @@ describe('Alert Component', () => {
       const actions = screen.getByTestId('action-button')
       expect(actions).toBeInTheDocument()
       expect(actions.parentElement).toHaveClass('flex-none', 'justify-end')
+    })
+
+    it('renders multiple actions', () => {
+      render(
+        <Alert
+          actions={
+            <>
+              <button type="button" data-testid="action-1">
+                Action 1
+              </button>
+              <button type="button" data-testid="action-2">
+                Action 2
+              </button>
+            </>
+          }
+        >
+          <AlertDescription>Description</AlertDescription>
+        </Alert>
+      )
+
+      const action1 = screen.getByTestId('action-1')
+      const action2 = screen.getByTestId('action-2')
+      expect(action1).toBeInTheDocument()
+      expect(action2).toBeInTheDocument()
     })
 
     it('does not render actions when not provided', () => {
@@ -282,13 +405,14 @@ describe('Alert Component', () => {
 
     it('preserves additional accessibility props', () => {
       render(
-        <Alert aria-labelledby="custom-label">
+        <Alert aria-labelledby="custom-label" data-testid="custom-alert">
           <AlertDescription>Description</AlertDescription>
         </Alert>
       )
 
       const alert = screen.getByRole('alert')
       expect(alert).toHaveAttribute('aria-labelledby', 'custom-label')
+      expect(alert).toHaveAttribute('data-testid', 'custom-alert')
     })
 
     it('applies data-slot attributes correctly', () => {
@@ -307,8 +431,18 @@ describe('Alert Component', () => {
 
   describe('Component Composition', () => {
     it('renders all parts together correctly', () => {
+      const CustomIcon = () => <div data-testid="custom-icon">Custom</div>
       render(
-        <Alert variant="destructive" title="Error" icon={null} actions={<button>Fix</button>}>
+        <Alert
+          variant="destructive"
+          title="Error"
+          icon={CustomIcon}
+          actions={
+            <button type="button" data-testid="fix-button">
+              Fix
+            </button>
+          }
+        >
           <AlertDescription>Something went wrong</AlertDescription>
         </Alert>
       )
@@ -316,14 +450,13 @@ describe('Alert Component', () => {
       // Check main alert container
       const alertContainer = screen.getByRole('alert').parentElement
       const alertInner = screen.getByRole('alert')
-      expect(alertContainer).toBeInTheDocument()
-      expect(alertContainer).toHaveClass('m-1')
+      expect(alertContainer).toHaveClass('m-1', 'w-full')
       expect(alertInner).toHaveClass('m-0', 'border-destructive/20')
 
-      // Check icon
-      const icon = screen.getByTestId('alert-circle-icon')
-      expect(icon).toBeInTheDocument()
-      expect(icon).toHaveClass('size-5', 'text-destructive')
+      // Check custom icon
+      const customIcon = screen.getByTestId('icon')
+      expect(customIcon).toBeInTheDocument()
+      expect(customIcon).toHaveTextContent('MockIcon-CustomIcon')
 
       // Check title
       const title = screen.getByText('Error')
@@ -334,8 +467,48 @@ describe('Alert Component', () => {
       expect(description).toBeInTheDocument()
 
       // Check actions
-      const action = screen.getByRole('button', { name: 'Fix' })
+      const action = screen.getByTestId('fix-button')
       expect(action).toBeInTheDocument()
+    })
+
+    it('renders minimal alert with only description', () => {
+      render(<Alert>Description only</Alert>)
+
+      const alert = screen.getByRole('alert')
+      expect(alert).toBeInTheDocument()
+
+      // Should have default icon
+      const icon = screen.getByTestId('icon')
+      expect(icon).toBeInTheDocument()
+      expect(icon).toHaveTextContent('MockIcon-AlertCircleIcon')
+
+      // Should have description
+      expect(screen.getByText('Description only')).toBeInTheDocument()
+    })
+  })
+
+  describe('Custom Classes and Props', () => {
+    it('applies custom className to alert', () => {
+      render(
+        <Alert className="custom-alert-class" data-custom="test">
+          <AlertDescription>Description</AlertDescription>
+        </Alert>
+      )
+
+      const alert = screen.getByRole('alert')
+      expect(alert).toHaveClass('custom-alert-class')
+      expect(alert).toHaveAttribute('data-custom', 'test')
+    })
+
+    it('passes through additional div props', () => {
+      render(
+        <Alert id="my-alert" onClick={vi.fn()}>
+          <AlertDescription>Description</AlertDescription>
+        </Alert>
+      )
+
+      const alert = screen.getByRole('alert')
+      expect(alert).toHaveAttribute('id', 'my-alert')
     })
   })
 
@@ -345,17 +518,24 @@ describe('Alert Component', () => {
 
       const alert = screen.getByRole('alert')
       expect(alert).toBeInTheDocument()
+
+      // Should still have default icon
+      const icon = screen.getByTestId('icon')
+      expect(icon).toBeInTheDocument()
+      expect(icon).toHaveTextContent('MockIcon-AlertCircleIcon')
     })
 
-    it('handles empty title gracefully', () => {
+    it('handles complex description content', () => {
       render(
-        <Alert title="">
-          <AlertDescription>Description</AlertDescription>
+        <Alert>
+          <AlertDescription>
+            <span data-testid="complex-content">Complex content with markup</span>
+          </AlertDescription>
         </Alert>
       )
 
-      const titleContainer = queryByAttribute('data-slot', document.body, 'alert-title')
-      expect(titleContainer).not.toBeInTheDocument()
+      const complexContent = screen.getByTestId('complex-content')
+      expect(complexContent).toBeInTheDocument()
     })
   })
 })
@@ -367,27 +547,21 @@ describe('AlertTitle Component', () => {
     const titleElement = screen.getByText('Error Title')
     expect(titleElement).toBeInTheDocument()
     expect(titleElement).toHaveAttribute('data-slot', 'alert-title')
-  })
-
-  it('applies variant-specific styles', () => {
-    render(<AlertTitle variant="destructive">Error</AlertTitle>)
-
-    const titleElement = screen.getByText('Error')
-    expect(titleElement).toHaveClass(
-      'col-start-2',
-      'line-clamp-1',
-      'min-h-4',
-      'pt-0.5',
-      'font-medium',
-      'tracking-tight'
-    )
+    expect(titleElement).toHaveClass('font-medium', 'tracking-tight')
   })
 
   it('applies custom className', () => {
     render(<AlertTitle className="custom-title">Custom Title</AlertTitle>)
 
     const titleElement = screen.getByText('Custom Title')
-    expect(titleElement).toHaveClass('custom-title')
+    expect(titleElement).toHaveClass('custom-title', 'font-medium', 'tracking-tight')
+  })
+
+  it('passes through additional props', () => {
+    render(<AlertTitle id="my-title">Title</AlertTitle>)
+
+    const titleElement = screen.getByText('Title')
+    expect(titleElement).toHaveAttribute('id', 'my-title')
   })
 })
 
@@ -398,6 +572,7 @@ describe('AlertDescription Component', () => {
     const descElement = screen.getByText('Info description')
     expect(descElement).toBeInTheDocument()
     expect(descElement).toHaveAttribute('data-slot', 'alert-description')
+    expect(descElement).toHaveClass('text-info-foreground')
   })
 
   it('applies variant-specific styles', () => {
@@ -405,19 +580,25 @@ describe('AlertDescription Component', () => {
 
     const descElement = screen.getByText('Error details')
     expect(descElement).toHaveClass('text-destructive')
-
-    const { unmount } = render(<AlertDescription variant="info">Info details</AlertDescription>)
-
-    const descElement2 = screen.getByText('Info details')
-    expect(descElement2).toHaveClass('text-yellow-700')
-
-    unmount()
   })
 
   it('applies custom className', () => {
     render(<AlertDescription className="custom-desc">Custom description</AlertDescription>)
 
     const descElement = screen.getByText('Custom description')
-    expect(descElement).toHaveClass('custom-desc')
+    expect(descElement).toHaveClass(
+      'custom-desc',
+      'w-full',
+      'text-muted-foreground',
+      'text-sm',
+      'leading-normal'
+    )
+  })
+
+  it('passes through additional props', () => {
+    render(<AlertDescription id="my-desc">Description</AlertDescription>)
+
+    const descElement = screen.getByText('Description')
+    expect(descElement).toHaveAttribute('id', 'my-desc')
   })
 })

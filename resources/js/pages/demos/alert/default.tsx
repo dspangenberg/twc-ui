@@ -5,12 +5,15 @@ import { Alert } from '@/components/twc-ui/alert'
 export default function Demo() {
   return (
     <DemoContainer className="mx-auto max-w-md">
-      <Alert icon={AlertCircleIcon} variant="destructive" title="Unable to process your payment.">
-        <p>Please verify your billing information and try again.</p>
+      <Alert icon={AlertCircleIcon} variant="default" title="Payment successful">
+        <p>
+          Your payment payment has been successfully processed. We have sent you a receipt via
+          email.
+        </p>
         <ul className="list-inside list-disc">
-          <li>Check your card details</li>
-          <li>Ensure sufficient funds</li>
-          <li>Verify billing address</li>
+          <li>Check your email for receipt</li>
+          <li>Download invoice if needed</li>
+          <li>Save for your records</li>
         </ul>
       </Alert>
     </DemoContainer>

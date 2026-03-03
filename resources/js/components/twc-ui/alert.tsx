@@ -1,31 +1,46 @@
-import { AlertCircleIcon, InformationCircleIcon } from '@hugeicons/core-free-icons'
+import {
+  AlertCircleIcon,
+  CancelCircleIcon,
+  InformationCircleIcon
+} from '@hugeicons/core-free-icons'
 import type * as React from 'react'
 import { tv, type VariantProps } from 'tailwind-variants'
+import { cn } from '@/lib/utils'
 import { Icon, type IconType } from './icon'
 
 const alertStyles = tv({
   slots: {
-    base: 'relative flex w-full items-center gap-4 gap-y-0.5 rounded-md border px-4 py-1.5 text-sm has-[>svg]:grid-cols-[calc(var(--spacing)*4)_1fr] has-[>svg]:gap-x-3 [&>svg]:size-5 [&>svg]:translate-y-0.5 [&>svg]:text-current',
-    title: 'col-start-2 line-clamp-1 min-h-4 pt-0.5 font-medium tracking-tight',
-    icon: 'size-5 text-foreground',
-    description:
-      'flex-1 justify-items-start gap-1 text-muted-foreground text-sm [&_p]:leading-relaxed',
+    base: 'relative flex w-full items-center gap-2.5 rounded-md border px-4 py-2 text-sm',
+    title: 'font-medium tracking-tight',
+    icon: 'size-5 shrink-0 text-background',
+    description: 'w-full text-muted-foreground text-sm leading-normal',
     actions: 'flex-none justify-end'
   },
   variants: {
     variant: {
       default: {
-        base: 'bg-card text-card-foreground'
+        base: 'bg-card text-card-foreground',
+        icon: 'rounded-full bg-card-foreground/50 text-white'
       },
       destructive: {
-        base: 'm-0 border-destructive/20 bg-destructive/5 text-destructive *:data-[slot=alert-description]:text-destructive/90 [&>svg]:text-current',
+        base: 'm-0 border-destructive/20 bg-destructive/5 text-destructive',
         description: 'text-destructive',
-        icon: 'text-destructive'
+        icon: 'rounded-full bg-destructive text-white'
       },
       info: {
-        base: 'border-yellow-200 bg-yellow-50 dark:border-yellow-900/40 dark:bg-yellow-950/40',
-        description: 'text-yellow-700',
-        icon: 'text-yellow-700'
+        base: 'border-info/20 bg-info/5 text-info',
+        description: 'text-info',
+        icon: 'rounded-full bg-info text-white'
+      },
+      warning: {
+        base: 'border-warning bg-warning text-warning-foreground',
+        description: 'text-warning-foreground',
+        icon: 'rounded-full bg-warning-foreground text-white'
+      },
+      success: {
+        base: 'border-success/20 bg-success/5 text-success',
+        description: 'text-success',
+        icon: 'rounded-full bg-success text-white'
       }
     }
   },
@@ -38,6 +53,7 @@ interface AlertProps extends React.ComponentProps<'div'>, VariantProps<typeof al
   icon?: IconType | false | null
   title?: string
   actions?: React.ReactNode
+  iconClassName?: string
 }
 
 const Alert: React.FC<AlertProps> = ({
@@ -45,6 +61,7 @@ const Alert: React.FC<AlertProps> = ({
   className,
   variant,
   icon = null,
+  iconClassName,
   children,
   title,
   ...props
@@ -52,28 +69,35 @@ const Alert: React.FC<AlertProps> = ({
   const styles = alertStyles({ variant })
   let realIcon = icon
 
-  if (icon === null) {
+  if (!icon) {
     switch (variant) {
       case 'destructive':
-        realIcon = AlertCircleIcon
+        realIcon = CancelCircleIcon
         break
       case 'info':
         realIcon = InformationCircleIcon
         break
+      case 'warning':
+        realIcon = AlertCircleIcon
+        break
+      default:
+        realIcon = AlertCircleIcon
+        break
     }
   }
 
+  if (icon === false) realIcon = null
+
   return (
-    <div className="m-1">
+    <div className="m-1 w-full">
       <div data-slot="alert" role="alert" className={styles.base({ className })} {...props}>
-        {realIcon && (
-          <div>
-            <Icon icon={realIcon} className={styles.icon()} />
-          </div>
-        )}
-        <div className="flex-1 space-y-1.5">
+        {realIcon && <Icon icon={realIcon} className={cn(styles.icon(), iconClassName)} />}
+
+        <div className="flex-1 space-y-0.5">
           {title && <AlertTitle variant={variant}>{title}</AlertTitle>}
-          <AlertDescription variant={variant}>{children}</AlertDescription>
+          {children && (
+            <AlertDescription className={styles.description()}>{children}</AlertDescription>
+          )}
         </div>
         {actions && <div className={styles.actions()}>{actions}</div>}
       </div>
