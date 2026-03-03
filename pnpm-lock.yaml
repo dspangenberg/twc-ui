@@ -25,16 +25,16 @@ importers:
         specifier: ^2.2.9
         version: 2.2.9(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       '@hugeicons/core-free-icons':
-        specifier: ^3.3.0
+        specifier: ^3.1.1
         version: 3.3.0
       '@hugeicons/react':
-        specifier: ^1.1.5
+        specifier: ^1.1.4
         version: 1.1.5(react@19.2.4)
       '@inertiajs/core':
-        specifier: ^2.3.17
+        specifier: ^2.3.13
         version: 2.3.17
       '@inertiajs/react':
-        specifier: ^2.3.17
+        specifier: ^2.3.13
         version: 2.3.17(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       '@internationalized/date':
         specifier: ^3.11.0
@@ -97,16 +97,16 @@ importers:
         specifier: ^4.0.1
         version: 4.0.1
       '@tailwindcss/vite':
-        specifier: ^4.2.1
+        specifier: ^4.1.18
         version: 4.2.1(vite@7.3.1(@types/node@25.3.3)(jiti@2.6.1)(lightningcss@1.31.1)(tsx@4.21.0)(yaml@2.8.0))
       '@types/react':
-        specifier: ^19.2.14
+        specifier: ^19.2.10
         version: 19.2.14
       '@types/react-dom':
         specifier: ^19.2.3
         version: 19.2.3(@types/react@19.2.14)
       '@vitejs/plugin-react':
-        specifier: ^5.1.4
+        specifier: ^5.1.3
         version: 5.1.4(vite@7.3.1(@types/node@25.3.3)(jiti@2.6.1)(lightningcss@1.31.1)(tsx@4.21.0)(yaml@2.8.0))
       class-variance-authority:
         specifier: ^0.7.1
@@ -121,10 +121,10 @@ importers:
         specifier: ^4.1.0
         version: 4.1.0
       dotenv:
-        specifier: ^17.3.1
+        specifier: ^17.2.3
         version: 17.3.1
       globals:
-        specifier: ^17.4.0
+        specifier: ^17.3.0
         version: 17.4.0
       gray-matter:
         specifier: ^4.0.3
@@ -133,7 +133,7 @@ importers:
         specifier: ^3.14.2
         version: 3.14.2
       laravel-precognition:
-        specifier: ^1.0.2
+        specifier: ^1.0.1
         version: 1.0.2
       laravel-precognition-react-inertia:
         specifier: ^0.8.0
@@ -163,7 +163,7 @@ importers:
         specifier: ^3.46.0
         version: 3.46.0(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       react-aria-components:
-        specifier: ^1.15.1
+        specifier: ^1.15.0
         version: 1.15.1(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       react-dom:
         specifier: ^19.2.4
@@ -172,7 +172,7 @@ importers:
         specifier: ^2.0.6
         version: 2.0.6(react@19.2.4)
       react-icons:
-        specifier: ^5.6.0
+        specifier: ^5.5.0
         version: 5.6.0(react@19.2.4)
       react-markdown:
         specifier: ^10.1.0
@@ -181,7 +181,7 @@ importers:
         specifier: ^2.0.4
         version: 2.0.4(react@19.2.4)
       react-pdf:
-        specifier: ^10.4.1
+        specifier: ^10.3.0
         version: 10.4.1(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       react-use:
         specifier: ^17.6.0
@@ -205,13 +205,13 @@ importers:
         specifier: 3.8.5
         version: 3.8.5(@types/node@25.3.3)(typescript@5.9.3)
       tailwind-merge:
-        specifier: ^3.5.0
+        specifier: ^3.4.0
         version: 3.5.0
       tailwind-variants:
         specifier: ^3.2.2
         version: 3.2.2(tailwind-merge@3.5.0)(tailwindcss@4.2.1)
       tailwindcss:
-        specifier: ^4.2.1
+        specifier: ^4.1.18
         version: 4.2.1
       tailwindcss-animate:
         specifier: ^1.0.7
@@ -248,7 +248,7 @@ importers:
         specifier: ^30.0.0
         version: 30.0.0
       '@types/node':
-        specifier: ^25.3.3
+        specifier: ^25.2.0
         version: 25.3.3
       '@vitest/coverage-v8':
         specifier: 4.0.18
@@ -257,7 +257,7 @@ importers:
         specifier: 4.12.4
         version: 4.12.4
       jsdom:
-        specifier: ^28.1.0
+        specifier: ^28.0.0
         version: 28.1.0(@noble/hashes@1.8.0)
       shiki:
         specifier: ^4.0.1
@@ -282,7 +282,7 @@ importers:
         specifier: 4.59.0
         version: 4.59.0
       '@tailwindcss/oxide-linux-x64-gnu':
-        specifier: ^4.2.1
+        specifier: ^4.1.18
         version: 4.2.1
       lightningcss-linux-x64-gnu:
         specifier: ^1.31.1
@@ -953,8 +953,8 @@ packages:
       react: ^18 || ^19 || ^19.0.0-rc
       react-dom: ^18 || ^19 || ^19.0.0-rc
 
-  '@hono/node-server@1.19.9':
-    resolution: {integrity: sha512-vHL6w3ecZsky+8P5MD+eFfaGTyCeOHUIFYMGpQGbrBTSmNNoxv0if69rEZ5giu36weC5saFuznL411gRX7bJDw==}
+  '@hono/node-server@1.19.10':
+    resolution: {integrity: sha512-hZ7nOssGqRgyV3FVVQdfi+U4q02uB23bpnYpdvNXkYTRRyWx84b7yf1ans+dnJ/7h41sGL3CeQTfO+ZGxuO+Iw==}
     engines: {node: '>=18.14.1'}
     peerDependencies:
       hono: ^4
@@ -3526,8 +3526,8 @@ packages:
   ee-first@1.1.1:
     resolution: {integrity: sha512-WMwm9LhRUo+WUaRN+vRuETqG89IgZphVSNkdFgeb6sS/E4OrDIN7t48CAewSHXc6C8lefD8KKfr5vY61brQlow==}
 
-  electron-to-chromium@1.5.302:
-    resolution: {integrity: sha512-sM6HAN2LyK82IyPBpznDRqlTQAtuSaO+ShzFiWTvoMJLHyZ+Y39r8VMfHzwbU8MVBzQ4Wdn85+wlZl2TLGIlwg==}
+  electron-to-chromium@1.5.307:
+    resolution: {integrity: sha512-5z3uFKBWjiNR44nFcYdkcXjKMbg5KXNdciu7mhTPo9tB7NbqSNP2sSnGR+fqknZSCwKkBN+oxiiajWs4dT6ORg==}
 
   emoji-regex@10.6.0:
     resolution: {integrity: sha512-toUI84YS5YmxW219erniWD0CIVOo46xGKColeNQRgOzDorgBi1v4D71/OFzgD9GO2UGKIv1C3Sp8DAn0+j5w7A==}
@@ -6248,7 +6248,7 @@ snapshots:
       react-dom: 19.2.4(react@19.2.4)
       use-sync-external-store: 1.6.0(react@19.2.4)
 
-  '@hono/node-server@1.19.9(hono@4.12.4)':
+  '@hono/node-server@1.19.10(hono@4.12.4)':
     dependencies:
       hono: 4.12.4
 
@@ -6418,7 +6418,7 @@ snapshots:
 
   '@modelcontextprotocol/sdk@1.27.1(zod@3.25.76)':
     dependencies:
-      '@hono/node-server': 1.19.9(hono@4.12.4)
+      '@hono/node-server': 1.19.10(hono@4.12.4)
       ajv: 8.18.0
       ajv-formats: 3.0.1(ajv@8.18.0)
       content-type: 1.0.5
@@ -9014,7 +9014,7 @@ snapshots:
     dependencies:
       baseline-browser-mapping: 2.10.0
       caniuse-lite: 1.0.30001776
-      electron-to-chromium: 1.5.302
+      electron-to-chromium: 1.5.307
       node-releases: 2.0.27
       update-browserslist-db: 1.2.3(browserslist@4.28.1)
 
@@ -9248,7 +9248,7 @@ snapshots:
 
   ee-first@1.1.1: {}
 
-  electron-to-chromium@1.5.302: {}
+  electron-to-chromium@1.5.307: {}
 
   emoji-regex@10.6.0: {}
 
