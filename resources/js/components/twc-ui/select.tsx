@@ -88,7 +88,7 @@ const SelectListBox = <T extends object>({ className, ...props }: AriaListBoxPro
   />
 )
 interface SelectProps<T extends object>
-  extends Omit<AriaSelectProps<T>, 'children' | 'onSelectionChange' | 'onChange'> {
+  extends Omit<AriaSelectProps<T>, 'children' | 'onSelectionChange' | 'onChange' | 'isRequired'> {
   label?: string
   description?: string
   error?: string
@@ -164,7 +164,7 @@ const Select = <T extends object>({
       {...props}
     >
       {label && <Label value={label} isRequired={!isOptional} />}
-      <SelectTrigger autoFocus={autoFocus}>
+      <SelectTrigger autoFocus={autoFocus} data-invalid={hasError ? '' : undefined}>
         <SelectValue className="focus-within-0 border-transparent" />
       </SelectTrigger>
       {description && (

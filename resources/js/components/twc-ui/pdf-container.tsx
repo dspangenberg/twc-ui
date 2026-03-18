@@ -8,6 +8,7 @@ import { Separator } from './separator'
 import 'react-pdf/dist/Page/TextLayer.css'
 import 'react-pdf/dist/Page/AnnotationLayer.css'
 import {
+  AlertCircleIcon,
   ArrowDown01Icon,
   ArrowUp01Icon,
   FileDownloadIcon,
@@ -18,10 +19,15 @@ import {
   SquareArrowDiagonal02Icon
 } from '@hugeicons/core-free-icons'
 import { TextCursor } from 'lucide-react'
-import { useFileDownload } from '@/hooks/use-file-download'
+import {
+  extractFilenameFromContentDisposition,
+  extractFilenameFromUrl,
+  useFileDownload
+} from '@/hooks/use-file-download'
 import { cn } from '@/lib/utils'
 import { Button } from './button'
 import { DropdownButton } from './dropdown-button'
+import { Icon } from './icon'
 import { MenuItem } from './menu'
 import { ToggleButtonGroup, ToggleButtonGroupItem } from './toggle-button-group'
 import { Toolbar } from './toolbar'
@@ -89,17 +95,9 @@ export const PdfContainer: React.FC<Props> = ({
   hideFilename = false,
   onFilenameChange
 }) => {
-  const defaultFilename = useMemo(() => {
+  const baseFilename = useMemo(() => {
     if (filename) return filename
-    try {
-      const url = new URL(file, window.location.origin)
-      const pathname = url.pathname
-      const parts = pathname.split('/')
-      const lastPart = parts[parts.length - 1]
-      return lastPart || 'unbekannt.pdf'
-    } catch {
-      return 'unbekannt.pdf'
-    }
+    return extractFilenameFromUrl(file)
   }, [file])
 
   const divRef = useRef<HTMLDivElement>(null)
@@ -108,9 +106,41 @@ export const PdfContainer: React.FC<Props> = ({
     onClose: () => toggle(false)
   })
 
+  const [resolvedFilename, setResolvedFilename] = useState(baseFilename)
+
   useEffect(() => {
-    onFilenameChange?.(defaultFilename)
-  }, [defaultFilename, onFilenameChange])
+    setResolvedFilename(baseFilename)
+  }, [baseFilename])
+
+  useEffect(() => {
+    if (filename) return
+    if (file.startsWith('blob:') || file.startsWith('data:')) return
+
+    let isMounted = true
+
+    const fetchFilename = async () => {
+      try {
+        const response = await fetch(file, { method: 'HEAD' })
+        const contentDisposition = response.headers.get('Content-Disposition')
+        const headerFilename = extractFilenameFromContentDisposition(contentDisposition)
+        if (headerFilename && isMounted) {
+          setResolvedFilename(headerFilename)
+        }
+      } catch {
+        // Ignore filename lookup failures.
+      }
+    }
+
+    void fetchFilename()
+
+    return () => {
+      isMounted = false
+    }
+  }, [file, filename])
+
+  useEffect(() => {
+    onFilenameChange?.(resolvedFilename)
+  }, [resolvedFilename, onFilenameChange])
 
   const pdfRef = useRef<PDFDocumentProxy | null>(null)
   const [numPages, setNumPages] = useState<number>(1)
@@ -119,6 +149,7 @@ export const PdfContainer: React.FC<Props> = ({
   const [scaleMode, setScaleMode] = useState<string>('scale-125')
   const [showFitToPage, setShowFitToPage] = useState<boolean>(true)
   const [isLoading, setIsLoading] = useState<boolean>(true)
+  const [loadError, setLoadError] = useState<string | null>(null)
   const [cursorTool, setCursorTool] = useState<'select' | 'grab'>('select')
   const [isDragging, setIsDragging] = useState<boolean>(false)
   const [dragStart, setDragStart] = useState<{ x: number; y: number }>({
@@ -148,7 +179,24 @@ export const PdfContainer: React.FC<Props> = ({
     pdfRef.current = document
     setScale(1.25)
     setIsLoading(false)
+    setLoadError(null)
     void checkFitToPageVisibility()
+  }
+
+  const onDocumentLoadError = (error: Error): void => {
+    setIsLoading(false)
+    console.error('PDF load error:', error)
+
+    // Detect common error types
+    if (error.message.includes('404') || error.message.includes('Not Found')) {
+      setLoadError('PDF-Datei nicht gefunden. Möglicherweise fehlt die Datei im S3-Speicher.')
+    } else if (error.message.includes('403') || error.message.includes('Forbidden')) {
+      setLoadError('Zugriff auf die PDF-Datei verweigert. Bitte prüfe die S3-Berechtigungen.')
+    } else if (error.message.includes('network') || error.message.includes('fetch')) {
+      setLoadError('Netzwerkfehler beim Laden der PDF-Datei.')
+    } else {
+      setLoadError('Die PDF-Datei konnte nicht geladen werden.')
+    }
   }
 
   const calculateFitToWidth = useCallback(async () => {
@@ -199,7 +247,7 @@ export const PdfContainer: React.FC<Props> = ({
 
   const { handleDownload } = useFileDownload({
     route: file,
-    filename: defaultFilename
+    filename: resolvedFilename
   })
 
   const handleMouseDown = (e: React.MouseEvent) => {
@@ -410,7 +458,7 @@ export const PdfContainer: React.FC<Props> = ({
       ref={divRef}
       className={cn(
         className,
-        'relative flex aspect-210/297 max-h-[90%] w-3xl flex-col items-center justify-center rounded-md border bg-white'
+        'relative flex h-full w-3xl flex-col items-center justify-center rounded-md border bg-white'
       )}
     >
       <div
@@ -421,27 +469,36 @@ export const PdfContainer: React.FC<Props> = ({
       >
         {!hideFilename && (
           <div className="my-2 text-center font-medium text-base">
-            {defaultFilename} &mdash; Seite {pageNumber}/{numPages}
+            {resolvedFilename} &mdash; Seite {pageNumber}/{numPages}
           </div>
         )}
         {toolbar}
       </div>
 
-      <div className="w-full flex-1 overflow-hidden">
-        {isLoading && (
-          <div className="mx-auto my-auto flex-1">
-            <LogoSpinner />
-          </div>
-        )}
+      <div className="relative w-full flex-1 overflow-hidden">
         <Document
           file={file}
           loading={
-            <div className="mx-auto my-auto flex-1">
-              <LogoSpinner />
+            <div className="absolute inset-0 flex items-center justify-center">
+              <LogoSpinner className="size-10" />
             </div>
           }
-          className="h-full w-full overflow-auto bg-accent"
+          error={
+            <div className="absolute inset-0 flex items-center justify-center p-8">
+              <div className="max-w-md text-center">
+                <div className="mx-auto mb-4 flex size-14 items-center justify-center rounded-full bg-destructive">
+                  <Icon icon={AlertCircleIcon} className="size-14 rounded-full text-white" />
+                </div>
+                <h3 className="mb-2 font-semibold text-lg">Ups, das ging schief!</h3>
+                <p className="mb-4 text-base text-muted-foreground">
+                  {loadError || 'Die PDF-Datei konnte nicht geladen werden.'}
+                </p>
+              </div>
+            </div>
+          }
+          className="h-full w-full overflow-auto"
           onLoadSuccess={onDocumentLoadSuccess}
+          onLoadError={onDocumentLoadError}
           inputRef={scrollContainerRef}
         >
           <div
