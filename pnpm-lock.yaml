@@ -25,16 +25,16 @@ importers:
         specifier: ^2.2.9
         version: 2.2.9(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       '@hugeicons/core-free-icons':
-        specifier: ^3.1.1
+        specifier: ^3.3.0
         version: 3.3.0
       '@hugeicons/react':
-        specifier: ^1.1.4
+        specifier: ^1.1.5
         version: 1.1.5(react@19.2.4)
       '@inertiajs/core':
-        specifier: ^2.3.13
+        specifier: ^2.3.17
         version: 2.3.17
       '@inertiajs/react':
-        specifier: ^2.3.13
+        specifier: ^2.3.17
         version: 2.3.17(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       '@internationalized/date':
         specifier: ^3.11.0
@@ -97,16 +97,16 @@ importers:
         specifier: ^4.0.1
         version: 4.0.1
       '@tailwindcss/vite':
-        specifier: ^4.1.18
+        specifier: ^4.2.1
         version: 4.2.1(vite@7.3.1(@types/node@25.3.3)(jiti@2.6.1)(lightningcss@1.31.1)(tsx@4.21.0)(yaml@2.8.0))
       '@types/react':
-        specifier: ^19.2.10
+        specifier: ^19.2.14
         version: 19.2.14
       '@types/react-dom':
         specifier: ^19.2.3
         version: 19.2.3(@types/react@19.2.14)
       '@vitejs/plugin-react':
-        specifier: ^5.1.3
+        specifier: ^5.1.4
         version: 5.1.4(vite@7.3.1(@types/node@25.3.3)(jiti@2.6.1)(lightningcss@1.31.1)(tsx@4.21.0)(yaml@2.8.0))
       class-variance-authority:
         specifier: ^0.7.1
@@ -121,10 +121,10 @@ importers:
         specifier: ^4.1.0
         version: 4.1.0
       dotenv:
-        specifier: ^17.2.3
+        specifier: ^17.3.1
         version: 17.3.1
       globals:
-        specifier: ^17.3.0
+        specifier: ^17.4.0
         version: 17.4.0
       gray-matter:
         specifier: ^4.0.3
@@ -133,7 +133,7 @@ importers:
         specifier: ^3.14.2
         version: 3.14.2
       laravel-precognition:
-        specifier: ^1.0.1
+        specifier: ^1.0.2
         version: 1.0.2
       laravel-precognition-react-inertia:
         specifier: ^0.8.0
@@ -163,7 +163,7 @@ importers:
         specifier: ^3.46.0
         version: 3.46.0(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       react-aria-components:
-        specifier: ^1.15.0
+        specifier: ^1.15.1
         version: 1.15.1(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       react-dom:
         specifier: ^19.2.4
@@ -172,7 +172,7 @@ importers:
         specifier: ^2.0.6
         version: 2.0.6(react@19.2.4)
       react-icons:
-        specifier: ^5.5.0
+        specifier: ^5.6.0
         version: 5.6.0(react@19.2.4)
       react-markdown:
         specifier: ^10.1.0
@@ -181,7 +181,7 @@ importers:
         specifier: ^2.0.4
         version: 2.0.4(react@19.2.4)
       react-pdf:
-        specifier: ^10.3.0
+        specifier: ^10.4.1
         version: 10.4.1(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       react-use:
         specifier: ^17.6.0
@@ -205,13 +205,13 @@ importers:
         specifier: 3.8.5
         version: 3.8.5(@types/node@25.3.3)(typescript@5.9.3)
       tailwind-merge:
-        specifier: ^3.4.0
+        specifier: ^3.5.0
         version: 3.5.0
       tailwind-variants:
         specifier: ^3.2.2
         version: 3.2.2(tailwind-merge@3.5.0)(tailwindcss@4.2.1)
       tailwindcss:
-        specifier: ^4.1.18
+        specifier: ^4.2.1
         version: 4.2.1
       tailwindcss-animate:
         specifier: ^1.0.7
@@ -248,7 +248,7 @@ importers:
         specifier: ^30.0.0
         version: 30.0.0
       '@types/node':
-        specifier: ^25.2.0
+        specifier: ^25.3.3
         version: 25.3.3
       '@vitest/coverage-v8':
         specifier: 4.0.18
@@ -257,7 +257,7 @@ importers:
         specifier: 4.12.7
         version: 4.12.7
       jsdom:
-        specifier: ^28.0.0
+        specifier: ^28.1.0
         version: 28.1.0(@noble/hashes@1.8.0)
       shiki:
         specifier: ^4.0.1
@@ -282,7 +282,7 @@ importers:
         specifier: 4.59.0
         version: 4.59.0
       '@tailwindcss/oxide-linux-x64-gnu':
-        specifier: ^4.1.18
+        specifier: ^4.2.1
         version: 4.2.1
       lightningcss-linux-x64-gnu:
         specifier: ^1.31.1
@@ -457,6 +457,10 @@ packages:
 
   '@babel/runtime@7.28.6':
     resolution: {integrity: sha512-05WQkdpL9COIMz4LjTxGpPNCdlpyimKppYNoJ5Di5EUObifl8t4tuLuUBBZEpoLYOmfvIWrsp9fCl0HoPRVTdA==}
+    engines: {node: '>=6.9.0'}
+
+  '@babel/runtime@7.29.2':
+    resolution: {integrity: sha512-JiDShH45zKHWyGe4ZNVRrCjBz8Nh9TMmZG1kh4QTK8hCBTWBi8Da+i7s1fJw7/lYpM4ccepSNfqzZ/QvABBi5g==}
     engines: {node: '>=6.9.0'}
 
   '@babel/template@7.28.6':
@@ -3065,6 +3069,7 @@ packages:
 
   '@ungap/structured-clone@1.3.0':
     resolution: {integrity: sha512-WmoN8qaIAo7WTYWbAZuG8PYEhn5fkz7dZrqTBZ7dtt//lL2Gwms1IcnQ5yHqjDfX8Ft5j4YzDM23f87zBfDe9g==}
+    deprecated: Potential CWE-502 - Update to 1.3.1 or higher
 
   '@vitejs/plugin-react@5.1.4':
     resolution: {integrity: sha512-VIcFLdRi/VYRU8OL/puL7QXMYafHmqOnwTZY50U1JPlCNj30PxCMx65c494b1K9be9hX83KVt0+gTEwTWLqToA==}
@@ -3222,11 +3227,11 @@ packages:
     resolution: {integrity: sha512-oP5VkATKlNwcgvxi0vM0p/D3n2C3EReYVX+DNYs5TjZFn/oQt2j+4sVJtSMr18pdRr8wjTcBl6LoV+FUwzPmNA==}
     engines: {node: '>=18'}
 
-  brace-expansion@2.0.2:
-    resolution: {integrity: sha512-Jt0vHyM+jmUBqojB7E1NIYadt0vI0Qxjxd2TErW94wDz+E2LAm5vKMXXwg6ZZBTHPuUlDgQHKXvjGBdfcF1ZDQ==}
+  brace-expansion@2.1.0:
+    resolution: {integrity: sha512-TN1kCZAgdgweJhWWpgKYrQaMNHcDULHkWwQIspdtjV4Y5aurRdZpjAqn6yX3FPqTA9ngHCc4hJxMAMgGfve85w==}
 
-  brace-expansion@5.0.4:
-    resolution: {integrity: sha512-h+DEnpVvxmfVefa4jFbCf5HdH5YMDXRsmKflpf1pILZWRFlTbJpxeU55nJl4Smt5HQaGzg1o6RHFPJaOqnmBDg==}
+  brace-expansion@5.0.6:
+    resolution: {integrity: sha512-kLpxurY4Z4r9sgMsyG0Z9uzsBlgiU/EFKhj/h91/8yHu0edo7XuixOIH3VcJ8kkxs6/jPzoI6U9Vj3WqbMQ94g==}
     engines: {node: 18 || 20 || >=22}
 
   braces@3.0.3:
@@ -5910,6 +5915,8 @@ snapshots:
       - supports-color
 
   '@babel/runtime@7.28.6': {}
+
+  '@babel/runtime@7.29.2': {}
 
   '@babel/template@7.28.6':
     dependencies:
@@ -8682,7 +8689,7 @@ snapshots:
   '@testing-library/dom@10.4.0':
     dependencies:
       '@babel/code-frame': 7.29.0
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.29.2
       '@types/aria-query': 5.0.4
       aria-query: 5.3.0
       chalk: 4.1.2
@@ -8998,11 +9005,11 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  brace-expansion@2.0.2:
+  brace-expansion@2.1.0:
     dependencies:
       balanced-match: 1.0.2
 
-  brace-expansion@5.0.4:
+  brace-expansion@5.0.6:
     dependencies:
       balanced-match: 4.0.4
 
@@ -10637,11 +10644,11 @@ snapshots:
 
   minimatch@10.2.4:
     dependencies:
-      brace-expansion: 5.0.4
+      brace-expansion: 5.0.6
 
   minimatch@9.0.5:
     dependencies:
-      brace-expansion: 2.0.2
+      brace-expansion: 2.1.0
 
   minimist@1.2.8: {}
 
