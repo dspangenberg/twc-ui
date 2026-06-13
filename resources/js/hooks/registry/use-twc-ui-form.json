@@ -4,14 +4,7 @@
   "type": "registry:hook",
   "title": "use-twc-ui-form",
   "description": "use-twc-ui-form-Hook",
-  "dependencies": [
-    "@react-types/shared",
-    "@inertiajs/core",
-    "date-fns",
-    "moderndash",
-    "laravel-precognition",
-    "laravel-precognition-react-inertia"
-  ],
+  "dependencies": ["@react-types/shared", "@inertiajs/core", "date-fns", "moderndash"],
   "registryDependencies": [],
   "files": [
     {
