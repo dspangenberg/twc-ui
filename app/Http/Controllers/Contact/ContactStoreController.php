@@ -8,7 +8,6 @@
 namespace App\Http\Controllers\Contact;
 
 use App\Data\ContactData;
-use App\Data\UserData;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ContactRequest;
 use App\Models\Contact;
@@ -18,7 +17,7 @@ class ContactStoreController extends Controller
 {
     public function __invoke(ContactRequest $request)
     {
-        $contact = new Contact();
+        $contact = new Contact;
 
         return Inertia::render('Contacts/Create', [
             'client' => ContactData::from($contact),
