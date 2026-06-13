@@ -120,7 +120,10 @@
     ],
     "overrides": {
       "@isaacs/brace-expansion": "5.0.1",
-      "mdast-util-to-hast": "13.2.1"
+      "mdast-util-to-hast": "13.2.1",
+      "picomatch": "4.0.4",
+      "rollup": "4.59.0",
+      "yaml": "2.8.3"
     }
   }
 }
