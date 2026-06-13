@@ -4,7 +4,7 @@
   "type": "registry:ui",
   "title": "Form",
   "description": "Form component",
-  "dependencies": ["@inertiajs/core", "laravel-precognition"],
+  "dependencies": ["@inertiajs/core"],
   "registryDependencies": ["@twc-ui/form-errors", "@twc-ui/use-twc-ui-form"],
   "files": [
     {
