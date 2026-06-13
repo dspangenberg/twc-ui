@@ -15,7 +15,7 @@ class PasswordRequest extends FormRequest
             ],
             'password' => [
                 'required', Password::min(12)->mixedCase()->numbers()->symbols()->uncompromised(), 'confirmed',
-            ]
+            ],
         ];
     }
 

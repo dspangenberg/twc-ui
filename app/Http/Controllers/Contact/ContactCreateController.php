@@ -23,7 +23,7 @@ class ContactCreateController extends Controller
 
         return Inertia::render('demos/form/default', [
             'contact' => ContactData::from($contact),
-            'countries' => CountryData::collect(Country::query()->orderBy('name')->get())
+            'countries' => CountryData::collect(Country::query()->orderBy('name')->get()),
         ]);
     }
 }
