@@ -47,6 +47,10 @@ export const useFileDownload = (
       fetch(resolvedRoute as unknown as string)
         .then(async res => {
           // Dateinamen aus dem Content-Disposition Header extrahieren
+          if (!res.ok) {
+            throw new Error(`Download failed with status ${res.status}`)
+          }
+
           const contentDisposition = res.headers.get('Content-Disposition')
           const serverFilename =
             extractFilenameFromContentDisposition(contentDisposition) ??

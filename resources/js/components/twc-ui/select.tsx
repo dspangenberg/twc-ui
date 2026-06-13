@@ -156,6 +156,7 @@ const Select = <T extends object>({
   return (
     <BaseSelect
       isInvalid={hasError}
+      isRequired={!isOptional}
       onSelectionChange={handleSelectionChange}
       className={composeRenderProps(className, className =>
         cn('group flex flex-col gap-1.5 text-sm', className)
