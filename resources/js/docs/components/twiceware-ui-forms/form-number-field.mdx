@@ -50,7 +50,8 @@ const form = useForm('my-form', 'POST', '/submit', {
       currency: 'EUR'
     }}
   />
-</Form>`} />
+</Form>`}
+/>
 
 ### Currency Formatting
 
@@ -65,7 +66,8 @@ const form = useForm('my-form', 'POST', '/submit', {
   minValue={0}
   step={1000}
   description="Base annual salary"
-/>`} />
+/>`}
+/>
 
 ### Percentage Formatting
 
@@ -81,7 +83,8 @@ const form = useForm('my-form', 'POST', '/submit', {
   maxValue={1}
   step={0.01}
   description="Effective tax rate"
-/>`} />
+/>`}
+/>
 
 ### Unit Formatting
 
@@ -97,39 +100,40 @@ const form = useForm('my-form', 'POST', '/submit', {
   minValue={0}
   step={0.1}
   description="Weight in kilograms"
-/>`} />
+/>`}
+/>
 
 ## Props
 
 ### Required Props
 
 | Prop | Type | Description |
-|------|------|-------------|
+| ------ | ------ | ------------- |
 | `name` | `string` | The form field name for identification and validation |
 
 ### Optional Props
 
 | Prop | Type | Default | Description |
-|------|------|---------|-------------|
+| ------ | ------ | --------- | ------------- |
 | `label` | `string` | - | Field label displayed above the input |
 | `value` | `number \| null \| undefined` | - | Controlled number field value |
 | `onChange` | `(value: number \| null) => void` | - | Change handler callback |
 | `onBlur` | `() => void` | - | Blur handler callback |
 | `description` | `string` | - | Helper text displayed below the field |
-| `errorMessage` | `string` | - | Custom error message (overrides form context) |
-| `isRequired` | `boolean` | `false` | Whether the field is required (shows red asterisk) |
+| `errorMessage` | `string` | - | Custom error message(overrides form context) |
+| `isRequired` | `boolean` | `false` | Whether the field is required(shows red asterisk) |
 | `isDisabled` | `boolean` | `false` | Whether the field is disabled |
-| `isReadOnly` | `boolean` | `false` | Whether the field is read-only |
+| `isReadOnly` | `boolean` | `false` | Whether the field is read - only |
 | `formatOptions` | `Intl.NumberFormatOptions` | `{style: 'currency', currency: 'EUR'}` | Number formatting options |
 | `minValue` | `number` | - | Minimum allowed value |
 | `maxValue` | `number` | - | Maximum allowed value |
-| `step` | `number` | - | Increment/decrement step value |
+| `step` | `number` | - | Increment / decrement step value |
 | `className` | `string` | - | Additional CSS classes |
-| `autoFocus` | `boolean` | `false` | Whether to auto-focus the input |
+| `autoFocus` | `boolean` | `false` | Whether to auto - focus the input |
 
 ## Format Options
 
-The component uses `Intl.NumberFormatOptions` for flexible number formatting:
+The component uses`Intl.NumberFormatOptions` for flexible number formatting:
 
 ### Currency
 
@@ -138,7 +142,8 @@ The component uses `Intl.NumberFormatOptions` for flexible number formatting:
   currency: 'EUR',  // USD, GBP, JPY, etc.
   minimumFractionDigits: 0,
   maximumFractionDigits: 2
-}}`} />
+}}`}
+/>
 
 ### Percentage
 
@@ -146,7 +151,8 @@ The component uses `Intl.NumberFormatOptions` for flexible number formatting:
   style: 'percent',
   minimumFractionDigits: 1,
   maximumFractionDigits: 2
-}}`} />
+}}`}
+/>
 
 ### Units
 
@@ -154,7 +160,8 @@ The component uses `Intl.NumberFormatOptions` for flexible number formatting:
   style: 'unit',
   unit: 'kilogram',  // celsius, meter, kilometer-per-hour, etc.
   unitDisplay: 'long'  // 'short', 'narrow'
-}}`} />
+}}`}
+/>
 
 ### Decimal
 
@@ -163,7 +170,8 @@ The component uses `Intl.NumberFormatOptions` for flexible number formatting:
   minimumFractionDigits: 2,
   maximumFractionDigits: 4,
   useGrouping: true
-}}`} />
+}}`}
+/>
 
 ## Form Integration
 
@@ -203,7 +211,8 @@ The FormNumberField automatically integrates with your form context:
     useGrouping: true
   }}
   description="Current inventory count"
-/>`} />
+/>`}
+/>
 
 ### Temperature Control
 
@@ -219,7 +228,8 @@ The FormNumberField automatically integrates with your form context:
     unitDisplay: 'narrow'
   }}
   description="Room temperature in °C"
-/>`} />
+/>`}
+/>
 
 ### Percentage with Bounds
 
@@ -234,4 +244,5 @@ The FormNumberField automatically integrates with your form context:
     minimumFractionDigits: 0
   }}
   description="Project completion percentage"
-/>`} />
+/>`}
+/>
