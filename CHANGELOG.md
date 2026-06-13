@@ -1,3 +1,7 @@
+### 2026-06-13
+- Upgraded project to Laravel 13 / Inertia 3
+- Adjusted form.tsx + use-twc-ui-forms for Inertia 3 (removed laravel-precognition + laravel-precognition-react-inertia)
+
 ### 2026-02-03
 #### Components
 - Added badge slot and variant prop for Avatar
