@@ -28,7 +28,7 @@
     "@types/jest": "^30.0.0",
     "@types/node": "^25.2.0",
     "@vitest/coverage-v8": "4.0.18",
-    "hono": "4.12.4",
+    "hono": "4.12.7",
     "jsdom": "^28.0.0",
     "shiki": "^4.0.1",
     "tailwind-scrollbar": "^4.0.2",
