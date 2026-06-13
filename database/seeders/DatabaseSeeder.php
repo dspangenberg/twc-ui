@@ -4,10 +4,8 @@ namespace Database\Seeders;
 
 use App\Models\Contact;
 use App\Models\Country as CountryModel;
-
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Rinvex\Country\Country;
 
 class DatabaseSeeder extends Seeder
 {

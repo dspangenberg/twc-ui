@@ -16,7 +16,7 @@ class Contact extends Model
         'gender' => 'f',
         'is_vip' => false,
         'hourly' => 0,
-        'dob' => null
+        'dob' => null,
     ];
 
     protected function casts(): array

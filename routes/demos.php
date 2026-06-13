@@ -21,11 +21,11 @@ Route::middleware('web')->group(function () {
 
     Route::get('/demos/{path}', function (string $path) {
         $file = resource_path('js/pages/demos/'.$path.'.tsx');
-        if (!file_exists($file)) {
+        if (! file_exists($file)) {
             abort(404);
         }
+
         return Inertia::render("demos/$path");
     })->where('path', '[A-Za-z0-9\/_-]+')->name('demo');
-
 
 });

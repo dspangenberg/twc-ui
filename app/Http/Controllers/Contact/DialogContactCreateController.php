@@ -23,7 +23,7 @@ class DialogContactCreateController extends Controller
 
         return Inertia::render('demos/extended-dialog/with-confirmation', [
             'contact' => ContactData::from($contact),
-            'countries' => CountryData::collect(Country::query()->orderBy('name')->get())
+            'countries' => CountryData::collect(Country::query()->orderBy('name')->get()),
         ]);
     }
 }
