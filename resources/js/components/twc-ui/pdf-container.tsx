@@ -98,7 +98,7 @@ export const PdfContainer: React.FC<Props> = ({
   const baseFilename = useMemo(() => {
     if (filename) return filename
     return extractFilenameFromUrl(file)
-  }, [file])
+  }, [file, filename])
 
   const divRef = useRef<HTMLDivElement>(null)
   const [show, toggle] = useToggle(false)

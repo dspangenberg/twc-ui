@@ -1,7 +1,12 @@
 import * as fs from 'node:fs'
 import * as path from 'node:path'
 import { fileURLToPath } from 'node:url'
-import matter from 'gray-matter'
+
+function stripFrontmatter(content: string): string {
+function stripFrontmatter(content: string): string {
+  return content.replace(/^---\r?\n[\s\S]*?\r?\n---(?:\r?\n)?/, '')
+}
+}
 
 /**
  * Syncs CHANGELOG.md in the root with changelog.mdx in docs
@@ -24,10 +29,10 @@ function syncChangelog() {
 
   // Read the MDX file and extract content without frontmatter
   const mdxContent = fs.readFileSync(changelogMdxPath, 'utf-8')
-  const parsed = matter(mdxContent)
+  const content = stripFrontmatter(mdxContent)
 
   // Write the content (without frontmatter) to CHANGELOG.md
-  fs.writeFileSync(changelogMdPath, parsed.content.trim() + '\n')
+  fs.writeFileSync(changelogMdPath, content.trim() + '\n')
 
   console.log('✅ Changelog synced successfully!')
   console.log('📁 Output:', changelogMdPath)
