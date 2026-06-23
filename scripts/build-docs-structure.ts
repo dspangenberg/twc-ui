@@ -1,7 +1,7 @@
 import * as fs from 'node:fs'
 import * as path from 'node:path'
 import { fileURLToPath } from 'node:url'
-import matter from 'gray-matter'
+import yaml from 'js-yaml'
 
 interface DocItem {
   title: string
@@ -139,8 +139,13 @@ function extractFrontmatter(filePath: string): Record<string, any> {
   const content = fs.readFileSync(filePath, 'utf-8')
 
   try {
-    const parsed = matter(content)
-    return parsed.data
+    const match = content.match(/^---\n([\s\S]*?)\n---/)
+    if (!match) {
+      return {}
+    }
+
+    const data = yaml.load(match[1]) as Record<string, any>
+    return data || {}
   } catch (error) {
     console.warn(`Warning: Could not parse frontmatter in ${filePath}:`, error)
     return {}
