@@ -958,8 +958,7 @@
       "title": "Form",
       "description": "Form component",
       "dependencies": [
-        "@inertiajs/core",
-        "laravel-precognition"
+        "@inertiajs/core"
       ],
       "registryDependencies": [
         "@twc-ui/form-errors",
@@ -1610,9 +1609,7 @@
         "@react-types/shared",
         "@inertiajs/core",
         "date-fns",
-        "moderndash",
-        "laravel-precognition",
-        "laravel-precognition-react-inertia"
+        "moderndash"
       ],
       "registryDependencies": [],
       "files": [
