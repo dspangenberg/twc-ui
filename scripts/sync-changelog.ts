@@ -3,7 +3,9 @@ import * as path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 function stripFrontmatter(content: string): string {
-  return content.replace(/^---[\s\S]*?---\n*/, '')
+function stripFrontmatter(content: string): string {
+  return content.replace(/^---\r?\n[\s\S]*?\r?\n---(?:\r?\n)?/, '')
+}
 }
 
 /**
