@@ -28,9 +28,9 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
 
-      - run: pnpm build
-
       - run: pnpm registry:create
+
+      - run: pnpm build
 
       - run: pnpm registry:build
 
