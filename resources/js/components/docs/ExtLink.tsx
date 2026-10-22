@@ -17,7 +17,7 @@ export const ExtLink = ({ title, href, className }: ExtLinkProps) => {
       rel="noopener noreferrer"
       className={cn(
         className,
-        'flex items-center gap-1.5 rounded-md bg-muted px-3 py-1 text-foreground'
+        'bg-muted text-foreground flex items-center gap-1.5 rounded-md px-3 py-1'
       )}
     >
       <Icon icon={LinkSquare02Icon} className="size-4" /> {title}

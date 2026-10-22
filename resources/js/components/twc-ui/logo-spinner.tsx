@@ -9,7 +9,7 @@ interface LogoSpinnerProps {
 export const LogoSpinner: React.FC<LogoSpinnerProps> = ({ className = 'size-6' }) => {
   return (
     <div className="rounded-full bg-transparent" data-testid="logo-spinner">
-      <div className="relative flex items-center justify-center rounded-full bg-foreground">
+      <div className="bg-foreground relative flex items-center justify-center rounded-full">
         <span className="absolute">
           <Logo className={cn(className, 'rounded-full border border-white')} />
         </span>

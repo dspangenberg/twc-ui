@@ -50,20 +50,20 @@ export const AppShellPage: React.FC<AppShellProps> = ({
   const headerContent = useMemo(() => {
     if (header) {
       return typeof header === 'string' ? (
-        <span className="font-bold text-2xl">{header}</span>
+        <span className="text-2xl font-bold">{header}</span>
       ) : (
         header
       )
     }
-    return <div className="font-bold text-xl">{title}</div>
+    return <div className="text-xl font-bold">{title}</div>
   }, [header, title])
 
   return (
-    <div className="absolute inset-0 flex flex-col overflow-hidden bg-page-content">
+    <div className="bg-page-content absolute inset-0 flex flex-col overflow-hidden">
       <Head title={title} />
 
       {!hideHeader && (
-        <div className="z-10 flex-none rounded-t-xl border-border/50 border-y bg-background">
+        <div className="border-border/50 bg-background z-10 flex-none rounded-t-xl border-y">
           <AppShellContainer className={cn('px-4', tabs ? 'py-0' : '', headerClassname)}>
             <div className="flex flex-1 flex-col">
               <div className={cn('flex flex-1 justify-between')}>
@@ -80,7 +80,7 @@ export const AppShellPage: React.FC<AppShellProps> = ({
         </div>
       )}
 
-      <div className={cn('relative flex-1 bg-page-content py-6', backgroundClass)}>
+      <div className={cn('bg-page-content relative flex-1 py-6', backgroundClass)}>
         <AppShellContainer
           className={cn(
             'absolute inset-0 my-6 min-h-0 flex-col gap-2 overflow-y-auto px-4 xl:flex-row!',

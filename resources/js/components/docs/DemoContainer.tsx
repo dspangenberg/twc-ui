@@ -10,12 +10,12 @@ export const DemoContainer = ({ children, className }: DemoContainerProps) => {
   return (
     <div
       className={cn(
-        'relative flex h-screen w-screen flex-wrap items-center justify-center bg-transparent px-md',
+        'px-md relative flex h-screen w-screen flex-wrap items-center justify-center bg-transparent',
         className
       )}
     >
       {children}
-      <div className="fixed right-1.5 bottom-1.5 z-50 rounded bg-blue-50 p-1 px-2 font-mono text-black text-xs">
+      <div className="fixed right-1.5 bottom-1.5 z-50 rounded bg-blue-50 p-1 px-2 font-mono text-xs text-black">
         <span className="sm:hidden">xs</span>
         <span className="hidden sm:inline md:hidden">sm</span>
         <span className="hidden md:inline lg:hidden">md</span>

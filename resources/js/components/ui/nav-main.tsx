@@ -57,7 +57,7 @@ export function NavMain({ items, ...props }: { items: NavMainItem[] }) {
                           icon={item.icon}
                           size={24}
                           color="currentColor"
-                          className="size-5! text-sidebar-foreground!"
+                          className="text-sidebar-foreground! size-5!"
                         />
                         <span className="text-base">{item.title}</span>
                       </Link>

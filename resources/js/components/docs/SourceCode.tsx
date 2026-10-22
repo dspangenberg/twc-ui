@@ -104,13 +104,13 @@ export const SourceCode: React.FC<DemoCodePreviewProps> = ({
   return (
     <div className="w-full space-y-3">
       {title && <h3>{title}</h3>}
-      <div className="max-w-full overflow-hidden rounded-md border bg-muted text-sm">
+      <div className="bg-muted max-w-full overflow-hidden rounded-md border text-sm">
         {!hideHeader && (
           <div className="flex items-center">
             {header ? (
               header
             ) : (
-              <div className="flex-1 py-2 pl-4 font-medium font-mono">{fileName}</div>
+              <div className="flex-1 py-2 pl-4 font-mono font-medium">{fileName}</div>
             )}
             <div className="pr-1">
               <ClipboardButton code={code} />
@@ -118,7 +118,7 @@ export const SourceCode: React.FC<DemoCodePreviewProps> = ({
           </div>
         )}
         <div
-          className={cn('w-full overflow-x-hidden rounded-md bg-muted p-1.5 pt-0', {
+          className={cn('bg-muted w-full overflow-x-hidden rounded-md p-1.5 pt-0', {
             'pt-1.5': hideHeader
           })}
         >
@@ -129,7 +129,7 @@ export const SourceCode: React.FC<DemoCodePreviewProps> = ({
           ) : (
             <div
               className={cn(
-                'relative text-sm [&>.shiki]:max-h-80 [&>.shiki]:w-full [&>.shiki]:overflow-scroll [&>.shiki]:text-balance [&>.shiki]:rounded-b-md [&>.shiki]:bg-muted [&>.shiki]:p-4',
+                '[&>.shiki]:bg-muted relative text-sm [&>.shiki]:max-h-80 [&>.shiki]:w-full [&>.shiki]:overflow-scroll [&>.shiki]:rounded-b-md [&>.shiki]:p-4 [&>.shiki]:text-balance',
                 {
                   '[&>.shiki]:max-h-175': expand || !collapsible
                 }

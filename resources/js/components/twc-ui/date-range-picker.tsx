@@ -44,7 +44,7 @@ const DatePickerContent = ({
   >
     <Dialog
       className={cn(
-        'pointer-events-auto z-100 flex h-auto w-full flex-col space-y-2 outline-none sm:flex-row sm:space-x-4 sm:space-y-0',
+        'pointer-events-auto z-100 flex h-auto w-full flex-col space-y-2 outline-none sm:flex-row sm:space-y-0 sm:space-x-4',
         className
       )}
       {...props}
@@ -80,7 +80,7 @@ const DateRangePicker = ({
       <FieldGroup className="gap-2 px-3">
         <div className="flex flex-1 items-center justify-start gap-1">
           <DateInput className="flex-1" variant="ghost" slot={'start'} />
-          <span aria-hidden className="flex-auto text-center text-base text-muted-foreground">
+          <span aria-hidden className="text-muted-foreground flex-auto text-center text-base">
             -
           </span>
           <DateInput className="flex-auto" variant="ghost" slot={'end'} />

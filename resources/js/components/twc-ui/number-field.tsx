@@ -44,7 +44,7 @@ const NumberFieldInput = ({ className, onBlur, ...props }: NumberFieldInputProps
     <AriaInput
       className={composeRenderProps(className, className =>
         cn(
-          'mr-2 w-fit min-w-0 flex-1 border-0 border-transparent bg-background pr-4 pl-0 text-right text-sm outline-0 placeholder:text-muted-foreground [&::-webkit-search-cancel-button]:hidden',
+          'bg-background placeholder:text-muted-foreground mr-2 w-fit min-w-0 flex-1 border-0 border-transparent pr-4 pl-0 text-right text-sm outline-0 [&::-webkit-search-cancel-button]:hidden',
           className
         )
       )}
@@ -73,7 +73,7 @@ const NumberFieldStepper = ({ className, ...props }: AriaButtonProps) => {
   return (
     <Button
       className={composeRenderProps(className, className =>
-        cn('aspect-auto w-auto grow rounded-none px-0.5 text-muted-foreground', className)
+        cn('text-muted-foreground aspect-auto w-auto grow rounded-none px-0.5', className)
       )}
       variant={'ghost'}
       size={'icon'}

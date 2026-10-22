@@ -89,7 +89,7 @@ export const AvatarUpload: React.FC<Props> = ({
         <Button
           variant="outline"
           size="icon-xs"
-          className="absolute -bottom-1 -right-1 size-4 rounded-full"
+          className="absolute -right-1 -bottom-1 size-4 rounded-full"
           aria-label="Remove avatar"
           iconClassName="size-3"
           icon={MultiplicationSignIcon}

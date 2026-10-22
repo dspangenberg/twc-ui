@@ -4,7 +4,7 @@ import { RangeCalendar } from '@/components/twc-ui/range-calendar'
 export default function Dashboard() {
   return (
     <DemoContainer className="items-start">
-      <RangeCalendar autoFocus headerSelects="month" />
+      <RangeCalendar autoFocus />
     </DemoContainer>
   )
 }

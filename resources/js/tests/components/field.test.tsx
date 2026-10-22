@@ -4,6 +4,7 @@ import { FieldDescription, FieldError, FieldGroup, Label } from '@/components/tw
 
 vi.mock('react-aria-components', () => ({
   Label: ({ children, className, ...props }: any) => (
+    // biome-ignore lint/a11y/noLabelWithoutControl: simplified label mock for the unit test
     <label className={className} {...props}>
       {children}
     </label>

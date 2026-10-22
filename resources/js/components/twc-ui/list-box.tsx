@@ -22,7 +22,7 @@ function ListBox<T extends object>({ className, ...props }: AriaListBoxProps<T>)
       className={composeRenderProps(className, className =>
         cn(
           className,
-          'group overflow-auto rounded-md border bg-popover p-1 text-popover-foreground shadow-md outline-none',
+          'group bg-popover text-popover-foreground overflow-auto rounded-md border p-1 shadow-md outline-none',
           /* Empty */
           'data-empty:p-6 data-empty:text-center data-empty:text-sm'
         )
@@ -46,7 +46,7 @@ const ListBoxItem = <T extends object>({
       onDoubleClick={onDoubleClick}
       className={composeRenderProps(className, className =>
         cn(
-          'pointer-events-auto relative flex w-full cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none',
+          'pointer-events-auto relative flex w-full cursor-default items-center rounded-sm px-2 py-1.5 text-sm outline-none select-none',
           /* Disabled */
           'data-disabled:pointer-events-none data-disabled:opacity-50',
           /* Focused */
@@ -64,7 +64,7 @@ const ListBoxItem = <T extends object>({
         <>
           {renderProps.isSelected && (
             <span className="absolute left-2 flex size-4 items-center justify-center">
-              <Check className="size-4 text-primary" />
+              <Check className="text-primary size-4" />
             </span>
           )}
           {children}
@@ -75,7 +75,7 @@ const ListBoxItem = <T extends object>({
 }
 
 function ListBoxHeader({ className, ...props }: React.ComponentProps<typeof AriaHeader>) {
-  return <AriaHeader className={cn('px-2 py-1.5 font-semibold text-sm', className)} {...props} />
+  return <AriaHeader className={cn('px-2 py-1.5 text-sm font-semibold', className)} {...props} />
 }
 
 export { ListBox, ListBoxItem, ListBoxHeader, ListBoxSection, ListBoxCollection }

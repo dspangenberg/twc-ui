@@ -1,6 +1,5 @@
 'use client'
 
-import * as React from 'react'
 import {
   Dialog as AriaDialog,
   type DialogProps as AriaDialogProps,
@@ -19,7 +18,7 @@ const Popover = ({ className, offset = 4, ...props }: AriaPopoverProps) => (
     offset={offset}
     className={composeRenderProps(className, className =>
       cn(
-        'z-50 rounded-md border bg-popover text-popover-foreground shadow-md outline-none',
+        'bg-popover text-popover-foreground z-50 rounded-md border shadow-md outline-none',
         /* Entering */
         'entering:fade-in-0 entering:zoom-in-95 entering:animate-in',
         /* Exiting */

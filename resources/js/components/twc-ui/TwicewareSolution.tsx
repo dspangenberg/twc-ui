@@ -21,24 +21,24 @@ export const TwicewareSolution: React.FC<TwicewareSolutionProps> = ({
   const currentYear = new Date().getFullYear()
   return (
     <>
-      <div className="mx-auto flex w-full max-w-sm items-center justify-center text-foreground text-sm">
+      <div className="text-foreground mx-auto flex w-full max-w-sm items-center justify-center text-sm">
         {appWebsite ? (
           <a
             href={appWebsite}
-            className="mx-1.5 flex items-center font-medium text-foreground hover:underline"
+            className="text-foreground mx-1.5 flex items-center font-medium hover:underline"
             target="_blank"
             rel="noreferrer"
           >
             {appName}
           </a>
         ) : (
-          <span className="mx-1.5 font-medium text-foreground">{appName}</span>
+          <span className="text-foreground mx-1.5 font-medium">{appName}</span>
         )}
         is a
         <AppLogoIcon className="mx-1.5 size-5 rounded-md" />
         <a
           href="https://twiceware.de"
-          className="flex items-center font-medium text-foreground hover:underline"
+          className="text-foreground flex items-center font-medium hover:underline"
           target="_blank"
           rel="noreferrer"
         >
@@ -46,7 +46,7 @@ export const TwicewareSolution: React.FC<TwicewareSolutionProps> = ({
         </a>
       </div>
       {!hideCopyright && (
-        <div className="mx-auto mt-1 text-center text-foreground/80 text-xs">
+        <div className="text-foreground/80 mx-auto mt-1 text-center text-xs">
           Copyright &copy; {copyrightYear}
           {currentYear !== copyrightYear && `-${currentYear}`}
           {copyrightHolder && (
@@ -55,7 +55,7 @@ export const TwicewareSolution: React.FC<TwicewareSolutionProps> = ({
               {copyrightHolderWebsite ? (
                 <a
                   href={copyrightHolderWebsite}
-                  className="inline-flex items-center text-foreground/80 hover:underline"
+                  className="text-foreground/80 inline-flex items-center hover:underline"
                   target="_blank"
                   rel="noreferrer"
                 >

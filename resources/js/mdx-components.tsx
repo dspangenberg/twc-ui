@@ -15,24 +15,24 @@ import { cn } from '@/lib/utils'
 
 const sharedComponents = {
   h1: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
-    <h1 className={cn('mt-10 scroll-m-16 pb-2 font-medium text-4xl', className)} {...props} />
+    <h1 className={cn('mt-10 scroll-m-16 pb-2 text-4xl font-medium', className)} {...props} />
   ),
   h2: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
-    <h2 className={cn('mt-10 scroll-m-16 pb-2 font-medium text-3xl', className)} {...props} />
+    <h2 className={cn('mt-10 scroll-m-16 pb-2 text-3xl font-medium', className)} {...props} />
   ),
   h3: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
-    <h3 className={cn('mt-8 scroll-m-16 font-medium text-2xl', className)} {...props} />
+    <h3 className={cn('mt-8 scroll-m-16 text-2xl font-medium', className)} {...props} />
   ),
   h4: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
-    <h4 className={cn('mt-6 scroll-m-16 font-medium text-xl', className)} {...props} />
+    <h4 className={cn('mt-6 scroll-m-16 text-xl font-medium', className)} {...props} />
   ),
   h5: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
-    <h5 className={cn('mt-6 scroll-m-16 font-medium text-lg', className)} {...props} />
+    <h5 className={cn('mt-6 scroll-m-16 text-lg font-medium', className)} {...props} />
   ),
   code: ({ className, ...props }: React.HTMLAttributes<HTMLElement>) => (
     <code
       className={cn(
-        'relative select-all text-nowrap rounded bg-muted px-[6px] py-[3px] font-mono text-[13px]',
+        'bg-muted relative rounded px-[6px] py-[3px] font-mono text-[13px] text-nowrap select-all',
         className
       )}
       {...props}
@@ -81,7 +81,7 @@ const sharedComponents = {
   td: ({ className, ...props }: React.HTMLAttributes<HTMLTableCellElement>) => (
     <td
       className={cn(
-        'text-nowrap border-e px-4 py-2 text-left last:border-e-0 [&[align=center]]:text-center [&[align=right]]:text-end',
+        'border-e px-4 py-2 text-left text-nowrap last:border-e-0 [&[align=center]]:text-center [&[align=right]]:text-end',
         className
       )}
       {...props}

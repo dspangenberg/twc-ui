@@ -98,7 +98,7 @@ export const Installation: React.FC<InstallationProps> = ({ registry }) => {
                         mapping?.docPath && (
                           <li key={item}>
                             <a
-                              className="font-medium underline hover:text-primary"
+                              className="hover:text-primary font-medium underline"
                               href={`${mainUrl}${mapping.docPath}`}
                             >
                               {mapping.name}

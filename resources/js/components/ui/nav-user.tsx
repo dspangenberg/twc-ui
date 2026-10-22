@@ -29,7 +29,7 @@ export function NavUser() {
           <Button size="icon" variant="ghost" className="rounded-full">
             <Avatar src="https://github.com/shadcn.png" />
           </Button>
-          <div className="cursor-default font-medium text-sm">Shadcn</div>
+          <div className="cursor-default text-sm font-medium">Shadcn</div>
         </div>
       </DropdownMenuTrigger>
 

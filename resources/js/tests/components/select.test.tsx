@@ -2,6 +2,10 @@ import { render, screen } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 import { Select } from '@/components/twc-ui/select'
 
+const CustomError = ({ children }: { children?: React.ReactNode }) => (
+  <div className="custom-error">{children}</div>
+)
+
 describe('Select Component', () => {
   const mockItems = [
     { id: '1', name: 'Option 1' },
@@ -55,10 +59,6 @@ describe('Select Component', () => {
   })
 
   it('shows custom error component', () => {
-    const CustomError = ({ children }: { children?: React.ReactNode }) => (
-      <div className="custom-error">{children}</div>
-    )
-
     render(<Select items={mockItems} value="1" error="Custom error" errorComponent={CustomError} />)
 
     // There might be multiple instances, get the visible one

@@ -34,8 +34,8 @@ const toggleButtonGroupVariants = tv({
     variant: {
       ghost: '',
       outline: 'border p-0.5',
-      toolbar: 'rounded-md bg-muted/50 p-0.5',
-      toggle: 'rounded-lg bg-muted p-1'
+      toolbar: 'bg-muted/50 rounded-md p-0.5',
+      toggle: 'bg-muted rounded-lg p-1'
     }
   },
   defaultVariants: {

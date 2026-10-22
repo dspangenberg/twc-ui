@@ -182,10 +182,10 @@ const FormPasswordField = ({
           typeof document !== 'undefined' &&
           createPortal(
             <div
-              className="fade-in-0 zoom-in-95 slide-in-from-bottom-2 fixed z-100 -translate-x-1/2 -translate-y-full animate-in rounded-md border bg-popover p-4 text-popover-foreground shadow-md"
+              className="fade-in-0 zoom-in-95 slide-in-from-bottom-2 animate-in bg-popover text-popover-foreground fixed z-100 -translate-x-1/2 -translate-y-full rounded-md border p-4 shadow-md"
               style={hintStyle}
             >
-              <p className="mb-2 font-semibold text-sm">{t.title}</p>
+              <p className="mb-2 text-sm font-semibold">{t.title}</p>
               <ul className="space-y-1 text-sm">
                 {strength.map((req, index) => (
                   <li key={index} className="flex items-center gap-2">
@@ -194,7 +194,7 @@ const FormPasswordField = ({
                     ) : (
                       <Icon
                         icon={MultiplicationSignIcon}
-                        className="size-4 text-muted-foreground/80"
+                        className="text-muted-foreground/80 size-4"
                       />
                     )}
                     <span
@@ -214,6 +214,7 @@ const FormPasswordField = ({
             <InputGroupAddon align="inline-start">
               <TooltipTrigger>
                 <Focusable>
+                  {/* biome-ignore lint/a11y/useSemanticElements: the strength dot is not a real button */}
                   <span
                     role="button"
                     className={cn(strengthColor, 'size-2 cursor-help rounded-full')}

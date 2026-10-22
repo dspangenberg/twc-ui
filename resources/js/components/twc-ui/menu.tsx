@@ -49,7 +49,7 @@ const Menu = <T extends object>({ className, ...props }: AriaMenuProps<T>) => (
 
 const menuItemVariants = tv({
   base: [
-    'relative flex cursor-default select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-none transition-colors',
+    'relative flex cursor-default items-center gap-2 rounded-sm px-2 py-1.5 text-sm transition-colors outline-none select-none',
     /* Disabled */
     'data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
     /* Selection Mode */
@@ -117,7 +117,7 @@ const MenuItem = ({
             {renderProps.isSelected && (
               <>
                 {renderProps.selectionMode === 'single' && (
-                  <Icon icon={Dot} className="size-4 fill-current text-primary" />
+                  <Icon icon={Dot} className="text-primary size-4 fill-current" />
                 )}
                 {renderProps.selectionMode === 'multiple' && (
                   <Icon icon={Check} className="size-4" />
@@ -149,9 +149,9 @@ interface MenuHeaderProps extends React.ComponentProps<typeof AriaHeader> {
 const MenuHeader = ({ className, inset, separator = true, ...props }: MenuHeaderProps) => (
   <AriaHeader
     className={cn(
-      'px-3 py-1.5 font-semibold text-sm',
+      'px-3 py-1.5 text-sm font-semibold',
       inset && 'pl-8',
-      separator && '-mx-1 mb-1 border-b border-b-border pb-2.5',
+      separator && 'border-b-border -mx-1 mb-1 border-b pb-2.5',
       className
     )}
     {...props}
@@ -159,7 +159,7 @@ const MenuHeader = ({ className, inset, separator = true, ...props }: MenuHeader
 )
 
 const MenuSeparator = ({ className, ...props }: AriaSeparatorProps) => (
-  <AriaSeparator className={cn('-mx-1 my-1 h-px bg-muted', className)} {...props} />
+  <AriaSeparator className={cn('bg-muted -mx-1 my-1 h-px', className)} {...props} />
 )
 
 const MenuKeyboard = ({ className, ...props }: React.ComponentProps<typeof AriaKeyboard>) => {

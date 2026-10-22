@@ -196,7 +196,7 @@ export const ExtendedDialog: React.FC<ExtendedDialogProps> = ({
               {!!footer && (
                 <DialogFooter
                   className={cn(
-                    'flex flex-justify-end flex-none items-center space-x-2 bg-muted/40! px-4 py-3',
+                    'flex-justify-end bg-muted/40! flex flex-none items-center space-x-2 px-4 py-3',
                     footerClassName,
                     bgClass
                   )}

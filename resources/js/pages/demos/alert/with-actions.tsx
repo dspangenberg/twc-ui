@@ -1,4 +1,3 @@
-import { AlertCircleIcon } from '@hugeicons/core-free-icons'
 import { DemoContainer } from '@/components/docs/DemoContainer'
 import { Alert } from '@/components/twc-ui/alert'
 import { Button } from '@/components/twc-ui/button'

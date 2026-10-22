@@ -20,7 +20,7 @@ export type ReactNodeOrString = ReactNode | string
 
 const sheetVariants = tv({
   base: [
-    'fixed z-50 gap-4 bg-background shadow-lg transition ease-in-out',
+    'bg-background fixed z-50 gap-4 shadow-lg transition ease-in-out',
     /* Entering */
     'data-[entering]:animate-in data-[entering]:duration-500',
     /* Exiting */
@@ -85,7 +85,7 @@ export const DialogContent = ({
               side,
               className: 'h-full'
             })
-          : 'entering:fade-in-0 exiting:fade-out-0 entering:zoom-in-95 exiting:zoom-out-95 fixed top-[50%] left-[50vw] z-50 max-h-screen w-full max-w-lg -translate-x-1/2 -translate-y-1/2 entering:animate-in exiting:animate-out border bg-background shadow-lg duration-200 exiting:duration-300 sm:rounded-lg md:w-full',
+          : 'entering:fade-in-0 exiting:fade-out-0 entering:zoom-in-95 exiting:zoom-out-95 entering:animate-in exiting:animate-out bg-background exiting:duration-300 fixed top-[50%] left-[50vw] z-50 max-h-screen w-full max-w-lg -translate-x-1/2 -translate-y-1/2 border shadow-lg duration-200 sm:rounded-lg md:w-full',
         className
       )
     )}
@@ -98,7 +98,7 @@ export const DialogContent = ({
           {closeButton && (
             <AriaButton
               onPress={renderProps.close}
-              className="absolute top-3 right-4 rounded-sm entering:bg-accent entering:text-muted-foreground opacity-70 ring-offset-background backdrop-blur-lg transition-opacity data-disabled:pointer-events-none data-hovered:opacity-100 data-focused:outline-none data-focused:ring-2 data-focused:ring-ring data-focused:ring-offset-2"
+              className="entering:bg-accent entering:text-muted-foreground ring-offset-background data-focused:ring-ring absolute top-3 right-4 rounded-sm opacity-70 backdrop-blur-lg transition-opacity data-disabled:pointer-events-none data-focused:ring-2 data-focused:ring-offset-2 data-focused:outline-none data-hovered:opacity-100"
             >
               <X className="size-4" />
               <span className="sr-only">Close</span>
@@ -113,7 +113,7 @@ export const DialogContent = ({
 export const DialogHeader = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => (
   <div
     className={cn(
-      'flex flex-col items-center justify-center gap-0 rounded-t-lg bg-muted/80! px-4 text-center sm:text-left',
+      'bg-muted/80! flex flex-col items-center justify-center gap-0 rounded-t-lg px-4 text-center sm:text-left',
       className
     )}
     {...props}
@@ -123,7 +123,7 @@ export const DialogHeader = ({ className, ...props }: React.HTMLAttributes<HTMLD
 export const DialogFooter = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => (
   <div
     className={cn(
-      'flex flex-col-reverse rounded-b-lg bg-muted/40! px-4 py-4 sm:flex-row sm:justify-end sm:space-x-2',
+      'bg-muted/40! flex flex-col-reverse rounded-b-lg px-4 py-4 sm:flex-row sm:justify-end sm:space-x-2',
       className
     )}
     {...props}
@@ -138,7 +138,7 @@ export const DialogBody = ({ className, ...props }: React.HTMLAttributes<HTMLDiv
 )
 
 export const DialogTitle = ({ className, ...props }: AriaHeadingProps) => (
-  <AriaHeading slot="title" className={cn('py-3 font-medium text-lg!', className)} {...props} />
+  <AriaHeading slot="title" className={cn('py-3 text-lg! font-medium', className)} {...props} />
 )
 
 export const DialogDescription = ({

@@ -22,7 +22,7 @@ const DateSegment = ({ className, ...props }: AriaDateSegmentProps) => (
   <AriaDateSegment
     className={composeRenderProps(className, className =>
       cn(
-        'inline rounded p-0.5 type-literal:px-0 caret-transparent outline-0',
+        'type-literal:px-0 inline rounded p-0.5 caret-transparent outline-0',
         /* Placeholder */
         'data-placeholder:text-muted-foreground',
         /* Disabled */
@@ -81,7 +81,7 @@ const DateField = ({
   return (
     <BaseDateField
       className={composeRenderProps(className, className =>
-        cn('group flex flex-col gap-2 data-invalid:border-destructive', className)
+        cn('group data-invalid:border-destructive flex flex-col gap-2', className)
       )}
       isInvalid={hasError}
       value={value}

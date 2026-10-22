@@ -1,6 +1,8 @@
 import { fireEvent, render, screen } from '@testing-library/react'
 import React from 'react'
 import { describe, expect, it, vi } from 'vitest'
+const CustomError = ({ children }: any) => <div data-testid="custom-error">{children}</div>
+
 import { RACTextArea, TextArea } from '@/components/twc-ui/text-area'
 
 // Mock the useFieldChange hook
@@ -55,11 +57,11 @@ vi.mock('react-aria-components', () => {
           ...props
         },
         // Pass TextField props down to children via context simulation
-        React.Children.map(children, (child: any) => {
+        React.Children.map(children as any, (child: any) => {
           if (React.isValidElement(child) && typeof child.type === 'function') {
             // Pass TextField props to TextArea children
             return React.cloneElement(child as any, {
-              ...child.props,
+              ...(child.props as any),
               _textFieldProps: { isInvalid, isDisabled, value, onChange }
             })
           }
@@ -69,10 +71,7 @@ vi.mock('react-aria-components', () => {
     },
     TextArea: (allProps: any) => {
       // Extract and remove internal props first
-      const {
-        _textFieldProps,
-        ...propsWithoutInternal
-      } = allProps
+      const { _textFieldProps, ...propsWithoutInternal } = allProps
 
       // Extract known props, rest goes to DOM
       const {
@@ -89,7 +88,12 @@ vi.mock('react-aria-components', () => {
         ...domProps
       } = propsWithoutInternal
 
-      const { isInvalid, isDisabled, value: contextValue, onChange: contextOnChange } = _textFieldProps || {}
+      const {
+        isInvalid,
+        isDisabled,
+        value: contextValue,
+        onChange: contextOnChange
+      } = _textFieldProps || {}
 
       // Use context values if available, otherwise use direct values
       const onChange = contextOnChange || directOnChange
@@ -130,8 +134,7 @@ vi.mock('react-aria-components', () => {
   }
 })
 
-describe('TextArea Component', () =>
-{
+describe('TextArea Component', () => {
   it('renders a text area with label', () => {
     render(<TextArea label="Comments" />)
 
@@ -183,8 +186,6 @@ describe('TextArea Component', () =>
   })
 
   it('renders with error component when errorComponent is provided', () => {
-    const CustomError = ({ children }: any) => <div data-testid="custom-error">{children}</div>
-
     render(
       <TextArea label="Custom Error" errorMessage="Error occurred" errorComponent={CustomError} />
     )
@@ -345,11 +346,9 @@ describe('TextArea Component', () =>
     expect(textArea).toHaveAttribute('name', 'comments')
     expect(textArea).toHaveAttribute('maxLength', '100')
   })
-}
-)
+})
 
-describe('RACTextArea Component', () =>
-{
+describe('RACTextArea Component', () => {
   it('renders textarea with default classes', () => {
     render(<RACTextArea />)
 
@@ -473,5 +472,4 @@ describe('RACTextArea Component', () =>
     const textarea = screen.getByTestId('text-area-input')
     expect(textarea).toHaveAttribute('autoComplete', 'email')
   })
-}
-)
+})

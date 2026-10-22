@@ -11,7 +11,7 @@ const TabLayout: React.FC<TabLayoutProps> = ({ children }) => {
 
   return (
     <DemoContainer className="flex-col">
-      <Tabs className="mx-auto" defaultSelectedKey={name}>
+      <Tabs className="mx-auto" defaultSelectedKey={name ?? undefined}>
         <TabList aria-label="Example Tabs">
           <Tab id="tab-one" href={route('tab-one', {}, false)}>
             Tab 1

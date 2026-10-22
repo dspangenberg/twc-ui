@@ -24,8 +24,8 @@ const cellStyles = tv({
     isSelected: {
       false: 'hover:bg-accent hover:text-accent-foreground',
       true: [
-        'relative rounded-none bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground focus:bg-primary focus:text-primary-foreground',
-        "after:absolute after:-right-1 after:h-full after:w-1 after:bg-primary after:content-['']"
+        'bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground focus:bg-primary focus:text-primary-foreground relative rounded-none',
+        "after:bg-primary after:absolute after:-right-1 after:h-full after:w-1 after:content-['']"
       ]
     },
     isSelectionStart: {
@@ -58,7 +58,7 @@ export const RangeCalendar = <T extends DateValue>({
 }: RangeCalendarProps<T>) => {
   return (
     <AriaRangeCalendar
-      className={cn('flex w-fit select-none flex-col bg-card p-3', className)}
+      className={cn('bg-card flex w-fit flex-col p-3 select-none', className)}
       {...props}
     >
       <CalendarHeader maxYears={maxYears} />
@@ -70,7 +70,7 @@ export const RangeCalendar = <T extends DateValue>({
       </CalendarGrid>
       <CalendarFooter footerButtons={footerButtons} onChange={onChange} />
       {errorMessage && (
-        <Text slot="errorMessage" className="py-2 text-destructive text-sm">
+        <Text slot="errorMessage" className="text-destructive py-2 text-sm">
           {errorMessage}
         </Text>
       )}

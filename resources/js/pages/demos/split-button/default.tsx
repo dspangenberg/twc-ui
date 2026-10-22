@@ -11,7 +11,7 @@ import { SplitButton } from '@/components/twc-ui/split-button'
 
 export const Demo = () => {
   return (
-    <DemoContainer className="mx-auto w-max-lg items-start gap-4 py-12">
+    <DemoContainer className="w-max-lg mx-auto items-start gap-4 py-12">
       <SplitButton
         title="Rechnung bearbeiten"
         menuClassName="min-w-64"

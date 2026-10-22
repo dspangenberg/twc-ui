@@ -33,7 +33,7 @@ const DatePickerContent = ({
   >
     <Dialog
       className={cn(
-        'pointer-events-auto z-100 flex h-auto w-full flex-col space-y-2 outline-none sm:flex-row sm:space-x-4 sm:space-y-0',
+        'pointer-events-auto z-100 flex h-auto w-full flex-col space-y-2 outline-none sm:flex-row sm:space-y-0 sm:space-x-4',
         className
       )}
       {...props}
@@ -82,7 +82,7 @@ const DatePicker = ({
       {...props}
     >
       <Label value={label} isRequired={isRequired} />
-      <FieldGroup className="gap-0 px-3 pr-1! data-invalid:focus-visible:border-destructive data-invalid:focus-visible:ring-destructive/20">
+      <FieldGroup className="data-invalid:focus-visible:border-destructive data-invalid:focus-visible:ring-destructive/20 gap-0 px-3 pr-1!">
         <DateInput variant="ghost" className="flex-1" />
         <Button
           variant="ghost"

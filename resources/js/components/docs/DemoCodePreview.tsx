@@ -69,6 +69,7 @@ export const DemoCodePreview: React.FC<DemoCodePreviewProps> = ({
                   </div>
                 )}
                 <iframe
+                  title="Component demo preview"
                   src={demoUrl}
                   className="roundedd-md absolute top-0 right-0 left-0 m-0 h-screen w-screen max-w-full rounded-md bg-transparent p-0"
                   loading="lazy"

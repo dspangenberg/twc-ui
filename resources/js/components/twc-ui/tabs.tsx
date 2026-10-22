@@ -17,22 +17,22 @@ const tabsStyles = tv({
   slots: {
     base: '',
     list: 'flex',
-    tab: 'cursor-pointer text-sm disabled:cursor-not-allowed disabled:text-muted-foreground disabled:opacity-50 data-[selected]:font-medium',
+    tab: 'disabled:text-muted-foreground cursor-pointer text-sm disabled:cursor-not-allowed disabled:opacity-50 data-[selected]:font-medium',
     panel: 'my-2'
   },
   variants: {
     variant: {
       underlined: {
         list: 'w-full gap-4',
-        tab: 'border-transparent border-b-2 py-1 data-[selected]:border-primary data-[hovered]:text-foreground data-[selected]:text-foreground'
+        tab: 'data-[selected]:border-primary data-[hovered]:text-foreground data-[selected]:text-foreground border-b-2 border-transparent py-1'
       },
       default: {
-        list: 'w-fit rounded-lg bg-muted p-1',
-        tab: 'rounded-md px-3 py-1 data-[selected]:bg-background data-[selected]:text-foreground data-[selected]:shadow'
+        list: 'bg-muted w-fit rounded-lg p-1',
+        tab: 'data-[selected]:bg-background data-[selected]:text-foreground rounded-md px-3 py-1 data-[selected]:shadow'
       },
       classic: {
-        list: 'w-full rounded-none border-border border-b',
-        tab: 'rounded-none border border-transparent border-b-0 px-4 py-2 data-[selected]:-mb-px data-[selected]:rounded-t-md data-[selected]:border-border data-[selected]:border-b-background data-[selected]:bg-background'
+        list: 'border-border w-full rounded-none border-b',
+        tab: 'data-[selected]:border-border data-[selected]:border-b-background data-[selected]:bg-background rounded-none border border-b-0 border-transparent px-4 py-2 data-[selected]:-mb-px data-[selected]:rounded-t-md'
       }
     }
   },

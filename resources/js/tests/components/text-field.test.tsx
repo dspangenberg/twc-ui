@@ -1,6 +1,8 @@
 import { fireEvent, render, screen } from '@testing-library/react'
 import React from 'react'
 import { describe, expect, it, vi } from 'vitest'
+const CustomError = ({ children }: any) => <div data-testid="custom-error">{children}</div>
+
 import { Input, TextField } from '@/components/twc-ui/text-field'
 
 // Mock the components we need
@@ -53,23 +55,22 @@ vi.mock('react-aria-components', () => ({
         ...props
       },
       // Pass TextField props down to Input children via context simulation
-      React.Children.map(children, (child: any) => {
-        if (React.isValidElement(child) && typeof child.type === 'function') {
-          // Pass TextField props to Input children
-          return React.cloneElement(child as any, {
-            ...child.props,
-            _textFieldProps: { isInvalid, isDisabled, value, onChange }
-          })
+      (React.Children.map as any)(children, (child: any) => {
+        if (React.isValidElement(child)) {
+          return React.cloneElement(
+            child as any,
+            {
+              ...((child.props as any) || {}),
+              _textFieldProps: { isInvalid, isDisabled, value, onChange }
+            } as any
+          )
         }
         return child
       })
     ),
   Input: (allProps: any) => {
     // Extract and remove internal props first
-    const {
-      _textFieldProps,
-      ...propsWithoutInternal
-    } = allProps
+    const { _textFieldProps, ...propsWithoutInternal } = allProps
 
     // Extract known props, rest goes to DOM
     const {
@@ -84,7 +85,12 @@ vi.mock('react-aria-components', () => ({
       ...domProps
     } = propsWithoutInternal
 
-    const { isInvalid: contextInvalid, isDisabled, value: contextValue, onChange: contextOnChange } = _textFieldProps || {}
+    const {
+      isInvalid: contextInvalid,
+      isDisabled,
+      value: contextValue,
+      onChange: contextOnChange
+    } = _textFieldProps || {}
 
     // Use context values if available, otherwise use direct values
     const onChange = contextOnChange || directOnChange
@@ -92,7 +98,7 @@ vi.mock('react-aria-components', () => ({
     const invalid = contextInvalid ?? isInvalid
 
     return React.createElement('input', {
-      className: `flex h-9 w-full rounded-sm border border-input bg-background px-3 py-1 font-medium text-sm shadow-none outline-0 transition-colors file:border-0 file:bg-transparent file:font-medium file:text-sm placeholder:text-muted-foreground focus:border-primary focus:ring-[3px] focus:ring-primary/20 ${className || ''} ${invalid ? 'data-invalid:border-destructive data-invalid:focus:border-destructive data-invalid:focus:ring-destructive/20' : ''} ${(isDisabled || disabled) ? 'data-disabled:cursor-not-allowed data-disabled:opacity-50' : ''}`,
+      className: `flex h-9 w-full rounded-sm border border-input bg-background px-3 py-1 font-medium text-sm shadow-none outline-0 transition-colors file:border-0 file:bg-transparent file:font-medium file:text-sm placeholder:text-muted-foreground focus:border-primary focus:ring-[3px] focus:ring-primary/20 ${className || ''} ${invalid ? 'data-invalid:border-destructive data-invalid:focus:border-destructive data-invalid:focus:ring-destructive/20' : ''} ${isDisabled || disabled ? 'data-disabled:cursor-not-allowed data-disabled:opacity-50' : ''}`,
       'data-testid': dataTestId || 'text-input',
       'data-invalid': invalid ? 'true' : undefined,
       disabled: isDisabled || disabled || false,
@@ -193,7 +199,6 @@ describe('TextField', () => {
   })
 
   it('renders with error component when errorComponent is provided', () => {
-    const CustomError = ({ children }: any) => <div data-testid="custom-error">{children}</div>
     render(
       <TextField label="Custom Error" errorMessage="Error occurred" errorComponent={CustomError} />
     )

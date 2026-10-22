@@ -14,18 +14,22 @@ import { cn } from '@/lib/utils'
 import { FieldError, Label, labelVariants } from './field'
 
 interface CheckboxProps {
-  label?: string
-  name: string
+  label?: React.ReactNode
+  name?: string
   className?: string
   autoFocus?: boolean
   hasError?: boolean
   isIndeterminate?: boolean
   isSelected?: boolean
   isDisabled?: boolean
-  onChange: (checked: boolean) => void
-  onBlur?: () => void
+  disabled?: boolean
+  onChange?: (checked: boolean) => void
+  onBlur?: (e?: any) => void
   checked?: boolean
+  defaultChecked?: boolean
+  value?: string
   children?: React.ReactNode
+  [key: string]: any
 }
 
 const BaseCheckboxGroup = AriaCheckboxGroup
@@ -47,9 +51,9 @@ const BaseCheckbox = ({ className, children, ...props }: AriaCheckboxProps) => (
       <>
         <div
           className={cn(
-            'flex size-4 shrink-0 items-center justify-center rounded-sm border border-input bg-background text-base text-current',
+            'border-input bg-background flex size-4 shrink-0 items-center justify-center rounded-sm border text-base text-current',
             /* Focus Visible */
-            'group-data-focus-visible/checkbox:outline-none group-data-focus-visible/checkbox:ring-1 group-data-focus-visible/checkbox:ring-ring',
+            'group-data-focus-visible/checkbox:ring-ring group-data-focus-visible/checkbox:ring-1 group-data-focus-visible/checkbox:outline-none',
             /* Selected */
             'group-selected/checkbox:bg-primary group-selected/checkbox:text-primary-foreground group-data-indeterminate/checkbox:bg-primary group-data-indeterminate/checkbox:text-primary-foreground',
             /* Disabled */
@@ -144,23 +148,34 @@ const Checkbox = ({
   isSelected,
   isIndeterminate = false,
   isDisabled = false,
+  disabled,
   onChange,
   onBlur,
   checked,
-  children
+  defaultChecked,
+  value,
+  children,
+  ...props
 }: CheckboxProps) => {
   // Use checked as fallback if isSelected is not set
-  const actualIsSelected = isSelected !== undefined ? isSelected : !!checked
+  const actualIsSelected =
+    isSelected !== undefined
+      ? isSelected
+      : defaultChecked !== undefined
+        ? !!defaultChecked
+        : !!checked
 
   return (
     <AriaCheckbox
-      onChange={onChange}
-      onBlur={onBlur}
+      onChange={onChange as any}
+      onBlur={onBlur as any}
       isSelected={actualIsSelected}
       isIndeterminate={isIndeterminate}
       autoFocus={autoFocus}
       name={name}
-      isDisabled={isDisabled}
+      value={value}
+      isDisabled={isDisabled || disabled}
+      {...props}
       className={composeRenderProps(className, className =>
         cn(
           'group/checkbox flex items-center gap-x-2',
@@ -175,9 +190,9 @@ const Checkbox = ({
         <>
           <div
             className={cn(
-              'flex size-4 shrink-0 items-center justify-center rounded-sm border border-input bg-background text-base text-current',
+              'border-input bg-background flex size-4 shrink-0 items-center justify-center rounded-sm border text-base text-current',
               /* Focus Visible */
-              'group-data-focus-visible/checkbox:outline-none group-data-focus-visible/checkbox:ring-1 group-data-focus-visible/checkbox:ring-ring',
+              'group-data-focus-visible/checkbox:ring-ring group-data-focus-visible/checkbox:ring-1 group-data-focus-visible/checkbox:outline-none',
               /* Selected */
               'group-selected/checkbox:bg-primary group-selected/checkbox:text-primary-foreground group-data-indeterminate/checkbox:bg-primary group-data-indeterminate/checkbox:text-primary-foreground',
               /* Disabled */

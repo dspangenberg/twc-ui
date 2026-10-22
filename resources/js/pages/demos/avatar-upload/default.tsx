@@ -8,7 +8,7 @@ export default function Dashboard() {
     <DemoContainer>
       <AvatarUpload
         src="https://github.com/shadcn.png"
-        fullName="shadcn"
+        fullname="shadcn"
         initials="SC"
         size="lg"
         onSelect={setAvatarUrl}

@@ -81,18 +81,18 @@ const AlertDialogComponent: React.FC<AlertDialogProps> = ({
               <div className="text-left sm:mt-0 sm:ml-4">
                 <Heading
                   slot="title"
-                  className="pt-2! text-left font-semibold text-foreground text-lg!"
+                  className="text-foreground pt-2! text-left text-lg! font-semibold"
                 >
                   {title}
                 </Heading>
                 <div className="mb-2">
-                  <p className="text-gray-500 text-sm">{message}</p>
+                  <p className="text-sm text-gray-500">{message}</p>
                 </div>
               </div>
             </div>
           </div>
         </DialogBody>
-        <DialogFooter className="flex flex-col-reverse items-center justify-end space-x-2 rounded-b-lg bg-muted/40! px-4 py-4 sm:flex-row sm:justify-end sm:space-x-2">
+        <DialogFooter className="bg-muted/40! flex flex-col-reverse items-center justify-end space-x-2 rounded-b-lg px-4 py-4 sm:flex-row sm:justify-end sm:space-x-2">
           {variant !== 'info' && (
             <Button
               autoFocus
