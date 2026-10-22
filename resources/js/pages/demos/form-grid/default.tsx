@@ -1,6 +1,5 @@
 import { Head } from '@inertiajs/react'
 import { DemoContainer } from '@/components/docs/DemoContainer'
-import { Button } from '@/components/twc-ui/button'
 import { Form, useForm } from '@/components/twc-ui/form'
 import { FormGrid } from '@/components/twc-ui/form-grid'
 import { NumberField } from '@/components/twc-ui/number-field'

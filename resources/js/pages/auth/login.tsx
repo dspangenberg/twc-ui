@@ -51,6 +51,7 @@ export default function Login({ status, canResetPassword }: LoginProps) {
               type="email"
               required
               autoFocus
+              // explicit tab order: email -> password -> remember -> submit -> links
               tabIndex={1}
               autoComplete="email"
               value={data.email}
@@ -99,7 +100,7 @@ export default function Login({ status, canResetPassword }: LoginProps) {
           </Button>
         </div>
 
-        <div className="text-center text-muted-foreground text-sm">
+        <div className="text-muted-foreground text-center text-sm">
           Don't have an account?{' '}
           <TextLink href={route('register')} tabIndex={5}>
             Sign up
@@ -108,7 +109,7 @@ export default function Login({ status, canResetPassword }: LoginProps) {
       </form>
 
       {status && (
-        <div className="mb-4 text-center font-medium text-green-600 text-sm">{status}</div>
+        <div className="mb-4 text-center text-sm font-medium text-green-600">{status}</div>
       )}
     </AuthLayout>
   )

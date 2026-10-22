@@ -62,5 +62,5 @@ export function FormFieldError({ className, ...props }: AriaFieldErrorProps) {
 
   if (form?.errorVariant === 'form') return null
 
-  return <FieldError className={cn('font-medium text-destructive text-sm', className)} {...props} />
+  return <FieldError className={cn('text-destructive text-sm font-medium', className)} {...props} />
 }

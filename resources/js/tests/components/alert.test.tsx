@@ -37,6 +37,8 @@ vi.mock('@/components/twc-ui/icon', () => ({
   )
 }))
 
+const CustomIcon = () => <div data-testid="custom-icon">Custom</div>
+
 describe('Alert Component', () => {
   describe('Basic Rendering', () => {
     it('renders alert with default variant', () => {
@@ -178,7 +180,6 @@ describe('Alert Component', () => {
     })
 
     it('renders custom icon when provided', () => {
-      const CustomIcon = () => <div data-testid="custom-icon">Custom</div>
       render(
         <Alert icon={CustomIcon}>
           <AlertDescription>Custom icon alert</AlertDescription>
@@ -431,7 +432,6 @@ describe('Alert Component', () => {
 
   describe('Component Composition', () => {
     it('renders all parts together correctly', () => {
-      const CustomIcon = () => <div data-testid="custom-icon">Custom</div>
       render(
         <Alert
           variant="destructive"

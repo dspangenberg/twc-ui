@@ -26,7 +26,7 @@ import { Button } from './button'
 import { Select } from './select'
 
 export const cellStyles = tv({
-  base: 'relative mt-1 flex size-8 cursor-default items-center justify-center rounded-md p-0 font-normal text-sm transition-[box-shadow] forced-color-adjust-none',
+  base: 'relative mt-1 flex size-8 cursor-default items-center justify-center rounded-md p-0 text-sm font-normal transition-[box-shadow] forced-color-adjust-none',
   variants: {
     isSelected: {
       false: 'hover:bg-accent hover:text-accent-foreground',
@@ -39,13 +39,13 @@ export const cellStyles = tv({
       true: 'text-muted-foreground opacity-70'
     },
     isPressed: {
-      true: 'border-ring ring-[3px] ring-ring/50'
+      true: 'border-ring ring-ring/50 ring-[3px]'
     },
     isUnavailable: {
       true: 'text-muted-foreground opacity-50'
     },
     isToday: {
-      true: 'after:pointer-events-none after:absolute after:start-1/2 after:bottom-1 after:z-10 after:size-[4px] after:-translate-x-1/2 after:rounded-full after:bg-primary selected:after:bg-primary-fg focus-visible:after:bg-primary-fg'
+      true: 'after:bg-primary selected:after:bg-primary-fg focus-visible:after:bg-primary-fg after:pointer-events-none after:absolute after:start-1/2 after:bottom-1 after:z-10 after:size-[4px] after:-translate-x-1/2 after:rounded-full'
     }
   }
 })
@@ -71,7 +71,7 @@ export const Calendar = <T extends DateValue>({
 }: CalendarProps<T>) => {
   return (
     <AriaCalendar
-      className={cn('flex w-fit select-none flex-col bg-card p-3', className)}
+      className={cn('bg-card flex w-fit flex-col p-3 select-none', className)}
       {...props}
     >
       <CalendarHeader maxYears={maxYears} />
@@ -82,7 +82,7 @@ export const Calendar = <T extends DateValue>({
         </CalendarGridBody>
       </CalendarGrid>
       {errorMessage && (
-        <Text slot="errorMessage" className="py-2 text-destructive text-sm">
+        <Text slot="errorMessage" className="text-destructive py-2 text-sm">
           {errorMessage}
         </Text>
       )}
@@ -226,7 +226,7 @@ export const CalendarGridHeader = () => {
   return (
     <AriaCalendarGridHeader>
       {day => (
-        <CalendarHeaderCell className="text-center font-medium text-foreground text-sm">
+        <CalendarHeaderCell className="text-foreground text-center text-sm font-medium">
           {day}
         </CalendarHeaderCell>
       )}
@@ -234,7 +234,11 @@ export const CalendarGridHeader = () => {
   )
 }
 
-const SelectMonth = ({ state }: { state: CalendarState | RangeCalendarState }) => {
+const SelectMonth = ({
+  state
+}: {
+  state: CalendarState<'single' | 'multiple'> | RangeCalendarState<DateValue>
+}) => {
   const months: { id: string; name: string }[] = []
 
   const formatter = useDateFormatter({
@@ -268,7 +272,7 @@ const SelectYear = ({
   maxYear,
   state
 }: {
-  state: CalendarState | RangeCalendarState
+  state: CalendarState<'single' | 'multiple'> | RangeCalendarState<DateValue>
   minYear: number
   maxYear: number
 }) => {

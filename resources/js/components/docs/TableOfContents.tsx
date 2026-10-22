@@ -90,11 +90,12 @@ export const TableOfContents = () => {
 
   return (
     <nav className="space-y-2">
-      <h4 className="!text-sm mb-3 font-semibold text-gray-900 dark:text-gray-100">On this page</h4>
+      <h4 className="mb-3 !text-sm font-semibold text-gray-900 dark:text-gray-100">On this page</h4>
       <ul>
         {tocItems.map(item => (
           <li key={item.id}>
             <button
+              type="button"
               onClick={() => handleClick(item.id)}
               className="block w-full rounded px-2 py-1 text-left text-sm transition-colors"
               style={{

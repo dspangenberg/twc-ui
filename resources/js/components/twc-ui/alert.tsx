@@ -12,35 +12,35 @@ const alertStyles = tv({
   slots: {
     base: 'relative flex w-full items-center gap-2.5 rounded-md border px-4 py-2 text-sm',
     title: 'font-medium tracking-tight',
-    icon: 'size-5 shrink-0 text-background',
-    description: 'w-full text-muted-foreground text-sm leading-normal',
+    icon: 'text-background size-5 shrink-0',
+    description: 'text-muted-foreground w-full text-sm leading-normal',
     actions: 'flex-none justify-end'
   },
   variants: {
     variant: {
       default: {
         base: 'bg-card text-card-foreground',
-        icon: 'rounded-full bg-card-foreground/50 text-white'
+        icon: 'bg-card-foreground/50 rounded-full text-white'
       },
       destructive: {
-        base: 'm-0 border-destructive/20 bg-destructive/5 text-destructive',
+        base: 'border-destructive/20 bg-destructive/5 text-destructive m-0',
         description: 'text-destructive',
-        icon: 'rounded-full bg-destructive text-white'
+        icon: 'bg-destructive rounded-full text-white'
       },
       info: {
         base: 'border-info/20 bg-info/5 text-info',
         description: 'text-info',
-        icon: 'rounded-full bg-info text-white'
+        icon: 'bg-info rounded-full text-white'
       },
       warning: {
         base: 'border-warning bg-warning text-warning-foreground',
         description: 'text-warning-foreground',
-        icon: 'rounded-full bg-warning-foreground text-white'
+        icon: 'bg-warning-foreground rounded-full text-white'
       },
       success: {
         base: 'border-success/20 bg-success/5 text-success',
         description: 'text-success',
-        icon: 'rounded-full bg-success text-white'
+        icon: 'bg-success rounded-full text-white'
       }
     }
   },

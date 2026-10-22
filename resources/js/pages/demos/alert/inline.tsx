@@ -6,10 +6,10 @@ export default function Demo() {
   return (
     <DemoContainer className="mx-auto max-w-2xl">
       <div className="space-y-4">
-        <h3 className="mb-4 font-medium text-lg">Account Settings</h3>
+        <h3 className="mb-4 text-lg font-medium">Account Settings</h3>
 
         <div className="space-y-2">
-          <label htmlFor="email" className="font-medium text-sm">
+          <label htmlFor="email" className="text-sm font-medium">
             Email Address
           </label>
           <input
@@ -26,7 +26,7 @@ export default function Demo() {
         </Alert>
 
         <div className="space-y-2">
-          <label htmlFor="password" className="font-medium text-sm">
+          <label htmlFor="password" className="text-sm font-medium">
             Password
           </label>
           <input

@@ -80,7 +80,7 @@ import {
   SiVuedotjs,
   SiWebassembly
 } from 'react-icons/si'
-import { type BundledLanguage, type CodeOptionsMultipleThemes, codeToHtml } from 'shiki'
+import { type CodeOptionsMultipleThemes, codeToHtml } from 'shiki'
 import { Button } from '@/components/ui/button'
 import { Select, SelectItem } from '@/components/ui/select'
 import { useControllableState } from '@/hooks/use-controllable-state'
@@ -239,11 +239,7 @@ const codeBlockClassName = cn(
   '[&_.line]:relative'
 )
 
-const highlight = (
-  html: string,
-  language?: BundledLanguage,
-  themes?: CodeOptionsMultipleThemes['themes']
-) =>
+const highlight = (html: string, language?: string, themes?: CodeOptionsMultipleThemes['themes']) =>
   codeToHtml(html, {
     lang: language ?? 'typescript',
     themes: themes ?? {
@@ -325,7 +321,7 @@ export type CodeBlockHeaderProps = HTMLAttributes<HTMLDivElement>
 
 export const CodeBlockHeader = ({ className, ...props }: CodeBlockHeaderProps) => (
   <div
-    className={cn('flex flex-row items-center border-b bg-secondary p-1', className)}
+    className={cn('bg-secondary flex flex-row items-center border-b p-1', className)}
     {...props}
   />
 )
@@ -372,7 +368,7 @@ export const CodeBlockFilename = ({
   return (
     <div
       className={cn(
-        'flex flex-grow items-center gap-2 bg-secondary px-4 py-1.5 text-muted-foreground text-xs',
+        'bg-secondary text-muted-foreground flex flex-grow items-center gap-2 px-4 py-1.5 text-xs',
         className
       )}
       {...props}
@@ -385,21 +381,27 @@ export const CodeBlockFilename = ({
 
 export type CodeBlockSelectProps = Omit<
   ComponentProps<typeof Select>,
-  'children' | 'selectedKey' | 'onSelectionChange'
+  'children' | 'selectedKey' | 'onSelectionChange' | 'value' | 'onChange'
 > & {
   children: (item: CodeBlockData) => ReactNode
 }
 
-export const CodeBlockSelect = ({ children, className, ...props }: CodeBlockSelectProps) => {
+export const CodeBlockSelect = ({
+  children,
+  className,
+  ...props
+}: CodeBlockSelectProps & { className?: string }) => {
   const { value, onValueChange, data } = useContext(CodeBlockContext)
 
   return (
     <Select
-      size="sm"
-      selectedKey={value}
-      onSelectionChange={key => onValueChange?.(key as string)}
-      className={cn('w-fit border-none text-muted-foreground text-xs shadow-none', className)}
-      {...props}
+      value={(value as string | null) ?? undefined}
+      onChange={onValueChange as any}
+      className={cn(
+        'text-muted-foreground w-fit border-none text-xs shadow-none',
+        className as string
+      )}
+      {...(props as any)}
     >
       {data.map(children)}
     </Select>
@@ -487,7 +489,7 @@ export const CodeBlockBody = ({ children, className, ...props }: CodeBlockBodyPr
   return (
     <div
       data-slot="code-block-body"
-      className={cn('overflow-auto bg-background', className)}
+      className={cn('bg-background overflow-auto', className)}
       {...props}
     >
       {data.map(children)}
@@ -534,7 +536,7 @@ export const CodeBlockItem = ({
 
 export type CodeBlockContentProps = HTMLAttributes<HTMLDivElement> & {
   themes?: CodeOptionsMultipleThemes['themes']
-  language?: BundledLanguage
+  language?: string
   syntaxHighlighting?: boolean
   children: string
 }

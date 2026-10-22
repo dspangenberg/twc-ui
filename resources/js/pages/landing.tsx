@@ -11,20 +11,20 @@ export default function Home() {
     <>
       <Head title="Welcome" />
       <DocsLayout>
-        <div className="docs overflow-hidden bg-background pt-8 sm:pt-16 lg:pt-24">
+        <div className="docs bg-background overflow-hidden pt-8 sm:pt-16 lg:pt-24">
           <div className="container">
             <div className="flex flex-col items-center">
-              <div className="flex items-center gap-1.5 rounded-full bg-muted py-1 ps-1 pe-3 text-sm">
-                <div className="rounded-full bg-primary p-1 text-primary-foreground">
+              <div className="bg-muted flex items-center gap-1.5 rounded-full py-1 ps-1 pe-3 text-sm">
+                <div className="bg-primary text-primary-foreground rounded-full p-1">
                   <TargetIcon className="size-4" />
                 </div>
                 <p>Just open-sourced and still a work in progress</p>
               </div>
 
-              <RevealText className="mt-3 text-balance text-center font-semibold text-2xl leading-[1.25] sm:text-3xl lg:text-4xl">
+              <RevealText className="mt-3 text-center text-2xl leading-[1.25] font-semibold text-balance sm:text-3xl lg:text-4xl">
                 Shadcn/ui meets Inertia.js
               </RevealText>
-              <p className="mt-3 max-w-lg text-center font-semibold text-foreground/80 max-sm:text-sm lg:mt-5">
+              <p className="text-foreground/80 mt-3 max-w-lg text-center font-semibold max-sm:text-sm lg:mt-5">
                 DRY-er, more accessible{' '}
                 <a href="https://ui.shadcn.com/" target="_blank" rel="noopener">
                   shadcn/ui
@@ -67,7 +67,7 @@ export default function Home() {
               <img
                 src="https://images.unsplash.com/photo-1674027392842-29f8354e236c?w=1000"
                 className="h-90 w-full max-w-4xl rounded-md object-cover shadow-xl sm:h-100 lg:h-120"
-                alt="Hero Image"
+                alt="Colleagues working together in a bright office"
               />
             </div>
           </div>

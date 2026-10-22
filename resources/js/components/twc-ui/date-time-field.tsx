@@ -38,7 +38,7 @@ const DateTimeField = ({
   return (
     <BaseDateField
       className={composeRenderProps(className, className =>
-        cn('group flex flex-col gap-2 data-invalid:border-destructive', className)
+        cn('group data-invalid:border-destructive flex flex-col gap-2', className)
       )}
       isInvalid={hasError}
       value={value}

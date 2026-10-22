@@ -6,7 +6,7 @@ export default function Home() {
     <>
       <Head title="Welcome" />
       <DocsLayout>
-        <div className="docs overflow-hidden bg-background pt-8 sm:pt-16 lg:pt-24">Soon.</div>
+        <div className="docs bg-background overflow-hidden pt-8 sm:pt-16 lg:pt-24">Soon.</div>
       </DocsLayout>
     </>
   )

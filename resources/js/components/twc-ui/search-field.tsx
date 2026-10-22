@@ -82,7 +82,7 @@ function SearchField({
     >
       {label && <Label isRequired={isRequired} value={label} />}
       <FieldGroup aria-label="Search" isInvalid={hasError}>
-        <SearchIcon aria-hidden className="size-4 text-muted-foreground" />
+        <SearchIcon aria-hidden className="text-muted-foreground size-4" />
         <SearchFieldInput
           placeholder={realPlaceholder}
           type="text"

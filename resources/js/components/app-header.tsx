@@ -5,8 +5,7 @@ import {
   GeometricShapes01Icon,
   Github01Icon,
   Home13Icon,
-  HugeiconsIcon as HugeIcon,
-  SwatchIcon
+  HugeiconsIcon as HugeIcon
 } from '@hugeicons/core-free-icons'
 import { HugeiconsIcon } from '@hugeicons/react'
 import { Link, usePage } from '@inertiajs/react'
@@ -80,7 +79,7 @@ export function AppHeader({ breadcrumbs = [] }: AppHeaderProps) {
   return (
     <>
       <div className="border-sidebar-border/80 border-b">
-        <div className="mx-auto flex h-16 items-center px-4 md:max-w-8xl">
+        <div className="md:max-w-8xl mx-auto flex h-16 items-center px-4">
           {/* Mobile Menu */}
           <div className="lg:hidden">
             <Sheet>
@@ -91,7 +90,7 @@ export function AppHeader({ breadcrumbs = [] }: AppHeaderProps) {
               </SheetTrigger>
               <SheetContent
                 side="left"
-                className="flex h-full w-64 flex-col items-stretch justify-between bg-sidebar"
+                className="bg-sidebar flex h-full w-64 flex-col items-stretch justify-between"
               >
                 <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
                 <SheetHeader className="flex justify-start text-left">
@@ -107,7 +106,7 @@ export function AppHeader({ breadcrumbs = [] }: AppHeaderProps) {
                           className="flex items-center space-x-2 font-medium"
                         >
                           {item.icon && (
-                            <HugeiconsIcon icon={item.icon} className="size-5 text-foreground/80" />
+                            <HugeiconsIcon icon={item.icon} className="text-foreground/80 size-5" />
                           )}
                           <span>{item.title}</span>
                         </Link>
@@ -124,7 +123,7 @@ export function AppHeader({ breadcrumbs = [] }: AppHeaderProps) {
                           className="flex items-center space-x-2 font-medium"
                         >
                           {item.icon && (
-                            <HugeiconsIcon icon={item.icon} className="size-5 text-foreground/80" />
+                            <HugeiconsIcon icon={item.icon} className="text-foreground/80 size-5" />
                           )}
                           <span>{item.title}</span>
                         </a>
@@ -177,7 +176,7 @@ export function AppHeader({ breadcrumbs = [] }: AppHeaderProps) {
                           href={item.href}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="group ml-1 inline-flex h-9 w-9 items-center justify-center rounded-md bg-transparent p-0 font-medium text-accent-foreground text-sm ring-offset-background transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
+                          className="group text-accent-foreground ring-offset-background hover:bg-accent hover:text-accent-foreground focus-visible:ring-ring ml-1 inline-flex h-9 w-9 items-center justify-center rounded-md bg-transparent p-0 text-sm font-medium transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50"
                         >
                           <span className="sr-only">{item.title}</span>
                           {item.icon && (
@@ -201,8 +200,8 @@ export function AppHeader({ breadcrumbs = [] }: AppHeaderProps) {
         </div>
       </div>
       {breadcrumbs.length > 1 && (
-        <div className="flex w-full border-sidebar-border/70 border-b">
-          <div className="mx-auto flex h-12 w-full items-center justify-start px-4 text-neutral-500 md:max-w-8xl">
+        <div className="border-sidebar-border/70 flex w-full border-b">
+          <div className="md:max-w-8xl mx-auto flex h-12 w-full items-center justify-start px-4 text-neutral-500">
             <Breadcrumbs breadcrumbs={breadcrumbs} />
           </div>
         </div>

@@ -70,9 +70,9 @@ const DocNavigationItem = ({ item, currentRoute, depth = 0 }: DocNavigationItemP
           <div className="flex items-center justify-between gap-2">
             {showSoon ? (
               <span
-                className={`mb-2 block font-semibold text-sm ${
+                className={`mb-2 block text-sm font-semibold ${
                   depth === 0
-                    ? 'text-base text-foreground uppercase tracking-wide'
+                    ? 'text-foreground text-base tracking-wide uppercase'
                     : depth === 1
                       ? 'ml-0 text-gray-900 dark:text-gray-100'
                       : 'ml-0 text-gray-800 dark:text-gray-200'
@@ -83,9 +83,9 @@ const DocNavigationItem = ({ item, currentRoute, depth = 0 }: DocNavigationItemP
             ) : (
               <Link
                 href={item.route}
-                className={`mb-2 block font-semibold text-sm transition-colors hover:text-blue-600 dark:hover:text-blue-400 ${
+                className={`mb-2 block text-sm font-semibold transition-colors hover:text-blue-600 dark:hover:text-blue-400 ${
                   depth === 0
-                    ? 'text-base text-foreground uppercase tracking-wide'
+                    ? 'text-foreground text-base tracking-wide uppercase'
                     : depth === 1
                       ? 'ml-0 text-gray-900 dark:text-gray-100'
                       : 'ml-0 text-gray-800 dark:text-gray-200'
@@ -95,16 +95,16 @@ const DocNavigationItem = ({ item, currentRoute, depth = 0 }: DocNavigationItemP
               </Link>
             )}
             {showSoon && (
-              <span className="rounded-md bg-yellow-400 px-2 py-0.5 font-medium text-xs text-yellow-900">
+              <span className="rounded-md bg-yellow-400 px-2 py-0.5 text-xs font-medium text-yellow-900">
                 Soon
               </span>
             )}
           </div>
         ) : (
           <div
-            className={`mb-2 font-semibold text-sm ${
+            className={`mb-2 text-sm font-semibold ${
               depth === 0
-                ? 'text-base text-foreground uppercase tracking-wide'
+                ? 'text-foreground text-base tracking-wide uppercase'
                 : depth === 1
                   ? 'ml-0 text-gray-900 dark:text-gray-100'
                   : 'ml-0 text-gray-800 dark:text-gray-200'
@@ -156,7 +156,7 @@ const DocNavigationItem = ({ item, currentRoute, depth = 0 }: DocNavigationItemP
           </Link>
         )}
         {showSoon && (
-          <span className="rounded-md bg-muted px-2 py-0.5 text-foreground text-xs">Soon</span>
+          <span className="bg-muted text-foreground rounded-md px-2 py-0.5 text-xs">Soon</span>
         )}
       </div>
       {hasChildren && (
@@ -217,7 +217,7 @@ const Breadcrumb = ({ currentPath }: BreadcrumbProps) => {
   }
 
   return (
-    <nav className="mb-6 flex items-center space-x-1 text-gray-500 text-sm">
+    <nav className="mb-6 flex items-center space-x-1 text-sm text-gray-500">
       <Link href="/" className="flex items-center hover:text-gray-700 dark:hover:text-gray-300">
         <HugeiconsIcon icon={Home13Icon} className="size-5" />
       </Link>
@@ -253,7 +253,7 @@ const DocPageContent = ({ children, frontmatter }: DocPageProps) => {
         <title>{frontmatter?.title ? `${frontmatter.title}` : 'Documentation'}</title>
         {frontmatter?.description && <meta name="description" content={frontmatter.description} />}
       </Head>
-      <div className="mx-auto mt-12 flex w-full max-w-8xl gap-4">
+      <div className="max-w-8xl mx-auto mt-12 flex w-full gap-4">
         <aside className="sticky top-0 hidden h-full w-64 flex-none space-y-4 overflow-y-auto p-4 lg:flex">
           <DocsNavigation />
         </aside>
@@ -263,10 +263,10 @@ const DocPageContent = ({ children, frontmatter }: DocPageProps) => {
 
           {frontmatter && (
             <header className="mb-8 pb-6">
-              <h1 className="mt-10 scroll-m-16 pb-2 font-medium text-4xl">{frontmatter?.title}</h1>
+              <h1 className="mt-10 scroll-m-16 pb-2 text-4xl font-medium">{frontmatter?.title}</h1>
 
               {frontmatter.description && (
-                <p className="mb-4 text-base text-muted-foreground">{frontmatter.description}</p>
+                <p className="text-muted-foreground mb-4 text-base">{frontmatter.description}</p>
               )}
 
               {frontmatter.tags && frontmatter.tags.length > 0 && (
@@ -274,7 +274,7 @@ const DocPageContent = ({ children, frontmatter }: DocPageProps) => {
                   {frontmatter.tags.map((tag, index) => (
                     <span
                       key={index}
-                      className="rounded-full bg-blue-100 px-3 py-1 text-blue-800 text-sm"
+                      className="rounded-full bg-blue-100 px-3 py-1 text-sm text-blue-800"
                     >
                       #{tag}
                     </span>

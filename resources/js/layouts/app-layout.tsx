@@ -20,7 +20,7 @@ const SidebarContent: React.FC<PropsWithChildren> = ({ children }) => {
     <>
       <AppSidebar />
       {isDev && (
-        <div className="fixed top-0 right-0 z-50 rounded-bl bg-blue-500 px-2 font-mono text-white text-xs">
+        <div className="fixed top-0 right-0 z-50 rounded-bl bg-blue-500 px-2 font-mono text-xs text-white">
           <span className="sm:hidden">xs</span>
           <span className="hidden sm:inline md:hidden">sm</span>
           <span className="hidden md:inline lg:hidden">md</span>

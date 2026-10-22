@@ -1,7 +1,6 @@
 import {
   Alert02Icon,
   AlertCircleIcon,
-  InformationCircleIcon,
   Rocket02Icon
 } from '@hugeicons/core-free-icons'
 import { DemoContainer } from '@/components/docs/DemoContainer'

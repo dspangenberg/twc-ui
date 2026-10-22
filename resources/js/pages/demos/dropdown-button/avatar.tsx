@@ -26,7 +26,7 @@ export const Demo = () => {
             <Avatar src="https://github.com/shadcn.png" initials="DS" size="lg" />
             <div className="text-base">
               Danny
-              <div className="font-normal text-sm">danny@example.com</div>
+              <div className="text-sm font-normal">danny@example.com</div>
             </div>
           </div>
         </MenuHeader>

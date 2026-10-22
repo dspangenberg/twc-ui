@@ -14,9 +14,9 @@ import { Tooltip, TooltipTrigger } from './tooltip'
 const buttonVariants = tv({
   slots: {
     base: [
-      'inline-flex pressed:translate-y-px items-center justify-center whitespace-nowrap rounded-md font-medium text-sm pressed:shadow-black/20 pressed:shadow-inner pressed:brightness-95 transition-colors',
+      'pressed:translate-y-px pressed:shadow-black/20 pressed:shadow-inner pressed:brightness-95 inline-flex items-center justify-center rounded-md text-sm font-medium whitespace-nowrap transition-colors',
       'data-disabled:pointer-events-none data-disabled:opacity-50',
-      'focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/20',
+      'focus-visible:border-ring focus-visible:ring-ring/20 focus-visible:ring-[3px]',
       'pressed:shadow-black/20',
       'ring-offset-1 focus-visible:outline-none'
     ],
@@ -28,32 +28,32 @@ const buttonVariants = tv({
         base: 'bg-primary text-primary-foreground focus-visible:ring-primary/20 data-hovered:bg-primary/90'
       },
       destructive: {
-        base: 'border bg-destructive text-white focus-visible:border-destructive/20 focus-visible:ring-destructive/20 data-hovered:bg-destructive/90'
+        base: 'bg-destructive focus-visible:border-destructive/20 focus-visible:ring-destructive/20 data-hovered:bg-destructive/90 border text-white'
       },
       outline: {
-        base: 'border border-input bg-background selected:bg-accent focus-visible:ring-ring/20 data-hovered:bg-accent data-hovered:text-accent-foreground'
+        base: 'border-input bg-background selected:bg-accent focus-visible:ring-ring/20 data-hovered:bg-accent data-hovered:text-accent-foreground border'
       },
       secondary: {
-        base: 'border border-transparent bg-secondary/90 text-secondary-foreground focus-visible:border focus-visible:border-input data-hovered:border-border data-hovered:bg-secondary/50'
+        base: 'bg-secondary/90 text-secondary-foreground focus-visible:border-input data-hovered:border-border data-hovered:bg-secondary/50 border border-transparent focus-visible:border'
       },
       ghost: {
-        base: 'border border-transparent selected:bg-muted text-sm focus-visible:border focus-visible:border-input focus-visible:ring-ring/20 data-hovered:border-border data-hovered:bg-accent/80 data-hovered:text-accent-foreground'
+        base: 'selected:bg-muted focus-visible:border-input focus-visible:ring-ring/20 data-hovered:border-border data-hovered:bg-accent/80 data-hovered:text-accent-foreground border border-transparent text-sm focus-visible:border'
       },
       link: {
-        base: 'cursor-pointer text-primary underline-offset-4 data-hovered:underline'
+        base: 'text-primary cursor-pointer underline-offset-4 data-hovered:underline'
       },
       'ghost-destructive': {
-        base: 'border border-transparent text-sm focus-visible:border focus-visible:border-input focus-visible:ring-ring/20 data-hovered:border-border data-hovered:bg-accent data-hovered:text-destructive-foreground'
+        base: 'focus-visible:border-input focus-visible:ring-ring/20 data-hovered:border-border data-hovered:bg-accent data-hovered:text-destructive-foreground border border-transparent text-sm focus-visible:border'
       },
       toolbar: {
-        base: 'border selected:border border-transparent selected:bg-muted text-primary text-sm focus-visible:border focus-visible:border-primary focus-visible:ring-ring/20 active:ring-ring/50 data-hovered:border-border data-hovered:bg-accent'
+        base: 'selected:border selected:bg-muted text-primary focus-visible:border-primary focus-visible:ring-ring/20 active:ring-ring/50 data-hovered:border-border data-hovered:bg-accent border border-transparent text-sm focus-visible:border'
       },
       toggle: {
         base: 'selected:bg-background selected:shadow hover:border-primary',
         icon: 'text-primary'
       },
       'toolbar-default': {
-        base: 'border border-input bg-background text-sm focus-visible:ring-ring/20 data-hovered:bg-accent data-hovered:text-accent-foreground'
+        base: 'border-input bg-background focus-visible:ring-ring/20 data-hovered:bg-accent data-hovered:text-accent-foreground border text-sm'
       }
     },
     size: {

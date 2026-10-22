@@ -16,7 +16,7 @@ import { cn } from '@/lib/utils'
 const Breadcrumbs = <T extends object>({ className, ...props }: AriaBreadcrumbsProps<T>) => (
   <AriaBreadcrumbs
     className={cn(
-      'wrap-break-word flex flex-wrap items-center gap-1.5 text-muted-foreground text-sm sm:gap-2.5',
+      'text-muted-foreground flex flex-wrap items-center gap-1.5 text-sm wrap-break-word sm:gap-2.5',
       className
     )}
     {...props}
@@ -76,7 +76,7 @@ interface BreadcrumbPageProps extends Omit<AriaLinkProps, 'href'> {}
 const BreadcrumbPage = ({ className, ...props }: BreadcrumbPageProps) => (
   <AriaLink
     className={composeRenderProps(className, className =>
-      cn('font-medium text-foreground/80', className)
+      cn('text-foreground/80 font-medium', className)
     )}
     {...props}
   />

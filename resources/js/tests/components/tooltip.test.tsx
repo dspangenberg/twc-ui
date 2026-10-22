@@ -207,7 +207,7 @@ describe('Tooltip', () => {
         <div>
           <h3>Complex Title</h3>
           <p>Complex description</p>
-          <button>Action</button>
+          <button type="button">Action</button>
         </div>
       </Tooltip>
     )

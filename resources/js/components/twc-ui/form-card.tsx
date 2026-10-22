@@ -19,9 +19,9 @@ export const FormCard: React.FC<FormCardProps> = ({
 }) => {
   return (
     <div className={cn('flex h-full flex-1 flex-col overflow-hidden', className)}>
-      <div className="relative flex max-h-fit flex-1 flex-col gap-1.5 overflow-hidden rounded-lg border border-border/80 bg-page-content p-1.5">
+      <div className="border-border/80 bg-page-content relative flex max-h-fit flex-1 flex-col gap-1.5 overflow-hidden rounded-lg border p-1.5">
         <ScrollArea
-          className={cn('min-h-0 flex-1 rounded-md border bg-background', innerClassName)}
+          className={cn('bg-background min-h-0 flex-1 rounded-md border', innerClassName)}
         >
           {children}
         </ScrollArea>

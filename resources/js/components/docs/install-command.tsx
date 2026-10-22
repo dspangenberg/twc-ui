@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import type { Key } from 'react-aria-components'
 import { SourceCode } from '@/components/docs/SourceCode'
 import { Tab, TabList, Tabs } from '@/components/twc-ui/tabs'

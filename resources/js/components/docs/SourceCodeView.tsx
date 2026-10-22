@@ -105,14 +105,14 @@ export const SourceCodeView: React.FC<DemoCodePreviewProps> = ({
 
   return (
     <div className="w-full">
-      <div className={cn('p w-full overflow-x-hidden rounded-b-md border border-t-0 bg-muted')}>
+      <div className={cn('p bg-muted w-full overflow-x-hidden rounded-b-md border border-t-0')}>
         {isLoading ? (
           <div className="absolute right-0 left-0">
             <LogoSpinner className="mx-auto" />
           </div>
         ) : (
           <div
-            className={cn('relative overflow-hidden rounded-b-md bg-accent/20 text-sm', {
+            className={cn('bg-accent/20 relative overflow-hidden rounded-b-md text-sm', {
               'max-h-175': expand || !collapsible
             })}
           >

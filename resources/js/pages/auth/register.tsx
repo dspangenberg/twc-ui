@@ -46,6 +46,7 @@ export default function Register() {
               type="text"
               required
               autoFocus
+              // explicit tab order: name -> email -> password -> confirmation -> submit -> links
               tabIndex={1}
               autoComplete="name"
               value={data.name}
@@ -110,7 +111,7 @@ export default function Register() {
           </Button>
         </div>
 
-        <div className="text-center text-muted-foreground text-sm">
+        <div className="text-muted-foreground text-center text-sm">
           Already have an account?{' '}
           <TextLink href={route('login')} tabIndex={6}>
             Log in

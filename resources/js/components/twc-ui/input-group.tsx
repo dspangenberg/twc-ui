@@ -13,7 +13,7 @@ import { RACTextArea } from './text-area'
 
 export const inputGroupStyles = (props: React.ComponentProps<'div'>) => {
   return cn(
-    'relative flex h-9 w-full items-center overflow-hidden rounded-sm border border-input bg-background py-1 font-medium text-base shadow-none transition-colors',
+    'border-input bg-background relative flex h-9 w-full items-center overflow-hidden rounded-sm border py-1 text-base font-medium shadow-none transition-colors',
     'min-w-0 has-[>textarea]:h-auto',
 
     // Variants based on alignment.
@@ -23,8 +23,8 @@ export const inputGroupStyles = (props: React.ComponentProps<'div'>) => {
     'has-[>[data-align=block-end]]:h-auto has-[>[data-align=block-end]]:flex-col has-[>[data-align=block-end]]:[&>input]:pt-3',
 
     /* Focus Within */
-    'has-[[data-slot=input-group-control]:focus-visible]:border-primary has-[[data-slot=input-group-control]:focus-visible]:ring-[3px] has-[[data-slot=input-group-control]:focus-visible]:ring-primary/20',
-    'has-[[data-slot=input-group-control]:focus-within]:border-primary has-[[data-slot=input-group-control]:focus-within]:ring-[3px] has-[[data-slot=input-group-control]:focus-within]:ring-primary/20',
+    'has-[[data-slot=input-group-control]:focus-visible]:border-primary has-[[data-slot=input-group-control]:focus-visible]:ring-primary/20 has-[[data-slot=input-group-control]:focus-visible]:ring-[3px]',
+    'has-[[data-slot=input-group-control]:focus-within]:border-primary has-[[data-slot=input-group-control]:focus-within]:ring-primary/20 has-[[data-slot=input-group-control]:focus-within]:ring-[3px]',
 
     /* Invalid */
     'has-[[data-slot][aria-invalid=true]]:border-destructive',
@@ -50,7 +50,7 @@ const InputGroup = ({ className, ...props }: GroupProps) => {
 }
 
 const inputGroupAddonVariants = tv({
-  base: "flex h-auto cursor-text select-none items-center justify-center gap-2 border-0 py-1.5 font-medium text-muted-foreground text-sm group-data-[disabled=true]/input-group:opacity-50 [&>kbd]:rounded-[calc(var(--radius)-5px)] [&>svg:not([class*='size-'])]:size-4",
+  base: "text-muted-foreground flex h-auto cursor-text items-center justify-center gap-2 border-0 py-1.5 text-sm font-medium select-none group-data-[disabled=true]/input-group:opacity-50 [&>kbd]:rounded-[calc(var(--radius)-5px)] [&>svg:not([class*='size-'])]:size-4",
   variants: {
     align: {
       'inline-start': 'order-first pl-3 has-[>button]:ml-[-0.45rem] has-[>kbd]:ml-[-0.35rem]',
@@ -84,6 +84,7 @@ const InputGroupAddon = ({
   }
 
   return (
+    // biome-ignore lint/a11y/useSemanticElements: upstream shadcn markup uses role="group" on a div
     <div
       role="group"
       data-slot="input-group-addon"
@@ -136,7 +137,7 @@ const InputGroupText = ({ className, ...props }: React.ComponentProps<'span'>) =
   return (
     <span
       className={cn(
-        "flex items-center gap-2 text-muted-foreground text-sm [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none",
+        "text-muted-foreground flex items-center gap-2 text-sm [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4",
         className
       )}
       {...props}
@@ -169,7 +170,7 @@ const InputGroupInput = ({ className, ref, ...props }: InputGroupInputProps) => 
       className={composeRenderProps(className, (className, renderProps) =>
         cn(
           inputGroupInputStyles({ ...renderProps }),
-          'px-3 py-1 font-medium text-sm',
+          'px-3 py-1 text-sm font-medium',
           'data-disabled:cursor-not-allowed data-disabled:opacity-50',
           className
         )

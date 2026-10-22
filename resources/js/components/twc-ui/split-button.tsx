@@ -20,20 +20,20 @@ function SplitButton<T extends object>({
   ...props
 }: SplitButtonProps<T>) {
   return (
-    <Group className="group flex items-center rounded-md border border-input focus-within:ring-[3px] focus-within:ring-ring/20">
+    <Group className="group border-input focus-within:ring-ring/20 flex items-center rounded-md border focus-within:ring-[3px]">
       <Button
         variant={variant}
         size={size}
         icon={props.icon}
         title={title}
         onClick={onClick}
-        className="rounded-r-none! border-0 border-r focus-visible:ring-0 group-hover:border-r-border!"
+        className="group-hover:border-r-border! rounded-r-none! border-0 border-r focus-visible:ring-0"
       />
       <DropdownButton
         variant="ghost"
         size="icon"
         icon={ChevronDown}
-        className="rounded-l-none border-l! border-y-0 border-r-0"
+        className="rounded-l-none border-y-0 border-r-0 border-l!"
         iconClassName="size-4"
         placement={placement}
         selectionMode={selectionMode}

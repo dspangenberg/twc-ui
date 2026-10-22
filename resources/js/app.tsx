@@ -23,9 +23,9 @@ createInertiaApp({
     if (name.startsWith('docs')) {
       const module = await resolvePageComponent(
         `./${name}.mdx`,
-        import.meta.glob('./docs/**/*.mdx')
+        import.meta.glob<{ default: React.ComponentType; frontmatter?: any }>('./docs/**/*.mdx')
       )
-      const MdxComponent = (module as any).default as React.ComponentType
+      const MdxComponent = module.default as React.ComponentType
       const frontmatter = (module as any).frontmatter || (MdxComponent as any).frontmatter || null
 
       return {
@@ -36,7 +36,10 @@ createInertiaApp({
         )
       }
     }
-    return resolvePageComponent(`./pages/${name}.tsx`, import.meta.glob('./pages/**/*.tsx'))
+    return resolvePageComponent(
+      `./pages/${name}.tsx`,
+      import.meta.glob<{ default: React.ComponentType }>('./pages/**/*.tsx')
+    ) as any
   },
   setup({ el, App, props }) {
     const appElement = (

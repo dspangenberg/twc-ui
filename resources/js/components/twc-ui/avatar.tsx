@@ -8,11 +8,11 @@ import { cn } from '@/lib/utils'
 
 const avatarVariants = tv({
   slots: {
-    base: 'relative flex shrink-0 overflow-hidden rounded-full p-0.5 text-primary-foreground focus-visible:ring-primary/20 data-hovered:bg-primary/90',
+    base: 'text-primary-foreground focus-visible:ring-primary/20 data-hovered:bg-primary/90 relative flex shrink-0 overflow-hidden rounded-full p-0.5',
     image: 'aspect-square size-full rounded-full',
     fallback: 'flex size-full items-center justify-center rounded-full uppercase',
-    badge: 'flex items-center justify-center rounded-full border text-white text-xs',
-    badgeContainer: 'absolute -right-1.5 -bottom-1.5 rounded-full border-2 border-background'
+    badge: 'flex items-center justify-center rounded-full border text-xs text-white',
+    badgeContainer: 'border-background absolute -right-1.5 -bottom-1.5 rounded-full border-2'
   },
   variants: {
     variant: {
@@ -128,7 +128,7 @@ const Avatar = ({
 
   return (
     <div className="relative">
-      <div className="rounded-full border border-border" data-testid="avatar-container">
+      <div className="border-border rounded-full border" data-testid="avatar-container">
         <AvatarRoot className={cn(styles.base(), className)} {...props}>
           {children}
           <AvatarImage

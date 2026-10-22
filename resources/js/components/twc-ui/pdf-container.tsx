@@ -464,11 +464,11 @@ export const PdfContainer: React.FC<Props> = ({
       <div
         className={cn(
           'z-10 py-1',
-          isFullscreen ? 'self-center' : 'w-full self-start border-b bg-page-content px-4'
+          isFullscreen ? 'self-center' : 'bg-page-content w-full self-start border-b px-4'
         )}
       >
         {!hideFilename && (
-          <div className="my-2 text-center font-medium text-base">
+          <div className="my-2 text-center text-base font-medium">
             {resolvedFilename} &mdash; Seite {pageNumber}/{numPages}
           </div>
         )}
@@ -486,11 +486,11 @@ export const PdfContainer: React.FC<Props> = ({
           error={
             <div className="absolute inset-0 flex items-center justify-center p-8">
               <div className="max-w-md text-center">
-                <div className="mx-auto mb-4 flex size-14 items-center justify-center rounded-full bg-destructive">
+                <div className="bg-destructive mx-auto mb-4 flex size-14 items-center justify-center rounded-full">
                   <Icon icon={AlertCircleIcon} className="size-14 rounded-full text-white" />
                 </div>
-                <h3 className="mb-2 font-semibold text-lg">Ups, das ging schief!</h3>
-                <p className="mb-4 text-base text-muted-foreground">
+                <h3 className="mb-2 text-lg font-semibold">Ups, das ging schief!</h3>
+                <p className="text-muted-foreground mb-4 text-base">
                   {loadError || 'Die PDF-Datei konnte nicht geladen werden.'}
                 </p>
               </div>

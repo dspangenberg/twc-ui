@@ -12,7 +12,7 @@ export const LinkDemo: React.FC<TabLayoutProps> = ({ children }) => {
       <Tabs variant="classic" className="w-lg">
         <TabList
           aria-label="History of Ancient Rome"
-          className="flex-1 justify-start border-b bg-page-content"
+          className="bg-page-content flex-1 justify-start border-b"
         >
           <Tab id="tab-one" href={route('tab-one')}>
             Tab 1

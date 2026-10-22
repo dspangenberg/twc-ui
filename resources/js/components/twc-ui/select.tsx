@@ -33,8 +33,8 @@ const SelectValue = <T extends object>({ className, ...props }: AriaSelectValueP
   <AriaSelectValue
     className={composeRenderProps(className, className =>
       cn(
-        'line-clamp-1 truncate data-placeholder:text-muted-foreground',
-        'focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/20',
+        'data-placeholder:text-muted-foreground line-clamp-1 truncate',
+        'focus-visible:border-ring focus-visible:ring-ring/20 focus-visible:ring-[3px]',
         /* Description */
         '*:[[slot=description]]:hidden',
         className
@@ -49,10 +49,10 @@ const SelectTrigger = ({ className, children, ...props }: AriaButtonProps) => (
     type="button"
     className={composeRenderProps(className, className =>
       cn(
-        'flex h-9 w-full items-center justify-between whitespace-nowrap rounded-sm border border-input bg-background px-3 py-2 font-medium text-sm shadow-none outline-0 ring-offset-0',
+        'border-input bg-background flex h-9 w-full items-center justify-between rounded-sm border px-3 py-2 text-sm font-medium whitespace-nowrap shadow-none ring-offset-0 outline-0',
         /* Disabled */
         'data-disabled:cursor-not-allowed data-disabled:opacity-50',
-        'focus-visible:border-primary focus-visible:ring-[3px] focus-visible:ring-primary/20',
+        'focus-visible:border-primary focus-visible:ring-primary/20 focus-visible:ring-[3px]',
         /* Focused */
         'data-invalid:border-destructive data-invalid:focus-visible:border-destructive data-invalid:focus-visible:ring-destructive/20',
         className
@@ -71,7 +71,7 @@ const SelectTrigger = ({ className, children, ...props }: AriaButtonProps) => (
 
 const SelectPopover = ({ className, ...props }: AriaPopoverProps) => (
   <Popover
-    className={composeRenderProps(className, className => cn('w-[--trigger-width]', className))}
+    className={composeRenderProps(className, className => cn('w-(--trigger-width)', className))}
     {...props}
   />
 )
@@ -88,7 +88,7 @@ const SelectListBox = <T extends object>({ className, ...props }: AriaListBoxPro
   />
 )
 interface SelectProps<T extends object>
-  extends Omit<AriaSelectProps<T>, 'children' | 'onSelectionChange' | 'onChange' | 'isRequired'> {
+  extends Omit<AriaSelectProps<T>, 'children' | 'onSelectionChange' | 'onChange'> {
   label?: string
   description?: string
   error?: string
@@ -115,6 +115,7 @@ const Select = <T extends object>({
   itemValue = 'id' as keyof T & string,
   errorComponent: ErrorComponent = FieldError,
   isOptional = false,
+  isRequired,
   optionalValue = '(leer)',
   items = [],
   onChange,
@@ -156,7 +157,7 @@ const Select = <T extends object>({
   return (
     <BaseSelect
       isInvalid={hasError}
-      isRequired={!isOptional}
+      isRequired={isRequired ?? !isOptional}
       onSelectionChange={handleSelectionChange}
       className={composeRenderProps(className, className =>
         cn('group flex flex-col gap-1.5 text-sm', className)
@@ -164,7 +165,7 @@ const Select = <T extends object>({
       name={name}
       {...props}
     >
-      {label && <Label value={label} isRequired={!isOptional} />}
+      {label && <Label value={label} isRequired={isRequired ?? !isOptional} />}
       <SelectTrigger autoFocus={autoFocus} data-invalid={hasError ? '' : undefined}>
         <SelectValue className="focus-within-0 border-transparent" />
       </SelectTrigger>

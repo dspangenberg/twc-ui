@@ -14,7 +14,7 @@ import { cn } from '@/lib/utils'
 
 const labelVariants = tv({
   base: [
-    'font-normal text-sm leading-none',
+    'text-sm leading-none font-normal',
     /* Disabled */
     'data-[disabled]:cursor-not-allowed data-[disabled]:opacity-70',
     /* Invalid */
@@ -55,7 +55,7 @@ function FieldDescription({ className, ...props }: AriaTextProps) {
 function FieldError({ className, ...props }: AriaFieldErrorProps) {
   return (
     <AriaFieldError
-      className={cn('font-medium text-[0.8rem] text-destructive', className)}
+      className={cn('text-destructive text-[0.8rem] font-medium', className)}
       {...props}
     />
   )
@@ -65,14 +65,14 @@ const fieldGroupVariants = tv({
   variants: {
     variant: {
       default: [
-        'relative flex h-9 w-full items-center overflow-hidden rounded-sm border border-input bg-background px-3 py-1 font-medium text-base shadow-none transition-colors',
+        'border-input bg-background relative flex h-9 w-full items-center overflow-hidden rounded-sm border px-3 py-1 text-base font-medium shadow-none transition-colors',
         /* Focus Within */
-        'focus-within:border-primary focus-within:ring-[3px] focus-within:ring-primary/20 focus:border-primary',
+        'focus-within:border-primary focus-within:ring-primary/20 focus:border-primary focus-within:ring-[3px]',
         'data-[invalid]:border-destructive data-[invalid]:focus-within:border-destructive data-[invalid]:focus-within:ring-destructive/20',
         /* Disabled */
         'data-[disabled]:opacity-50'
       ],
-      ghost: 'w-full data-[invalid]:border-destructive'
+      ghost: 'data-[invalid]:border-destructive w-full'
     }
   },
   defaultVariants: {

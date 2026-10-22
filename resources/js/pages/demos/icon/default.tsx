@@ -1,7 +1,6 @@
 import { Rocket02Icon } from '@hugeicons/core-free-icons'
 import { Moon } from 'lucide-react'
 import { DemoContainer } from '@/components/docs/DemoContainer'
-import { Button } from '@/components/twc-ui/button'
 import { Icon } from '@/components/twc-ui/icon'
 
 export const Demo = () => {

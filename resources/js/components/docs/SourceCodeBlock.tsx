@@ -73,7 +73,7 @@ export const SourceCodeBlock: React.FC<Props> = ({ target, type, path }) => {
     <CodeBlock data={codeData} defaultValue={language}>
       <CodeBlockHeader>
         <CodeBlockFilename
-          className="font-medium font-mono text-foreground text-sm"
+          className="text-foreground font-mono text-sm font-medium"
           value={language}
         >
           {codeData[0].filename}

@@ -1,4 +1,4 @@
-import { Rocket02Icon } from '@hugeicons/react'
+import { Rocket02Icon } from '@hugeicons/core-free-icons'
 import { render, screen } from '@testing-library/react'
 import { userEvent } from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
